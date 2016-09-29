@@ -1,5 +1,8 @@
-DESeq2 Course Work
-==================
+---
+layout: post
+title: "DESeq2 Course Work"
+date: 2016-09-29
+---
 
 Go to [exprAnalysis](https://github.com/ShirinG/exprAnalysis/) for installation instructions.
 
