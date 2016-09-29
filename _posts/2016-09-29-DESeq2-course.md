@@ -1,3 +1,9 @@
+---
+layout: post
+title: "DESeq2 Course Work"
+date: 2016-09-29
+---
+
 DESeq2 Course Work
 ==================
 
