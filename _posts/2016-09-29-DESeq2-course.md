@@ -1,18 +1,15 @@
----
-layout: post
-title: "DESeq2 Course Work"
-date: 2016-09-29
----
+DESeq2 Course Work
+==================
 
-Go to [exprAnalysis](https://github.com/ShirinG/exprAnalysis/) for
-installation instructions.
+Go to [exprAnalysis](https://github.com/ShirinG/exprAnalysis/) for installation instructions.
 
-For all functions, use the help pages to find out more about parameters
-and usage.
+For all functions, use the help pages to find out more about parameters and usage.
 
 See Vignette for additional information.
 
-    library(exprAnalysis)
+``` r
+library(exprAnalysis)
+```
 
 ------------------------------------------------------------------------
 
@@ -21,13 +18,11 @@ See Vignette for additional information.
 Input data
 ----------
 
-> "As input, the DESeq2 package expects count data as obtained, e. g.,
-> from RNAseq or another high-throughput sequencing experiment, in the
-> form of a matrix of integer values. The value in the i-th row and the
-> j-th column of the matrix tells how many reads can be assigned to gene
-> i in sample j." Love et al., DESeq2 vignette
+> "As input, the DESeq2 package expects count data as obtained, e. g., from RNAseq or another high-throughput sequencing experiment, in the form of a matrix of integer values. The value in the i-th row and the j-th column of the matrix tells how many reads can be assigned to gene i in sample j." Love et al., DESeq2 vignette
 
-    data("countmatrix")
+``` r
+data("countmatrix")
+```
 
 ------------------------------------------------------------------------
 
@@ -36,9 +31,7 @@ Input data
 Count data analysis with DESeq2
 -------------------------------
 
-See [DESeq2
-Vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.pdf)
-for details.
+See [DESeq2 Vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.pdf) for details.
 
 -   read in saved count matrix
 -   define experimental design
@@ -46,10 +39,12 @@ for details.
 
 #### Count matrix input
 
-    design <- gsub("(.*)(_[0-9])", "\\1", colnames(countmatrix))
-    ExpDesign <- data.frame(row.names=colnames(countmatrix), treatment = design)
+``` r
+design <- gsub("(.*)(_[0-9])", "\\1", colnames(countmatrix))
+ExpDesign <- data.frame(row.names=colnames(countmatrix), treatment = design)
 
-    data <- DESeq2::DESeqDataSetFromMatrix(countData = countmatrix, colData = ExpDesign, design = ~treatment)
+data <- DESeq2::DESeqDataSetFromMatrix(countData = countmatrix, colData = ExpDesign, design = ~treatment)
+```
 
     ## converting counts to integer mode
 
@@ -59,30 +54,21 @@ for details.
 
 ### DESeq2
 
--   optional, but recommended: remove genes with zero counts over all
-    samples
+-   optional, but recommended: remove genes with zero counts over all samples
 -   run DESeq
 -   Extracting transformed values
 
-> "While it is not necessary to pre-filter low count genes before
-> running the DESeq2 functions, there are two reasons which make
-> pre-filtering useful: by removing rows in which there are no reads or
-> nearly no reads, we reduce the memory size of the dds data object and
-> we increase the speed of the transformation and testing functions
-> within DESeq2." Love et al., DESeq2 vignette
+> "While it is not necessary to pre-filter low count genes before running the DESeq2 functions, there are two reasons which make pre-filtering useful: by removing rows in which there are no reads or nearly no reads, we reduce the memory size of the dds data object and we increase the speed of the transformation and testing functions within DESeq2." Love et al., DESeq2 vignette
 
-Note: the rlog transformation is provided for applications other than
-differential testing. For differential testing we recommend the DESeq
-function applied to raw counts, as described later in this workflow,
-which also takes into account the dependence of the variance of counts
-on the mean value during the dispersion estimation step.
+Note: the rlog transformation is provided for applications other than differential testing. For differential testing we recommend the DESeq function applied to raw counts, as described later in this workflow, which also takes into account the dependence of the variance of counts on the mean value during the dispersion estimation step.
 
-For a quick first glance at the data, we can use <span
-style="color:red">pcaExplorer</span>.
+For a quick first glance at the data, we can use <span style="color:red">pcaExplorer</span>.
 
-    data <- data[rowSums(DESeq2::counts(data)) > 1, ]
+``` r
+data <- data[rowSums(DESeq2::counts(data)) > 1, ]
 
-    data_DESeq <- DESeq2::DESeq(data)
+data_DESeq <- DESeq2::DESeq(data)
+```
 
     ## estimating size factors
 
@@ -96,11 +82,15 @@ style="color:red">pcaExplorer</span>.
 
     ## fitting model and testing
 
-    expmatrix_DESeq <- DESeq2::rlog(data_DESeq, fitType="local")
-    expmatrix <- SummarizedExperiment::assay(expmatrix_DESeq)
+``` r
+expmatrix_DESeq <- DESeq2::rlog(data_DESeq, fitType="local")
+expmatrix <- SummarizedExperiment::assay(expmatrix_DESeq)
+```
 
-    library("pcaExplorer")
-    pcaExplorer(data_DESeq, expmatrix_DESeq)
+``` r
+library("pcaExplorer")
+pcaExplorer(data_DESeq, expmatrix_DESeq)
+```
 
 ------------------------------------------------------------------------
 
@@ -108,9 +98,11 @@ style="color:red">pcaExplorer</span>.
 
 ### Dispersion plot
 
-    DESeq2::plotDispEsts(data_DESeq, main="Dispersion Estimates")
+``` r
+DESeq2::plotDispEsts(data_DESeq, main="Dispersion Estimates")
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/dispersion_plot-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/dispersion_plot-1.png)
 
 ------------------------------------------------------------------------
 
@@ -121,14 +113,15 @@ Exploratory analysis of all genes
 
 ### Variance vs mean gene expression across samples
 
-Plots variance against mean gene expression across samples and
-calculates the correlation of a linear regression model.
+Plots variance against mean gene expression across samples and calculates the correlation of a linear regression model.
 
 **var\_vs\_mean()** uses the R package matrixStats.
 
-    var_vs_mean(countmatrix)
+``` r
+var_vs_mean(countmatrix)
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/var_vs_mean-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/var_vs_mean-1.png)
 
     ## 
     ##  Pearson's product-moment correlation
@@ -142,9 +135,11 @@ calculates the correlation of a linear regression model.
     ##       cor 
     ## 0.9422083
 
-    var_vs_mean(expmatrix)
+``` r
+var_vs_mean(expmatrix)
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/var_vs_mean-2.png)
+![](DESeq2_course_blog_files/figure-markdown_github/var_vs_mean-2.png)
 
     ## 
     ##  Pearson's product-moment correlation
@@ -164,15 +159,17 @@ calculates the correlation of a linear regression model.
 
 ### Intersample variances
 
-    library(corrgram)
+``` r
+library(corrgram)
 
-    Ctrl_cor <- expmatrix[,grep("Ctrl", colnames(expmatrix))]
+Ctrl_cor <- expmatrix[,grep("Ctrl", colnames(expmatrix))]
 
-    corrgram::corrgram(Ctrl_cor, order=TRUE, lower.panel=corrgram::panel.pie,
-             upper.panel=corrgram::panel.pts, text.panel=corrgram::panel.txt,
-             main="Correlogram of controls")
+corrgram::corrgram(Ctrl_cor, order=TRUE, lower.panel=corrgram::panel.pie,
+         upper.panel=corrgram::panel.pts, text.panel=corrgram::panel.txt,
+         main="Correlogram of controls")
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/variance_sumOverlaps-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/variance_sumOverlaps-1.png)
 
 #### Repeat for other treatment groups
 
@@ -186,19 +183,20 @@ Uses functions from the R package pcaGoPromoter.
 
 You can only plot the principle components using:
 
-    groups <- as.factor(c(rep("Ctrl",4), rep("TolLPS",4), rep("TolS100A8",4), rep("ActLPS",4)))
-    pca_plot(expmatrix, groups)
+``` r
+groups <- as.factor(c(rep("Ctrl",4), rep("TolLPS",4), rep("TolS100A8",4), rep("ActLPS",4)))
+pca_plot(expmatrix, groups)
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/pca_plot-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/pca_plot-1.png)
 
 <br>
 
-Or you can plot the principle components and calculate TF and GO term
-enrichments of genes (defaults to top 2.5%) with highest and lowest
-loadings. With this function, the ouput files are directly saved to .pdf
-and .txt (by default to working directory).
+Or you can plot the principle components and calculate TF and GO term enrichments of genes (defaults to top 2.5%) with highest and lowest loadings. With this function, the ouput files are directly saved to .pdf and .txt (by default to working directory).
 
-    pca_plot_enrich(expmatrix, groups)
+``` r
+pca_plot_enrich(expmatrix, groups)
+```
 
 ------------------------------------------------------------------------
 
@@ -210,31 +208,37 @@ and .txt (by default to working directory).
 
 Here, of the 30 most highly expressed genes.
 
-    select <- order(rowMeans(expmatrix),decreasing=TRUE)[1:30]
-    heatmaps(expmatrix[select,], samplecols = rep(c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3"), each=4))
+``` r
+select <- order(rowMeans(expmatrix),decreasing=TRUE)[1:30]
+heatmaps(expmatrix[select,], samplecols = rep(c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3"), each=4))
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/heatmaps-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/heatmaps-1.png)
 
 #### Heatmap function from DESeq2, using pheatmap:
 
-    library(pheatmap)
+``` r
+library(pheatmap)
 
-    sampleDists <- dist(t(expmatrix))
-    sampleDistMatrix <- as.matrix(sampleDists)
-    rownames(sampleDistMatrix) <- paste(expmatrix_DESeq$treatment)
-    colnames(sampleDistMatrix) <- NULL
-    colors <- grDevices::colorRampPalette( rev(RColorBrewer::brewer.pal(9, "Blues")) )(255)
-    pheatmap::pheatmap(sampleDistMatrix,
-             clustering_distance_rows=sampleDists,
-             clustering_distance_cols=sampleDists,
-             col=colors)
+sampleDists <- dist(t(expmatrix))
+sampleDistMatrix <- as.matrix(sampleDists)
+rownames(sampleDistMatrix) <- paste(expmatrix_DESeq$treatment)
+colnames(sampleDistMatrix) <- NULL
+colors <- grDevices::colorRampPalette( rev(RColorBrewer::brewer.pal(9, "Blues")) )(255)
+pheatmap::pheatmap(sampleDistMatrix,
+         clustering_distance_rows=sampleDists,
+         clustering_distance_cols=sampleDists,
+         col=colors)
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/heatmaps2-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/heatmaps2-1.png)
 
-    df <- data.frame(treatment = SummarizedExperiment::colData(data_DESeq)[,c("treatment")], row.names = rownames(SummarizedExperiment::colData(data_DESeq)))
-    pheatmap::pheatmap(expmatrix[select,], cluster_rows=TRUE, show_rownames=TRUE, cluster_cols=TRUE, annotation_col=df)
+``` r
+df <- data.frame(treatment = SummarizedExperiment::colData(data_DESeq)[,c("treatment")], row.names = rownames(SummarizedExperiment::colData(data_DESeq)))
+pheatmap::pheatmap(expmatrix[select,], cluster_rows=TRUE, show_rownames=TRUE, cluster_cols=TRUE, annotation_col=df)
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/heatmaps2-2.png)
+![](DESeq2_course_blog_files/figure-markdown_github/heatmaps2-2.png)
 
 ------------------------------------------------------------------------
 
@@ -242,24 +246,27 @@ Here, of the 30 most highly expressed genes.
 
 ### Hierarchical Clustering and outlier detection
 
-Uses adjacency matrix function from the R package WGCNA and hierarchical
-clustering from the R package flashClust.
+Uses adjacency matrix function from the R package WGCNA and hierarchical clustering from the R package flashClust.
 
-    datTraits <- data.frame(Ctrl = c(rep(1, 4), rep(0,12)), TolPS = c(rep(0, 4), rep(1, 4),rep(0, 8)), TolS100A8 = c(rep(0, 8), rep(1, 4), rep(0, 4)), ActLPS = c(rep(0, 12),rep(1, 4)), Tol = c(rep(0, 4), rep(1, 8), rep(0, 4)), ExPhenotype = c(stats::rnorm(4, 10, 1),stats::rnorm(8, 25, 1),stats::rnorm(4, 50, 1)), row.names = colnames(expmatrix))
+``` r
+datTraits <- data.frame(Ctrl = c(rep(1, 4), rep(0,12)), TolPS = c(rep(0, 4), rep(1, 4),rep(0, 8)), TolS100A8 = c(rep(0, 8), rep(1, 4), rep(0, 4)), ActLPS = c(rep(0, 12),rep(1, 4)), Tol = c(rep(0, 4), rep(1, 8), rep(0, 4)), ExPhenotype = c(stats::rnorm(4, 10, 1),stats::rnorm(8, 25, 1),stats::rnorm(4, 50, 1)), row.names = colnames(expmatrix))
 
-    datExpr <- wgcna_sample_dendrogram(expmatrix, datTraits)
+datExpr <- wgcna_sample_dendrogram(expmatrix, datTraits)
+```
 
     ## 
 
-![](DESeq2_course_blog_files/figure-markdown_strict/wgcna_sample_dendrogram-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/wgcna_sample_dendrogram-1.png)
 
     ##  Flagging genes and samples with too many missing values...
     ##   ..step 1
     ## All genes are okay!
     ## All samples are okay!
 
-    # Optional: Remove outlier samples and repeats: All genes flagged for removal are saved to the object "remove_genes"
-    #head(remove_genes)
+``` r
+# Optional: Remove outlier samples and repeats: All genes flagged for removal are saved to the object "remove_genes"
+#head(remove_genes)
+```
 
 ------------------------------------------------------------------------
 
@@ -272,16 +279,13 @@ For raw read count data.
 
 ##### contrast DE groups:
 
--   lfc = treatment &gt; Ctrl, - lfc = treatment &lt; Ctrl p-value &
-    p.adjust values of NA indicate outliers detected by Cook's distance
-    NA only for p.adjust means the gene is filtered by automatic
-    independent filtering for having a low mean normalized count
+-   lfc = treatment &gt; Ctrl, - lfc = treatment &lt; Ctrl p-value & p.adjust values of NA indicate outliers detected by Cook's distance NA only for p.adjust means the gene is filtered by automatic independent filtering for having a low mean normalized count
 
-Information about which variables and tests were used can be found by
-calling the function <span style="color:red">mcols</span>, on the
-results object.
+Information about which variables and tests were used can be found by calling the function <span style="color:red">mcols</span>, on the results object.
 
-    library(DESeq2)
+``` r
+library(DESeq2)
+```
 
     ## Loading required package: S4Vectors
 
@@ -336,17 +340,21 @@ results object.
     ##     'browseVignettes()'. To cite Bioconductor, see
     ##     'citation("Biobase")', and for packages 'citation("pkgname")'.
 
-    library(ggplot2)
-    library(ggrepel)
+``` r
+library(ggplot2)
+library(ggrepel)
 
-    # find possible contrasts with
-    DESeq2::resultsNames(data_DESeq)
+# find possible contrasts with
+DESeq2::resultsNames(data_DESeq)
+```
 
     ## [1] "Intercept"          "treatmentActLPS"    "treatmentCtrl"     
     ## [4] "treatmentTolLPS"    "treatmentTolS100A8"
 
-    res <- DESeq2::results(data_DESeq, contrast=list("treatmentActLPS", "treatmentCtrl"), cooksCutoff = 0.99, independentFiltering = TRUE, alpha = 0.05, pAdjustMethod = "BH")
-    summary(res)
+``` r
+res <- DESeq2::results(data_DESeq, contrast=list("treatmentActLPS", "treatmentCtrl"), cooksCutoff = 0.99, independentFiltering = TRUE, alpha = 0.05, pAdjustMethod = "BH")
+summary(res)
+```
 
     ## 
     ## out of 10000 with nonzero total read count
@@ -359,7 +367,9 @@ results object.
     ## [1] see 'cooksCutoff' argument of ?results
     ## [2] see 'independentFiltering' argument of ?results
 
-    mcols(res)$description
+``` r
+mcols(res)$description
+```
 
     ## [1] "mean of normalized counts for all samples"               
     ## [2] "log2 fold change (MAP): treatmentActLPS vs treatmentCtrl"
@@ -368,11 +378,13 @@ results object.
     ## [5] "Wald test p-value: treatmentActLPS vs treatmentCtrl"     
     ## [6] "BH adjusted p-values"
 
-    # order results table by the smallest adjusted p value:
-    res <- res[order(res$padj),]
+``` r
+# order results table by the smallest adjusted p value:
+res <- res[order(res$padj),]
 
-    results = as.data.frame(dplyr::mutate(as.data.frame(res), sig=ifelse(res$padj<0.05, "FDR<0.05", "Not Sig")), row.names=rownames(res))
-    head(results)
+results = as.data.frame(dplyr::mutate(as.data.frame(res), sig=ifelse(res$padj<0.05, "FDR<0.05", "Not Sig")), row.names=rownames(res))
+head(results)
+```
 
     ##               baseMean log2FoldChange      lfcSE     stat        pvalue
     ## CATSPER3     2469.0350       4.094351 0.08958149 45.70532  0.000000e+00
@@ -389,21 +401,25 @@ results object.
     ## LOC100507387 1.927676e-144 FDR<0.05
     ## TMEM102      3.866048e-142 FDR<0.05
 
-    DEgenes_DESeq <- results[which(abs(results$log2FoldChange) > log2(1.5) & results$padj < 0.05),]
+``` r
+DEgenes_DESeq <- results[which(abs(results$log2FoldChange) > log2(1.5) & results$padj < 0.05),]
 
-    p = ggplot2::ggplot(results, ggplot2::aes(log2FoldChange, -log10(pvalue))) +
-      ggplot2::geom_point(ggplot2::aes(col = sig)) +
-      ggplot2::scale_color_manual(values = c("red", "black")) +
-      ggplot2::ggtitle("Volcano Plot of DESeq2 analysis")
+p = ggplot2::ggplot(results, ggplot2::aes(log2FoldChange, -log10(pvalue))) +
+  ggplot2::geom_point(ggplot2::aes(col = sig)) +
+  ggplot2::scale_color_manual(values = c("red", "black")) +
+  ggplot2::ggtitle("Volcano Plot of DESeq2 analysis")
 
-    p + ggrepel::geom_text_repel(data=results[1:10, ], ggplot2::aes(label=rownames(results[1:10, ])))
+p + ggrepel::geom_text_repel(data=results[1:10, ], ggplot2::aes(label=rownames(results[1:10, ])))
+```
 
     ## Warning: Removed 175 rows containing missing values (geom_point).
 
-![](DESeq2_course_blog_files/figure-markdown_strict/DEgenes_DESeq2-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/DEgenes_DESeq2-1.png)
 
-    # If there aren't too many DE genes:
-    #p + geom_text_repel(data = dplyr::filter(results, padj<0.05), aes(label = rownames(results[1:10, ])))
+``` r
+# If there aren't too many DE genes:
+#p + geom_text_repel(data = dplyr::filter(results, padj<0.05), aes(label = rownames(results[1:10, ])))
+```
 
 ------------------------------------------------------------------------
 
@@ -411,40 +427,31 @@ results object.
 
 #### MA-plot
 
-> "These plots show the log2 fold changes from the treatment over the
-> mean of normalized counts, i.e. the average of counts normalized by
-> size factors. The left plot shows the "unshrunken" log2 fold changes,
-> while the right plot, produced by the code above, shows the shrinkage
-> of log2 fold changes resulting from the incorporation of zero-centered
-> normal prior. The shrinkage is greater for the log2 fold change
-> estimates from genes with low counts and high dispersion, as can be
-> seen by the narrowing of spread of leftmost points in the right plot."
-> Love et al., DESeq2 vignette
+> "These plots show the log2 fold changes from the treatment over the mean of normalized counts, i.e. the average of counts normalized by size factors. The left plot shows the "unshrunken" log2 fold changes, while the right plot, produced by the code above, shows the shrinkage of log2 fold changes resulting from the incorporation of zero-centered normal prior. The shrinkage is greater for the log2 fold change estimates from genes with low counts and high dispersion, as can be seen by the narrowing of spread of leftmost points in the right plot." Love et al., DESeq2 vignette
 
-    DESeq2::plotMA(res, main="MA Plot", ylim=c(-2,2))
+``` r
+DESeq2::plotMA(res, main="MA Plot", ylim=c(-2,2))
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/ma_plot-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/ma_plot-1.png)
 
 <br>
 
 #### plotCounts
 
-> "It can also be useful to examine the counts of reads for a single
-> gene across the groups. A simple function for making this plot is
-> plotCounts, which normalizes counts by sequencing depth and adds a
-> pseudocount of 1/2 to allow for log scale plotting. The counts are
-> grouped by the variables in intgroup, where more than one variable can
-> be specified." Love et al., DESeq2 vignette
+> "It can also be useful to examine the counts of reads for a single gene across the groups. A simple function for making this plot is plotCounts, which normalizes counts by sequencing depth and adds a pseudocount of 1/2 to allow for log scale plotting. The counts are grouped by the variables in intgroup, where more than one variable can be specified." Love et al., DESeq2 vignette
 
-    par(mfrow=c(1,3))
+``` r
+par(mfrow=c(1,3))
 
-    for (i in 1:3){
-      gene <- rownames(res)[i]
-      main = gene
-      DESeq2::plotCounts(data_DESeq, gene=gene, intgroup="treatment", main = main)
-    }
+for (i in 1:3){
+  gene <- rownames(res)[i]
+  main = gene
+  DESeq2::plotCounts(data_DESeq, gene=gene, intgroup="treatment", main = main)
+}
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/plot_counts-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/plot_counts-1.png)
 
 ------------------------------------------------------------------------
 
@@ -455,14 +462,18 @@ Gene annotations
 
 Can be used to add e.g. ENTREZ ID, ENSEMBL ID, etc. to gene name.
 
-    results_anno <- geneAnnotations(input=results, keys=row.names(results), column=c("ENTREZID", "ENSEMBL"), keytype="SYMBOL", organism = "human")
+``` r
+results_anno <- geneAnnotations(input=results, keys=row.names(results), column=c("ENTREZID", "ENSEMBL"), keytype="SYMBOL", organism = "human")
+```
 
     ## 
 
     ## 'select()' returned 1:many mapping between keys and columns
     ## 'select()' returned 1:many mapping between keys and columns
 
-    head(results_anno)
+``` r
+head(results_anno)
+```
 
     ##               baseMean log2FoldChange      lfcSE     stat        pvalue
     ## CATSPER3     2469.0350       4.094351 0.08958149 45.70532  0.000000e+00
@@ -486,32 +497,36 @@ Can be used to add e.g. ENTREZ ID, ENSEMBL ID, etc. to gene name.
 Enrichment Analysis using clusterPofiler
 ----------------------------------------
 
-See
-[clusterProfiler](https://bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/clusterProfiler.html)
-instructions for details.
+See [clusterProfiler](https://bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/clusterProfiler.html) instructions for details.
 
-    library(clusterProfiler)
+``` r
+library(clusterProfiler)
+```
 
     ## Loading required package: DOSE
 
-    library(org.Hs.eg.db)
+``` r
+library(org.Hs.eg.db)
+```
 
     ## Loading required package: AnnotationDbi
 
-    OrgDb <- org.Hs.eg.db # can also be other organisms
+``` r
+OrgDb <- org.Hs.eg.db # can also be other organisms
 
-    geneList <- as.vector(results_anno$log2FoldChange)
-    names(geneList) <- results_anno$ENTREZID
-    gene <- na.omit(results_anno$ENTREZID)
+geneList <- as.vector(results_anno$log2FoldChange)
+names(geneList) <- results_anno$ENTREZID
+gene <- na.omit(results_anno$ENTREZID)
 
 
-    # Group GO
-    ggo <- clusterProfiler::groupGO(gene     = gene,
-                                    OrgDb    = OrgDb,
-                                    ont      = "BP",
-                                    level    = 3,
-                                    readable = TRUE)
-    head(summary(ggo)[,-5])
+# Group GO
+ggo <- clusterProfiler::groupGO(gene     = gene,
+                                OrgDb    = OrgDb,
+                                ont      = "BP",
+                                level    = 3,
+                                readable = TRUE)
+head(summary(ggo)[,-5])
+```
 
     ##                    ID                                    Description Count
     ## GO:0003006 GO:0003006 developmental process involved in reproduction   261
@@ -528,19 +543,23 @@ instructions for details.
     ## GO:0032504  317/9735
     ## GO:0032505    0/9735
 
-    barplot(ggo, drop=TRUE, showCategory=12)
+``` r
+barplot(ggo, drop=TRUE, showCategory=12)
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/clusterProfiler-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/clusterProfiler-1.png)
 
-    # GO over-representation test
-    ego <- clusterProfiler::enrichGO(gene          = gene,
-                                     OrgDb         = OrgDb,
-                                     ont           = "BP",
-                                     pAdjustMethod = "BH",
-                                     pvalueCutoff  = 0.05,
-                                     qvalueCutoff  = 0.05, 
-                                     readable      = TRUE)
-    head(summary(ego)[,-8])
+``` r
+# GO over-representation test
+ego <- clusterProfiler::enrichGO(gene          = gene,
+                                 OrgDb         = OrgDb,
+                                 ont           = "BP",
+                                 pAdjustMethod = "BH",
+                                 pvalueCutoff  = 0.05,
+                                 qvalueCutoff  = 0.05, 
+                                 readable      = TRUE)
+head(summary(ego)[,-8])
+```
 
     ##                    ID                                        Description
     ## GO:0072657 GO:0072657                   protein localization to membrane
@@ -557,23 +576,31 @@ instructions for details.
     ## GO:0060999   27/7259  34/16655 2.158731e-05 0.02379785 0.02200542    27
     ## GO:0048193  179/7259 329/16655 4.371899e-05 0.03540965 0.03274263   179
 
-    barplot(ego, showCategory=25)
+``` r
+barplot(ego, showCategory=25)
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/clusterProfilerGO-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/clusterProfilerGO-1.png)
 
-    clusterProfiler::dotplot(ego, showCategory=25)
+``` r
+clusterProfiler::dotplot(ego, showCategory=25)
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/clusterProfilerGO-2.png)
+![](DESeq2_course_blog_files/figure-markdown_github/clusterProfilerGO-2.png)
 
-    #clusterProfiler::plotGOgraph(ego)
+``` r
+#clusterProfiler::plotGOgraph(ego)
+```
 
-    ## KEGG over-representation test
-    kk <- clusterProfiler::enrichKEGG(gene         = gene,
-                     organism     = 'hsa',
-                     pAdjustMethod = "BH",
-                     pvalueCutoff = 0.05,
-                     qvalueCutoff  = 0.05)
-    head(summary(kk)[,-8])
+``` r
+## KEGG over-representation test
+kk <- clusterProfiler::enrichKEGG(gene         = gene,
+                 organism     = 'hsa',
+                 pAdjustMethod = "BH",
+                 pvalueCutoff = 0.05,
+                 qvalueCutoff  = 0.05)
+head(summary(kk)[,-8])
+```
 
     ##                ID                  Description GeneRatio  BgRatio
     ## hsa04144 hsa04144                  Endocytosis  142/3071 260/7119
@@ -586,6 +613,8 @@ instructions for details.
     ## hsa05169 6.639562e-04 0.04885909 0.04008042   111
     ## hsa05134 6.739185e-04 0.04885909 0.04008042    36
 
-    cnetplot(kk, categorySize="geneNum", foldChange=geneList)
+``` r
+cnetplot(kk, categorySize="geneNum", foldChange=geneList)
+```
 
-![](DESeq2_course_blog_files/figure-markdown_strict/clusterProfilerKEGG-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/clusterProfilerKEGG-1.png)
