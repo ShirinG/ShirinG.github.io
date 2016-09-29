@@ -105,7 +105,7 @@ pcaExplorer(data_DESeq, expmatrix_DESeq)
 DESeq2::plotDispEsts(data_DESeq, main="Dispersion Estimates")
 ```
 
-![](/DESeq2_course_blog_files/figure-markdown_github/dispersion_plot-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/dispersion_plot-1.png)
 
 ------------------------------------------------------------------------
 
