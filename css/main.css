@@ -1,4 +1,4 @@
-/* NORMALISIERUNG:  Manche WebDesigner stellen alle margin und paddings auf 0, um eine einheitliche Darstellung zu erreichen, andererseits muss man dann ALLES wieder neu formatieren.	box-sizing für alle Elemente ist jedoch sehr sinnvoll, da man damit Rahmen und Innenabstände automatisch in der Breite einschließt und so leichter layouten kann. */
+/* NORMALISIERUNG:  Manche WebDesigner stellen alle margin und paddings auf 0, um eine einheitliche Darstellung zu erreichen, andererseits muss man dann ALLES wieder neu formatieren.	box-sizing fÃ¼r alle Elemente ist jedoch sehr sinnvoll, da man damit Rahmen und InnenabstÃ¤nde automatisch in der Breite einschlieÃŸt und so leichter layouten kann. */
 
 * {
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -15,15 +15,15 @@ html {
 body {
   margin: 0 auto;
   padding: 1%; /* Ein wenig Abstand, damit der Anschein eines Blattes auf der Wand immer erhalten bleibt. */
-  max-width: 75em; /* Eine Begrenzung der Breite auf höhstens 75em. Das machen wir um nicht zu lange Textbreiten zu erhalten, welche dann schlecht zu lesen sind. */
+  max-width: 75em; /* Eine Begrenzung der Breite auf hÃ¶hstens 75em. Das machen wir um nicht zu lange Textbreiten zu erhalten, welche dann schlecht zu lesen sind. */
   font-family: verdana, arial, sans-serif ;
- font-size: 0.8em; /* Ein Kompromiss über den man sicherlich streiten kann, aber viele Leute empfinden die von Ihnen selbst eingestellte Textgröße für zu groß, wissen aber nicht wie man das ändert. */
+ font-size: 0.8em; /* Ein Kompromiss Ã¼ber den man sicherlich streiten kann, aber viele Leute empfinden die von Ihnen selbst eingestellte TextgrÃ¶ÃŸe fÃ¼r zu groÃŸ, wissen aber nicht wie man das Ã¤ndert. */
   border: 1px solid #aaa; /* Eine kleine optische Abgrenzung. */
-  border-top: 0; /* Ganz oben allerdings würde es mit dem grauen komisch aussehen, deshalb weg damit. */
+  border-top: 0; /* Ganz oben allerdings wÃ¼rde es mit dem grauen komisch aussehen, deshalb weg damit. */
   background: white;
 }
 
-.skip { /* Da ein wichtiger Screenreader das display: none; auch für sich versteht und nichts vorliest, obwohl das hier sich vor allem an Blinde richtet, muss man es so lösen, dass man diesen Link außerhalb des Sichtfeldes bringt. Somit wird er trotzdem vorgelesen. */
+.skip { /* Da ein wichtiger Screenreader das display: none; auch fÃ¼r sich versteht und nichts vorliest, obwohl das hier sich vor allem an Blinde richtet, muss man es so lÃ¶sen, dass man diesen Link auÃŸerhalb des Sichtfeldes bringt. Somit wird er trotzdem vorgelesen. */
   position: absolute;
   margin-left: -999px;
   width: 990px;
@@ -33,7 +33,7 @@ a {
   color: #0B4D8C;
   text-decoration: underline;
   outline: none;
-} /* Alle unbesuchten Links bekommen eine leicht bläuliche Farbe und werden unterstrichen, damit man Sie gleich im Text erkennt. */
+} /* Alle unbesuchten Links bekommen eine leicht blÃ¤uliche Farbe und werden unterstrichen, damit man Sie gleich im Text erkennt. */
 
 a:visited {
   color: #008;
@@ -47,22 +47,22 @@ a:hover {
 main {
   background: white;
   padding: 0 2%;
-  line-height: 1.5em; /* Zur besseren Lesbarkeit erhöhen wir die Zeilenhöhe. */
+  line-height: 1.5em; /* Zur besseren Lesbarkeit erhÃ¶hen wir die ZeilenhÃ¶he. */
 }
 
 section{display : inline-block;width:73%;}
 
-h1 { /* Die Überschrift jeder Seite stellen wir besonders da, denn sie ist sehr wichtig. */
+h1 { /* Die Ãœberschrift jeder Seite stellen wir besonders da, denn sie ist sehr wichtig. */
   font-size: 5em;
   font-weight: normal;
-  line-height: 5em;
+  line-height: 3em;
   padding: 0.6em 0 0.2em 2%;
   margin: 0;
-  border-bottom: 4px dashed #E6E6FA;
+  border-bottom: 2px dashed #E6E6FA;
   color: #6673CC;
 }
 
-h2 { /* Die Überschrift jeder Seite stellen wir besonders da, denn sie ist sehr wichtig. */
+h2 { /* Die Ãœberschrift jeder Seite stellen wir besonders da, denn sie ist sehr wichtig. */
   font-size: 2.7em;
   font-weight: normal;
   line-height: 0.8em;
@@ -101,14 +101,14 @@ dl dd {
     padding:5px 0;
 }
 
-img { /* Alle Bilder bekommen einen schönen Rahmen. */
+img { /* Alle Bilder bekommen einen schÃ¶nen Rahmen. */
   border: solid 1px #aaa;
   padding: 1px;
 }
 
-.fleft { /* Sachen, an denen der Text vorbeifließen soll, werden diese Klassen zugewiesen. */
+.fleft { /* Sachen, an denen der Text vorbeiflieÃŸen soll, werden diese Klassen zugewiesen. */
   float: left;
-  margin: 0 1em 0.2em 0; /* Man sollte einen schönen Abstand wählen, sonst kleben die Sachen so am Text. */
+  margin: 0 1em 0.2em 0; /* Man sollte einen schÃ¶nen Abstand wÃ¤hlen, sonst kleben die Sachen so am Text. */
   width:33%;
 }
 .fright {
@@ -122,7 +122,7 @@ img { /* Alle Bilder bekommen einen schönen Rahmen. */
 /* -- Layoutspezifisches -- */
 
 footer {
-  clear: both; /* Damit #main mindestens so hoch ausgedehnt wird wie aside, falls aside länger sein sollte. */
+  clear: both; /* Damit #main mindestens so hoch ausgedehnt wird wie aside, falls aside lÃ¤nger sein sollte. */
   padding: 2%;
   text-align:left;
   border-top: 1px dotted #aaa; /* Hiermit trennen wir den footer optisch vom eigentlichen Inhalt ab. */
@@ -134,30 +134,30 @@ footer .copy span {
 }
 
 
-/* - Menü - */
+/* - MenÃ¼ - */
 nav ul {
   background: url(../img/wechselschatten.png) #287635;
-  padding: 5px 5%; /* Je kleiner das Fenster desto kleiner soll auch der Abstand des Menüs rechts und links sein. */
+  padding: 5px 5%; /* Je kleiner das Fenster desto kleiner soll auch der Abstand des MenÃ¼s rechts und links sein. */
   margin: 0;
   text-align: right;
-  color: yellow; /* Hier definieren wir die Farbe des Menüpunktes, der kein Link ist, also den Menüpunkt der Seite auf der wir uns gerade befinden. */
+  color: yellow; /* Hier definieren wir die Farbe des MenÃ¼punktes, der kein Link ist, also den MenÃ¼punkt der Seite auf der wir uns gerade befinden. */
 }
 nav ul li {
   font-size: 1.2em;
-  display: inline; /* Damit die Menüpunkte nebeneinander und nicht untereinander erscheinen. */
-  list-style-type: none; /* Die Bullets vor den Menüpunkten schalten wir ab. */
+  display: inline; /* Damit die MenÃ¼punkte nebeneinander und nicht untereinander erscheinen. */
+  list-style-type: none; /* Die Bullets vor den MenÃ¼punkten schalten wir ab. */
   border-left: 1px solid white; /* Ein optischer Trennungsstrich */
   padding: 0 .5em 0 .5em;
   font-weight: bold;
 }
 nav ul li a {
-  color: white; /* Hier ist das mit der Linkfarbe genauso, sie soll weiß sein. */
+  color: white; /* Hier ist das mit der Linkfarbe genauso, sie soll weiÃŸ sein. */
   padding:0.1em 1em;
   border-radius:0.2em;
   text-decoration: none;
 }
 
-nav ul li a:hover {   /* wenn die Maus drüberfährt, leucht der Link gelb auf! */
+nav ul li a:hover {   /* wenn die Maus drÃ¼berfÃ¤hrt, leucht der Link gelb auf! */
 	color:green;
 	background:yellow;
 	opacity:0.8;
@@ -167,10 +167,10 @@ nav ul li a:hover {   /* wenn die Maus drüberfährt, leucht der Link gelb auf! */
 @media only screen and (max-width: 600px) {
 nav ul {
 	display:block;
-	background:transparent;				/*Der grüne Schatten wird deaktiviert, stattdessen wird nav ul li a mit grünem Hintergrund sichtbar! */
+	background:transparent;				/*Der grÃ¼ne Schatten wird deaktiviert, stattdessen wird nav ul li a mit grÃ¼nem Hintergrund sichtbar! */
 	margin: 1em 0;
 }
-nav ul li{width:90%;margin: 5px 0;  }   /* Damit man auf SmartPhones navigieren kann, werden die Menüpunkte jetzt über 90% der Screen-Breite gezogen */
+nav ul li{width:90%;margin: 5px 0;  }   /* Damit man auf SmartPhones navigieren kann, werden die MenÃ¼punkte jetzt Ã¼ber 90% der Screen-Breite gezogen */
 nav ul li.active{padding:0 2em; background:green; border-radius:10px;}
 nav ul li a{display:inline-block;width:100%; color:white; background:green; margin:5px 0; border-radius:10px;text-align:center;}
 nav ul li a:after{display:none;}
@@ -200,22 +200,22 @@ header {
  text-align: right;
  line-height: 0.8em;
  font-size: 3em;
- font-family: verdana, arial, sans-serif; /* Da das Logo ähnlich wie auf dem Bildschirm aussehen soll nehmen wir hier auch die gleiche Schriftart. */
+ font-family: verdana, arial, sans-serif; /* Da das Logo Ã¤hnlich wie auf dem Bildschirm aussehen soll nehmen wir hier auch die gleiche Schriftart. */
  letter-spacing: -3px;
 }
 header a#logo {
  text-decoration: none; /* Hier lassen wir den Unterstrich weg. */
 }
-.skip, aside, nav { /* Wenn sich jemand eine Seite aus dem Internet ausdruckt dann will er mit hoher Wahrscheinlichkeit den Inhalt drucken und nicht das Menü oder sonstige Angaben, die für die Navigation auf dem Bildschirm gedacht sind. Deshalb lassen wir diese vom Papier verschwinden. Das spart auch viel Papier und Tinte. */
+.skip, aside, nav { /* Wenn sich jemand eine Seite aus dem Internet ausdruckt dann will er mit hoher Wahrscheinlichkeit den Inhalt drucken und nicht das MenÃ¼ oder sonstige Angaben, die fÃ¼r die Navigation auf dem Bildschirm gedacht sind. Deshalb lassen wir diese vom Papier verschwinden. Das spart auch viel Papier und Tinte. */
  display: none;
 }
 main a:link:after, main a:visited:after { /* Auf dem gedruckten Blatt Papier kann man keinen Link klicken. Deshalb drucken wir den gesammten URL dieses Links dahinter an.  Wer mehr zu diesem Thema wissen will sei auf <http://www.alistapart.com/articles/goingtoprint/ verwiesen.> */
    content: " (" attr(href) ") ";
    font-size: 0.9em; }
-main a[href^="/"]:after { /* Der Mozilla/Firefox zeigt, im Gegensatz zum Opera, die Domain nicht von selbst an. Hier müssen wir mittels CSS3 nachhelfen. */
+main a[href^="/"]:after { /* Der Mozilla/Firefox zeigt, im Gegensatz zum Opera, die Domain nicht von selbst an. Hier mÃ¼ssen wir mittels CSS3 nachhelfen. */
  content: " (http://example.org" attr(href) ") ";
 }
-.fright { /* Damit die Fließeigenschaften auch beim Drucken beachtet werden. */
+.fright { /* Damit die FlieÃŸeigenschaften auch beim Drucken beachtet werden. */
  float: right;
  margin: 0 0 1em 1em;
 }
