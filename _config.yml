@@ -1,5 +1,5 @@
 name: Shirin Glander, PhD
-markdown: redcarpet
+markdown: kramdown
 pygments: true
 permalink: /blog/:year/:month/:day/:title
 gems:
