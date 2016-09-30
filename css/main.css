@@ -15,7 +15,7 @@ html {
 body {
   margin: 0 auto;
   padding: 1%; /* Ein wenig Abstand, damit der Anschein eines Blattes auf der Wand immer erhalten bleibt. */
-  max-width: 75em; /* Eine Begrenzung der Breite auf höhstens 75em. Das machen wir um nicht zu lange Textbreiten zu erhalten, welche dann schlecht zu lesen sind. */
+  max-width: 80em; /* Eine Begrenzung der Breite auf höhstens 75em. Das machen wir um nicht zu lange Textbreiten zu erhalten, welche dann schlecht zu lesen sind. */
   font-family: verdana, arial, sans-serif ;
  font-size: 0.8em; /* Ein Kompromiss über den man sicherlich streiten kann, aber viele Leute empfinden die von Ihnen selbst eingestellte Textgröße für zu groß, wissen aber nicht wie man das ändert. */
   border: 1px solid #aaa; /* Eine kleine optische Abgrenzung. */
