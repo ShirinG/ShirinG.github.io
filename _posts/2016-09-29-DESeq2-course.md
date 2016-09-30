@@ -259,7 +259,7 @@ datExpr <- wgcna_sample_dendrogram(expmatrix, datTraits)
 
     ## 
 
-![](DESeq2_course_blog_files/figure-markdown_github/wgcna_sample_dendrogram-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/wgcna_sample_dendrogram-1.png){:width="80px"}
 
     ##  Flagging genes and samples with too many missing values...
     ##   ..step 1
