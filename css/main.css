@@ -8,6 +8,22 @@ th, td {
   vertical-align: top;
 }
 
+h1, h2, h3, h4, h5, h6, th, td, caption { font-weight:normal; }
+
+h1 {
+	font-size: 130%;
+	font-weight: 400;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+h2 {
+	font-size: 110%;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+img { border: 0; }
 html, body {
 	height: 100%;
 }
@@ -18,4 +34,79 @@ body {
   color:#000;
   font-size: 120%;
   font-weight: 100;
+}
+
+.wrapper {
+  padding-top: 1.7em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+p {
+	margin-left:0;
+	margin-bottom: 1.5em;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+}
+
+a, a:visited {
+  color: #008;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 160%;
+  color: #111;
+}
+
+.subtitle {
+  font-size: 100%;
+	margin-bottom:0.5em;
+}
+
+.date {
+	margin-top: -0.4em;
+	margin-bottom: 1em;
+	margin-left:0.05em;
+  font-size: 80%;
+}
+
+.blurb {
+  font-style: italic;
+  padding: 0.1em 0.1em 0.25em 0.25em;
+  color: #333;
+}
+
+.post {
+	margin-top:2em;
+	border-top:1px solid #a6a2a6;
+	margin-bottom:2.5em;
+}
+
+.posttitle {
+	margin: 0em;
+	margin-top: 2em;
+}
+
+.posttitle a {
+  font-size: 175%;
+  font-weight: 400;
+  color: #001;
+}
+
+.comment-link {
+  margin: 0em 0em 1em 0em;
+}
+
+blockquote {
+	margin-top: 0em;
+  margin-left: 1.5em;
+  padding-left: 1em;
+}
+
+a:hover, a:focus {
+  color: #99a;
 }
