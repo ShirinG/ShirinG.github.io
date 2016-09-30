@@ -405,7 +405,7 @@ for (i in 1:3){
 }
 ```
 
-![](DESeq2_course_blog_files/figure-markdown_github/plot_counts-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/plot_counts-1.png){:width="700px"}
 
 ------------------------------------------------------------------------
 
@@ -501,7 +501,7 @@ head(summary(ggo)[,-5])
 barplot(ggo, drop=TRUE, showCategory=12)
 ```
 
-![](DESeq2_course_blog_files/figure-markdown_github/clusterProfiler-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/clusterProfiler-1.png){:width="700px"}
 
 ``` r
 # GO over-representation test
@@ -534,13 +534,13 @@ head(summary(ego)[,-8])
 barplot(ego, showCategory=25)
 ```
 
-![](DESeq2_course_blog_files/figure-markdown_github/clusterProfilerGO-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/clusterProfilerGO-1.png){:width="700px"}
 
 ``` r
 clusterProfiler::dotplot(ego, showCategory=25)
 ```
 
-![](DESeq2_course_blog_files/figure-markdown_github/clusterProfilerGO-2.png)
+![](DESeq2_course_blog_files/figure-markdown_github/clusterProfilerGO-2.png){:width="700px"}
 
 ``` r
 #clusterProfiler::plotGOgraph(ego)
@@ -571,4 +571,4 @@ head(summary(kk)[,-8])
 cnetplot(kk, categorySize="geneNum", foldChange=geneList)
 ```
 
-![](DESeq2_course_blog_files/figure-markdown_github/clusterProfilerKEGG-1.png)
+![](DESeq2_course_blog_files/figure-markdown_github/clusterProfilerKEGG-1.png){:width="700px"}
