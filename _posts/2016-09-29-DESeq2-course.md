@@ -40,7 +40,7 @@ See [DESeq2 Vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes
 -   define experimental design
 -   convert to DESeq data set
 
-## Count matrix input
+### Count matrix input
 
 ``` r
 design <- gsub("(.*)(_[0-9])", "\\1", colnames(countmatrix))
@@ -55,7 +55,7 @@ data <- DESeq2::DESeqDataSetFromMatrix(countData = countmatrix, colData = ExpDes
 
 <br>
 
-### DESeq2
+## DESeq2
 
 -   optional, but recommended: remove genes with zero counts over all samples
 -   run DESeq
@@ -99,7 +99,7 @@ pcaExplorer(data_DESeq, expmatrix_DESeq)
 
 <br>
 
-### Dispersion plot
+## Dispersion plot
 
 ``` r
 DESeq2::plotDispEsts(data_DESeq, main="Dispersion Estimates")
@@ -114,7 +114,7 @@ DESeq2::plotDispEsts(data_DESeq, main="Dispersion Estimates")
 Exploratory analysis of all genes
 ---------------------------------
 
-### Variance vs mean gene expression across samples
+## Variance vs mean gene expression across samples
 
 Plots variance against mean gene expression across samples and calculates the correlation of a linear regression model.
 
@@ -160,7 +160,7 @@ var_vs_mean(expmatrix)
 
 <br>
 
-### Intersample variances
+## Intersample variances
 
 ``` r
 library(corrgram)
@@ -174,13 +174,13 @@ corrgram::corrgram(Ctrl_cor, order=TRUE, lower.panel=corrgram::panel.pie,
 
 ![](DESeq2_course_blog_files/figure-markdown_github/variance_sumOverlaps-1.png)
 
-#### Repeat for other treatment groups
+### Repeat for other treatment groups
 
 ------------------------------------------------------------------------
 
 <br>
 
-### Principle Component Analysis
+## Principle Component Analysis
 
 Uses functions from the R package pcaGoPromoter.
 
@@ -205,7 +205,7 @@ pca_plot_enrich(expmatrix, groups)
 
 <br>
 
-### Heatmaps
+## Heatmaps
 
 **heatmaps()** uses the R package gplots.
 
@@ -218,7 +218,7 @@ heatmaps(expmatrix[select,], samplecols = rep(c("#E41A1C", "#377EB8", "#4DAF4A",
 
 ![](DESeq2_course_blog_files/figure-markdown_github/heatmaps-1.png)
 
-#### Heatmap function from DESeq2, using pheatmap:
+### Heatmap function from DESeq2, using pheatmap:
 
 ``` r
 library(pheatmap)
@@ -247,7 +247,7 @@ pheatmap::pheatmap(expmatrix[select,], cluster_rows=TRUE, show_rownames=TRUE, cl
 
 <br>
 
-### Hierarchical Clustering and outlier detection
+## Hierarchical Clustering and outlier detection
 
 Uses adjacency matrix function from the R package WGCNA and hierarchical clustering from the R package flashClust.
 
@@ -280,7 +280,7 @@ Differential expression analysis using DESeq2
 
 For raw read count data.
 
-##### contrast DE groups:
+### contrast DE groups:
 
 -   lfc = treatment &gt; Ctrl, - lfc = treatment &lt; Ctrl p-value & p.adjust values of NA indicate outliers detected by Cook's distance NA only for p.adjust means the gene is filtered by automatic independent filtering for having a low mean normalized count
 
@@ -289,59 +289,6 @@ Information about which variables and tests were used can be found by calling th
 ``` r
 library(DESeq2)
 ```
-
-    ## Loading required package: S4Vectors
-
-    ## Loading required package: stats4
-
-    ## Loading required package: BiocGenerics
-
-    ## Loading required package: parallel
-
-    ## 
-    ## Attaching package: 'BiocGenerics'
-
-    ## The following objects are masked from 'package:parallel':
-    ## 
-    ##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
-    ##     clusterExport, clusterMap, parApply, parCapply, parLapply,
-    ##     parLapplyLB, parRapply, parSapply, parSapplyLB
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     IQR, mad, xtabs
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     anyDuplicated, append, as.data.frame, cbind, colnames,
-    ##     do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-    ##     grepl, intersect, is.unsorted, lapply, lengths, Map, mapply,
-    ##     match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
-    ##     Position, rank, rbind, Reduce, rownames, sapply, setdiff,
-    ##     sort, table, tapply, union, unique, unsplit
-
-    ## 
-    ## Attaching package: 'S4Vectors'
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     colMeans, colSums, expand.grid, rowMeans, rowSums
-
-    ## Loading required package: IRanges
-
-    ## Loading required package: GenomicRanges
-
-    ## Loading required package: GenomeInfoDb
-
-    ## Loading required package: SummarizedExperiment
-
-    ## Loading required package: Biobase
-
-    ## Welcome to Bioconductor
-    ## 
-    ##     Vignettes contain introductory material; view with
-    ##     'browseVignettes()'. To cite Bioconductor, see
-    ##     'citation("Biobase")', and for packages 'citation("pkgname")'.
 
 ``` r
 library(ggplot2)
@@ -428,7 +375,7 @@ p + ggrepel::geom_text_repel(data=results[1:10, ], ggplot2::aes(label=rownames(r
 
 <br>
 
-#### MA-plot
+### MA-plot
 
 > "These plots show the log2 fold changes from the treatment over the mean of normalized counts, i.e. the average of counts normalized by size factors. The left plot shows the "unshrunken" log2 fold changes, while the right plot, produced by the code above, shows the shrinkage of log2 fold changes resulting from the incorporation of zero-centered normal prior. The shrinkage is greater for the log2 fold change estimates from genes with low counts and high dispersion, as can be seen by the narrowing of spread of leftmost points in the right plot." Love et al., DESeq2 vignette
 
@@ -440,7 +387,7 @@ DESeq2::plotMA(res, main="MA Plot", ylim=c(-2,2))
 
 <br>
 
-#### plotCounts
+### plotCounts
 
 > "It can also be useful to examine the counts of reads for a single gene across the groups. A simple function for making this plot is plotCounts, which normalizes counts by sequencing depth and adds a pseudocount of 1/2 to allow for log scale plotting. The counts are grouped by the variables in intgroup, where more than one variable can be specified." Love et al., DESeq2 vignette
 
