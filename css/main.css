@@ -29,29 +29,15 @@ body {
   width: 990px;
 }
 
-/* - Logo bzw. Kopf - */
-header {
-  background: white;
-  height: 64px; /* Das Blumenbild ist 64px hoch also wählen wir das auch als Höhe für unseren Kopf. */
-  margin: 0; /* Manche Browser haben das schon voreingestellt aber nicht alle, deshalb vereinheitlichen wir das. */
-  padding: 0 20px;
-  text-align: right;
-  line-height: 54px;
-  font-size: 54px; /* Das Logo soll auch in unseren Kopf passen, deswegen ist es ein wenig kleiner. */
-  letter-spacing: -3px; /* Wieder ein wenig Typografie damit das Logo besser aussieht. */
-}
-header a#logo {
-  color: white; /* Die vorher eingestellte Farbe passt nicht um auch als Logofarbe zu dienen, deshalb wählen wir hier weiß. */
-  text-decoration: none;
-}
-header a#logo span { /* Der letzte Buchstabe soll invertiert dargestellt werden. */
-  color: black;
-  background: white;
-  padding-right: 0.1em; /* Ein Hack, damit das weiße rechts und links genau so breit ist. */
-  font-weight: bold;
-}
-a { color: #0B4D8C; text-decoration: underline; } /* Alle unbesuchten Links bekommen eine leicht bläuliche Farbe und werden unterstrichen, damit man Sie gleich im Text erkennt. */
-a:visited { color: black; } /* Besuchte Links werden schwarz, bleiben dennoch unterstrichen. Somit erkennt man wo man sich schon befunden hat. */
+a {
+  color: #0B4D8C;
+  text-decoration: underline;
+  outline: none;
+} /* Alle unbesuchten Links bekommen eine leicht bläuliche Farbe und werden unterstrichen, damit man Sie gleich im Text erkennt. */
+
+a:visited {
+  color: #008;
+} /* Besuchte Links */
 
 /* - Der Hauptinhaltsteil - */
 main {
@@ -61,29 +47,6 @@ main {
 }
 
 section{display : inline-block;width:73%;}
-
-/* - Sidebar, Rechte Spalte - */
-aside {
-  width: 25%; /* Je kleiner das Fenster desto kleiner soll auch die Breite der Sidebar werden, damit immer genügend Platz für den richtigen Inhalt bleibt. */
-  float: right; /* Damit erreichen wir, dass der Inhalt links neben der Sidebar vorbeifließt und nicht erst unten drunter anfängt. */
-  clear:right;
-  display : inline-block;
-  padding: 0em 1% 1em;
-  margin: 10em 1% 0 1%;
-  border-left: 1px dotted #aaa; /* Hiermit trennen wir optisch die Sidebar vom eigentlichen Inhalt ab. */
-  font-size: 0.9em; /* Die Schriftgröße setzen wir hier ein wenig herunter damit erkennbar wird, dass das Informationen zweiter Rangordnung sind. */
-}
-aside dt { /* Die einzelnen Überschriften in der Sidebar */
-  font-size: 1.2em;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  padding: 0.5em;
-  margin-top: 1em;
-  border-top: 1px dotted #aaa; /* Hier eine optische Trennungslinie zwischen den einzelnen Bereichen der Sidebar. */
-}
-aside dd { /* Die Unterpunkte der Sidebar. */
-  padding: 0;
-  margin: 0.2em 0;
-}
 
 h1 { /* Die Überschrift jeder Seite stellen wir besonders da, denn sie ist sehr wichtig. */
   font-size: 2.7em;
@@ -138,7 +101,7 @@ img { /* Alle Bilder bekommen einen schönen Rahmen. */
 footer {
   clear: both; /* Damit #main mindestens so hoch ausgedehnt wird wie aside, falls aside länger sein sollte. */
   padding: 2%;
-  text-align:center;
+  text-align:left;
   border-top: 1px dotted #aaa; /* Hiermit trennen wir den footer optisch vom eigentlichen Inhalt ab. */
 }
 
