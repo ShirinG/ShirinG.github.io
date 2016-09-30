@@ -252,14 +252,18 @@ pheatmap::pheatmap(expmatrix[select,], cluster_rows=TRUE, show_rownames=TRUE, cl
 Uses adjacency matrix function from the R package WGCNA and hierarchical clustering from the R package flashClust.
 
 ``` r
-datTraits <- data.frame(Ctrl = c(rep(1, 4), rep(0,12)), TolPS = c(rep(0, 4), rep(1, 4),rep(0, 8)), TolS100A8 = c(rep(0, 8), rep(1, 4), rep(0, 4)), ActLPS = c(rep(0, 12),rep(1, 4)), Tol = c(rep(0, 4), rep(1, 8), rep(0, 4)), ExPhenotype = c(stats::rnorm(4, 10, 1),stats::rnorm(8, 25, 1),stats::rnorm(4, 50, 1)), row.names = colnames(expmatrix))
+datTraits <- data.frame(Ctrl = c(rep(1, 4), rep(0,12)), TolPS = c(rep(0, 4), rep(1, 4),rep(0, 8)), 
+                        TolS100A8 = c(rep(0, 8), rep(1, 4), rep(0, 4)), ActLPS = c(rep(0, 12),rep(1, 4)), 
+                        Tol = c(rep(0, 4), rep(1, 8), rep(0, 4)), 
+                        ExPhenotype = c(stats::rnorm(4, 10, 1),stats::rnorm(8, 25, 1),stats::rnorm(4, 50, 1)), 
+                        row.names = colnames(expmatrix))
 
 datExpr <- wgcna_sample_dendrogram(expmatrix, datTraits)
 ```
 
     ## 
 
-![](DESeq2_course_blog_files/figure-markdown_github/wgcna_sample_dendrogram-1.png){:width="80px"}
+![](DESeq2_course_blog_files/figure-markdown_github/wgcna_sample_dendrogram-1.png){:width="500px"}
 
     ##  Flagging genes and samples with too many missing values...
     ##   ..step 1
