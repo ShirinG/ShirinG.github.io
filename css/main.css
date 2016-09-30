@@ -31,7 +31,7 @@ body {
 
 /* - Logo bzw. Kopf - */
 header {
-  background: url(../img/blume.jpg) 0 0 no-repeat black; /* Das Bild mit der Blume hat einen Übergang zum Schwarzen, das nutzen wir aus. Wir lassen es oben links beginnen und wiederholen es nicht. Dadurch, dass die Hintergrundfarbe auch schwarz ist, entsteht der Eindruck als ob das Bild unendlich lang wäre. */
+  background: white;
   height: 64px; /* Das Blumenbild ist 64px hoch also wählen wir das auch als Höhe für unseren Kopf. */
   margin: 0; /* Manche Browser haben das schon voreingestellt aber nicht alle, deshalb vereinheitlichen wir das. */
   padding: 0 20px;
@@ -55,7 +55,7 @@ a:visited { color: black; } /* Besuchte Links werden schwarz, bleiben dennoch un
 
 /* - Der Hauptinhaltsteil - */
 main {
-  background: url(../img/blaue-blume.png) no-repeat 100% 0 white; /* Die kleine, blaue, halbdurchsichtige Blume wird als Hintergrundbild, welches rechts oben in der Ecke steht, definiert. */
+  background: white;
   padding: 0 2%;
   line-height: 1.5em; /* Zur besseren Lesbarkeit erhöhen wir die Zeilenhöhe. */
 }
