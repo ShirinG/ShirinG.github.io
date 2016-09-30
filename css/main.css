@@ -53,16 +53,31 @@ main {
 section{display : inline-block;width:73%;}
 
 h1 { /* Die Überschrift jeder Seite stellen wir besonders da, denn sie ist sehr wichtig. */
+  font-size: 3em;
+  font-weight: normal;
+  line-height: 1em;
+  padding: 0.6em 0 0.2em 2%;
+  margin: 0;
+  border-bottom: 2px dashed #E6E6FA;
+  color: #6673CC;
+}
+
+h2 { /* Die Überschrift jeder Seite stellen wir besonders da, denn sie ist sehr wichtig. */
   font-size: 2.7em;
   font-weight: normal;
   line-height: 0.8em;
   padding: 0.6em 0 0.2em 2%;
   margin: 0;
   border-bottom: 1px dashed #E6E6FA;
+  color: #669aCC;
 }
-h2, h3, h4 { font-weight: normal; }
-h1, h2, h3, h4, h5, h6 { /* Alle Überschriften bekommen eine besondere Farbe, und da sie sehr groß sind, können wir es uns erlauben hier eine Schrift mit Serifen zu wählen. Wir spielen hier ein wenig mit Typographie, und entgehen dem Einheitsbrei auf vielen Seiten. */
+
+h3, h4 {
+  font-weight: normal;
   color: #6699CC;
+}
+
+h1, h2, h3, h4, h5, h6 { /* Wir spielen hier ein wenig mit Typographie, und entgehen dem Einheitsbrei auf vielen Seiten. */
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
