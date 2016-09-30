@@ -2,11 +2,21 @@
 	<html>
 		<head>
 		  {% include head.html %}
+		  <meta charset="utf-8">
+	    <meta name="author" content="Shirin Glander" /> <!-- Hier sollte der Name des Autors, der Inhalte erstellt, rein. -->
+
 			<title>{{ page.title }}</title>
 			<!-- link to main stylesheet -->
 			<link rel="stylesheet" type="text/css" href="/css/main.css">
 		</head>
 		<body>
+
+		  <a class="skip" href="#main">Navigation überspringen</a> <!-- Für Blinde die nicht bei jedem Aufruf die gleichen Infos hören wollen, sondern gleich zum Inhalt der Seite weitergehen wollen. -->
+
+  <header>
+   <a id="logo" href="./">Shirin's Page</a> <!-- Hier kommt noch einmal der Name deiner Homepage rein. -->
+  </header>
+
 			<nav>
 	    		<ul>
 	        		<li><a href="/">Home</a></li>
@@ -15,6 +25,9 @@
 	        		<li><a href="/blog">Blog</a></li>
 	    		</ul>
 			</nav>
+
+			<main role="main">
+
 			<div class="container">
 
 			{{ content }}
