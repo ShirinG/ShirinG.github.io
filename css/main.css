@@ -1,51 +1,240 @@
+/* NORMALISIERUNG:  Manche WebDesigner stellen alle margin und paddings auf 0, um eine einheitliche Darstellung zu erreichen, andererseits muss man dann ALLES wieder neu formatieren.	box-sizing für alle Elemente ist jedoch sehr sinnvoll, da man damit Rahmen und Innenabstände automatisch in der Breite einschließt und so leichter layouten kann. */
+
+* {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+html {
+  background: #e7f3f7;
+  color: black;
+  height: 100%;
+}
+
 body {
-    background-color: white;
-  width: 80em;
-  margin-left: auto;
-  margin-right: auto;
-	font-family: "Trebuchet MS", Helvetica, Arial sans-serif;
-  font-size-adjust: none;
-  font-style: normal;
-  font-variant: normal;
+  margin: 0 auto;
+  padding: 1%; /* Ein wenig Abstand, damit der Anschein eines Blattes auf der Wand immer erhalten bleibt. */
+  max-width: 75em; /* Eine Begrenzung der Breite auf höhstens 75em. Das machen wir um nicht zu lange Textbreiten zu erhalten, welche dann schlecht zu lesen sind. */
+  font-family: verdana, arial, sans-serif ;
+ font-size: 0.8em; /* Ein Kompromiss über den man sicherlich streiten kann, aber viele Leute empfinden die von Ihnen selbst eingestellte Textgröße für zu groß, wissen aber nicht wie man das ändert. */
+  border: 1px solid #aaa; /* Eine kleine optische Abgrenzung. */
+  border-top: 0; /* Ganz oben allerdings würde es mit dem grauen komisch aussehen, deshalb weg damit. */
+  background: white;
+}
+
+.skip { /* Da ein wichtiger Screenreader das display: none; auch für sich versteht und nichts vorliest, obwohl das hier sich vor allem an Blinde richtet, muss man es so lösen, dass man diesen Link außerhalb des Sichtfeldes bringt. Somit wird er trotzdem vorgelesen. */
+  position: absolute;
+  margin-left: -999px;
+  width: 990px;
+}
+
+/* - Logo bzw. Kopf - */
+header {
+  background: url(../img/blume.jpg) 0 0 no-repeat black; /* Das Bild mit der Blume hat einen Übergang zum Schwarzen, das nutzen wir aus. Wir lassen es oben links beginnen und wiederholen es nicht. Dadurch, dass die Hintergrundfarbe auch schwarz ist, entsteht der Eindruck als ob das Bild unendlich lang wäre. */
+  height: 64px; /* Das Blumenbild ist 64px hoch also wählen wir das auch als Höhe für unseren Kopf. */
+  margin: 0; /* Manche Browser haben das schon voreingestellt aber nicht alle, deshalb vereinheitlichen wir das. */
+  padding: 0 20px;
+  text-align: right;
+  line-height: 54px;
+  font-size: 54px; /* Das Logo soll auch in unseren Kopf passen, deswegen ist es ein wenig kleiner. */
+  letter-spacing: -3px; /* Wieder ein wenig Typografie damit das Logo besser aussieht. */
+}
+header a#logo {
+  color: white; /* Die vorher eingestellte Farbe passt nicht um auch als Logofarbe zu dienen, deshalb wählen wir hier weiß. */
+  text-decoration: none;
+}
+header a#logo span { /* Der letzte Buchstabe soll invertiert dargestellt werden. */
+  color: black;
+  background: white;
+  padding-right: 0.1em; /* Ein Hack, damit das weiße rechts und links genau so breit ist. */
+  font-weight: bold;
+}
+a { color: #0B4D8C; text-decoration: underline; } /* Alle unbesuchten Links bekommen eine leicht bläuliche Farbe und werden unterstrichen, damit man Sie gleich im Text erkennt. */
+a:visited { color: black; } /* Besuchte Links werden schwarz, bleiben dennoch unterstrichen. Somit erkennt man wo man sich schon befunden hat. */
+
+/* - Der Hauptinhaltsteil - */
+main {
+  background: url(../img/blaue-blume.png) no-repeat 100% 0 white; /* Die kleine, blaue, halbdurchsichtige Blume wird als Hintergrundbild, welches rechts oben in der Ecke steht, definiert. */
+  padding: 0 2%;
+  line-height: 1.5em; /* Zur besseren Lesbarkeit erhöhen wir die Zeilenhöhe. */
+}
+
+section{display : inline-block;width:73%;}
+
+/* - Sidebar, Rechte Spalte - */
+aside {
+  width: 25%; /* Je kleiner das Fenster desto kleiner soll auch die Breite der Sidebar werden, damit immer genügend Platz für den richtigen Inhalt bleibt. */
+  float: right; /* Damit erreichen wir, dass der Inhalt links neben der Sidebar vorbeifließt und nicht erst unten drunter anfängt. */
+  clear:right;
+  display : inline-block;
+  padding: 0em 1% 1em;
+  margin: 10em 1% 0 1%;
+  border-left: 1px dotted #aaa; /* Hiermit trennen wir optisch die Sidebar vom eigentlichen Inhalt ab. */
+  font-size: 0.9em; /* Die Schriftgröße setzen wir hier ein wenig herunter damit erkennbar wird, dass das Informationen zweiter Rangordnung sind. */
+}
+aside dt { /* Die einzelnen Überschriften in der Sidebar */
+  font-size: 1.2em;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  padding: 0.5em;
+  margin-top: 1em;
+  border-top: 1px dotted #aaa; /* Hier eine optische Trennungslinie zwischen den einzelnen Bereichen der Sidebar. */
+}
+aside dd { /* Die Unterpunkte der Sidebar. */
+  padding: 0;
+  margin: 0.2em 0;
+}
+
+h1 { /* Die Überschrift jeder Seite stellen wir besonders da, denn sie ist sehr wichtig. */
+  font-size: 2.7em;
   font-weight: normal;
-  color: #333;
+  line-height: 0.8em;
+  padding: 0.6em 0 0.2em 2%;
+  margin: 0;
+  border-bottom: 1px dashed #E6E6FA;
 }
-nav ul, footer ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
-    padding: 0px;
-    list-style: none;
-    font-weight: bold;
+h2, h3, h4 { font-weight: normal; }
+h1, h2, h3, h4, h5, h6 { /* Alle Überschriften bekommen eine besondere Farbe, und da sie sehr groß sind, können wir es uns erlauben hier eine Schrift mit Serifen zu wählen. Wir spielen hier ein wenig mit Typographie, und entgehen dem Einheitsbrei auf vielen Seiten. */
+  color: #6699CC;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
-nav ul li, footer ul li {
-    display: inline;
-    margin-right: 20px;
+
+/*DL, DT, DD Datenliste*/
+dl 	{ margin-bottom:50px;}
+
+dl dt {
+    float:left;
+    font-weight:bold;
+    margin-right:5px;
+    padding:5px;
+    width:50%;
 }
-a {
-    text-decoration: none;
-    color: #999;
+
+dl dd {
+    margin:2px 0;
+    padding:5px 0;
 }
-a:hover {
-    text-decoration: underline;
+
+img { /* Alle Bilder bekommen einen schönen Rahmen. */
+  border: solid 1px #aaa;
+  padding: 1px;
 }
-h1 {
-    font-size: 3em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+
+.fleft { /* Sachen, an denen der Text vorbeifließen soll, werden diese Klassen zugewiesen. */
+  float: left;
+  margin: 0 1em 0.2em 0; /* Man sollte einen schönen Abstand wählen, sonst kleben die Sachen so am Text. */
+  width:33%;
 }
-p {
-    font-size: 1.5em;
-    line-height: 1.4em;
-    color: #333;
+.fright {
+  float: right;
+  margin: 0 0 0.2em 1em;
+  padding: 1px;
+  width:33%
 }
+
+
+/* -- Layoutspezifisches -- */
+
 footer {
-    border-top: 1px solid #d5d5d5;
-    font-size: .8em;
+  clear: both; /* Damit #main mindestens so hoch ausgedehnt wird wie aside, falls aside länger sein sollte. */
+  padding: 2%;
+  text-align:center;
+  border-top: 1px dotted #aaa; /* Hiermit trennen wir den footer optisch vom eigentlichen Inhalt ab. */
 }
 
-ul.posts {
-    margin: 20px auto 40px;
-    font-size: 1.5em;
+footer .copy span {
+	margin:0 auto;
+	display:block;
 }
 
-ul.posts li {
-    list-style: none;
+
+/* - Menü - */
+nav ul {
+  background: url(../img/wechselschatten.png) #287635;
+  padding: 5px 5%; /* Je kleiner das Fenster desto kleiner soll auch der Abstand des Menüs rechts und links sein. */
+  margin: 0;
+  text-align: right;
+  color: yellow; /* Hier definieren wir die Farbe des Menüpunktes, der kein Link ist, also den Menüpunkt der Seite auf der wir uns gerade befinden. */
+}
+nav ul li {
+  font-size: 1.2em;
+  display: inline; /* Damit die Menüpunkte nebeneinander und nicht untereinander erscheinen. */
+  list-style-type: none; /* Die Bullets vor den Menüpunkten schalten wir ab. */
+  border-left: 1px solid white; /* Ein optischer Trennungsstrich */
+  padding: 0 .5em 0 .5em;
+  font-weight: bold;
+}
+nav ul li a {
+  color: white; /* Hier ist das mit der Linkfarbe genauso, sie soll weiß sein. */
+  padding:0.1em 1em;
+  border-radius:0.2em;
+  text-decoration: none;
+}
+
+nav ul li a:hover {   /* wenn die Maus drüberfährt, leucht der Link gelb auf! */
+	color:green;
+	background:yellow;
+	opacity:0.8;
+}
+
+/* 1-Spaltenlayout  mit Navigation unten*/
+@media only screen and (max-width: 600px) {
+nav ul {
+	display:block;
+	background:transparent;				/*Der grüne Schatten wird deaktiviert, stattdessen wird nav ul li a mit grünem Hintergrund sichtbar! */
+	margin: 1em 0;
+}
+nav ul li{width:90%;margin: 5px 0;  }   /* Damit man auf SmartPhones navigieren kann, werden die Menüpunkte jetzt über 90% der Screen-Breite gezogen */
+nav ul li.active{padding:0 2em; background:green; border-radius:10px;}
+nav ul li a{display:inline-block;width:100%; color:white; background:green; margin:5px 0; border-radius:10px;text-align:center;}
+nav ul li a:after{display:none;}
+
+section, 				/* kein Spalten-Layout mehr, alles wird untereinander dargestellt*/
+section.spalte,
+aside {
+	float:none;
+	display:block;
+	width:100%;
+}
+
+
+.fleft,.fright {		/*Damit die Bilder jetzt nicht zu klein werden, nehmen sie die halbe Breite des Bildschirms ein.*/
+	width:50%;
+}
+}
+
+/* Drucker brauchen ganz andere CSS Angaben als Bildschirme: */
+@media print {
+body {
+ background: white;
+ color: black;
+ font-family: georgia, "Times New Roman", Times serif; /* Drucker sollten alles mir einer Schriftart mit Serifen drucken, da diese auf dem Papier wesentlich leichter zu lesen ist. Schriftarten mit Serifen sind zum Beispiel Georgia, Times New Roman. Am ende sollte immer die Schriftfamilie hier mit Serifen: "serif" stehen. */
+}
+header {
+ text-align: right;
+ line-height: 0.8em;
+ font-size: 3em;
+ font-family: verdana, arial, sans-serif; /* Da das Logo ähnlich wie auf dem Bildschirm aussehen soll nehmen wir hier auch die gleiche Schriftart. */
+ letter-spacing: -3px;
+}
+header a#logo {
+ text-decoration: none; /* Hier lassen wir den Unterstrich weg. */
+}
+.skip, aside, nav { /* Wenn sich jemand eine Seite aus dem Internet ausdruckt dann will er mit hoher Wahrscheinlichkeit den Inhalt drucken und nicht das Menü oder sonstige Angaben, die für die Navigation auf dem Bildschirm gedacht sind. Deshalb lassen wir diese vom Papier verschwinden. Das spart auch viel Papier und Tinte. */
+ display: none;
+}
+main a:link:after, main a:visited:after { /* Auf dem gedruckten Blatt Papier kann man keinen Link klicken. Deshalb drucken wir den gesammten URL dieses Links dahinter an.  Wer mehr zu diesem Thema wissen will sei auf <http://www.alistapart.com/articles/goingtoprint/ verwiesen.> */
+   content: " (" attr(href) ") ";
+   font-size: 0.9em; }
+main a[href^="/"]:after { /* Der Mozilla/Firefox zeigt, im Gegensatz zum Opera, die Domain nicht von selbst an. Hier müssen wir mittels CSS3 nachhelfen. */
+ content: " (http://example.org" attr(href) ") ";
+}
+.fright { /* Damit die Fließeigenschaften auch beim Drucken beachtet werden. */
+ float: right;
+ margin: 0 0 1em 1em;
+}
+.fleft {
+ float: left;
+ margin: 0 1em 1em 0;
+}
 }
