@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% include head.html %}
+
 	<html>
 		<head>
 			<title>{{ page.title }}</title>
@@ -15,9 +17,9 @@
 	    		</ul>
 			</nav>
 			<div class="container">
-			
+
 			{{ content }}
-			
+
 			</div><!-- /.container -->
 			<footer>
 	    		<ul>
@@ -27,3 +29,5 @@
 			</footer>
 		</body>
 	</html>
+
+{% include foot.html %}
