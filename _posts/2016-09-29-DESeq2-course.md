@@ -40,7 +40,7 @@ See [DESeq2 Vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes
 -   define experimental design
 -   convert to DESeq data set
 
-# Count matrix input
+## Count matrix input
 
 ``` r
 design <- gsub("(.*)(_[0-9])", "\\1", colnames(countmatrix))
