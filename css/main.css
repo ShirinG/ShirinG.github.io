@@ -66,6 +66,10 @@ h1, h2, h3, h4, h5, h6 { /* Alle Überschriften bekommen eine besondere Farbe, un
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
+p {
+  font-size: 1.1em;
+}
+
 /*DL, DT, DD Datenliste*/
 dl 	{ margin-bottom:50px;}
 
