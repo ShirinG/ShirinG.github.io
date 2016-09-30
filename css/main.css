@@ -39,6 +39,10 @@ a:visited {
   color: #008;
 } /* Besuchte Links */
 
+a:hover {
+  color: #a0a;
+}
+
 /* - Der Hauptinhaltsteil - */
 main {
   background: white;
