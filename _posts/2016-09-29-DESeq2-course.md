@@ -114,7 +114,7 @@ DESeq2::plotDispEsts(data_DESeq, main="Dispersion Estimates")
 Exploratory analysis of all genes
 ---------------------------------
 
-## Variance vs mean gene expression across samples
+### Variance vs mean gene expression across samples
 
 Plots variance against mean gene expression across samples and calculates the correlation of a linear regression model.
 
@@ -160,7 +160,7 @@ var_vs_mean(expmatrix)
 
 <br>
 
-## Intersample variances
+### Intersample variances
 
 ``` r
 library(corrgram)
