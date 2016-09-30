@@ -1,5 +1,6 @@
 name: Shirin Glander, PhD
-markdown: kramdown
+markdown: redcarpet
+pygments: true
 permalink: /blog/:year/:month/:day/:title
 gems:
   - jekyll-sitemap
