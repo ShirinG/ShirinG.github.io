@@ -8,8 +8,8 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Shirin’s R playgRound
-tagline: Site Tagline
+title : Shirin’s playgRound
+tagline: exploring and playing with data in R
 author :
   name : Shirin Glander
   email : s_glan02@gmail.com
