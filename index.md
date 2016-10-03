@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Shirin's R playgRound
+title: Shirin's playgRound
 tagline: exploring and playing with data in R
 ---
 {% include JB/setup %}
