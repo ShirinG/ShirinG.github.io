@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>/2016/09/29/site-launched</loc>
+<lastmod>2016-09-29T00:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>/2016/09/29/DESeq2-course</loc>
+<lastmod>2016-09-29T00:00:00+02:00</lastmod>
+</url>
+<url>
+<loc>/2016/09/29/DESeq2_course_blog_files/2016-09-29-DESeq2-course</loc>
+</url>
+<url>
+<loc>/2016/09/29/DESeq2_course_blog_files/2016-09-29-site-launched</loc>
+</url>
+<url>
+<loc>/archive</loc>
+</url>
+<url>
+<loc>/categories</loc>
+</url>
+<url>
+<loc>/</loc>
+</url>
+<url>
+<loc>/pages</loc>
+</url>
+<url>
+<loc>/tags</loc>
+</url>
+<url>
+<loc>/404.html</loc>
+<lastmod>2016-10-01T16:44:01+02:00</lastmod>
+</url>
+</urlset>
