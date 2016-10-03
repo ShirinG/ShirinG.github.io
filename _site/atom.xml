@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>Shirin’s R playgRound</title>
+ <title>Shirin’s playgRound</title>
  <link href="http://shiring.github.io/atom.xml" rel="self"/>
  <link href="http://shiring.github.io"/>
- <updated>2016-10-03T17:17:57+02:00</updated>
+ <updated>2016-10-03T18:01:41+02:00</updated>
  <id>http://shiring.github.io</id>
  <author>
    <name>Shirin Glander</name>
    <email>s_glan02@gmail.com</email>
  </author>
 
- 
- <entry>
-   <title>Shirin Launches Site</title>
-   <link href="http://shiring.github.io/2016/09/29/site-launched"/>
-   <updated>2016-09-29T00:00:00+02:00</updated>
-   <id>http://shiring.github.io/2016/09/29/site-launched</id>
-   <content type="html">&lt;p&gt;Yay!&lt;/p&gt;
-</content>
- </entry>
  
  <entry>
    <title>DESeq2 Course Work</title>
@@ -582,6 +573,15 @@ head(summary(kk)[,-8])
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;img src=&quot;DESeq2_course_blog_files/figure-markdown_github/clusterProfilerKEGG-1.png&quot; alt=&quot;&quot; width=&quot;700px&quot; /&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Shirin Launches Site</title>
+   <link href="http://shiring.github.io/2016/09/28/site-launched"/>
+   <updated>2016-09-28T00:00:00+02:00</updated>
+   <id>http://shiring.github.io/2016/09/28/site-launched</id>
+   <content type="html">&lt;p&gt;Yay!&lt;/p&gt;
 </content>
  </entry>
  

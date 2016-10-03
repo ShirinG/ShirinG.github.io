@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-        <title>Shirin’s R playgRound</title>
-        <description>Shirin’s R playgRound - Shirin Glander</description>
+        <title>Shirin’s playgRound</title>
+        <description>Shirin’s playgRound - Shirin Glander</description>
         <link>http://shiring.github.io</link>
         <atom:link href="http://shiring.github.io/rss.xml" rel="self" type="application/rss+xml" />
-        <lastBuildDate>Mon, 03 Oct 2016 17:17:57 +0200</lastBuildDate>
-        <pubDate>Mon, 03 Oct 2016 17:17:57 +0200</pubDate>
+        <lastBuildDate>Mon, 03 Oct 2016 18:01:41 +0200</lastBuildDate>
+        <pubDate>Mon, 03 Oct 2016 18:01:41 +0200</pubDate>
         <ttl>60</ttl>
 
-
-        <item>
-                <title>Shirin Launches Site</title>
-                <description>&lt;p&gt;Yay!&lt;/p&gt;
-</description>
-                <link>http://shiring.github.io/2016/09/29/site-launched</link>
-                <guid>http://shiring.github.io/2016/09/29/site-launched</guid>
-                <pubDate>Thu, 29 Sep 2016 00:00:00 +0200</pubDate>
-        </item>
 
         <item>
                 <title>DESeq2 Course Work</title>
@@ -581,6 +572,15 @@ head(summary(kk)[,-8])
                 <link>http://shiring.github.io/2016/09/29/DESeq2-course</link>
                 <guid>http://shiring.github.io/2016/09/29/DESeq2-course</guid>
                 <pubDate>Thu, 29 Sep 2016 00:00:00 +0200</pubDate>
+        </item>
+
+        <item>
+                <title>Shirin Launches Site</title>
+                <description>&lt;p&gt;Yay!&lt;/p&gt;
+</description>
+                <link>http://shiring.github.io/2016/09/28/site-launched</link>
+                <guid>http://shiring.github.io/2016/09/28/site-launched</guid>
+                <pubDate>Wed, 28 Sep 2016 00:00:00 +0200</pubDate>
         </item>
 
 
