@@ -16,7 +16,7 @@ Institut für Humangenetik
 Abteilung Genetische Epidemiologie
 Albert-Schweitzer-Campus 1, D3
 Domagkstraße 3
-48149 Münster
+48149 M&uumnster
 T +49(0)251-83-56425
 F +49(0)251-83-56205
 
