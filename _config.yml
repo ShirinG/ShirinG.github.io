@@ -15,6 +15,9 @@ author :
   email : s_glan02@wwu.de
   github : ShirinG
 
+# URL of your avatar or profile pic (you could use your GitHub profile pic)
+avatar: http://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png
+
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt
 # Most places will/should use BASE_PATH to make the urls
