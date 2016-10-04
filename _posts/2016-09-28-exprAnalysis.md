@@ -2,6 +2,8 @@
 layout: post
 title: "exprAnalysis package"
 date: 2016-09-28
+categories: RNA-seq analysis, Expression microarray analysis
+tags: RNA-seq, exprAnalysis, Illumina, Affymetrix, DESeq2, ggplot2, network analysis, cummeRbund, PCA, heatmap, WGCNA
 ---
 
 ------------------------------------------------------------------------
