@@ -2,8 +2,8 @@
 layout: post
 title: "DESeq2 Course Work"
 date: 2016-09-29
-categories: RNA-seq analysis, DESeq2, teaching
-tags: RNA-seq, exprAnalysis, DESeq2, ggplot2, PCA, heatmap
+categories: RNA-seq DESeq2 teaching
+tags: RNA-seq exprAnalysis DESeq2 ggplot2 PCA heatmap
 ---
 
 ------------------------------------------------------------------------
