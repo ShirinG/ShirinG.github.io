@@ -6,6 +6,8 @@ categories: RNA-seq microarray
 tags: RNA-seq exprAnalysis Illumina Affymetrix DESeq2 ggplot2 networks cummeRbund PCA heatmap WGCNA
 ---
 
+I created the R package **exprAnalysis** designed to streamline my RNA-seq data analysis pipeline. Below you find the vignette for installation and usage of the package.
+
 ------------------------------------------------------------------------
 
 <br>
