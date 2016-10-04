@@ -12,7 +12,7 @@ tags: RNA-seq, exprAnalysis, DESeq2, ggplot2, PCA, heatmap
 
 The following workflow has been designed as teaching instructions for an introductory course to RNA-seq data analysis with DESeq2.
 
-The course is designed for PhD students and will be given at the University of M&uumnster from 10th to 21st of October 2016.
+The course is designed for PhD students and will be given at the University of Muenster from 10th to 21st of October 2016.
 
 For questions or other comments, please [contact me by email or phone](http://shiring.github.io/about).
 
