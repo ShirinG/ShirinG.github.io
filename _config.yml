@@ -25,7 +25,9 @@ author :
 #
 production_url : http://shiring.github.io
 
-gems: ["jekyll-sitemap"]
+gems:
+  - jekyll-sitemap
+  - jekyll-paginate
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
@@ -135,3 +137,7 @@ JB :
 theme: minima
 
 encoding: utf-8
+
+paginate: 10
+
+paginate_path: "/blog/page:num/"
