@@ -26,3 +26,9 @@ Please see my [Xing](http://www.xing.com/profile/Shirin_Glander) or [Linkedin](h
 <small>T +49(0)251-83-56425</small>
 
 <small>F +49(0)251-83-56205</small>
+
+<p style="line-height:1">
+    <span style="font-size:8pt">Dr. Shirin Glander</span><br />
+    <span style="font-size:9pt">Institut für Humangenetik.</span>
+    <span style="font-size:10pt">Abteilung Genetische Epidemiologie.</span>
+</p>
