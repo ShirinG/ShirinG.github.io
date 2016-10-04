@@ -4,6 +4,9 @@ title: "exprAnalysis package"
 date: 2016-09-28
 ---
 
+------------------------------------------------------------------------
+
+<br>
 
 This package combines functions from various packages used to analyze and visualize expression data from NGS or expression chips.
 

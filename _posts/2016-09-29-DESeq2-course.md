@@ -4,6 +4,10 @@ title: "DESeq2 Course Work"
 date: 2016-09-29
 ---
 
+------------------------------------------------------------------------
+
+<br>
+
 Go to [exprAnalysis](https://github.com/ShirinG/exprAnalysis/) for installation instructions.
 
 For all functions, use the help pages to find out more about parameters and usage.
