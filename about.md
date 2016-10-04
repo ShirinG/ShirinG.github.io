@@ -10,13 +10,3 @@ You can [contact me by email](mailto:s_glan02@wwu.de) or via [Github](http://git
 Please see my [Xing](http://www.xing.com/profile/Shirin_Glander) or [Linkedin](http://de.linkedin.com/in/shirin-glander-01120881) profile for more information.
 
 <img src="{{ site.url }}/assets/images/Bewerbungsfoto.jpg" alt="My photo" width="200">
-
-> Dr. Shirin Glander
-Institut für Humangenetik
-Abteilung Genetische Epidemiologie
-Albert-Schweitzer-Campus 1, D3
-Domagkstrasse 3
-48149 Muenster
-T +49(0)251-83-56425
-F +49(0)251-83-56205
-
