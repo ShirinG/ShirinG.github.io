@@ -11,11 +11,11 @@ Please see my [Xing](http://www.xing.com/profile/Shirin_Glander) or [Linkedin](h
 
 <img src="{{ site.url }}/assets/images/Bewerbungsfoto.jpg" alt="My photo" width="200">
 
-> Dr. Shirin Glander
+<small>Dr. Shirin Glander
 Institut für Humangenetik
 Abteilung Genetische Epidemiologie
 Albert-Schweitzer-Campus 1, D3
 Domagkstraße 3
 48149 Münster
 T +49(0)251-83-56425
-F +49(0)251-83-56205
+F +49(0)251-83-56205</small>
