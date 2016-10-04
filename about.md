@@ -13,7 +13,7 @@ Obviously, I am interested in genetics and genomics but I enjoy playing around w
 
 My tool of choice for data analysis so far has been R, although I aim to add Python to my repertoire soon.
 
-I created the R package **exprAnalysis**, designed to streamline my RNA-seq data analysis pipeline. It is available via Github. Instructions for installation and usage can be found [here](https://shiring.github.io/rna-seq/microarray/2016/09/28/exprAnalysis).
+I created the R package [exprAnalysis](https://github.com/ShirinG/exprAnalysis), designed to streamline my RNA-seq data analysis pipeline. It is available via Github. Instructions for installation and usage can be found [here](https://shiring.github.io/rna-seq/microarray/2016/09/28/exprAnalysis).
 
 This blog will showcase some of the analyses I have been doing with different data sets (all freely available). I will also host teaching materials for students to access in conjunction with R courses I am giving.
 
@@ -35,9 +35,9 @@ This blog will showcase some of the analyses I have been doing with different da
   </p>
     </div>
     <div style="display: inline-block;">
-    <p style="line-height:1">
+    <p style="line-height:2">
     <span style="font-size:14pt">You can contact me by <a href="mailto:s_glan02@wwu.de">email</a>
-    or via <a href="http://github.com/ShirinG">Github</a></span><br />
+    or via <a href="http://github.com/ShirinG">Github</a></span><br /><br />
     <span style="font-size:14pt">Please see my <a href="http://www.xing.com/profile/Shirin_Glander">Xing</a>
     or <a href="http://de.linkedin.com/in/shirin-glander-01120881">Linkedin</a>
     profile for more information.</span>
