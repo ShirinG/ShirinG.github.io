@@ -29,7 +29,7 @@ Please see my [Xing](http://www.xing.com/profile/Shirin_Glander) or [Linkedin](h
 <div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2; -webkit-column-rule: 1px dotted #e0e0e0; -moz-column-rule: 1px dotted #e0e0e0; column-rule: 1px dotted #e0e0e0;">
     <div style="display: inline-block;">
         <img src="{{ site.url }}/assets/images/Bewerbungsfoto.jpg" alt="My photo" width="200">
-
+<br /><br />
   <p style="line-height:1">
       <span style="font-size:10pt">Dr. Shirin Glander</span><br />
       <span style="font-size:10pt">Institut für Humangenetik</span><br />
@@ -42,8 +42,8 @@ Please see my [Xing](http://www.xing.com/profile/Shirin_Glander) or [Linkedin](h
   </p>
     </div>
     <div style="display: inline-block;">
-        You can [contact me by email](mailto:s_glan02@wwu.de) or via [Github](http://github.com/ShirinG).
-
-Please see my [Xing](http://www.xing.com/profile/Shirin_Glander) or [Linkedin](http://de.linkedin.com/in/shirin-glander-01120881) profile for more information.
+    <p style="line-height:1">
+    You can contact me by <a href="mailto:s_glan02@wwu.de">email</a>
+    or via <a href="http://github.com/ShirinG">Github</a></p>
     </div>
 </div>
