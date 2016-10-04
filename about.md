@@ -9,6 +9,8 @@ You can [contact me by email](mailto:s_glan02@wwu.de) or via [Github](http://git
 
 Please see my [Xing](http://www.xing.com/profile/Shirin_Glander) or [Linkedin](http://de.linkedin.com/in/shirin-glander-01120881) profile for more information.
 
+---
+
 <img src="{{ site.url }}/assets/images/Bewerbungsfoto.jpg" alt="My photo" width="200">
 
 <p style="line-height:1">
@@ -21,3 +23,23 @@ Please see my [Xing](http://www.xing.com/profile/Shirin_Glander) or [Linkedin](h
     <span style="font-size:10pt">T +49(0)251-83-56425</span><br />
     <span style="font-size:10pt">F +49(0)251-83-56205</span>
 </p>
+
+---
+
+<div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2; -webkit-column-rule: 1px dotted #e0e0e0; -moz-column-rule: 1px dotted #e0e0e0; column-rule: 1px dotted #e0e0e0;">
+    <div style="display: inline-block;">
+        <h2>Good</h2>
+        <pre><code class="language-c">int foo (void) 
+{
+    int i;
+}
+</code></pre>
+    </div>
+    <div style="display: inline-block;">
+        <h2>Bad</h2>
+        <pre><code class="language-c">int foo (void) {
+    int i;
+}
+</code></pre>
+    </div>
+</div>
