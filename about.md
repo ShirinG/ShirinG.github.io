@@ -11,24 +11,13 @@ Please see my [Xing](http://www.xing.com/profile/Shirin_Glander) or [Linkedin](h
 
 <img src="{{ site.url }}/assets/images/Bewerbungsfoto.jpg" alt="My photo" width="200">
 
-<small>Dr. Shirin Glander</small>
-
-<small>Institut für Humangenetik</small>
-
-<small>Abteilung Genetische Epidemiologie</small>
-
-<small>Albert-Schweitzer-Campus 1, D3</small>
-
-<small>Domagkstraße 3</small>
-
-<small>48149 Münster</small>
-
-<small>T +49(0)251-83-56425</small>
-
-<small>F +49(0)251-83-56205</small>
-
 <p style="line-height:1">
-    <span style="font-size:8pt">Dr. Shirin Glander</span><br />
-    <span style="font-size:9pt">Institut für Humangenetik.</span>
-    <span style="font-size:10pt">Abteilung Genetische Epidemiologie.</span>
+    <span style="font-size:10pt">Dr. Shirin Glander</span><br />
+    <span style="font-size:10pt">Institut für Humangenetik</span><br />
+    <span style="font-size:10pt">Abteilung Genetische Epidemiologie</span><br />
+    <span style="font-size:10pt">Albert-Schweitzer-Campus 1, D3</span><br />
+    <span style="font-size:10pt">Domagkstraße 3</span><br />
+    <span style="font-size:10pt">48149 Münster</span><br /><br />
+    <span style="font-size:10pt">T +49(0)251-83-56425</span><br />
+    <span style="font-size:10pt">F +49(0)251-83-56205</span>
 </p>
