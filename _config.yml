@@ -12,7 +12,7 @@ title : Shirin's playgRound
 tagline: exploring and playing with data in R
 author :
   name : Shirin Glander
-  email : s_glan02@gmail.com
+  email : s_glan02@wwu.de
   github : ShirinG
 
 # The production_url is only used when full-domain names are needed
@@ -133,3 +133,5 @@ JB :
   # where [HELPER] is the name of the helper you are overriding.
 
 theme: minima
+
+encoding: UTF-8
