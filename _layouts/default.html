@@ -4,3 +4,7 @@ theme :
 ---
 {% include JB/setup %}
 {% include themes/bootstrap-3/default.html %}
+
+<footer class="footer">
+  {% if site.footer-links.github %}<a href="http://github.com/{{ site.footer-links.github }}">{% include svg-icons/github.html %}</a>{% endif %}
+</footer>
