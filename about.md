@@ -15,7 +15,7 @@ Please see my [Xing](http://www.xing.com/profile/Shirin_Glander) or [Linkedin](h
 Institut für Humangenetik
 Abteilung Genetische Epidemiologie
 Albert-Schweitzer-Campus 1, D3
-Domagkstraße 3
+Domagkstrasse 3
 48149 Muenster
 T +49(0)251-83-56425
 F +49(0)251-83-56205
