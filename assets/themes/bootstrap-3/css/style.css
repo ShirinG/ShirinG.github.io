@@ -83,3 +83,24 @@ img {
     height: auto;
     width: auto\9; /* ie8 */
 }
+
+.header img {
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  border-radius: 3px;
+  # background: #ffffff;
+  
+  @include mobile {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.header h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+}

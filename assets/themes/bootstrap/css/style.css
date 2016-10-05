@@ -78,6 +78,12 @@ h1, h2, h3, h4 {
   border: 1px solid #4c964d;
   color: #FFF; }
 
+img {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+}
+
 .site-avatar {
   float: left;
   width: 30px;
