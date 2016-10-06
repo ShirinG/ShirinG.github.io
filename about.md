@@ -21,6 +21,12 @@ This blog will showcase some of the analyses I have been doing with different da
 
 ## Contact me:
 
+[<img src="{{ site.url }}/assets/images/200px-Email_Shiny_Icon.png">](mailto:s_glan02@wwu.de)
+[<img src="{{ site.url }}/assets/images/so-logo.png">](http://stackoverflow.com/users/6623620/shirin-glander)
+[<img src="{{ site.url }}/assets/images/GitHub_Logo.png">](https://github.com/ShirinG)
+[<img src="{{ site.url }}/assets/images/xing.png">](http://www.xing.com/profile/Shirin_Glander)
+[<img src="{{ site.url }}/assets/images/Logo-2C-101px-R.png">](http://de.linkedin.com/in/shirin-glander-01120881)
+
 <div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2;">
     <div style="display: inline-block;">
         <img src="{{ site.url }}/assets/images/Bewerbungsfoto.jpg" alt="My photo" width="200">
@@ -35,14 +41,5 @@ This blog will showcase some of the analyses I have been doing with different da
       <span style="font-size:10pt">T +49(0)251-83-56425</span><br />
       <span style="font-size:10pt">F +49(0)251-83-56205</span>
   </p>
-    </div>
-    <div style="display: inline-block;">
-    <p style="line-height:2">
-    <a href="mailto:s_glan02@wwu.de"><img src="{{ site.url }}/assets/images/200px-Email_Shiny_Icon.png" height="10px"/></a>
-		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="{{ site.url }}/assets/images/so-logo.png" height="10"/></a>
-		<a href="https://github.com/ShirinG"><img src="{{ site.url }}/assets/images/GitHub_Logo.png" height="10"/></a>
-		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="{{ site.url }}/assets/images/xing.png" height="10"/></a>
-		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="{{ site.url }}/assets/images/Logo-2C-101px-R.png" height="10"/></a>
-    </p>
     </div>
 </div>
