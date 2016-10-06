@@ -28,7 +28,9 @@ This blog will showcase some of the analyses I have been doing with different da
 
 ---
 
-<p style="line-height:1">
+<div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2;">
+    <div style="display: inline-block;">
+ <p style="line-height:1">
       <span style="font-size:10pt">Dr. Shirin Glander</span><br />
       <span style="font-size:10pt">Institut für Humangenetik</span><br />
       <span style="font-size:10pt">Abteilung Genetische Epidemiologie</span><br />
@@ -38,4 +40,7 @@ This blog will showcase some of the analyses I have been doing with different da
       <span style="font-size:10pt">T +49(0)251-83-56425</span><br />
       <span style="font-size:10pt">F +49(0)251-83-56205</span>
   </p>
+    </div>
+</div>
+
 
