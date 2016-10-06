@@ -90,6 +90,7 @@ img {
   height: 60px;
   margin-right: 10px;
   border-radius: 3px;
+  vertical-align: baseline;
   # background: #ffffff;
   
   @include mobile {
@@ -99,8 +100,6 @@ img {
   }
 }
 
-.header h1 {
-  position: relative;
-  top: 18px;
-  left: 10px;
+.header {
+  vertical-align: baseline;
 }
