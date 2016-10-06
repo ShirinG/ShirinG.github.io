@@ -91,7 +91,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : jekyllbootstrap
+      short_name : shirinsplayground
     livefyre :
       site_id : 123
     intensedebate :
@@ -148,22 +148,6 @@ encoding: utf-8
 paginate: 10
 
 paginate_path: "/blog/page:num/"
-
-# Includes an icon in the footer for each username you enter
-footer-links:
-  dribbble:
-  email: s_glan02@wwu
-  facebook:
-  flickr:
-  github: ShirinG
-  instagram:
-  linkedin: Shirin Glander
-  pinterest:
-  rss: # just type anything here for a working RSS icon
-  twitter: jekyllrb
-  stackoverflow: users/6623620/shirin-glander
-  youtube: # channel/<your_long_string> or user/<user-name>
-  googleplus: # anything in your profile username that comes after plus.google.com/
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
 google_analytics:
