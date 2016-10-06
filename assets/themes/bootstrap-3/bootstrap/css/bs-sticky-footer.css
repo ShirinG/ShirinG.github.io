@@ -3,7 +3,7 @@
 
 html,
 body {
-  height: 95%;
+  height: 90%;
   /* The html and body elements cannot have any padding or margin. */
 }
 
@@ -19,11 +19,11 @@ body {
 
 /* Set the fixed height of the footer here */
 #footer {
-  height: 30px;
+  height: 50px;
   background-color: #f5f5f5;
 }
 
 #footer p {
-  line-height: 30px;
+  line-height: 50px;
   margin-bottom: 0px;
 }

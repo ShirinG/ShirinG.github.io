@@ -19,6 +19,8 @@ This blog will showcase some of the analyses I have been doing with different da
 
 ---
 
+## Contact me:
+
 <div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2;">
     <div style="display: inline-block;">
         <img src="{{ site.url }}/assets/images/Bewerbungsfoto.jpg" alt="My photo" width="200">
@@ -36,11 +38,11 @@ This blog will showcase some of the analyses I have been doing with different da
     </div>
     <div style="display: inline-block;">
     <p style="line-height:2">
-    <span style="font-size:14pt">You can contact me by <a href="mailto:s_glan02@wwu.de">email</a>
-    or via <a href="http://github.com/ShirinG">Github</a></span><br /><br />
-    <span style="font-size:14pt">Please see my <a href="http://www.xing.com/profile/Shirin_Glander">Xing</a>
-    or <a href="http://de.linkedin.com/in/shirin-glander-01120881">Linkedin</a>
-    profile for more information.</span>
+    <a href="mailto:s_glan02@wwu.de"><img src="{{ site.url }}/assets/images/200px-Email_Shiny_Icon.png" height="10"/></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="{{ site.url }}/assets/images/so-logo.png" height="10"/></a>
+		<a href="https://github.com/ShirinG"><img src="{{ site.url }}/assets/images/GitHub_Logo.png" height="10"/></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="{{ site.url }}/assets/images/xing.png" height="10"/></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="{{ site.url }}/assets/images/Logo-2C-101px-R.png" height="10"/></a>
     </p>
     </div>
 </div>

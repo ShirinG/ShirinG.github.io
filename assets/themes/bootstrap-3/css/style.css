@@ -100,3 +100,19 @@ img {
   }
 }
 
+.footer img {
+  float: right;
+  height: 25px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  
+  @include mobile {
+    float: none;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
