@@ -21,15 +21,15 @@ This blog will showcase some of the analyses I have been doing with different da
 
 ## Contact me:
 
-[<img src="{{ site.url }}/assets/images/200px-Email_Shiny_Icon.png" height="20">](mailto:s_glan02@wwu.de)
+[<img src="{{ site.url }}/assets/images/200px-Email_Shiny_Icon.png" width="20">](mailto:s_glan02@wwu.de)
 
-[<img src="{{ site.url }}/assets/images/so-logo.png" height="20">](http://stackoverflow.com/users/6623620/shirin-glander)
+[<img src="{{ site.url }}/assets/images/so-logo.png" width="20">](http://stackoverflow.com/users/6623620/shirin-glander)
 
-[<img src="{{ site.url }}/assets/images/GitHub_Logo.png" height="20">](https://github.com/ShirinG)
+[<img src="{{ site.url }}/assets/images/GitHub_Logo.png" width="20">](https://github.com/ShirinG)
 
-[<img src="{{ site.url }}/assets/images/xing.png" height="20">](http://www.xing.com/profile/Shirin_Glander)
+[<img src="{{ site.url }}/assets/images/xing.png" width="20">](http://www.xing.com/profile/Shirin_Glander)
 
-[<img src="{{ site.url }}/assets/images/Logo-2C-101px-R.png" height="20">](http://de.linkedin.com/in/shirin-glander-01120881)
+[<img src="{{ site.url }}/assets/images/Logo-2C-101px-R.png" width="20">](http://de.linkedin.com/in/shirin-glander-01120881)
 
 <div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2;">
     <div style="display: inline-block;">
