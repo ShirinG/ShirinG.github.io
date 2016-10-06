@@ -7,7 +7,7 @@ group: navigation
 
 **Welcome to my page!**
 
-![]({{ site.url }}/assets/images/Bewerbungsfoto.jpg){:style="float: right;margin-right: 7px;margin-top: 7px; width: 200px"}
+![]({{ site.url }}/assets/images/Bewerbungsfoto.jpg){:style="float: right;margin-right: 7px;margin-top: 7px; margin-bottom: 7px; margin-left: 7px; width: 200px"}
 
 I'm Shirin and I'm a bioinformatician currently working on Next-Generation-Sequencing analysis of autoinflammatory diseases as part of the [AID-NET consortium](http://campus.uni-muenster.de/immunologie/forschung/aid-net/).
 
