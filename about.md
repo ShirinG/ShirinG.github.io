@@ -7,7 +7,7 @@ group: navigation
 
 **Welcome to my page!**
 
-![]({{ site.url }}/assets/images/Bewerbungsfoto.jpg){:style="float: right;margin-right: 7px;margin-top: 7px;"}
+![]({{ site.url }}/assets/images/Bewerbungsfoto.jpg){:style="float: right;margin-right: 7px;margin-top: 7px; width: 200px"}
 
 I'm Shirin and I'm a bioinformatician currently working on Next-Generation-Sequencing analysis of autoinflammatory diseases as part of the [AID-NET consortium](http://campus.uni-muenster.de/immunologie/forschung/aid-net/).
 
@@ -28,11 +28,7 @@ This blog will showcase some of the analyses I have been doing with different da
 
 ---
 
-<div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2;">
-    <div style="display: inline-block;">
-        <img src="{{ site.url }}/assets/images/Bewerbungsfoto.jpg" alt="My photo" width="200">
-<br /><br />
-  <p style="line-height:1">
+<p style="line-height:1">
       <span style="font-size:10pt">Dr. Shirin Glander</span><br />
       <span style="font-size:10pt">Institut für Humangenetik</span><br />
       <span style="font-size:10pt">Abteilung Genetische Epidemiologie</span><br />
@@ -42,5 +38,4 @@ This blog will showcase some of the analyses I have been doing with different da
       <span style="font-size:10pt">T +49(0)251-83-56425</span><br />
       <span style="font-size:10pt">F +49(0)251-83-56205</span>
   </p>
-    </div>
-</div>
+
