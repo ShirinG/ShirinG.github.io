@@ -24,6 +24,8 @@ This blog will showcase some of the analyses I have been doing with different da
 - [Xing](http://www.xing.com/profile/Shirin_Glander)
 - [Linkedin](http://de.linkedin.com/in/shirin-glander-01120881)
 
+---
+
 <div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2;">
     <div style="display: inline-block;">
         <img src="{{ site.url }}/assets/images/Bewerbungsfoto.jpg" alt="My photo" width="200">
