@@ -20,7 +20,7 @@ This blog will showcase some of the analyses I have been doing with different da
 ---
 
 ## Contact me:
-[<img src="{{ site.url }}/assets/images/200px-Email_Shiny_Icon.png" style="height:10">](mailto:s_glan02@wwu.de)
+[<img src="{{ site.url }}/assets/images/200px-Email_Shiny_Icon.png" style="width:10;height:10">](mailto:s_glan02@wwu.de)
 
 [<img src="{{ site.url }}/assets/images/so-logo.png" style="height:10">](http://stackoverflow.com/users/6623620/shirin-glander)
 
