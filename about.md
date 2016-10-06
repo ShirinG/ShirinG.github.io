@@ -38,7 +38,7 @@ This blog will showcase some of the analyses I have been doing with different da
     </div>
     <div style="display: inline-block;">
     <p style="line-height:2">
-    <a href="mailto:s_glan02@wwu.de"><img src="{{ site.url }}/assets/images/200px-Email_Shiny_Icon.png" height="10"/></a>
+    <a href="mailto:s_glan02@wwu.de"><img src="{{ site.url }}/assets/images/200px-Email_Shiny_Icon.png" height="10px"/></a>
 		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="{{ site.url }}/assets/images/so-logo.png" height="10"/></a>
 		<a href="https://github.com/ShirinG"><img src="{{ site.url }}/assets/images/GitHub_Logo.png" height="10"/></a>
 		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="{{ site.url }}/assets/images/xing.png" height="10"/></a>
