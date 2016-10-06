@@ -86,11 +86,11 @@ img {
 
 .header img {
   float: left;
-  width: 60px;
-  height: 60px;
+  width: 23px;
+  height: 23px;
   margin-right: 10px;
   border-radius: 3px;
-  vertical-align: middle;
+  vertical-align: bottom;
   # background: #ffffff;
   
   @include mobile {
@@ -100,6 +100,3 @@ img {
   }
 }
 
-.header {
-  vertical-align: middle;
-}

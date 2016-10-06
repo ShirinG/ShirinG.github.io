@@ -158,7 +158,7 @@
 	}
 	
 .navbar-default{
-	vertical-align: baseline;
+	vertical-align: middle;
 	background-image:-webkit-linear-gradient(top,#fff 0,#f8f8f8 100%);
 	background-image:linear-gradient(to bottom,#fff 0,#f8f8f8 100%);
 	background-repeat:repeat-x;
@@ -170,7 +170,7 @@
 	}
 	
 .navbar-default .navbar-nav>.active>a{
-	vertical-align: baseline;
+	vertical-align: middle;
 	background-image:-webkit-linear-gradient(top,#ebebeb 0,#f3f3f3 100%);
 	background-image:linear-gradient(to bottom,#ebebeb 0,#f3f3f3 100%);
 	background-repeat:repeat-x;
@@ -180,12 +180,11 @@
 	}
 	
 .navbar-brand,.navbar-nav>li>a{
-	vertical-align: baseline;
 	text-shadow:0 1px 0 rgba(255,255,255,0.25)
 	}
 	
 .navbar-inverse{
-	vertical-align: baseline;
+	vertical-align: middle;
 	background-image:-webkit-linear-gradient(top,#3c3c3c 0,#222 100%);
 	background-image:linear-gradient(to bottom,#3c3c3c 0,#222 100%);
 	background-repeat:repeat-x;
@@ -194,7 +193,7 @@
 	}
 	
 .navbar-inverse .navbar-nav>.active>a{
-	vertical-align: baseline;
+	vertical-align: middle;
 	background-image:-webkit-linear-gradient(top,#222 0,#282828 100%);
 	background-image:linear-gradient(to bottom,#222 0,#282828 100%);
 	background-repeat:repeat-x;
@@ -204,12 +203,11 @@
 	}
 	
 .navbar-inverse .navbar-brand,.navbar-inverse .navbar-nav>li>a{
-	vertical-align: baseline;
 	text-shadow:0 -1px 0 rgba(0,0,0,0.25)
 	}
 	
 .navbar-static-top,.navbar-fixed-top,.navbar-fixed-bottom{
-	vertical-align: baseline;
+	vertical-align: middle;
 	border-radius:0
 	}
 	
