@@ -7,6 +7,8 @@ group: navigation
 
 **Welcome to my page!**
 
+![]({{ site.url }}/assets/images/Bewerbungsfoto.jpg){:style="float: right;margin-right: 7px;margin-top: 7px;"}
+
 I'm Shirin and I'm a bioinformatician currently working on Next-Generation-Sequencing analysis of autoinflammatory diseases as part of the [AID-NET consortium](http://campus.uni-muenster.de/immunologie/forschung/aid-net/).
 
 Obviously, I am interested in genetics and genomics but I enjoy playing around with data of all sorts. It's amazing to me what can be learned from analyzing and visualizing data!
