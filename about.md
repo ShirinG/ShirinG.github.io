@@ -20,7 +20,6 @@ This blog will showcase some of the analyses I have been doing with different da
 ---
 
 ## Contact me:
-<div style="height:10">
 [<img src="{{ site.url }}/assets/images/200px-Email_Shiny_Icon.png">](mailto:s_glan02@wwu.de)
 
 [<img src="{{ site.url }}/assets/images/so-logo.png" >](http://stackoverflow.com/users/6623620/shirin-glander)
@@ -30,7 +29,6 @@ This blog will showcase some of the analyses I have been doing with different da
 [<img src="{{ site.url }}/assets/images/xing.png" >](http://www.xing.com/profile/Shirin_Glander)
 
 [<img src="{{ site.url }}/assets/images/Logo-2C-101px-R.png" >](http://de.linkedin.com/in/shirin-glander-01120881)
-</div>
 
 <div style="-webkit-column-count: 2; -moz-column-count: 2; column-count: 2;">
     <div style="display: inline-block;">
