@@ -14,8 +14,6 @@ group: navigation
       <span style="font-size:10pt">Albert-Schweitzer-Campus 1, D3</span><br />
       <span style="font-size:10pt">Domagkstraße 3</span><br />
       <span style="font-size:10pt">48149 Münster</span><br /><br />
-      <span style="font-size:10pt">T +49(0)251-83-56425</span><br />
-      <span style="font-size:10pt">F +49(0)251-83-56205</span>
   </p>
     </div>
 </div>
