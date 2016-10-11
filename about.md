@@ -13,7 +13,7 @@ I'm Shirin and I'm a bioinformatician currently working on Next-Generation-Seque
 
 Obviously, I am interested in genetics and genomics but I enjoy playing around with data of all sorts. It's amazing to me what can be learned from analyzing and visualizing data!
 
-My tool of choice for data analysis so far has been R, although I aim to add Python to my repertoire soon.
+My tool of choice for data analysis so far has been R.
 
 I created the R package [exprAnalysis](https://github.com/ShirinG/exprAnalysis), designed to streamline my RNA-seq data analysis pipeline. It is available via Github. Instructions for installation and usage can be found [here](https://shiring.github.io/rna-seq/microarray/2016/09/28/exprAnalysis).
 
@@ -22,7 +22,7 @@ This blog will showcase some of the analyses I have been doing with different da
 ---
 
 ## Contact me:
-- [Email](mailto:s_glan02@wwu.de)
+- [Email](mailto:shirin.glander@gmail.com)
 - [Xing](http://www.xing.com/profile/Shirin_Glander)
 - [Linkedin](http://de.linkedin.com/in/shirin-glander-01120881)
 
