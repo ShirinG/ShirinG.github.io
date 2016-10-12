@@ -22,6 +22,7 @@ This blog will showcase some of the analyses I have been doing with different da
 ---
 
 ## Contact me:
+- [Department of Genetic Epidemiology, University of Münster](https://campus.uni-muenster.de/gen_epi_start.html)
 - [Email](mailto:shirin.glander@gmail.com)
 - [Xing](http://www.xing.com/profile/Shirin_Glander)
 - [Linkedin](http://de.linkedin.com/in/shirin-glander-01120881)
