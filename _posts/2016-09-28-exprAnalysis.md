@@ -80,20 +80,14 @@ devtools::install_github("ShirinG/exprAnalysis", build_vignettes=TRUE, ref = "st
 
 # or the development version
 devtools::install_github("ShirinG/exprAnalysis", build_vignettes=TRUE, ref = "master")
+There might be problems with installation of some dependency packages (especially Bioconductor packages and WGCNA and its dependencies from CRAN). In order to install them manually:
+```
 
-library("exprAnalysis")
+There might be problems with installation of some dependency packages (especially Bioconductor packages and WGCNA and its dependencies from CRAN). In order to install them manually:
 
-# To view the vignette if you built it with the package:
-
-vignette("exprAnalysis", package="exprAnalysis")
-vignette("CummeRbund", package="exprAnalysis")
-
-browseVignettes("exprAnalysis")
-
-# There might be problems with installation of some dependency packages (especially Bioconductor packages and WGCNA and its dependencies from CRAN). In order to install them manually:
-
+```r
 list.of.packages_bioconductor <- c("arrayQualityMetrics", "beadarray", "pcaGoPromoter", "limma", "pathview", "sva", "GO.db", "impute")
-list.of.packages_cran <- c("WGCNA", "roxygen2", testthat", "gplots")
+list.of.packages_cran <- c("WGCNA", "roxygen2", "testthat", "gplots")
 
 new.packages_bioconductor <- list.of.packages_bioconductor[!(list.of.packages_bioconductor %in% installed.packages()[,"Package"])]
 new.packages_cran <- list.of.packages_cran[!(list.of.packages_cran %in% installed.packages()[,"Package"])]
@@ -106,6 +100,18 @@ if(length(new.packages_bioconductor)>0) {
   source("https://bioconductor.org/biocLite.R")
   biocLite(new.packages_bioconductor)
 }
+```
+Load the library:
+
+```r
+library("exprAnalysis")
+
+# To view the vignette if you built it with the package:
+
+vignette("exprAnalysis", package="exprAnalysis")
+vignette("CummeRbund", package="exprAnalysis")
+
+browseVignettes("exprAnalysis")
 
 enableWGCNAThreads()
 ```
