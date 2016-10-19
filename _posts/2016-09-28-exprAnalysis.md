@@ -59,7 +59,6 @@ rm(list=ls(all=TRUE))
 orig_par <- par(no.readonly=T)
 
 options(stringsAsFactors = FALSE)
-enableWGCNAThreads()
 ```
 
 ------------------------------------------------------------------------
@@ -91,18 +90,24 @@ vignette("CummeRbund", package="exprAnalysis")
 
 browseVignettes("exprAnalysis")
 
-# There might be problems with installation of some dependency packages (especially Bioconductor packages and WGCNA from CRAN). In order to install them manually:
-list.of.packages <- c("list", "of", "packages")
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+# There might be problems with installation of some dependency packages (especially Bioconductor packages and WGCNA and its dependencies from CRAN). In order to install them manually:
+
+list.of.packages_bioconductor <- c("arrayQualityMetrics", "beadarray", "pcaGoPromoter", "limma", "pathview", "sva", "GO.db", "impute")
+list.of.packages_cran <- c("WGCNA", "roxygen2", testthat", "gplots")
+
+new.packages_bioconductor <- list.of.packages_bioconductor[!(list.of.packages_bioconductor %in% installed.packages()[,"Package"])]
+new.packages_cran <- list.of.packages_cran[!(list.of.packages_cran %in% installed.packages()[,"Package"])]
 
 # CRAN
-if(length(new.packages)>0) install.packages(new.packages)
+if(length(new.packages_cran)>0) install.packages(new.packages_cran)
 
 # Bioconductor
-if(length(new.packages)>0) {
+if(length(new.packages_bioconductor)>0) {
   source("https://bioconductor.org/biocLite.R")
-  biocLite(new.packages)
+  biocLite(new.packages_bioconductor)
 }
+
+enableWGCNAThreads()
 ```
 
 ------------------------------------------------------------------------
