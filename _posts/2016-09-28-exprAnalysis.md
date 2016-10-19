@@ -68,7 +68,7 @@ options(stringsAsFactors = FALSE)
 The package can be installed via Github:
 ----------------------------------------
 
-Beware that the vignette is rather large and thus takes a minute to compile. YOu can also just use this page (it is identical to the vignette).
+Beware that the vignette is rather large and thus takes a minute to compile. You can also just use this page (it is identical to the vignette).
 
 ``` r
 # install package from github
