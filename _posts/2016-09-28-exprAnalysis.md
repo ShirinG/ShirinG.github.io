@@ -68,7 +68,7 @@ options(stringsAsFactors = FALSE)
 The package can be installed via Github:
 ----------------------------------------
 
-Beware that the vignette is rather large and thus takes a minute to compile. You can also see the Vignette at <https://github.com/ShirinG/exprAnalysis/blob/master/vignettes/exprAnalysis.Rmd>.
+Beware that the vignette is rather large and thus takes a minute to compile. YOu can also just use this page (it is identical to the vignette).
 
 ``` r
 # install package from github
