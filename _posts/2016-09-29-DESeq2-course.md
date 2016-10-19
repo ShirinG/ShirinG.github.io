@@ -20,7 +20,7 @@ For questions or other comments, please [contact me](http://shiring.github.io/ab
 
 <br>
 
-Go to [exprAnalysis](https://github.com/ShirinG/exprAnalysis/) for installation instructions.
+Go to [exprAnalysis](https://github.com/ShirinG/exprAnalysis/) or [this post](https://shiring.github.io/rna-seq/microarray/2016/09/28/exprAnalysis) for installation instructions.
 
 For all functions, use the help pages to find out more about parameters and usage.
 
