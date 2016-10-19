@@ -73,6 +73,9 @@ Beware that the vignette is rather large and thus takes a minute to compile. You
 
 ``` r
 # install package from github
+install.packages("devtools")
+library(devtools)
+
 # either the latest stable release that passed TRAVIS CI check
 devtools::install_github("ShirinG/exprAnalysis", build_vignettes=TRUE, ref = "stable.version0.1.0")
 
