@@ -20,7 +20,7 @@ author :
   stackoverflow : Shirin Glander
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: http://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png
+avatar: https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt
@@ -30,7 +30,7 @@ avatar: http://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets
 # Else if you are pushing to username.github.io, replace with your username.
 # Finally if you are pushing to a GitHub project page, include the project name at the end.
 #
-production_url : http://shiring.github.io
+production_url : https://shiring.github.io
 
 gems:
   - jekyll-sitemap
@@ -154,4 +154,4 @@ google_analytics:
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: http://ShirinG.github.io
+url: https://ShirinG.github.io
