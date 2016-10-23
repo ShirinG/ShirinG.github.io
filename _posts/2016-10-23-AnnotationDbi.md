@@ -6,9 +6,6 @@ categories: genome
 tags: AnnotationDbi ggplot2 genes genomics genetics
 ---
 
-Exploring the human genome (Part 1) - Gene Annotations
-============================================
-
 When working with any type of genome data, we often look for annotation information about genes, e.g. what's the gene's full name, what's its abbreviated symbol, what ID it has in other databases, what functions have been described, how many and which transcripts exist, etc.
 
 However, when looking for this information we (luckily) find a number of different databases and packages to access their information in R. But with this often comes confusion, because they all vary - sometimes only slightly, other times quite strongly - in how many genes they list and what they consider to be a "gene".
@@ -217,15 +214,7 @@ gene_dataframe <- gene_dataframe[, -5]
 # making a dataframe with additional column for merging & keeping one copy in the merged dataframe
 ENTREZID_TxDb_df <- data.frame(ENTREZID = as.character(ENTREZID_TxDb), Entrez_TxDb = ENTREZID_TxDb)
 gene_dataframe <- left_join(gene_dataframe, ENTREZID_TxDb_df, by = c("Entrez_orgDb" = "ENTREZID")) 
-
-# how many NAs are in each column?
-sapply(gene_dataframe, function(x) sum(is.na(x)))
 ```
-
-    ##     Ensembl_EnsDb      Entrez_EnsDb        HGNC_EnsDb GENEBIOTYPE_EnsDb 
-    ##             25987             25987             25987             25987 
-    ##      Entrez_orgDb     Ensembl_orgDb        HGNC_orgDb       Entrez_TxDb 
-    ##             27001             62290             27001             63627
 
 ``` r
 # calculating percentages of gene biotypes
@@ -266,9 +255,6 @@ for (i in 1:length(colnames(gene_dataframe))){
     ## Of these, 0 don't have a gene biotype annotation
     ## 
     ## Key: HGNC_EnsDb has 59074 unique rows without NAs.
-    ## Of these, 0 don't have a gene biotype annotation
-    ## 
-    ## Key: GENEBIOTYPE_EnsDb has 45 unique rows without NAs.
     ## Of these, 0 don't have a gene biotype annotation
     ## 
     ## Key: Entrez_orgDb has 60136 unique rows without NAs.
