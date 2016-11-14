@@ -27,7 +27,7 @@ This blog will showcase some of the analyses I have been doing with different da
 - [Xing](http://www.xing.com/profile/Shirin_Glander)
 - [Linkedin](http://de.linkedin.com/in/shirin-glander-01120881)
 
---
+-----
 
 Also check out [R-bloggers](http://www.R-bloggers.com) for lots of cool R stuff!
 
