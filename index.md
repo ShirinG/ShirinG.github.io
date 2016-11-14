@@ -13,3 +13,6 @@ tagline: exploring and playing with data in R
   {% endfor %}
 </ul>
 
+-----
+
+Also check out [R-bloggers](http://www.R-bloggers.com) for lots of cool R stuff!
