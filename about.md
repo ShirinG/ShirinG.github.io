@@ -26,6 +26,7 @@ This blog will showcase some of the analyses I have been doing with different da
 - [Email](mailto:shirin.glander@gmail.com)
 - [Xing](http://www.xing.com/profile/Shirin_Glander)
 - [Linkedin](http://de.linkedin.com/in/shirin-glander-01120881)
+- [Twitter](http://twitter.com/ShirinGlander)
 
 -----
 
