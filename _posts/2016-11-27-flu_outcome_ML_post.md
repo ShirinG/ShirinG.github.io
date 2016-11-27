@@ -2,7 +2,7 @@
 layout: post
 title: "Can we predict flu deaths with Machine Learning and R?"
 date: 2016-11-27
-categories: Machine_Learning
+categories: machine_learning
 tags: Machine_Learning ggplot2 Random_Forest
 ---
 
