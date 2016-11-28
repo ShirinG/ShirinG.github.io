@@ -6,6 +6,10 @@ categories: machine_learning
 tags: Machine_Learning ggplot2 Random_Forest
 ---
 
+**Edited on 28 November 2016**
+
+------------------------------------------------------------------------
+
 Among the many R packages, there is the [outbreaks](https://mran.microsoft.com/web/packages/outbreaks/outbreaks.pdf) package. It contains datasets on epidemics, on of which is from the 2013 outbreak of [influenza A H7N9](http://www.who.int/influenza/human_animal_interface/faq_H7N9/en/) in [China](http://www.who.int/influenza/human_animal_interface/influenza_h7n9/ChinaH7N9JointMissionReport2013u.pdf?ua=1), as analysed by Kucharski et al. (2014):
 
 > A. Kucharski, H. Mills, A. Pinsent, C. Fraser, M. Van Kerkhove, C. A. Donnelly, and S. Riley. 2014. Distinguishing between reservoir exposure and human-to-human transmission for emerging pathogens using case onset data. PLOS Currents Outbreaks. Mar 7, edition 1. doi: 10.1371/currents.outbreaks.e1473d9bfc99d080ca242139a06c455f.
@@ -14,11 +18,12 @@ Among the many R packages, there is the [outbreaks](https://mran.microsoft.com/w
 
 I will be using their data as an example to test whether we can use Machine Learning algorithms for predicting disease outcome.
 
-------------------------------------------------------------------------
+To do so, I selected and extracted features from the raw data, including age, days between onset and outcome, gender, whether the patients were hospitalised, etc. Missing values were imputed and different model algorithms were used to predict outcome (death or recovery). The prediction accuracy, sensitivity and specificity.
+The thus prepared dataset was devided into training and testing subsets. The test subset contained all cases with an unknown outcome. Before I applied the models to the test data, I further split the training data into validation subsets.
 
-**Disclaimer:** I am not an expert in Machine Learning. Everything I know, I taught myself. So, if you identify any mistakes or have tips and tricks for improvement, please don't hesitate to let me know! Thanks. :-)
+The tested modeling algorithms were similarly successful at predicting the outcomes of the validation data. To decide on final classifications, I compared predictions from all models and defined the outcome "Death" or "Recovery" as a function of all models, whereas classifications with a low prediction probability were flagged as "uncertain". Accounting for this uncertainty led to a 100% correct classification of the validation test set.
 
-------------------------------------------------------------------------
+The training cases with unknown outcome were then classified based on the same algorithms. From 57 unknown cases, 14 were classified as "Recovery", 10 as "Death" and 33 as uncertain.
 
 <br>
 
@@ -139,7 +144,7 @@ This plot shows the dates of onset, hospitalisation and outcome (if known) of ea
 
 The density distribution of date by age for the cases seems to indicate that older people died more frequently in the Jiangsu and Zhejiang province than in Shanghai and in other provinces.
 
-When we look at the distribution of points along the time axis, it suggests that their might be positive correlation between the likelihood of death and an early onset or early outcome.
+When we look at the distribution of points along the time axis, it suggests that their might be a positive correlation between the likelihood of death and an early onset or early outcome.
 
 <br>
 
@@ -523,12 +528,16 @@ Comparing Machine Learning algorithms
 
 Before I try to predict the outcome of the unknown cases, I am testing the models' accuracy with the validation datasets on a couple of algorithms. I have chosen only a few more well known algorithms, but [caret](http://topepo.github.io/caret/index.html) implements many more. 
 
+I have chose to not do any preprocessing because I was worried that the different data distributions with continuous variables (e.g. age) and binary variables (i.e. 0, 1 classification of e.g. hospitalisation) would lead to problems.
+
 <br>
 
 Random Forest
 -------------
 
 [Random Forests](https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm) predictions are based on the generation of multiple classification trees.
+
+This model classified 14 out of 23 cases correctly.
 
 ``` r
 set.seed(27)
@@ -596,6 +605,8 @@ Elastic-Net Regularized Generalized Linear Models
 -------------------------------------------------
 
 [Lasso or elastic net regularization for generalized linear model regression](https://en.wikipedia.org/wiki/Elastic_net_regularization) are based on linear regression models and is useful when we have feature correlation in our model.
+
+This model classified 13 out of 23 cases correctly.
 
 ``` r
 set.seed(27)
@@ -670,6 +681,8 @@ k-Nearest Neighbors
 
 [k-nearest neighbors](https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm) predicts based on point distances with predefined constants. 
 
+This model classified 14 out of 23 cases correctly.
+
 ``` r
 set.seed(27)
 model_kknn <- caret::train(outcome ~ .,
@@ -739,6 +752,8 @@ Penalized Discriminant Analysis
 
 [Penalized Discriminant Analysis](https://web.stanford.edu/~hastie/Papers/pda.pdf) is the penalized linear discriminant analysis and is also useful for when we have highly correlated features.
 
+This model classified 14 out of 23 cases correctly.
+
 ``` r
 set.seed(27)
 model_pda <- caret::train(outcome ~ .,
@@ -806,6 +821,8 @@ Stabilized Linear Discriminant Analysis
 
 [Stabilized Linear Discriminant Analysis](https://books.google.de/books?id=RYaMCwAAQBAJ&pg=PA89&lpg=PA89&dq=%22Stabilized+Linear+Discriminant+Analysis%22&source=bl&ots=YwY0mLEeXx&sig=74Uf3plf0Ma8CT1vh64Wc9MzFqI&hl=de&sa=X&ved=0ahUKEwjXgsOh7sPQAhUMBsAKHc_mAw4Q6AEINjAD#v=onepage&q=%22Stabilized%20Linear%20Discriminant%20Analysis%22&f=false) is designed for high-dimensional data and correlated co-variables.
 
+This model classified 15 out of 23 cases correctly.
+
 ``` r
 set.seed(27)
 model_slda <- caret::train(outcome ~ .,
@@ -869,6 +886,8 @@ Nearest Shrunken Centroids
 --------------------------
 
 [Nearest Shrunken Centroids](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC124443/) computes a standardized centroid for each class and shrinks each centroid toward the overall centroid for all classes.
+
+This model classified 15 out of 23 cases correctly.
 
 ``` r
 set.seed(27)
@@ -937,6 +956,8 @@ Single C5.0 Tree
 
 [C5.0](http://www.bowdoin.edu/~echown/courses/370/tutorial.html) is another tree-based modeling algorithm.
 
+This model classified 15 out of 23 cases correctly.
+
 ``` r
 set.seed(27)
 model_C5.0Tree <- caret::train(outcome ~ .,
@@ -1000,6 +1021,8 @@ Partial Least Squares
 ---------------------
 
 [Partial least squares regression](https://en.wikipedia.org/wiki/Partial_least_squares_regression) combined principal component analysis and multiple regression and is useful for modeling with correlated features.
+
+This model classified 15 out of 23 cases correctly.
 
 ``` r
 set.seed(27)
@@ -1066,6 +1089,8 @@ confusionMatrix(predict(model_pls, val_test_data[, -1]), val_test_data$outcome)
 Comparing accuracy of models
 ----------------------------
 
+All models were similarly accurate.
+
 ``` r
 # Create a list of models
 models <- list(rf = model_rf, glmnet = model_glmnet, kknn = model_kknn, pda = model_pda, slda = model_slda,
@@ -1112,8 +1137,6 @@ bwplot(resample_results , metric = c("Kappa","Accuracy"))
 ```
 
 <img src="flu_outcome_ML_post_files/figure-markdown_github/unnamed-chunk-35-1.png" style="display: block; margin: auto;" />
-
-All models are similarly accurate.
 
 <br>
 
@@ -1357,19 +1380,23 @@ ggplot(data = results_combined_gather, aes(x = date, y = log2_ratio, color = pre
 
 <img src="flu_outcome_ML_post_files/figure-markdown_github/unnamed-chunk-41-1.png" style="display: block; margin: auto;" />
 
-The comparison of date of onset, data of hospitalisation, gender and age with predicted outcome shows that predicted deaths were associated with older age than predicted Recoveries. Date of onset does not show a bias in either direction.
+The comparison of date of onset, data of hospitalisation, gender and age with predicted outcome shows that predicted deaths were associated with older age than predicted Recoveries. Date of onset does not show an obvious bias in either direction.
 
 <br>
 
-# Conclusion
+# Conclusions
 
-The dataset posed a couple of difficulties, like an unequal distribution of data points across variables and missing values. This makes the modeling inherently prone to flaws. However, real life data is seldom perfect, so I went ahead and tested the modeling success anyway.
+This dataset posed a couple of difficulties to begin with, like unequal distribution of data points across variables and missing data. This makes the modeling inherently prone to flaws. However, real life data isn't perfect either, so I went ahead and tested the modeling success anyway.
 
-By accounting for uncertain classification, the validation data could be classified accurately. However, for a more accurate model, these few cases don't give enough information to reliably predict the outcome. More cases, more information (i.e. more features) and fewer missing data would improve the modeling outcome.
+By accounting for uncertain classification with low predictions probability, the validation data could be classified accurately. However, for a more accurate model, these few cases don't give enough information to reliably predict the outcome. More cases, more information (i.e. more features) and fewer missing data would improve the modeling outcome.
 
-Unfortunately, it can't be verified whether the unknown cases were classified correctly. 
-Also, this data is specific for this case of flu. In order to be able to draw more general conclusions about flu outcome, other cases and other information, for example on medical parameters would be necessary.
-However, this dataset served as a nice example for the possibilities (and pitfalls) of machine learning applications and showcased a basic workflow for building prediction models with R.
+Also, this example is only applicable for this specific case of flu. In order to be able to draw more general conclusions about flu outcome, other cases and additional information, for example on medical parameters like preexisting medical conditions, disase parameters, demographic information, etc. would be necessary.
+
+All in all, this dataset served as a nice example of the possibilities (and pitfalls) of machine learning applications and showcases a basic workflow for building prediction models with R.
+
+<br>
+
+If you see any mistakes or have tips and tricks for improvement, please don't hesitate to let me know! Thanks. :-)
 
 ------------------------------------------------------------------------
 
