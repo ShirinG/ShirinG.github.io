@@ -390,6 +390,10 @@ However, this comparison shows that it can be critical for identifying genes and
 
 <br>
 
+In a [part 2](https://shiring.github.io/genome/2016/11/01/AnnotationDbi_part2) I am looking at transcripts.
+
+<br>
+
 ------------------------------------------------------------------------
 
 ``` r

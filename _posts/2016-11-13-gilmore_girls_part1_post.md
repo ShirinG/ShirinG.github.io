@@ -40,7 +40,7 @@ And finally, I wanted to know how many lines per episode each of them spoke: Thi
 
 <br>
 
-There will be a part 2 next week, where I will explore the Gilmore Girls a bit more. No spoilers, but among other things, I'll be looking at their coffee consumption through the data lens...
+There will be a [part 2 next week](https://shiring.github.io/text_analysis/2016/11/20/gilmore_girls_part2_post), where I will explore the Gilmore Girls a bit more. No spoilers, but among other things, I'll be looking at their coffee consumption through the data lens...
 
 <br>
 

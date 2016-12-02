@@ -27,6 +27,10 @@ The training cases with unknown outcome were then classified based on the same a
 
 <br>
 
+In a [Part 2](https://shiring.github.io/machine_learning/2016/12/02/flu_outcome_ML_2_post) I am looking at how extreme gradient boosting performs on this dataset.
+
+<br>
+
 The data
 ========
 
