@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to set up your own R blog with Github pages and Jekyll Boostrap"
+title: "How to set up your own R blog with Github pages and Jekyll Bootstrap"
 date: 2016-12-04
 categories: blogging
 tags: blogging github jekyll bootstrap
