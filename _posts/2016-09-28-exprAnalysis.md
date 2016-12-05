@@ -80,7 +80,6 @@ devtools::install_github("ShirinG/exprAnalysis", build_vignettes=TRUE, ref = "st
 
 # or the development version
 devtools::install_github("ShirinG/exprAnalysis", build_vignettes=TRUE, ref = "master")
-There might be problems with installation of some dependency packages (especially Bioconductor packages and WGCNA and its dependencies from CRAN). In order to install them manually:
 ```
 
 There might be problems with installation of some dependency packages (especially Bioconductor packages and WGCNA and its dependencies from CRAN). In order to install them manually:
