@@ -6,7 +6,7 @@ categories: genome
 tags: AnnotatioDbi ggplot2 dendextend networkD3
 ---
 
-This week I want to explore how many of our human genes have homologs in other species. I will use this to show how to visualize this with dendrograms and (D3-) networks.
+This week I want to explore how many of our human genes have homologs in other species. I will use this question to show how to visualize dendrograms and (D3-) networks.
 
 <br>
 
