@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A network of human gene homology"
+title: "Creating a network of human gene homology with R and D3"
 date: 2016-12-11
 categories: genome
 tags: AnnotatioDbi ggplot2 dendextend networkD3
