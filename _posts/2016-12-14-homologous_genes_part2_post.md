@@ -338,7 +338,7 @@ plot(g,
 
 Node size shows the total number of genes of each species and edge width shows the proportion of these genes with homologs in the respective other species. Edge and node colors show the 11 species and their outgoing edges.
 
-Weirdly, the mouse seems to have more gene entries in the org.db library. If anyone knows why that it, please let me know!
+Weirdly, the mouse seems to have more gene entries in the org.db library than human. If anyone knows why that is, please let me know!
 
 ------------------------------------------------------------------------
 
