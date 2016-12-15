@@ -8,6 +8,8 @@ tags: AnnotatioDbi ggplot2 dendextend networkD3
 
 This week I want to explore how many of our human genes have homologs in other species. I will use this question to show how to visualize dendrograms and (D3-) networks.
 
+Here, I am looking at gene homologs for all genes of the human genome. In [Part 2](https://shiring.github.io/genome/2016/12/14/homologous_genes_part2_post) I am creating a full network between a subset of the species from this post.
+
 <br>
 
 Accessing species information from Biomart
