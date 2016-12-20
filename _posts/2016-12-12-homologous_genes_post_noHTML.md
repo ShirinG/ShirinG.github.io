@@ -6,6 +6,10 @@ categories: genome
 tags: AnnotatioDbi ggplot2 dendextend networkD3
 ---
 
+**Edited on 20 December 2016**
+
+------------------------------------------------------------------------
+
 *The html widget I produced with networksD3 seems to create problems with loading the site for some people, so here is the same blog post as [yesterday](https://shiring.github.io/genome/2016/12/11/homologous_genes_post) just without the rendered html widget in it.*
 
 ---
@@ -88,8 +92,8 @@ library(dplyr)
 
 for (i in 1:length(specieslist)){
   species <- specieslist[i]
-  homologs_human <- left_join(human_prot_coding_genes, get(paste0("homologs_human_", species)), by = c("GENEID" = "Ensembl.Gene.ID"))
-  homologs_human[, paste0(species)] <- ifelse(is.na(homologs_human$Ensembl.Gene.ID.1), 0, 1)
+  homologs_human <- left_join(human_prot_coding_genes, get(paste0("homologs_human_", species)), by = c("GENEID" = "Gene.ID"))
+  homologs_human[, paste0(species)] <- ifelse(is.na(homologs_human$Gene.ID.1), 0, 1)
   homologs_human <- homologs_human[, c(1, 6)]
   homologs_human <- homologs_human[!duplicated(homologs_human$GENEID), ]
   
