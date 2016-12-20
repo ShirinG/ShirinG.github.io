@@ -6,6 +6,10 @@ categories: genome
 tags: AnnotatioDbi ggplot2 dendextend networkD3
 ---
 
+**Edited on 20 December 2016**
+
+------------------------------------------------------------------------
+
 This week I want to explore how many of our human genes have homologs in other species. I will use this question to show how to visualize dendrograms and (D3-) networks.
 
 Here, I am looking at gene homologs for all genes of the human genome. In [Part 2](https://shiring.github.io/genome/2016/12/14/homologous_genes_part2_post) I am creating a full network between a subset of the species from this post.
@@ -82,8 +86,8 @@ library(dplyr)
 
 for (i in 1:length(specieslist)){
   species <- specieslist[i]
-  homologs_human <- left_join(human_prot_coding_genes, get(paste0("homologs_human_", species)), by = c("GENEID" = "Ensembl.Gene.ID"))
-  homologs_human[, paste0(species)] <- ifelse(is.na(homologs_human$Ensembl.Gene.ID.1), 0, 1)
+  homologs_human <- left_join(human_prot_coding_genes, get(paste0("homologs_human_", species)), by = c("GENEID" = "Gene.ID"))
+  homologs_human[, paste0(species)] <- ifelse(is.na(homologs_human$Gene.ID.1), 0, 1)
   homologs_human <- homologs_human[, c(1, 6)]
   homologs_human <- homologs_human[!duplicated(homologs_human$GENEID), ]
   
