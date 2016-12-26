@@ -6,7 +6,7 @@ categories: machine_learning
 tags: Machine_Learning ggplot2 Random_Forest
 ---
 
-**Edited on 28 November 2016**
+**Edited on 26 December 2016**
 
 ------------------------------------------------------------------------
 
@@ -90,6 +90,9 @@ fluH7N9.china.2013_gather$gender[is.na(fluH7N9.china.2013_gather$gender)] <- "un
 
 # rearrange province order so that Other is the last
 fluH7N9.china.2013_gather$province <- factor(fluH7N9.china.2013_gather$province, levels = c("Jiangsu",  "Shanghai", "Zhejiang", "Other"))
+
+# convert age to numeric
+fluH7N9.china.2013_gather$age <- as.numeric(as.character(fluH7N9.china.2013_gather$age))
 ```
 
 ``` r
@@ -120,7 +123,7 @@ my_theme <- function(base_size = 12, base_family = "sans"){
 ``` r
 # plotting raw data
 
-ggplot(data = fluH7N9.china.2013_gather, aes(x = Date, y = as.numeric(age), fill = outcome)) +
+ggplot(data = fluH7N9.china.2013_gather, aes(x = Date, y = age, fill = outcome)) +
   stat_density2d(aes(alpha = ..level..), geom = "polygon") +
   geom_jitter(aes(color = outcome, shape = gender), size = 1.5) +
   geom_rug(aes(color = outcome)) +
@@ -179,7 +182,7 @@ p1 <- ggplot(data = fluH7N9.china.2013_gather_2, aes(x = value, fill = outcome, 
     caption = ""
   )
 
-p2 <- ggplot(data = fluH7N9.china.2013_gather, aes(x = as.numeric(age), fill = outcome, color = outcome)) +
+p2 <- ggplot(data = fluH7N9.china.2013_gather, aes(x = age, fill = outcome, color = outcome)) +
   geom_density(alpha = 0.3, size = 1) +
   geom_rug() +
   scale_color_brewer(palette="Set1", na.value = "grey50") +
@@ -214,7 +217,7 @@ When we look at the age distribution it is obvious that people who died tended t
 And lastly, I want to plot how many days passed between onset, hospitalisation and outcome for each case.
 
 ``` r
-ggplot(data = fluH7N9.china.2013_gather, aes(x = Date, y = as.numeric(age), color = outcome)) +
+ggplot(data = fluH7N9.china.2013_gather, aes(x = Date, y = age, color = outcome)) +
   geom_point(aes(shape = gender), size = 1.5, alpha = 0.6) +
   geom_path(aes(group = case.ID)) +
   facet_wrap( ~ province, ncol = 2) +
@@ -1364,7 +1367,7 @@ results_combined_gather$gender[is.na(results_combined_gather$gender)] <- "unknow
 
 ``` r
 ggplot(data = results_combined_gather, aes(x = date, y = log2_ratio, color = predicted_outcome)) +
-  geom_jitter(aes(size = as.numeric(age)), alpha = 0.3) +
+  geom_jitter(aes(size = age), alpha = 0.3) +
   geom_rug() +
   facet_grid(gender ~ group_dates) +
   labs(
