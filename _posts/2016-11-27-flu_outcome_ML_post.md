@@ -1363,6 +1363,7 @@ results_combined_gather$gender <- mapvalues(results_combined_gather$gender, from
                                              to = c("Female", "Male"))
 levels(results_combined_gather$gender) <- c(levels(results_combined_gather$gender), "unknown")
 results_combined_gather$gender[is.na(results_combined_gather$gender)] <- "unknown"
+results_combined_gather$age <- as.numeric(as.character(results_combined_gather$age))
 ```
 
 ``` r
