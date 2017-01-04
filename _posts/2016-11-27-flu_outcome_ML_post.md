@@ -1381,7 +1381,6 @@ ggplot(data = results_combined_gather, aes(x = date, y = log2_ratio, color = pre
     caption = ""
   ) +
   my_theme() +
-  scale_shape_manual(values = c(15, 16, 17)) +
   scale_color_brewer(palette="Set1") +
   scale_fill_brewer(palette="Set1")
 ```
