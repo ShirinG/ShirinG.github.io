@@ -1363,6 +1363,7 @@ results_combined_gather$gender <- mapvalues(results_combined_gather$gender, from
                                              to = c("Female", "Male"))
 levels(results_combined_gather$gender) <- c(levels(results_combined_gather$gender), "unknown")
 results_combined_gather$gender[is.na(results_combined_gather$gender)] <- "unknown"
+results_combined_gather$age <- as.numeric(as.character(results_combined_gather$age))
 ```
 
 ``` r
@@ -1380,7 +1381,6 @@ ggplot(data = results_combined_gather, aes(x = date, y = log2_ratio, color = pre
     caption = ""
   ) +
   my_theme() +
-  scale_shape_manual(values = c(15, 16, 17)) +
   scale_color_brewer(palette="Set1") +
   scale_fill_brewer(palette="Set1")
 ```
