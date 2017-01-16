@@ -1403,6 +1403,8 @@ All in all, this dataset served as a nice example of the possibilities (and pitf
 
 <br>
 
+For a comparison of feature selection methods see [here](https://shiring.github.io/machine_learning/2017/01/15/rfe_ga_post).
+
 If you see any mistakes or have tips and tricks for improvement, please don't hesitate to let me know! Thanks. :-)
 
 ------------------------------------------------------------------------
