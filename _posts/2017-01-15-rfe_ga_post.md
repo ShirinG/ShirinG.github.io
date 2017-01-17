@@ -377,8 +377,8 @@ pca_func <- function(data, groups, title, print_ellipse = TRUE) {
       labs(title = title,
            color = "",
            fill = "",
-           x = paste0("PC1: ", round(pcaOutput$pov[1], digits = 2), "% variance"),
-           y = paste0("PC2: ", round(pcaOutput$pov[2], digits = 2), "% variance"))
+           x = paste0("PC1: ", round(pcaOutput$pov[1], digits = 2) * 100, "% variance"),
+           y = paste0("PC2: ", round(pcaOutput$pov[2], digits = 2) * 100, "% variance"))
     
   } else {
     
@@ -391,8 +391,8 @@ pca_func <- function(data, groups, title, print_ellipse = TRUE) {
         labs(title = title,
              color = "",
              fill = "",
-             x = paste0("PC1: ", round(pcaOutput$pov[1], digits = 2), "% variance"),
-             y = paste0("PC2: ", round(pcaOutput$pov[2], digits = 2), "% variance"))
+             x = paste0("PC1: ", round(pcaOutput$pov[1], digits = 2) * 100, "% variance"),
+             y = paste0("PC2: ", round(pcaOutput$pov[2], digits = 2) * 100, "% variance"))
       
     } else {
       
@@ -402,8 +402,8 @@ pca_func <- function(data, groups, title, print_ellipse = TRUE) {
         labs(title = title,
              color = "",
              fill = "",
-             x = paste0("PC1: ", round(pcaOutput$pov[1], digits = 2), "% variance"),
-             y = paste0("PC2: ", round(pcaOutput$pov[2], digits = 2), "% variance"))
+             x = paste0("PC1: ", round(pcaOutput$pov[1], digits = 2) * 100, "% variance"),
+             y = paste0("PC2: ", round(pcaOutput$pov[2], digits = 2) * 100, "% variance"))
       
     }
   }
