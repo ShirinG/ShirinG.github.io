@@ -4,6 +4,8 @@ title: "Exploring the human genome (Part 2) - Transcripts"
 date: 2016-11-01
 categories: genome
 tags: AnnotationDbi ggplot2 genes genomics genetics
+author: Shirin Glander
+image: genome/2016/11/01/AnnotationDbi_part2_blog_files/figure-markdown_github/unnamed-chunk-19-1.png
 ---
 
 How many transcripts and proteins do genes have?

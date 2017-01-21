@@ -4,6 +4,8 @@ title: "How to build a Shiny app for disease- & trait-associated locations of th
 date: 2016-12-18
 categories: genome
 tags: shiny ggplot2 gwas
+author: Shirin Glander
+image: genome/2016/12/18/shiny_app.jpg
 ---
 
 This app is based on the [gwascat](http://bioconductor.org/packages/release/bioc/html/gwascat.html) R package and its *ebicat38* database and shows trait-associated SNP locations of the human genome. You can visualize and compare the genomic locations of up to 8 traits simultaneously.
@@ -26,6 +28,8 @@ Alternatively, if you are using R, you can load the app via Github with **shiny*
 library(shiny)
 runGitHub("ShirinG/GWAS_Shiny_App") 
 ```
+
+<img src="shiny_app.jpg" style="display: block; margin: auto;" />
 
 ------------------------------------------------------------------------
 

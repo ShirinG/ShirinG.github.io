@@ -4,6 +4,8 @@ title: "How to map your Google location history with R"
 date: 2016-12-30
 categories: maps
 tags: ggplot2 ggmap google maps
+author: Shirin Glander
+image: maps/2016/12/30/Standortverlauf_post_files/figure-markdown_github/unnamed-chunk-14-1.png
 ---
 
 It's no secret that Google Big Brothers most of us. But at least they allow us to access quite a lot of the data they have collected on us. Among this is the Google location history.

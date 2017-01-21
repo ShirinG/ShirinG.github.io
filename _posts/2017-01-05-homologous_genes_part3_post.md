@@ -4,6 +4,8 @@ title: "Gene homology Part 3 - Visualizing Gene Ontology of Conserved Genes"
 date: 2017-01-05
 categories: genome
 tags: AnnotatioDbi biomaRt igraph ggplot2
+author: Shirin Glander
+image: genome/2017/01/05/homologous_genes_part3_post_files/figure-markdown_github/unnamed-chunk-22-1.png
 ---
 
 Which genes have homologs in many species?

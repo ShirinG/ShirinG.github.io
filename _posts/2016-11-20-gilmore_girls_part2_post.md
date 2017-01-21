@@ -4,6 +4,8 @@ title: "Analysing the Gilmore Girls' coffee addiction with R"
 date: 2016-11-20
 categories: text_analysis
 tags: Gilmore_Girls text_mining ggplot2
+author: Shirin Glander
+image: text_analysis/2016/11/20/gilmore_girls_part2_post_files/figure-markdown_github/unnamed-chunk-6-1.png
 ---
 
 Last week's post showed how to create a [Gilmore Girls character network](https://shiring.github.io/text_analysis/2016/11/13/gilmore_girls_part1_post).

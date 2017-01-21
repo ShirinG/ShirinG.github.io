@@ -1,9 +1,11 @@
 ---
 layout: post
 title: "Feature Selection in Machine Learning (Breast Cancer Datasets)"
+author: Shirin Glander
 date: 2017-01-15
 categories: machine_learning
 tags: Machine_Learning ggplot2 Random_Forest RFE GA
+image: machine_learning/2017/01/15/rfe_ga_post_files/figure-markdown_github/unnamed-chunk-86-1.png
 ---
 
 Machine learning uses so called features (i.e. variables or attributes) to generate predictive models. Using a suitable combination of features is essential for obtaining high precision and accuracy. Because too many (unspecific) features pose the problem of overfitting the model, we generally want to restrict the features in our models to those, that are most relevant for the response variable we want to predict. Using as few features as possible will also reduce the complexity of our models, which means it needs less time and computer power to run and is easier to understand.

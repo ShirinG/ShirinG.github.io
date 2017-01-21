@@ -4,6 +4,8 @@ title: "Animating Plots of Beer Ingredients and Sin Taxes over Time"
 date: 2016-12-22
 categories: animation
 tags: ggplot2 ttbbeer gganimate animation
+author: Shirin Glander
+image: animation/2016/12/22/alcohol_post_files/figure-markdown_github/unnamed-chunk-17-1.png
 ---
 
 With the upcoming holidays, I thought it fitting to finally explore the [ttbbeer](https://cran.rstudio.com/web/packages/ttbbeer/index.html) package. It contains data on beer ingredients used in US breweries from 2006 to 2015 and on the [(sin) tax](http://www.stuffyoushouldknow.com/podcasts/sin-taxes.htm) rates for beer, champagne, distilled spirits, wine and various tobacco items since 1862.

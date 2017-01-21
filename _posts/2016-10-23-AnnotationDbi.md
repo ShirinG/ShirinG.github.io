@@ -4,6 +4,8 @@ title: "Exploring the human genome (Part 1) - Gene Annotations"
 date: 2016-10-23
 categories: genome
 tags: AnnotationDbi ggplot2 genes genomics genetics
+author: Shirin Glander
+image: genome/2016/10/23/AnnotationDbi_blog_files/figure-markdown_github/genebiotypes_percent-1.png
 ---
 
 When working with any type of genome data, we often look for annotation information about genes, e.g. what's the gene's full name, what's its abbreviated symbol, what ID it has in other databases, what functions have been described, how many and which transcripts exist, etc.

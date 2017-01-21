@@ -4,6 +4,8 @@ title: "Creating a network of human gene homology with R and D3"
 date: 2016-12-11
 categories: genome
 tags: AnnotatioDbi ggplot2 dendextend networkD3
+author: Shirin Glander
+image: genome/2016/12/11/homologous_genes_post_files/figure-markdown_github/unnamed-chunk-17-1.png
 ---
 
 **Edited on 20 December 2016**

@@ -4,6 +4,8 @@ title: "Creating a Gilmore Girls character network with R"
 date: 2016-11-13
 categories: text_analysis
 tags: Gilmore_Girls network cooccurrence text_mining igraph
+author: Shirin Glander
+image: text_analysis/2016/11/13/gilmore_girls_part1_post_files/figure-markdown_github/unnamed-chunk-11-1.png
 ---
 
 With the impending (and by many - including me - much awaited) [Gilmore Girls Revival](http://www.imdb.com/title/tt5435008/), I wanted to take a somewhat different look at our beloved characters from Stars Hollow.

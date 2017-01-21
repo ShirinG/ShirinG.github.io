@@ -4,6 +4,8 @@ title: "DESeq2 Course Work"
 date: 2016-09-29
 categories: RNA-seq DESeq2 teaching
 tags: RNA-seq exprAnalysis DESeq2 ggplot2 PCA heatmap
+author: Shirin Glander
+image: rna-seq/deseq2/teaching/2016/09/29/DESeq2_course_blog_files/figure-markdown_github/var_vs_mean-1.png
 ---
 
 ------------------------------------------------------------------------

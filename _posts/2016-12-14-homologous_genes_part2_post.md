@@ -4,6 +4,8 @@ title: "Gene homology Part 2 - creating directed networks with igraph"
 date: 2016-12-14
 categories: genome
 tags: AnnotatioDbi biomaRt igraph
+author: Shirin Glander
+image: genome/2016/12/14/homologous_genes_part2_post_files/figure-markdown_github/unnamed-chunk-15-1.png
 ---
 
 In my [last post](https://shiring.github.io/genome/2016/12/11/homologous_genes_post) I created a gene homology network for human genes. In this post I want to extend the network to include edges for other species.

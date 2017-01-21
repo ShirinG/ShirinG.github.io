@@ -4,6 +4,8 @@ title: "Extreme Gradient Boosting and Preprocessing in Machine Learning - Addend
 date: 2016-12-02
 categories: machine_learning
 tags: Machine_Learning ggplot2 Random_Forest
+author: Shirin Glander
+image: machine_learning/2016/12/02/flu_outcome_ML_2_post_files/figure-markdown_github/unnamed-chunk-37-1.png
 ---
 
 In [last week's post](https://shiring.github.io/machine_learning/2016/11/27/flu_outcome_ML_post) I explored whether machine learning models can be applied to predict flu deaths from the 2013 outbreak of influenza A H7N9 in China. There, I compared random forests, elastic-net regularized generalized linear models, k-nearest neighbors, penalized discriminant analysis, stabilized linear discriminant analysis, nearest shrunken centroids, single C5.0 tree and partial least squares.

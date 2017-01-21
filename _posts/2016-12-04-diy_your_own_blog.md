@@ -4,6 +4,8 @@ title: "How to set up your own R blog with Github pages and Jekyll Bootstrap"
 date: 2016-12-04
 categories: blogging
 tags: blogging github jekyll bootstrap
+author: Shirin Glander
+image: blogging/2016/12/04/diy_your_own_blog_files/figure-markdown_github/unnamed-chunk-4-1.png
 ---
 
 ### This post is in reply to a request: How did I set up this R blog?

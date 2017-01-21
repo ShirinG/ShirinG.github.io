@@ -4,6 +4,8 @@ title: "Is 'Yeah' Josh and Chuck's favorite word?"
 date: 2016-11-06
 categories: text_analysis
 tags: SYSK sentiment_analysis text_mining
+author: Shirin Glander
+image: text_analysis/2016/11/06/sysk_earwax_files/figure-markdown_github/unnamed-chunk-24-1.png
 ---
 
 ### Text mining and sentiment analysis of a Stuff You Should Know Podcast
