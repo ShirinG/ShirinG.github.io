@@ -3,7 +3,7 @@ layout: post
 title: "R vs Python - a One-on-One Comparison"
 author: Shirin Glander
 date: 2017-01-22
-categories: R_vs_Python
+categories: r_vs_python
 tags: R Python ggplot2 dplyr magrittr pandas matplotlib
 image: r_vs_python/2017/01/22/R_vs_Py_post_files/figure-markdown_github/unnamed-chunk-42-1.png
 ---
