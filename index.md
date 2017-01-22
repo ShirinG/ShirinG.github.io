@@ -17,11 +17,14 @@ tagline: exploring and playing with data in R
       </li>
 
       <img src="{{ site.baseurl }}/{{ post.image }}">
-	<br>
+      
+      <p>	
       {{ post.excerpt }}
       <a class="btn btn-default" href="{{ post.url | prepend: site.baseurl }}">Continue reading...</a>
+      </p>
+
     {% endfor %}
-    <br>
+  
   </ul>
 
 <div class="row-fluid">
