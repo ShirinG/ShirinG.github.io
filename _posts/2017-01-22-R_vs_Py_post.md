@@ -5,7 +5,7 @@ author: Shirin Glander
 date: 2017-01-22
 categories: R_vs_Python
 tags: R Python ggplot2 dplyr magrittr pandas matplotlib
-image: R_vs_Python/2017/01/22/R_vs_Py_post_files/figure-markdown_github/unnamed-chunk-42-1.png
+image: r_vs_python/2017/01/22/R_vs_Py_post_files/figure-markdown_github/unnamed-chunk-42-1.png
 ---
 
 I'm an avid R user and rarely use anything else for data analysis and visualisations. But while R is my go-to, in some cases, [Python might actually be a better alternative](https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis#gs.JrY_3bk).
