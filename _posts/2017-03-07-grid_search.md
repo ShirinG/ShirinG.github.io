@@ -346,7 +346,7 @@ We can now decide which model is most relevant. Let's say, we want this model to
 
 ------------------------------------------------------------------------
 
-If you are interested in more machine learning post, check out [the category listing](https://shiring.github.io/categories.html#machine_learning-ref).
+If you are interested in more machine learning posts, check out [the category listing for **machine_learning**](https://shiring.github.io/categories.html#machine_learning-ref).
 
 ------------------------------------------------------------------------
 
