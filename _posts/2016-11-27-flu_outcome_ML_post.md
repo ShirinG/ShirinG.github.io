@@ -1409,6 +1409,10 @@ For a comparison of feature selection methods see [here](https://shiring.github.
 
 If you see any mistakes or have tips and tricks for improvement, please don't hesitate to let me know! Thanks. :-)
 
+---
+
+If you are interested in more machine learning post, check out [the category listing](https://shiring.github.io/categories.html#machine_learning-ref).
+
 ------------------------------------------------------------------------
 
 ``` r
