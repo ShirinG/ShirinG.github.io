@@ -1041,6 +1041,10 @@ There is much less uncertainty in the XGBoost data, even tough I used slightly d
 
 For a comparison of feature selection methods see [here](https://shiring.github.io/machine_learning/2017/01/15/rfe_ga_post).
 
+---
+
+If you are interested in more machine learning post, check out [the category listing](https://shiring.github.io/categories.html#machine_learning-ref).
+
 ------------------------------------------------------------------------
 
 ``` r
