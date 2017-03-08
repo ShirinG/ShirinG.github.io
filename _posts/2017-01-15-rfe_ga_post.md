@@ -1885,6 +1885,10 @@ The correlation method operates regardless of feature importance. E.g. in datase
 
 Dataset 1 was small with only 9 features; here, removing highly correlated features was the least successful selection method. RFE and GA both improved the predictions compared to no feature selection, while GA performed best. Dataset 2 with its 30 original features produced the best models with the GA. And in dataset 3, which had lower overall accuracy, different feature selection methods did not have a strong influence.
 
+---
+
+If you are interested in more machine learning post, check out [the category listing](https://shiring.github.io/categories.html#machine_learning-ref).
+
 ------------------------------------------------------------------------
 
 <br>
