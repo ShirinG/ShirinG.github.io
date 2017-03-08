@@ -346,13 +346,7 @@ We can now decide which model is most relevant. Let's say, we want this model to
 
 ------------------------------------------------------------------------
 
-Other machine learning topics I have covered include
-
--   how to run machine learning with Apache Spark and H2O: [Building deep neural nets with h2o and rsparkling that predict arrhythmia of the heart](https://shiring.github.io/machine_learning/2017/02/27/h2o)
--   how to run machine learning with Apache Spark in R: [Predicting food preferences with sparklyr (machine learning)](https://shiring.github.io/machine_learning/2017/02/19/food_spark)
--   a basic machine learning workflow: [Can we predict flu deaths with Machine Learning and R?](https://shiring.github.io/machine_learning/2016/11/27/flu_outcome_ML_post)
--   extreme gradient boosting: [Extreme Gradient Boosting and Preprocessing in Machine Learning - Addendum to predicting flu outcome with R](https://shiring.github.io/machine_learning/2016/12/02/flu_outcome_ML_2_post)
--   feature selection: [Feature Selection in Machine Learning (Breast Cancer Datasets)](https://shiring.github.io/machine_learning/2017/01/15/rfe_ga_post)
+If you are interested in more machine learning post, check out [the category listing](https://shiring.github.io/categories.html#machine_learning-ref).
 
 ------------------------------------------------------------------------
 
