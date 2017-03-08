@@ -513,11 +513,7 @@ Next week, I'll be looking into how to use the **h2o** package with Spark using 
 
 ------------------------------------------------------------------------
 
-Other machine learning topics I have covered include
-
-- a basic machine learning workflow: [Can we predict flu deaths with Machine Learning and R?](https://shiring.github.io/machine_learning/2016/11/27/flu_outcome_ML_post)
-- extreme gradient boosting: [Extreme Gradient Boosting and Preprocessing in Machine Learning - Addendum to predicting flu outcome with R](https://shiring.github.io/machine_learning/2016/12/02/flu_outcome_ML_2_post)
-- feature selection: [Feature Selection in Machine Learning (Breast Cancer Datasets)](https://shiring.github.io/machine_learning/2017/01/15/rfe_ga_post)
+If you are interested in more machine learning post, check out [the category listing](https://shiring.github.io/categories.html#machine_learning-ref).
 
 ------------------------------------------------------------------------
 
