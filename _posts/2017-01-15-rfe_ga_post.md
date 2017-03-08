@@ -1887,7 +1887,7 @@ Dataset 1 was small with only 9 features; here, removing highly correlated featu
 
 ---
 
-If you are interested in more machine learning post, check out [the category listing](https://shiring.github.io/categories.html#machine_learning-ref).
+If you are interested in more machine learning posts, check out [the category listing for **machine_learning**](https://shiring.github.io/categories.html#machine_learning-ref).
 
 ------------------------------------------------------------------------
 
