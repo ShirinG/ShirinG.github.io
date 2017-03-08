@@ -513,7 +513,7 @@ Next week, I'll be looking into how to use the **h2o** package with Spark using 
 
 ------------------------------------------------------------------------
 
-If you are interested in more machine learning post, check out [the category listing](https://shiring.github.io/categories.html#machine_learning-ref).
+If you are interested in more machine learning posts, check out [the category listing for **machine_learning**](https://shiring.github.io/categories.html#machine_learning-ref).
 
 ------------------------------------------------------------------------
 
