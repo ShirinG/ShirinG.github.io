@@ -8,7 +8,7 @@ author: Shirin Glander
 image: machine_learning/2017/03/16/rf_plot_ggraph_files/figure-markdown_github/unnamed-chunk-3-1.png
 ---
 
-Today, I want to show how I use Thomas Lin Pederson's awesome [ggraph](https://github.com/thomasp85/ggraph) package to plot decision trees from Random Forest models.
+Today, I want to show how I use Thomas Lin Pedersen's awesome [ggraph](https://github.com/thomasp85/ggraph) package to plot decision trees from Random Forest models.
 
 I am very much a visual person, so I try to plot as much of my results as possible because it helps me get a better feel for what is going on with my data.
 
