@@ -131,6 +131,8 @@ ggplot(bc_data, aes(x = classes, fill = classes)) +
 
 <img src="webinar_code_files/figure-markdown_github/response_classification-1.png" style="display: block; margin: auto;" />
 
+We can see that our data is unbalanced. For simplicity's sake, I am not going to go into how to deal with this, here. But I added a short post about [dealing with unbalanced datasets using caret](https://shiring.github.io/machine_learning/2017/04/02/unbalanced) for you to check out.
+
 <br>
 
 -   Response variable for regression
