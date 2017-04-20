@@ -324,9 +324,9 @@ plot3D(srtm_c,  maxpixels = 7e4)
 
 <br>
 
-**Use the mouse to zoom and turn the plot:**
+**Click to open the interactive 3D image and use the mouse to zoom and turn the plot:**
 
-{% include 3dplot1.html %}
+<a href="3dplot1.html"><img border="0" alt="3dplot1" src="3dplot1.png" width="500" height="500">
 
 This interactive 3D plot shows the elevation profile of the whole island and you can clearly see the various ravines that have been shaped over the years.
 
@@ -346,9 +346,9 @@ plot3d(data_combined$lon, data_combined$lat, ex_points$srtm_33_07,
 
 <br>
 
-**Use the mouse to zoom and turn the plot:**
+**Click to open the interactive 3D image and use the mouse to zoom and turn the plot:**
 
-{% include 3dplot2.html %}
+<a href="3dplot2.html"><img border="0" alt="3dplot2" src="3dplot2.png" width="500" height="500">
 
 Here as well, I would have liked to have the elevation profile of the island behind it, but the code that worked well within RStudio (see below) did not plot the background points in my html output. I assume that it has to do with having too many points, so if somebody knows a way to reduce the resolution, please let me know!
 

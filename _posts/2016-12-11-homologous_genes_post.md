@@ -307,8 +307,9 @@ forceNetwork(Links = net_d3$links,
              charge = -200,
              opacityNoHover = 0.7)
 ```
+**Click to open the interactive network and use the mouse to zoom and turn the plot:**
 
-{% include networkD3.html %}
+<a href="networkD3.html"><img border="0" alt="networkD3" src="networkD3.png" width="500" height="500">
 
 ------------------------------------------------------------------------
 
