@@ -14,15 +14,22 @@ title : RSS Feed
         <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
         <ttl>60</ttl>
 
-{% for post in site.posts limit:20 %}
-        <item>
-                <title>{{ post.title | xml_escape }}</title>
-                <description>{{ post.content | xml_escape }}</description>
-                <link>{{ site.production_url }}{{ post.url }}</link>
-                <guid>{{ site.production_url }}{{ post.id }}</guid>
-                <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        </item>
-{% endfor %}
+{% for post in site.posts limit:10 %}
+			<item>
+				<title>{{ post.title | xml_escape }}</title>
+				{% if post.author.name %}
+					<dc:creator>{{ post.author.name | xml_escape }}</dc:creator>
+				{% endif %}        
+				{% if post.excerpt %}
+					<description>{{ post.excerpt | xml_escape }}</description>
+				{% else %}
+					<description>{{ post.content | xml_escape }}</description>
+				{% endif %}
+				<pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+				<link>{{ site.url }}{{ post.url }}</link>
+				<guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+			</item>
+		{% endfor %}
 
 </channel>
 </rss>

@@ -170,4 +170,5 @@ google_analytics:
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: https://ShirinG.github.io
+description: exploring and playing with data in R
+url: https://shirinG.github.io
