@@ -5,6 +5,8 @@ header: Feeds
 group: navigation
 ---
 
-[RSS feed](http://shiring.github.io/rss.xml)
+[Excerpt RSS feed of the last 10 posts](http://shiring.github.io/rss_excerpt.xml)
 
-[Atom feed](http://shiring.github.io/atom.xml)
+[Full content RSS feed of the last 3 posts](http://shiring.github.io/rss.xml)
+
+[Full content Atom feed of the last 3 posts](http://shiring.github.io/atom.xml)
