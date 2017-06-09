@@ -40,7 +40,7 @@ library(grid)
 The data
 --------
 
-I am again using a dataset from [UC Irvine's machine learning repository](http://archive.ics.uci.edu/ml/datasets/Online+Retail).
+I am again using a dataset from [UC Irvine's machine learning repository](http://archive.ics.uci.edu/ml/datasets/Online+Retail) (converted to csv from xlsx).
 
 From the dataset description:
 
