@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Data Science for Business - Time Series Forecasting Part 3: Forecasting with prophet"
+title: "Data Science for Business - Time Series Forecasting Part 3: Forecasting with Facebook's Prophet"
 author: Shirin Glander
 date: 2017-06-13
 categories: forecasting
