@@ -8,7 +8,7 @@ tags: text_analysis tidytext ggplot tidyverse
 image: text_analysis/2017/06/28/twitter_post_files/figure-markdown_github/unnamed-chunk-41-1.png
 ---
 
-Lately, I have been more and more taken with tidy principles of data analysis. They are elegant and make code easier to read and comprehend. Following the **tidyverse** and **ggraph**, I have been quite intrigued by applying tidy principles to text analysis with [Julia Silge and David Robinson's **tidytext**](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html).
+Lately, I have been more and more taken with tidy principles of data analysis. They are elegant and make analyses clearer and easier to comprehend. Following the **tidyverse** and **ggraph**, I have been quite intrigued by applying tidy principles to text analysis with [Julia Silge and David Robinson's **tidytext**](https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html).
 
 In this post, I will explore **tidytext** with an analysis of my Twitter followers' descriptions to try and learn more about the people who are interested in my tweets, which are mainly about Data Science and Machine Learning.
 
