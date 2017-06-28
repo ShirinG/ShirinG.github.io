@@ -226,7 +226,7 @@ followers_df %>%
 
 #### Is there a correlation between number of followers and number of tweets?
 
-Indeed, there seems to be a slight correlation (albeit not supported by too many data points) that users with many followers also tend to tweet more often.
+Indeed, there seems to be a correlation that users with many followers also tend to tweet more often.
 
 ``` r
 followers_df %>%
