@@ -9,13 +9,13 @@ group: navigation
 
 ![]({{ site.url }}/assets/images/Bewerbungsfoto.jpg){:style="float: left;margin-right: 7px;margin-top: 7px; margin-bottom: 7px; margin-left: 7px; width: 200px"}
 
-I'm Shirin and I'm a bioinformatician currently working on Next-Generation-Sequencing analysis of autoinflammatory diseases as part of the [AID-NET consortium](http://campus.uni-muenster.de/immunologie/forschung/aid-net/).
+I'm Shirin, a biologist turned bioinformatician turned data scientist. 
 
-Obviously, I am interested in genetics and genomics but I enjoy playing around with data of all sorts. It's amazing to me what can be learned from analyzing and visualizing data!
+I'm especially interested in machine learning and data visualization. While I am using R most every day at work, I wanted to have an incentive to regularly explore other types of analyses and other types of data that I don't normally work with. I have also very often benefited from other people's published code in that it gave me ideas for my own work and I hope that sharing my own analyses will inspire others as much as I often am by what can be be done with data.  It's amazing to me what can be learned from analyzing and visualizing data!
 
-While I am using R every day at work, the thematic scope there is of course very bioinformatics-centric (with a little bit of Machine Learning and lots of visualization and statistics), I wanted to have an incentive to regularly explore other types of analyses and other types of data that I don't normally work with. I have also very often benefited from other people's published code in that it gave me ideas for my own work and I hope that sharing my own analyses will inspire others as much as I often am by what can be be done with data.
+My tool of choice for data analysis so far has been R. I also organize the [MünsteR R-users group on meetup.com](https://shiring.github.io/r_users_group/2017/05/20/muenster_r_user_group). 
 
-My tool of choice for data analysis so far has been R.
+I also love dancing and used to do competitive ballroom and latin dancing. Even though I don't have time for that anymore, I still enjoy teaching "social dances" once a week with the Hochschulsport (university sports courses).
 
 I created the R package [exprAnalysis](https://github.com/ShirinG/exprAnalysis), designed to streamline my RNA-seq data analysis pipeline. It is available via Github. Instructions for installation and usage can be found [here](https://shiring.github.io/rna-seq/microarray/2016/09/28/exprAnalysis).
 
@@ -24,7 +24,7 @@ This blog will showcase some of the analyses I have been doing with different da
 ---
 
 ## Contact me:
-- [Department of Genetic Epidemiology, University of MÃ¼nster](https://campus.uni-muenster.de/gen_epi_start.html)
+- [Codecentric AG](https://www.codecentric.de/team/shirin-glander/)
 - [Email](mailto:shirin.glander@gmail.com)
 - [Xing](http://www.xing.com/profile/Shirin_Glander)
 - [Linkedin](http://de.linkedin.com/in/shirin-glander-01120881)
