@@ -5,7 +5,7 @@ author: Shirin Glander
 date: 2017-11-02
 categories: flexdashboard
 tags: flexdashboard predictive_maintenance data_science shiny
-image: https://blog.codecentric.de/files/2017/10/dashboard_screenshot.png
+image: machine_learning/2017/dashboard_screenshot.png
 ---
 
 I have written the following post about [Predictive Maintenance and flexdashboard](https://blog.codecentric.de/en/2017/11/explore-predictive-maintenance-flexdashboard/) at my company [codecentric](https://blog.codecentric.de/en/)'s blog:
