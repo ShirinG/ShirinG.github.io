@@ -1,0 +1,1896 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Building meaningful machine learning models for disease prediction</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Building meaningful machine learning models for disease prediction </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Building meaningful machine learning models for disease prediction" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>31 March 2017</span>
+    </div>
+    <div class="content">
+      <h2 id="webinar-for-the-isds-r-group">Webinar for the <a href="http://www.syndromic.org/cop/r">ISDS R Group</a></h2>
+
+<p>This document presents the code I used to produce the example analysis and figures shown in my webinar on building meaningful machine learning models for disease prediction.</p>
+
+<p><a href="https://github.com/ShirinG/Webinar_ISDS/blob/master/Webinar_slides.pdf">My webinar slides are available on Github</a></p>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>Description:</strong> Dr Shirin Glander will go over her work on building machine-learning models to predict the course of different diseases. She will go over building a model, evaluating its performance, and answering or addressing different disease related questions using machine learning. Her talk will cover the theory of machine learning as it is applied using R.</p>
+</blockquote>
+
+<hr />
+
+<h3 id="setup">Setup</h3>
+
+<p>All analyses are done in R using RStudio. For detailed session information including R version, operating system and package versions, see the <code class="highlighter-rouge">sessionInfo()</code> output at the end of this document.</p>
+
+<p>All figures are produced with ggplot2.</p>
+
+<p><br /></p>
+
+<h3 id="the-dataset">The dataset</h3>
+
+<p>The dataset I am using in these example analyses, is the <strong>Breast Cancer Wisconsin (Diagnostic) Dataset</strong>. The data was downloaded from the <a href="http://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29">UC Irvine Machine Learning Repository</a>.</p>
+
+<p>The first dataset looks at the predictor classes:</p>
+
+<ul>
+  <li>malignant or</li>
+  <li>benign breast mass.</li>
+</ul>
+
+<p>The features characterize cell nucleus properties and were generated from image analysis of <a href="https://en.wikipedia.org/wiki/Fine-needle_aspiration">fine needle aspirates (FNA)</a> of breast masses:</p>
+
+<ul>
+  <li>Sample ID (code number)</li>
+  <li>Clump thickness</li>
+  <li>Uniformity of cell size</li>
+  <li>Uniformity of cell shape</li>
+  <li>Marginal adhesion</li>
+  <li>Single epithelial cell size</li>
+  <li>Number of bare nuclei</li>
+  <li>Bland chromatin</li>
+  <li>Number of normal nuclei</li>
+  <li>Mitosis</li>
+  <li>Classes, i.e. diagnosis</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">bc_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"datasets/breast-cancer-wisconsin.data.txt"</span><span class="p">,</span><span class="w"> 
+                      </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> 
+                      </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">","</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">bc_data</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"sample_code_number"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="s2">"clump_thickness"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="s2">"uniformity_of_cell_size"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="s2">"uniformity_of_cell_shape"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="s2">"marginal_adhesion"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="s2">"single_epithelial_cell_size"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="s2">"bare_nuclei"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="s2">"bland_chromatin"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="s2">"normal_nucleoli"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="s2">"mitosis"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="s2">"classes"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">bc_data</span><span class="o">$</span><span class="n">classes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">bc_data</span><span class="o">$</span><span class="n">classes</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"benign"</span><span class="p">,</span><span class="w">
+                          </span><span class="n">ifelse</span><span class="p">(</span><span class="n">bc_data</span><span class="o">$</span><span class="n">classes</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"malignant"</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="missing-data">Missing data</h4>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">bc_data</span><span class="p">[</span><span class="n">bc_data</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"?"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+
+</span><span class="c1"># how many NAs are in the data
+</span><span class="nf">length</span><span class="p">(</span><span class="n">which</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">bc_data</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 16
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># how many samples would we loose, if we removed them?
+</span><span class="n">nrow</span><span class="p">(</span><span class="n">bc_data</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 699
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">nrow</span><span class="p">(</span><span class="n">bc_data</span><span class="p">[</span><span class="nf">is.na</span><span class="p">(</span><span class="n">bc_data</span><span class="p">),</span><span class="w"> </span><span class="p">])</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 16
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<p>Missing values are imputed with the <em>mice</em> package.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># impute missing data
+</span><span class="n">library</span><span class="p">(</span><span class="n">mice</span><span class="p">)</span><span class="w">
+
+</span><span class="n">bc_data</span><span class="p">[,</span><span class="m">2</span><span class="o">:</span><span class="m">10</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">bc_data</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">10</span><span class="p">],</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="w">
+</span><span class="n">dataset_impute</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mice</span><span class="p">(</span><span class="n">bc_data</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">10</span><span class="p">],</span><span class="w">  </span><span class="n">print</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">bc_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">bc_data</span><span class="p">[,</span><span class="w"> </span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">],</span><span class="w"> </span><span class="n">mice</span><span class="o">::</span><span class="n">complete</span><span class="p">(</span><span class="n">dataset_impute</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">
+
+</span><span class="n">bc_data</span><span class="o">$</span><span class="n">classes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">bc_data</span><span class="o">$</span><span class="n">classes</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># how many benign and malignant cases are there?
+</span><span class="n">summary</span><span class="p">(</span><span class="n">bc_data</span><span class="o">$</span><span class="n">classes</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="data-exploration">Data exploration</h4>
+
+<ul>
+  <li>Response variable for classification</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">bc_data</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">classes</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_bar</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/response_classification-1.png" style="display: block; margin: auto;" /></p>
+
+<p>We can see that our data is unbalanced. For simplicity’s sake, I am not going to go into how to deal with this, here. But I added a short post about <a href="https://shiring.github.io/machine_learning/2017/04/02/unbalanced">dealing with unbalanced datasets using caret</a> for you to check out.</p>
+
+<p><br /></p>
+
+<ul>
+  <li>Response variable for regression</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">bc_data</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">clump_thickness</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/response_regression-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>Principal Component Analysis</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">pcaGoPromoter</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ellipse</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># perform pca and extract scores
+</span><span class="n">pcaOutput</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pca</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">bc_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">]),</span><span class="w"> </span><span class="n">printDropped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">pcaOutput2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">pcaOutput</span><span class="o">$</span><span class="n">scores</span><span class="p">)</span><span class="w">
+  
+</span><span class="c1"># define groups for plotting
+</span><span class="n">pcaOutput2</span><span class="o">$</span><span class="n">groups</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bc_data</span><span class="o">$</span><span class="n">classes</span><span class="w">
+  
+</span><span class="n">centroids</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">aggregate</span><span class="p">(</span><span class="n">cbind</span><span class="p">(</span><span class="n">PC1</span><span class="p">,</span><span class="w"> </span><span class="n">PC2</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">groups</span><span class="p">,</span><span class="w"> </span><span class="n">pcaOutput2</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="p">)</span><span class="w">
+
+</span><span class="n">conf.rgn</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">do.call</span><span class="p">(</span><span class="n">rbind</span><span class="p">,</span><span class="w"> </span><span class="n">lapply</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">pcaOutput2</span><span class="o">$</span><span class="n">groups</span><span class="p">),</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w">
+  </span><span class="n">data.frame</span><span class="p">(</span><span class="n">groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">t</span><span class="p">),</span><span class="w">
+             </span><span class="n">ellipse</span><span class="p">(</span><span class="n">cov</span><span class="p">(</span><span class="n">pcaOutput2</span><span class="p">[</span><span class="n">pcaOutput2</span><span class="o">$</span><span class="n">groups</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">]),</span><span class="w">
+                   </span><span class="n">centre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">centroids</span><span class="p">[</span><span class="n">centroids</span><span class="o">$</span><span class="n">groups</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">]),</span><span class="w">
+                   </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.95</span><span class="p">),</span><span class="w">
+             </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)))</span><span class="w">
+    
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcaOutput2</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PC1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PC2</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">groups</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">groups</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">geom_polygon</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf.rgn</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">groups</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">scale_color_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"PC1: "</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">pcaOutput</span><span class="o">$</span><span class="n">pov</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="s2">"% variance"</span><span class="p">),</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"PC2: "</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">pcaOutput</span><span class="o">$</span><span class="n">pov</span><span class="p">[</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="s2">"% variance"</span><span class="p">))</span><span class="w"> 
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/pca-1.png" style="display: block; margin: auto;" /></p>
+
+<ul>
+  <li>Features</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+
+</span><span class="n">gather</span><span class="p">(</span><span class="n">bc_data</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">clump_thickness</span><span class="o">:</span><span class="n">mitosis</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">classes</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_density</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/features-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<h2 id="machine-learning-packages-for-r">Machine Learning packages for R</h2>
+
+<h3 id="caret"><a href="http://topepo.github.io/caret/index.html">caret</a></h3>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># configure multicore
+</span><span class="n">library</span><span class="p">(</span><span class="n">doParallel</span><span class="p">)</span><span class="w">
+</span><span class="n">cl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeCluster</span><span class="p">(</span><span class="n">detectCores</span><span class="p">())</span><span class="w">
+</span><span class="n">registerDoParallel</span><span class="p">(</span><span class="n">cl</span><span class="p">)</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="training-validation-and-test-data">Training, validation and test data</h4>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">index</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">createDataPartition</span><span class="p">(</span><span class="n">bc_data</span><span class="o">$</span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">train_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bc_data</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">test_data</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bc_data</span><span class="p">[</span><span class="o">-</span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+
+</span><span class="n">rbind</span><span class="p">(</span><span class="n">data.frame</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"train"</span><span class="p">,</span><span class="w"> </span><span class="n">train_data</span><span class="p">),</span><span class="w">
+      </span><span class="n">data.frame</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">clump_thickness</span><span class="o">:</span><span class="n">mitosis</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_density</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/distribution-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<h4 id="regression">Regression</h4>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">model_glm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">caret</span><span class="o">::</span><span class="n">train</span><span class="p">(</span><span class="n">clump_thickness</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                          </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+                          </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"glm"</span><span class="p">,</span><span class="w">
+                          </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"scale"</span><span class="p">,</span><span class="w"> </span><span class="s2">"center"</span><span class="p">),</span><span class="w">
+                          </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">savePredictions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">model_glm</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Generalized Linear Model 
+## 
+## 490 samples
+##   9 predictor
+## 
+## Pre-processing: scaled (9), centered (9) 
+## Resampling: Cross-Validated (10 fold, repeated 10 times) 
+## Summary of sample sizes: 441, 441, 440, 442, 441, 440, ... 
+## Resampling results:
+## 
+##   RMSE      Rsquared 
+##   1.974296  0.5016141
+## 
+## 
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">predictions</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_glm</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># model_glm$finalModel$linear.predictors == model_glm$finalModel$fitted.values
+</span><span class="n">data.frame</span><span class="p">(</span><span class="n">residuals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resid</span><span class="p">(</span><span class="n">model_glm</span><span class="p">),</span><span class="w">
+           </span><span class="n">predictors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_glm</span><span class="o">$</span><span class="n">finalModel</span><span class="o">$</span><span class="n">linear.predictors</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predictors</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">residuals</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_jitter</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lm"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/residuals-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># y == train_data$clump_thickness
+</span><span class="n">data.frame</span><span class="p">(</span><span class="n">residuals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resid</span><span class="p">(</span><span class="n">model_glm</span><span class="p">),</span><span class="w">
+           </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_glm</span><span class="o">$</span><span class="n">finalModel</span><span class="o">$</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">residuals</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_jitter</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lm"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/residuals-2.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data.frame</span><span class="p">(</span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">clump_thickness</span><span class="p">,</span><span class="w">
+           </span><span class="n">predicted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predictions</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predicted</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_jitter</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lm"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/regression_result-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<h4 id="classification">Classification</h4>
+
+<h5 id="decision-trees">Decision trees</h5>
+
+<p><a href="https://cran.r-project.org/web/packages/rpart/rpart.pdf">rpart</a></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">rpart</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span><span class="w">
+
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rpart</span><span class="p">(</span><span class="n">classes</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+            </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+            </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"class"</span><span class="p">,</span><span class="w">
+            </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rpart.control</span><span class="p">(</span><span class="n">xval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                    </span><span class="n">minbucket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> 
+                                    </span><span class="n">cp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> 
+             </span><span class="n">parms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">split</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"information"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">rpart.plot</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/decision_tree-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<h4 id="random-forests">Random Forests</h4>
+
+<p><a href="https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm">Random Forests</a> predictions are based on the generation of multiple classification trees. They can be used for both, classification and regression tasks. Here, I show a classification task.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">model_rf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">caret</span><span class="o">::</span><span class="n">train</span><span class="p">(</span><span class="n">classes</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                         </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+                         </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rf"</span><span class="p">,</span><span class="w">
+                         </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"scale"</span><span class="p">,</span><span class="w"> </span><span class="s2">"center"</span><span class="p">),</span><span class="w">
+                         </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">savePredictions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>When you specify <code class="highlighter-rouge">savePredictions = TRUE</code>, you can access the cross-validation resuls with <code class="highlighter-rouge">model_rf$pred</code>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">model_rf</span><span class="o">$</span><span class="n">finalModel</span><span class="o">$</span><span class="n">confusion</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##           benign malignant class.error
+## benign       313         8  0.02492212
+## malignant      4       165  0.02366864
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<ul>
+  <li>Feature Importance</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">imp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">model_rf</span><span class="o">$</span><span class="n">finalModel</span><span class="o">$</span><span class="n">importance</span><span class="w">
+</span><span class="n">imp</span><span class="p">[</span><span class="n">order</span><span class="p">(</span><span class="n">imp</span><span class="p">,</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     uniformity_of_cell_size    uniformity_of_cell_shape 
+##                   54.416003                   41.553022 
+##             bland_chromatin                 bare_nuclei 
+##                   29.343027                   28.483842 
+##             normal_nucleoli single_epithelial_cell_size 
+##                   19.239635                   18.480155 
+##             clump_thickness           marginal_adhesion 
+##                   13.276702                   12.143355 
+##                     mitosis 
+##                    3.081635
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># estimate variable importance
+</span><span class="n">importance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">varImp</span><span class="p">(</span><span class="n">model_rf</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">importance</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/importance_rf-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>predicting test data</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_rf</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">),</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">classes</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Confusion Matrix and Statistics
+## 
+##            Reference
+## Prediction  benign malignant
+##   benign       133         2
+##   malignant      4        70
+##                                           
+##                Accuracy : 0.9713          
+##                  95% CI : (0.9386, 0.9894)
+##     No Information Rate : 0.6555          
+##     P-Value [Acc &gt; NIR] : &lt;2e-16          
+##                                           
+##                   Kappa : 0.9369          
+##  Mcnemar's Test P-Value : 0.6831          
+##                                           
+##             Sensitivity : 0.9708          
+##             Specificity : 0.9722          
+##          Pos Pred Value : 0.9852          
+##          Neg Pred Value : 0.9459          
+##              Prevalence : 0.6555          
+##          Detection Rate : 0.6364          
+##    Detection Prevalence : 0.6459          
+##       Balanced Accuracy : 0.9715          
+##                                           
+##        'Positive' Class : benign          
+## 
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">classes</span><span class="p">,</span><span class="w">
+                      </span><span class="n">predict</span><span class="p">(</span><span class="n">model_rf</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prob"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">results</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">benign</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="s2">"benign"</span><span class="p">,</span><span class="w">
+                             </span><span class="n">ifelse</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">malignant</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="s2">"malignant"</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span><span class="w">
+
+</span><span class="n">results</span><span class="o">$</span><span class="n">correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">correct</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/results_bar_rf-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">benign</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">correct</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">correct</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_jitter</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/results_jitter_rf-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<h4 id="extreme-gradient-boosting-trees">Extreme gradient boosting trees</h4>
+
+<p><a href="http://xgboost.readthedocs.io/en/latest/model.html">Extreme gradient boosting (XGBoost)</a> is a faster and improved implementation of <a href="https://en.wikipedia.org/wiki/Gradient_boosting">gradient boosting</a> for supervised learning.</p>
+
+<blockquote>
+  <p>“XGBoost uses a more regularized model formalization to control over-fitting, which gives it better performance.” Tianqi Chen, developer of xgboost</p>
+</blockquote>
+
+<p>XGBoost is a tree ensemble model, which means the sum of predictions from a set of classification and regression trees (CART). In that, XGBoost is similar to Random Forests but it uses a different approach to model training. Can be used for classification and regression tasks. Here, I show a classification task.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">model_xgb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">caret</span><span class="o">::</span><span class="n">train</span><span class="p">(</span><span class="n">classes</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                          </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+                          </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"xgbTree"</span><span class="p">,</span><span class="w">
+                          </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"scale"</span><span class="p">,</span><span class="w"> </span><span class="s2">"center"</span><span class="p">),</span><span class="w">
+                          </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">savePredictions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<ul>
+  <li>Feature Importance</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">importance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">varImp</span><span class="p">(</span><span class="n">model_xgb</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">importance</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/importance_xgb-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>predicting test data</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">),</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">classes</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Confusion Matrix and Statistics
+## 
+##            Reference
+## Prediction  benign malignant
+##   benign       132         2
+##   malignant      5        70
+##                                           
+##                Accuracy : 0.9665          
+##                  95% CI : (0.9322, 0.9864)
+##     No Information Rate : 0.6555          
+##     P-Value [Acc &gt; NIR] : &lt;2e-16          
+##                                           
+##                   Kappa : 0.9266          
+##  Mcnemar's Test P-Value : 0.4497          
+##                                           
+##             Sensitivity : 0.9635          
+##             Specificity : 0.9722          
+##          Pos Pred Value : 0.9851          
+##          Neg Pred Value : 0.9333          
+##              Prevalence : 0.6555          
+##          Detection Rate : 0.6316          
+##    Detection Prevalence : 0.6411          
+##       Balanced Accuracy : 0.9679          
+##                                           
+##        'Positive' Class : benign          
+## 
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">classes</span><span class="p">,</span><span class="w">
+                      </span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prob"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">results</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">benign</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="s2">"benign"</span><span class="p">,</span><span class="w">
+                             </span><span class="n">ifelse</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">malignant</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="s2">"malignant"</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">))</span><span class="w">
+
+</span><span class="n">results</span><span class="o">$</span><span class="n">correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">correct</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/results_bar_xgb-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">benign</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">correct</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">correct</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_jitter</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/results_jitter_xgb-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<h3 id="feature-selection">Feature Selection</h3>
+
+<p>Performing feature selection on the whole dataset would lead to prediction bias, we therefore need to run the whole modeling process on the training data alone!</p>
+
+<ul>
+  <li>Correlation</li>
+</ul>
+
+<p>Correlations between all features are calculated and visualised with the <em>corrplot</em> package. I am then removing all features with a correlation higher than 0.7, keeping the feature with the lower mean.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">corrplot</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># calculate correlation matrix
+</span><span class="n">corMatMy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cor</span><span class="p">(</span><span class="n">train_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">])</span><span class="w">
+</span><span class="n">corrplot</span><span class="p">(</span><span class="n">corMatMy</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hclust"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#Apply correlation filter at 0.70,
+</span><span class="n">highlyCor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">train_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">])[</span><span class="n">findCorrelation</span><span class="p">(</span><span class="n">corMatMy</span><span class="p">,</span><span class="w"> </span><span class="n">cutoff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Compare row 2  and column  3 with corr  0.899 
+##   Means:  0.696 vs 0.575 so flagging column 2 
+## Compare row 3  and column  7 with corr  0.736 
+##   Means:  0.654 vs 0.55 so flagging column 3 
+## All correlations &lt;= 0.7
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># which variables are flagged for removal?
+</span><span class="n">highlyCor</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] "uniformity_of_cell_size"  "uniformity_of_cell_shape"
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#then we remove these variables
+</span><span class="n">train_data_cor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train_data</span><span class="p">[,</span><span class="w"> </span><span class="n">which</span><span class="p">(</span><span class="o">!</span><span class="n">colnames</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">highlyCor</span><span class="p">)]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<ul>
+  <li>Recursive Feature Elimination (RFE)</li>
+</ul>
+
+<p>Another way to choose features is with Recursive Feature Elimination. RFE uses a Random Forest algorithm to test combinations of features and rate each with an accuracy score. The combination with the highest score is usually preferential.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">7</span><span class="p">)</span><span class="w">
+</span><span class="n">results_rfe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rfe</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">],</span><span class="w"> 
+                   </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="o">$</span><span class="n">classes</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">sizes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">9</span><span class="p">),</span><span class="w"> 
+                   </span><span class="n">rfeControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rfeControl</span><span class="p">(</span><span class="n">functions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rfFuncs</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cv"</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># chosen features
+</span><span class="n">predictors</span><span class="p">(</span><span class="n">results_rfe</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] "bare_nuclei"                 "uniformity_of_cell_size"    
+## [3] "clump_thickness"             "uniformity_of_cell_shape"   
+## [5] "bland_chromatin"             "marginal_adhesion"          
+## [7] "normal_nucleoli"             "single_epithelial_cell_size"
+## [9] "mitosis"
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">train_data_rfe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train_data</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">predictors</span><span class="p">(</span><span class="n">results_rfe</span><span class="p">)))]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<ul>
+  <li>Genetic Algorithm (GA)</li>
+</ul>
+
+<p>The Genetic Algorithm (GA) has been developed based on evolutionary principles of natural selection: It aims to optimize a population of individuals with a given set of genotypes by modeling selection over time. In each generation (i.e. iteration), each individual’s fitness is calculated based on their genotypes. Then, the fittest individuals are chosen to produce the next generation. This subsequent generation of individuals will have genotypes resulting from (re-) combinations of the parental alleles. These new genotypes will again determine each individual’s fitness. This selection process is iterated for a specified number of generations and (ideally) leads to fixation of the fittest alleles in the gene pool.</p>
+
+<p>This concept of optimization can be applied to non-evolutionary models as well, like feature selection processes in machine learning.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span><span class="w">
+</span><span class="n">model_ga</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gafs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">],</span><span class="w"> 
+                 </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="o">$</span><span class="n">classes</span><span class="p">,</span><span class="w">
+                 </span><span class="n">iters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="c1"># generations of algorithm
+</span><span class="w">                 </span><span class="n">popSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="c1"># population size for each generation
+</span><span class="w">                 </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"malignant"</span><span class="p">,</span><span class="w"> </span><span class="s2">"benign"</span><span class="p">),</span><span class="w">
+                 </span><span class="n">gafsControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gafsControl</span><span class="p">(</span><span class="n">functions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rfGA</span><span class="p">,</span><span class="w"> </span><span class="c1"># Assess fitness with RF
+</span><span class="w">                                           </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cv"</span><span class="p">,</span><span class="w">    </span><span class="c1"># 10 fold cross validation
+</span><span class="w">                                           </span><span class="n">genParallel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="c1"># Use parallel programming
+</span><span class="w">                                           </span><span class="n">allowParallel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">model_ga</span><span class="p">)</span><span class="w"> </span><span class="c1"># Plot mean fitness (AUC) by generation
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-33-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">train_data_ga</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">train_data</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">model_ga</span><span class="o">$</span><span class="n">ga</span><span class="o">$</span><span class="n">final</span><span class="p">))]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="grid-search-with-caret">Grid search with caret</h3>
+
+<ul>
+  <li>Automatic Grid</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">model_rf_tune_auto</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">caret</span><span class="o">::</span><span class="n">train</span><span class="p">(</span><span class="n">classes</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                         </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+                         </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rf"</span><span class="p">,</span><span class="w">
+                         </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"scale"</span><span class="p">,</span><span class="w"> </span><span class="s2">"center"</span><span class="p">),</span><span class="w">
+                         </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">savePredictions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                                                  </span><span class="n">search</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"random"</span><span class="p">),</span><span class="w">
+                         </span><span class="n">tuneLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">model_rf_tune_auto</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Random Forest 
+## 
+## 490 samples
+##   9 predictor
+##   2 classes: 'benign', 'malignant' 
+## 
+## Pre-processing: scaled (9), centered (9) 
+## Resampling: Cross-Validated (10 fold, repeated 10 times) 
+## Summary of sample sizes: 442, 441, 441, 441, 441, 441, ... 
+## Resampling results across tuning parameters:
+## 
+##   mtry  Accuracy   Kappa    
+##   1     0.9692153  0.9323624
+##   2     0.9704277  0.9350498
+##   5     0.9645085  0.9216721
+##   6     0.9639087  0.9201998
+##   7     0.9632842  0.9186919
+##   8     0.9626719  0.9172257
+##   9     0.9636801  0.9195036
+## 
+## Accuracy was used to select the optimal model using  the largest value.
+## The final value used for the model was mtry = 2.
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">model_rf_tune_auto</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-37-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>
+    <p>Manual Grid</p>
+  </li>
+  <li>
+    <p>mtry: Number of variables randomly sampled as candidates at each split.</p>
+  </li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">expand.grid</span><span class="p">(</span><span class="n">mtry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">))</span><span class="w">
+
+</span><span class="n">model_rf_tune_man</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">caret</span><span class="o">::</span><span class="n">train</span><span class="p">(</span><span class="n">classes</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                         </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+                         </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rf"</span><span class="p">,</span><span class="w">
+                         </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"scale"</span><span class="p">,</span><span class="w"> </span><span class="s2">"center"</span><span class="p">),</span><span class="w">
+                         </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">savePredictions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                                                  </span><span class="n">search</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"random"</span><span class="p">),</span><span class="w">
+                         </span><span class="n">tuneGrid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">model_rf_tune_man</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Random Forest 
+## 
+## 490 samples
+##   9 predictor
+##   2 classes: 'benign', 'malignant' 
+## 
+## Pre-processing: scaled (9), centered (9) 
+## Resampling: Cross-Validated (10 fold, repeated 10 times) 
+## Summary of sample sizes: 442, 441, 441, 441, 441, 441, ... 
+## Resampling results across tuning parameters:
+## 
+##   mtry  Accuracy   Kappa    
+##    1    0.9696153  0.9332392
+##    2    0.9706440  0.9354737
+##    3    0.9696194  0.9330647
+##    4    0.9661495  0.9253163
+##    5    0.9649252  0.9225586
+##    6    0.9653209  0.9233806
+##    7    0.9634881  0.9192265
+##    8    0.9624718  0.9169227
+##    9    0.9641005  0.9203072
+##   10    0.9628760  0.9176675
+## 
+## Accuracy was used to select the optimal model using  the largest value.
+## The final value used for the model was mtry = 2.
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">model_rf_tune_man</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-41-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<h3 id="grid-search-with-h2o">Grid search with h2o</h3>
+
+<p>The R package h2o provides a convenient interface to <a href="http://www.h2o.ai/h2o/">H2O</a>, which is an open-source machine learning and deep learning platform. H2O distributes a wide range of common machine learning algorithms for classification, regression and deep learning.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o</span><span class="p">)</span><span class="w">
+</span><span class="n">h</span><span class="m">2</span><span class="n">o.init</span><span class="p">(</span><span class="n">nthreads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+## H2O is not running yet, starting it now...
+## 
+## Note:  In case of errors look at the following log files:
+##     C:\Users\s_glan02\AppData\Local\Temp\RtmpwDqf33/h2o_s_glan02_started_from_r.out
+##     C:\Users\s_glan02\AppData\Local\Temp\RtmpwDqf33/h2o_s_glan02_started_from_r.err
+## 
+## 
+## Starting H2O JVM and connecting: . Connection successful!
+## 
+## R is connected to the H2O cluster: 
+##     H2O cluster uptime:         1 seconds 815 milliseconds 
+##     H2O cluster version:        3.10.3.6 
+##     H2O cluster version age:    1 month and 10 days  
+##     H2O cluster name:           H2O_started_from_R_s_glan02_tvy462 
+##     H2O cluster total nodes:    1 
+##     H2O cluster total memory:   3.54 GB 
+##     H2O cluster total cores:    8 
+##     H2O cluster allowed cores:  8 
+##     H2O cluster healthy:        TRUE 
+##     H2O Connection ip:          localhost 
+##     H2O Connection port:        54321 
+##     H2O Connection proxy:       NA 
+##     R Version:                  R version 3.3.3 (2017-03-06)
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">bc_data_hf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.h2o</span><span class="p">(</span><span class="n">bc_data</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.describe</span><span class="p">(</span><span class="n">bc_data_hf</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">Zeros</span><span class="o">:</span><span class="n">Sigma</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Min"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Mean"</span><span class="p">),</span><span class="w"> </span><span class="s2">"min, mean, max"</span><span class="p">,</span><span class="w"> 
+                        </span><span class="n">ifelse</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"NegInf"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PosInf"</span><span class="p">),</span><span class="w"> </span><span class="s2">"Inf"</span><span class="p">,</span><span class="w"> </span><span class="s2">"sigma, zeros"</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Label</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_grid</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Feature"</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Value"</span><span class="p">,</span><span class="w">
+         </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/h2o_describe-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span><span class="w"> </span><span class="c1"># for melting
+</span><span class="w">
+</span><span class="n">bc_data_hf</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.asfactor</span><span class="p">(</span><span class="n">bc_data_hf</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">])</span><span class="w">
+
+</span><span class="n">cor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.cor</span><span class="p">(</span><span class="n">bc_data_hf</span><span class="p">)</span><span class="w">
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">cor</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">cor</span><span class="p">)</span><span class="w">
+
+</span><span class="n">melt</span><span class="p">(</span><span class="n">cor</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">Var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">rownames</span><span class="p">(</span><span class="n">cor</span><span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">cor</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">Var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">Var2</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">cor</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">cor</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">variable</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Var2</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+    </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.9</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_gradient2</span><span class="p">(</span><span class="n">low</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">high</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Cor."</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/corr_plot-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<h4 id="training-validation-and-test-data-1">Training, validation and test data</h4>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">splits</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.splitFrame</span><span class="p">(</span><span class="n">bc_data_hf</span><span class="p">,</span><span class="w"> 
+                         </span><span class="n">ratios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="m">0.15</span><span class="p">),</span><span class="w"> 
+                         </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span><span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">splits</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">valid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">splits</span><span class="p">[[</span><span class="m">2</span><span class="p">]]</span><span class="w">
+</span><span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">splits</span><span class="p">[[</span><span class="m">3</span><span class="p">]]</span><span class="w">
+
+</span><span class="n">response</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"classes"</span><span class="w">
+</span><span class="n">features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">setdiff</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">train</span><span class="p">),</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">summary</span><span class="p">(</span><span class="n">train</span><span class="o">$</span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">exact_quantiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  classes       
+##  benign   :317 
+##  malignant:174
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">summary</span><span class="p">(</span><span class="n">valid</span><span class="o">$</span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">exact_quantiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  classes      
+##  benign   :71 
+##  malignant:35
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">summary</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">exact_quantiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  classes      
+##  benign   :70 
+##  malignant:32
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pca</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.prcomp</span><span class="p">(</span><span class="n">training_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">,</span><span class="w">
+           </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">features</span><span class="p">,</span><span class="w">
+           </span><span class="n">validation_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valid</span><span class="p">,</span><span class="w">
+           </span><span class="n">transform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"NORMALIZE"</span><span class="p">,</span><span class="w">
+           </span><span class="n">impute_missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+           </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
+           </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">42</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |====================================================             |  80%
+  |                                                                       
+  |=================================================================| 100%
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">eigenvec</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">pca</span><span class="o">@</span><span class="n">model</span><span class="o">$</span><span class="n">eigenvectors</span><span class="p">)</span><span class="w">
+</span><span class="n">eigenvec</span><span class="o">$</span><span class="n">label</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">features</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggrepel</span><span class="p">)</span><span class="w">
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">eigenvec</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pc1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pc2</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"navy"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_text_repel</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/pca_features-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<h4 id="classification-1">Classification</h4>
+
+<h5 id="random-forest">Random Forest</h5>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">hyper_params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="w">
+                     </span><span class="n">ntrees</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">75</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w">
+                     </span><span class="n">max_depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">),</span><span class="w">
+                     </span><span class="n">min_rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w">
+                     </span><span class="p">)</span><span class="w">
+
+</span><span class="n">search_criteria</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="w">
+                        </span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"RandomDiscrete"</span><span class="p">,</span><span class="w"> 
+                        </span><span class="n">max_models</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w">
+                        </span><span class="n">max_runtime_secs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">360</span><span class="p">,</span><span class="w">
+                        </span><span class="n">stopping_rounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w">          
+                        </span><span class="n">stopping_metric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"AUC"</span><span class="p">,</span><span class="w">      
+                        </span><span class="n">stopping_tolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0005</span><span class="p">,</span><span class="w">
+                        </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">42</span><span class="w">
+                        </span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">rf_grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.grid</span><span class="p">(</span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"randomForest"</span><span class="p">,</span><span class="w"> </span><span class="c1"># h2o.randomForest, 
+</span><span class="w">                                                </span><span class="c1"># alternatively h2o.gbm 
+</span><span class="w">                                                </span><span class="c1"># for Gradient boosting trees
+</span><span class="w">                    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">features</span><span class="p">,</span><span class="w">
+                    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w">
+                    </span><span class="n">grid_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rf_grid"</span><span class="p">,</span><span class="w">
+                    </span><span class="n">training_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">,</span><span class="w">
+                    </span><span class="n">validation_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valid</span><span class="p">,</span><span class="w">
+                    </span><span class="n">nfolds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">,</span><span class="w">                           
+                    </span><span class="n">fold_assignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Stratified"</span><span class="p">,</span><span class="w">
+                    </span><span class="n">hyper_params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hyper_params</span><span class="p">,</span><span class="w">
+                    </span><span class="n">search_criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">search_criteria</span><span class="p">,</span><span class="w">
+                    </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">42</span><span class="w">
+                    </span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># performance metrics where smaller is better -&gt; order with decreasing = FALSE
+</span><span class="n">sort_options_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"mean_per_class_error"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mse"</span><span class="p">,</span><span class="w"> </span><span class="s2">"err"</span><span class="p">,</span><span class="w"> </span><span class="s2">"logloss"</span><span class="p">)</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">sort_by_1</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">sort_options_1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.getGrid</span><span class="p">(</span><span class="s2">"rf_grid"</span><span class="p">,</span><span class="w"> </span><span class="n">sort_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sort_by_1</span><span class="p">,</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">model_ids</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">grid</span><span class="o">@</span><span class="n">model_ids</span><span class="w">
+  </span><span class="n">best_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.getModel</span><span class="p">(</span><span class="n">model_ids</span><span class="p">[[</span><span class="m">1</span><span class="p">]])</span><span class="w">
+  
+  </span><span class="n">h</span><span class="m">2</span><span class="n">o.saveModel</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="o">=</span><span class="s2">"models"</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+  
+</span><span class="p">}</span><span class="w">
+
+
+</span><span class="c1"># performance metrics where bigger is better -&gt; order with decreasing = TRUE
+</span><span class="n">sort_options_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"auc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"precision"</span><span class="p">,</span><span class="w"> </span><span class="s2">"accuracy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"recall"</span><span class="p">,</span><span class="w"> </span><span class="s2">"specificity"</span><span class="p">)</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">sort_by_2</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">sort_options_2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.getGrid</span><span class="p">(</span><span class="s2">"rf_grid"</span><span class="p">,</span><span class="w"> </span><span class="n">sort_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sort_by_2</span><span class="p">,</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">model_ids</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">grid</span><span class="o">@</span><span class="n">model_ids</span><span class="w">
+  </span><span class="n">best_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.getModel</span><span class="p">(</span><span class="n">model_ids</span><span class="p">[[</span><span class="m">1</span><span class="p">]])</span><span class="w">
+  
+  </span><span class="n">h</span><span class="m">2</span><span class="n">o.saveModel</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"models"</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+  
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">files</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">list.files</span><span class="p">(</span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"models"</span><span class="p">)</span><span class="w">
+</span><span class="n">rf_models</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">files</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"rf_grid_model"</span><span class="p">,</span><span class="w"> </span><span class="n">files</span><span class="p">)]</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">model_id</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">rf_models</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">path</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"U:\\Github_blog\\Webinar\\Webinar_ML_for_disease\\models\\"</span><span class="p">,</span><span class="w"> </span><span class="n">model_id</span><span class="p">)</span><span class="w">
+  </span><span class="n">best_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.loadModel</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="w">
+  </span><span class="n">mse_auc_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">model_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_id</span><span class="p">,</span><span class="w"> 
+                             </span><span class="n">mse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.mse</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o.performance</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">)),</span><span class="w">
+                             </span><span class="n">auc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.auc</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o.performance</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">)))</span><span class="w">
+  
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">model_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rf_models</span><span class="p">[[</span><span class="m">1</span><span class="p">]])</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">mse_auc_test_comb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mse_auc_test</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">mse_auc_test_comb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">mse_auc_test_comb</span><span class="p">,</span><span class="w"> </span><span class="n">mse_auc_test</span><span class="p">)</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">mse_auc_test_comb</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">mse</span><span class="o">:</span><span class="n">auc</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_id</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_id</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_grid</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+          </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/auc_mse-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">model_id</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">rf_models</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">best_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.getModel</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">finalRf_predictions</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">model_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">best_model</span><span class="o">@</span><span class="n">model_id</span><span class="p">,</span><span class="w"> 
+                                                   </span><span class="n">nrow</span><span class="p">(</span><span class="n">test</span><span class="p">)),</span><span class="w">
+                                    </span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">classes</span><span class="p">),</span><span class="w"> 
+                                    </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o.predict</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">best_model</span><span class="p">,</span><span class="w"> 
+                                                              </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test</span><span class="p">)))</span><span class="w">
+  
+  </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">accurate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> 
+                                           </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict</span><span class="p">,</span><span class="w"> 
+                                         </span><span class="s2">"yes"</span><span class="p">,</span><span class="w"> </span><span class="s2">"no"</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict_stringent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">benign</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="s2">"benign"</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">malignant</span><span class="w"> 
+                                                         </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="s2">"malignant"</span><span class="p">,</span><span class="w"> </span><span class="s2">"uncertain"</span><span class="p">))</span><span class="w">
+  
+  </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">accurate_stringent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> 
+                                                     </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict_stringent</span><span class="p">,</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">,</span><span class="w"> 
+                                         </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict_stringent</span><span class="w"> </span><span class="o">==</span><span class="w"> 
+                                                  </span><span class="s2">"uncertain"</span><span class="p">,</span><span class="w"> </span><span class="s2">"na"</span><span class="p">,</span><span class="w"> </span><span class="s2">"no"</span><span class="p">))</span><span class="w">
+  
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">model_id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rf_models</span><span class="p">[[</span><span class="m">1</span><span class="p">]])</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">finalRf_predictions_comb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">finalRf_predictions</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">finalRf_predictions_comb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">finalRf_predictions_comb</span><span class="p">,</span><span class="w"> </span><span class="n">finalRf_predictions</span><span class="p">)</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%
+## 
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%
+## 
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">finalRf_predictions_comb</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accurate</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">model_id</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Were\npredictions\naccurate?"</span><span class="p">,</span><span class="w">
+         </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Default predictions"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/final_predictions_rf-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">finalRf_predictions_comb</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="n">accurate_stringent</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">"na"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accurate_stringent</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">model_id</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Were\npredictions\naccurate?"</span><span class="p">,</span><span class="w">
+         </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Stringent predictions"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/final_predictions_rf-2.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">rf_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.loadModel</span><span class="p">(</span><span class="s2">"models/rf_grid_model_6"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.varimp_plot</span><span class="p">(</span><span class="n">rf_model</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-50-1.png" alt="" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#h2o.varimp(rf_model)
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.mean_per_class_error</span><span class="p">(</span><span class="n">rf_model</span><span class="p">,</span><span class="w"> </span><span class="n">train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">xval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##       train       valid        xval 
+## 0.024674571 0.007042254 0.023097284
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.confusionMatrix</span><span class="p">(</span><span class="n">rf_model</span><span class="p">,</span><span class="w"> </span><span class="n">valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Confusion Matrix (vertical: actual; across: predicted)  for max f1 @ threshold = 0.293125896751881:
+##           benign malignant    Error    Rate
+## benign        70         1 0.014085   =1/71
+## malignant      0        35 0.000000   =0/35
+## Totals        70        36 0.009434  =1/106
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">rf_model</span><span class="p">,</span><span class="w">
+     </span><span class="n">timestep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"number_of_trees"</span><span class="p">,</span><span class="w">
+     </span><span class="n">metric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"classification_error"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-53-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">rf_model</span><span class="p">,</span><span class="w">
+     </span><span class="n">timestep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"number_of_trees"</span><span class="p">,</span><span class="w">
+     </span><span class="n">metric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"logloss"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-54-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">rf_model</span><span class="p">,</span><span class="w">
+     </span><span class="n">timestep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"number_of_trees"</span><span class="p">,</span><span class="w">
+     </span><span class="n">metric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"AUC"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-55-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">rf_model</span><span class="p">,</span><span class="w">
+     </span><span class="n">timestep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"number_of_trees"</span><span class="p">,</span><span class="w">
+     </span><span class="n">metric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rmse"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-56-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.auc</span><span class="p">(</span><span class="n">rf_model</span><span class="p">,</span><span class="w"> </span><span class="n">train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.989521
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.auc</span><span class="p">(</span><span class="n">rf_model</span><span class="p">,</span><span class="w"> </span><span class="n">valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.9995976
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.auc</span><span class="p">(</span><span class="n">rf_model</span><span class="p">,</span><span class="w"> </span><span class="n">xval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.9890496
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">perf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.performance</span><span class="p">(</span><span class="n">rf_model</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">)</span><span class="w">
+</span><span class="n">perf</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## H2OBinomialMetrics: drf
+## 
+## MSE:  0.03673598
+## RMSE:  0.1916663
+## LogLoss:  0.1158835
+## Mean Per-Class Error:  0.0625
+## AUC:  0.990625
+## Gini:  0.98125
+## 
+## Confusion Matrix (vertical: actual; across: predicted) for F1-optimal threshold:
+##           benign malignant    Error    Rate
+## benign        70         0 0.000000   =0/70
+## malignant      4        28 0.125000   =4/32
+## Totals        74        28 0.039216  =4/102
+## 
+## Maximum Metrics: Maximum metrics at their respective thresholds
+##                         metric threshold    value idx
+## 1                       max f1  0.735027 0.933333  25
+## 2                       max f2  0.294222 0.952381  37
+## 3                 max f0point5  0.735027 0.972222  25
+## 4                 max accuracy  0.735027 0.960784  25
+## 5                max precision  1.000000 1.000000   0
+## 6                   max recall  0.294222 1.000000  37
+## 7              max specificity  1.000000 1.000000   0
+## 8             max absolute_mcc  0.735027 0.909782  25
+## 9   max min_per_class_accuracy  0.424524 0.937500  31
+## 10 max mean_per_class_accuracy  0.294222 0.942857  37
+## 
+## Gains/Lift Table: Extract with `h2o.gainsLift(&lt;model&gt;, &lt;data&gt;)` or `h2o.gainsLift(&lt;model&gt;, valid=&lt;T/F&gt;, xval=&lt;T/F&gt;)`
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">perf</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/auc_curve-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.logloss</span><span class="p">(</span><span class="n">perf</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.1158835
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.mse</span><span class="p">(</span><span class="n">perf</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.03673598
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.auc</span><span class="p">(</span><span class="n">perf</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.990625
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o.metric</span><span class="p">(</span><span class="n">perf</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Metrics for Thresholds: Binomial metrics as a function of classification thresholds
+##   threshold       f1       f2 f0point5 accuracy precision   recall
+## 1  1.000000 0.171429 0.114504 0.340909 0.715686  1.000000 0.093750
+## 2  0.998333 0.222222 0.151515 0.416667 0.725490  1.000000 0.125000
+## 3  0.998000 0.270270 0.187970 0.480769 0.735294  1.000000 0.156250
+## 4  0.997222 0.315789 0.223881 0.535714 0.745098  1.000000 0.187500
+## 5  0.996210 0.358974 0.259259 0.583333 0.754902  1.000000 0.218750
+## 6  0.994048 0.400000 0.294118 0.625000 0.764706  1.000000 0.250000
+##   specificity absolute_mcc min_per_class_accuracy mean_per_class_accuracy
+## 1    1.000000     0.257464               0.093750                0.546875
+## 2    1.000000     0.298807               0.125000                0.562500
+## 3    1.000000     0.335794               0.156250                0.578125
+## 4    1.000000     0.369755               0.187500                0.593750
+## 5    1.000000     0.401478               0.218750                0.609375
+## 6    1.000000     0.431474               0.250000                0.625000
+##   tns fns fps tps      tnr      fnr      fpr      tpr idx
+## 1  70  29   0   3 1.000000 0.906250 0.000000 0.093750   0
+## 2  70  28   0   4 1.000000 0.875000 0.000000 0.125000   1
+## 3  70  27   0   5 1.000000 0.843750 0.000000 0.156250   2
+## 4  70  26   0   6 1.000000 0.812500 0.000000 0.187500   3
+## 5  70  25   0   7 1.000000 0.781250 0.000000 0.218750   4
+## 6  70  24   0   8 1.000000 0.750000 0.000000 0.250000   5
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">finalRf_predictions</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">classes</span><span class="p">),</span><span class="w"> 
+                                  </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o.predict</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rf_model</span><span class="p">,</span><span class="w"> 
+                                                            </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+  |                                                                       
+  |                                                                 |   0%
+  |                                                                       
+  |=================================================================| 100%
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">accurate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> 
+                                         </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict</span><span class="p">,</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">,</span><span class="w"> </span><span class="s2">"no"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict_stringent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">benign</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="s2">"benign"</span><span class="p">,</span><span class="w"> 
+                                                </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">malignant</span><span class="w"> 
+                                                       </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="s2">"malignant"</span><span class="p">,</span><span class="w"> </span><span class="s2">"uncertain"</span><span class="p">))</span><span class="w">
+</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">accurate_stringent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> 
+                                                   </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict_stringent</span><span class="p">,</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">,</span><span class="w"> 
+                                       </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict_stringent</span><span class="w"> </span><span class="o">==</span><span class="w"> 
+                                                </span><span class="s2">"uncertain"</span><span class="p">,</span><span class="w"> </span><span class="s2">"na"</span><span class="p">,</span><span class="w"> </span><span class="s2">"no"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">finalRf_predictions</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">predict</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Source: local data frame [3 x 3]
+## Groups: actual [?]
+## 
+##      actual   predict     n
+##      &lt;fctr&gt;    &lt;fctr&gt; &lt;int&gt;
+## 1    benign    benign    62
+## 2    benign malignant     8
+## 3 malignant malignant    32
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">finalRf_predictions</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">predict_stringent</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Source: local data frame [4 x 3]
+## Groups: actual [?]
+## 
+##      actual predict_stringent     n
+##      &lt;fctr&gt;             &lt;chr&gt; &lt;int&gt;
+## 1    benign            benign    61
+## 2    benign         uncertain     9
+## 3 malignant         malignant    26
+## 4 malignant         uncertain     6
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">finalRf_predictions</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accurate</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Were\npredictions\naccurate?"</span><span class="p">,</span><span class="w">
+         </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Default predictions"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-62-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">finalRf_predictions</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="n">accurate_stringent</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">"na"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accurate_stringent</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Were\npredictions\naccurate?"</span><span class="p">,</span><span class="w">
+         </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Stringent predictions"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/unnamed-chunk-62-2.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">finalRf_predictions</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)]</span><span class="w">
+
+</span><span class="n">thresholds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w">
+
+</span><span class="n">prop_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thresholds</span><span class="p">,</span><span class="w"> </span><span class="n">prop_true_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">prop_true_m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">)</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">threshold</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">thresholds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">benign</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="s2">"benign"</span><span class="p">,</span><span class="w"> </span><span class="s2">"malignant"</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred_t</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">pred</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">group</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="s2">"pred"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_t</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w">
+  
+  </span><span class="n">group_b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">group</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"benign"</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">prop_b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">group_b</span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="o">$</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">group_b</span><span class="o">$</span><span class="n">n</span><span class="p">)</span><span class="w">
+  </span><span class="n">prop_table</span><span class="p">[</span><span class="n">prop_table</span><span class="o">$</span><span class="n">threshold</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="s2">"prop_true_b"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prop_b</span><span class="w">
+  
+  </span><span class="n">group_m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">group</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"malignant"</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">prop_m</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">group_m</span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="o">$</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">group_m</span><span class="o">$</span><span class="n">n</span><span class="p">)</span><span class="w">
+  </span><span class="n">prop_table</span><span class="p">[</span><span class="n">prop_table</span><span class="o">$</span><span class="n">threshold</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="s2">"prop_true_m"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prop_m</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">prop_table</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">prop_true_b</span><span class="o">:</span><span class="n">prop_true_m</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"proportion of true predictions"</span><span class="p">,</span><span class="w">
+         </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"b: benign cases\nm: malignant cases"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="webinar_code_files/figure-markdown_github/prop_table-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.shutdown</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<p>If you are interested in more machine learning posts, check out <a href="https://shiring.github.io/categories.html#machine_learning-ref">the category listing for <strong>machine_learning</strong> on my blog</a>.</p>
+
+<hr />
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.3 (2017-03-06)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 7 x64 (build 7601) Service Pack 1
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats4    parallel  stats     graphics  grDevices utils     datasets 
+## [8] methods   base     
+## 
+## other attached packages:
+##  [1] ggrepel_0.6.5        reshape2_1.4.2       h2o_3.10.3.6        
+##  [4] corrplot_0.77        plyr_1.8.4           xgboost_0.6-4       
+##  [7] randomForest_4.6-12  dplyr_0.5.0          caret_6.0-73        
+## [10] lattice_0.20-35      doParallel_1.0.10    iterators_1.0.8     
+## [13] foreach_1.4.3        tidyr_0.6.1          pcaGoPromoter_1.18.0
+## [16] Biostrings_2.42.1    XVector_0.14.0       IRanges_2.8.1       
+## [19] S4Vectors_0.12.1     BiocGenerics_0.20.0  ellipse_0.3-8       
+## [22] ggplot2_2.2.1.9000  
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.10         class_7.3-14         assertthat_0.1      
+##  [4] rprojroot_1.2        digest_0.6.12        R6_2.2.0            
+##  [7] backports_1.0.5      MatrixModels_0.4-1   RSQLite_1.1-2       
+## [10] evaluate_0.10        e1071_1.6-8          zlibbioc_1.20.0     
+## [13] lazyeval_0.2.0       minqa_1.2.4          data.table_1.10.4   
+## [16] SparseM_1.76         car_2.1-4            nloptr_1.0.4        
+## [19] Matrix_1.2-8         rmarkdown_1.4        labeling_0.3        
+## [22] splines_3.3.3        lme4_1.1-12          stringr_1.2.0       
+## [25] RCurl_1.95-4.8       munsell_0.4.3        mgcv_1.8-17         
+## [28] htmltools_0.3.5      nnet_7.3-12          tibble_1.2          
+## [31] codetools_0.2-15     MASS_7.3-45          bitops_1.0-6        
+## [34] ModelMetrics_1.1.0   grid_3.3.3           nlme_3.1-131        
+## [37] jsonlite_1.3         gtable_0.2.0         DBI_0.6             
+## [40] magrittr_1.5         scales_0.4.1         stringi_1.1.3       
+## [43] RColorBrewer_1.1-2   tools_3.3.3          Biobase_2.34.0      
+## [46] pbkrtest_0.4-7       yaml_2.1.14          AnnotationDbi_1.36.2
+## [49] colorspace_1.3-2     memoise_1.0.0        knitr_1.15.1        
+## [52] quantreg_5.29
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#machine_learning-ref">
+    		machine_learning <span>14</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+     
+    	<li><a href="/tags.html#machine_learning-ref">machine_learning <span>13</span></a></li>
+     
+    	<li><a href="/tags.html#caret-ref">caret <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#h2o-ref">h2o <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#random_forest-ref">random_forest <span>6</span></a></li>
+     
+    	<li><a href="/tags.html#glm-ref">glm <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/machine_learning/2017/03/16/rf_plot_ggraph" title="Plotting trees from Random Forest models with ggraph">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/machine_learning/2017/04/02/unbalanced" title="Dealing with unbalanced data in machine learning">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

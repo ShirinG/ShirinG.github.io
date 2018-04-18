@@ -1,0 +1,1464 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Extreme Gradient Boosting and Preprocessing in Machine Learning - Addendum to predicting flu outcome with R</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Extreme Gradient Boosting and Preprocessing in Machine Learning - Addendum to predicting flu outcome with R </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Extreme Gradient Boosting and Preprocessing in Machine Learning - Addendum to predicting flu outcome with R" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>02 December 2016</span>
+    </div>
+    <div class="content">
+      <p>In <a href="https://shiring.github.io/machine_learning/2016/11/27/flu_outcome_ML_post">last week’s post</a> I explored whether machine learning models can be applied to predict flu deaths from the 2013 outbreak of influenza A H7N9 in China. There, I compared random forests, elastic-net regularized generalized linear models, k-nearest neighbors, penalized discriminant analysis, stabilized linear discriminant analysis, nearest shrunken centroids, single C5.0 tree and partial least squares.</p>
+
+<p><br /></p>
+
+<h1 id="extreme-gradient-boosting">Extreme gradient boosting</h1>
+
+<p><a href="http://xgboost.readthedocs.io/en/latest/model.html">Extreme gradient boosting (XGBoost)</a> is a faster and improved implementation of <a href="https://en.wikipedia.org/wiki/Gradient_boosting">gradient boosting</a> for supervised learning and has recently been very successfully applied in Kaggle competitions. Because I’ve heard XGBoost’s praise being sung everywhere lately, I wanted to get my feet wet with it too. So this week I want to compare the prediction success of gradient boosting with the same dataset. Additionally, I want to test the influence of different preprocessing methods on the outcome.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>“XGBoost uses a more regularized model formalization to control over-fitting, which gives it better performance.” Tianqi Chen, developer of xgboost</p>
+</blockquote>
+
+<p>XGBoost is a tree ensemble model, which means the sum of predictions from a set of classification and regression trees (CART). In that, XGBoost is similar to Random Forests but it uses a different approach to model training.</p>
+
+<p><br /></p>
+
+<p>Starting with the same test and training data (partitioned into validation test and validation train subsets) from <a href="https://shiring.github.io/machine_learning/2016/11/27/flu_outcome_ML_post">last week’s post</a>, I am training extreme gradient boosting models as implemented in the <a href="ftp://cran.r-project.org/pub/R/web/packages/xgboost/vignettes/xgboost.pdf">xgboost</a> and <a href="http://topepo.github.io/caret/index.html">caret</a> packages with different preprocessing settings.</p>
+
+<p>Out of the different implementations and variations of gradient boosting algorithms, caret performed best on PCA-preprocessed data in the validation set. These paramteres were then used to predict the outcome in the test set and compare it to last week’s predictions.</p>
+
+<p>Compared to last week, there is much less uncertainty in the predictions from XGBoost. Overall, I would say that this algorithm is superior to the others I have used before.</p>
+
+<p><br /></p>
+
+<h2 id="xgboost">xgboost</h2>
+
+<p>Extreme gradient boosting is implemented in the xgboost package.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># install the stable/pre-compiled version from CRAN
+</span><span class="w">
+</span><span class="n">install.packages</span><span class="p">(</span><span class="s1">'xgboost'</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># or install from weekly updated drat repo
+</span><span class="w">
+</span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"drat"</span><span class="p">,</span><span class="w"> </span><span class="n">repos</span><span class="o">=</span><span class="s2">"https://cran.rstudio.com"</span><span class="p">)</span><span class="w">
+</span><span class="n">drat</span><span class="o">:::</span><span class="n">addRepo</span><span class="p">(</span><span class="s2">"dmlc"</span><span class="p">)</span><span class="w">
+</span><span class="n">install.packages</span><span class="p">(</span><span class="s2">"xgboost"</span><span class="p">,</span><span class="w"> </span><span class="n">repos</span><span class="o">=</span><span class="s2">"http://dmlc.ml/drat/"</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"source"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>XGBoost supports only numbers, so the outcome classes have to be converted into integers and both training and test data have to be in numeric matrix format.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">xgboost</span><span class="p">)</span><span class="w">
+</span><span class="n">matrix_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">val_train_X</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="w">
+</span><span class="n">outcome_death_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">val_train_data</span><span class="o">$</span><span class="n">outcome</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Death"</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">
+
+</span><span class="n">matrix_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">val_test_X</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="w">
+</span><span class="n">outcome_death_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Death"</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">
+
+</span><span class="n">xgb_train_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">matrix_train</span><span class="p">),</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outcome_death_train</span><span class="p">)</span><span class="w">
+</span><span class="n">xgb_test_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">xgb.DMatrix</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">matrix_test</span><span class="p">),</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outcome_death_test</span><span class="p">)</span><span class="w">
+
+</span><span class="n">watchlist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_train_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_test_matrix</span><span class="p">)</span><span class="w">
+</span><span class="n">label</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getinfo</span><span class="p">(</span><span class="n">xgb_test_matrix</span><span class="p">,</span><span class="w"> </span><span class="s2">"label"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>I am using cross validation to evaluate the error rate.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">param</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="s2">"objective"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"binary:logistic"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">xgb.cv</span><span class="p">(</span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">param</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_train_matrix</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">nfold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
+       </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getinfo</span><span class="p">(</span><span class="n">xgb_train_matrix</span><span class="p">,</span><span class="w"> </span><span class="s2">"label"</span><span class="p">),</span><span class="w">
+       </span><span class="n">nrounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1]  train-error:0.133950+0.022131   test-error:0.341131+0.129919 
+## [2]  train-error:0.124941+0.033432   test-error:0.358674+0.105191 
+## [3]  train-error:0.115932+0.045501   test-error:0.340156+0.092598 
+## [4]  train-error:0.124941+0.033432   test-error:0.340156+0.092598 
+## [5]  train-error:0.089616+0.051301   test-error:0.394737+0.098465
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="training-with-gbtree">Training with gbtree</h3>
+
+<p>gbtree is the default booster for xgb.train.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">bst_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">xgb.train</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_train_matrix</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getinfo</span><span class="p">(</span><span class="n">xgb_train_matrix</span><span class="p">,</span><span class="w"> </span><span class="s2">"label"</span><span class="p">),</span><span class="w">
+                   </span><span class="n">max.depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">eta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">nthread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">nround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="c1"># number of trees used for model building
+</span><span class="w">                   </span><span class="n">watchlist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">watchlist</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"binary:logistic"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1]  train-error:0.250000    test-error:0.347826 
+## [2]  train-error:0.178571    test-error:0.304348 
+## [3]  train-error:0.142857    test-error:0.347826 
+## [4]  train-error:0.089286    test-error:0.260870 
+## [5]  train-error:0.053571    test-error:0.347826 
+## [6]  train-error:0.053571    test-error:0.391304 
+## [7]  train-error:0.035714    test-error:0.347826 
+## [8]  train-error:0.000000    test-error:0.391304 
+## [9]  train-error:0.017857    test-error:0.391304 
+## [10] train-error:0.000000    test-error:0.391304 
+## [11] train-error:0.000000    test-error:0.391304 
+## [12] train-error:0.000000    test-error:0.347826 
+## [13] train-error:0.000000    test-error:0.347826 
+## [14] train-error:0.000000    test-error:0.347826 
+## [15] train-error:0.000000    test-error:0.347826 
+## [16] train-error:0.000000    test-error:0.347826 
+## [17] train-error:0.000000    test-error:0.347826 
+## [18] train-error:0.000000    test-error:0.347826 
+## [19] train-error:0.000000    test-error:0.347826 
+## [20] train-error:0.000000    test-error:0.347826 
+## [21] train-error:0.000000    test-error:0.347826 
+## [22] train-error:0.000000    test-error:0.347826 
+## [23] train-error:0.000000    test-error:0.347826 
+## [24] train-error:0.000000    test-error:0.347826 
+## [25] train-error:0.000000    test-error:0.347826 
+## [26] train-error:0.000000    test-error:0.347826 
+## [27] train-error:0.000000    test-error:0.347826 
+## [28] train-error:0.000000    test-error:0.347826 
+## [29] train-error:0.000000    test-error:0.347826 
+## [30] train-error:0.000000    test-error:0.347826 
+## [31] train-error:0.000000    test-error:0.347826 
+## [32] train-error:0.000000    test-error:0.347826 
+## [33] train-error:0.000000    test-error:0.347826 
+## [34] train-error:0.000000    test-error:0.347826 
+## [35] train-error:0.000000    test-error:0.347826 
+## [36] train-error:0.000000    test-error:0.347826 
+## [37] train-error:0.000000    test-error:0.347826 
+## [38] train-error:0.000000    test-error:0.347826 
+## [39] train-error:0.000000    test-error:0.347826 
+## [40] train-error:0.000000    test-error:0.347826 
+## [41] train-error:0.000000    test-error:0.347826 
+## [42] train-error:0.000000    test-error:0.347826 
+## [43] train-error:0.000000    test-error:0.347826 
+## [44] train-error:0.000000    test-error:0.347826 
+## [45] train-error:0.000000    test-error:0.347826 
+## [46] train-error:0.000000    test-error:0.347826 
+## [47] train-error:0.000000    test-error:0.347826 
+## [48] train-error:0.000000    test-error:0.347826 
+## [49] train-error:0.000000    test-error:0.347826 
+## [50] train-error:0.000000    test-error:0.347826
+</code></pre>
+</div>
+
+<p>Each feature is grouped by importance with k-means clustering. Gain is the improvement in accuracy that the addition of a feature brings to the branches it is on.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">matrix_train</span><span class="p">)</span><span class="w">
+</span><span class="n">importance_matrix_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">xgb.importance</span><span class="p">(</span><span class="n">features</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bst_1</span><span class="p">)</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">importance_matrix_1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                   Feature       Gain      Cover  Frequency
+## 1:                    age 0.54677689 0.45726557 0.43333333
+## 2:  days_onset_to_outcome 0.14753698 0.11686537 0.11111111
+## 3:            early_onset 0.06724531 0.07365416 0.07777778
+## 4:          early_outcome 0.06679880 0.08869426 0.07777778
+## 5:      province_Shanghai 0.05325295 0.04317030 0.04444444
+## 6: days_onset_to_hospital 0.03883631 0.11300882 0.13333333
+## 7:         province_other 0.03502971 0.03977657 0.04444444
+## 8:               gender_f 0.02610959 0.02484170 0.01111111
+## 9:               hospital 0.01841345 0.04272324 0.06666667
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">xgb.ggplot.importance</span><span class="p">(</span><span class="n">importance_matrix_1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="flu_outcome_ML_2_post_files/figure-markdown_github/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">bst_1</span><span class="p">,</span><span class="w"> </span><span class="n">xgb_test_matrix</span><span class="p">)</span><span class="w">
+
+</span><span class="n">result_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">case_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">val_test_data</span><span class="p">),</span><span class="w">
+                       </span><span class="n">outcome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">prediction_p_death</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">pred_1</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w">
+                       </span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">pred_1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+                       </span><span class="n">prediction_eval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="nf">as.integer</span><span class="p">(</span><span class="n">pred_1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">))</span><span class="w">
+</span><span class="n">result_1</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     case_ID outcome label prediction_p_death prediction prediction_eval
+## 1  case_123   Death     1               0.01          0           wrong
+## 2  case_127 Recover     0               0.00          0         correct
+## 3  case_128 Recover     0               0.96          1           wrong
+## 4   case_14 Recover     0               0.76          1           wrong
+## 5   case_19   Death     1               0.95          1         correct
+## 6    case_2   Death     1               0.85          1         correct
+## 7   case_20 Recover     0               0.98          1           wrong
+## 8   case_21 Recover     0               0.06          0         correct
+## 9   case_34   Death     1               1.00          1         correct
+## 10  case_37 Recover     0               0.00          0         correct
+## 11   case_5 Recover     0               0.03          0         correct
+## 12  case_51 Recover     0               0.27          0         correct
+## 13  case_55 Recover     0               0.11          0         correct
+## 14   case_6   Death     1               0.26          0           wrong
+## 15  case_61   Death     1               1.00          1         correct
+## 16  case_65 Recover     0               0.00          0         correct
+## 17  case_74 Recover     0               0.92          1           wrong
+## 18  case_78   Death     1               0.03          0           wrong
+## 19  case_79 Recover     0               0.00          0         correct
+## 20   case_8   Death     1               0.06          0           wrong
+## 21  case_87   Death     1               0.64          1         correct
+## 22  case_91 Recover     0               0.00          0         correct
+## 23  case_94 Recover     0               0.01          0         correct
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">err</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="nf">as.integer</span><span class="p">(</span><span class="n">pred_1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">label</span><span class="p">))</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"test-error ="</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] "test-error = 0.35"
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="training-with-gblinear">Training with gblinear</h3>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">bst_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">xgb.train</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xgb_train_matrix</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">booster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gblinear"</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getinfo</span><span class="p">(</span><span class="n">xgb_train_matrix</span><span class="p">,</span><span class="w"> </span><span class="s2">"label"</span><span class="p">),</span><span class="w">
+                   </span><span class="n">max.depth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">eta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">nthread</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">nround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="c1"># number of trees used for model building
+</span><span class="w">                   </span><span class="n">watchlist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">watchlist</span><span class="p">,</span><span class="w"> 
+                   </span><span class="n">objective</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"binary:logistic"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1]  train-error:0.339286    test-error:0.434783 
+## [2]  train-error:0.303571    test-error:0.391304 
+## [3]  train-error:0.285714    test-error:0.347826 
+## [4]  train-error:0.303571    test-error:0.347826 
+## [5]  train-error:0.285714    test-error:0.347826 
+## [6]  train-error:0.285714    test-error:0.391304 
+## [7]  train-error:0.285714    test-error:0.391304 
+## [8]  train-error:0.267857    test-error:0.391304 
+## [9]  train-error:0.250000    test-error:0.391304 
+## [10] train-error:0.250000    test-error:0.478261 
+## [11] train-error:0.250000    test-error:0.434783 
+## [12] train-error:0.232143    test-error:0.434783 
+## [13] train-error:0.232143    test-error:0.434783 
+## [14] train-error:0.232143    test-error:0.434783 
+## [15] train-error:0.232143    test-error:0.434783 
+## [16] train-error:0.232143    test-error:0.434783 
+## [17] train-error:0.232143    test-error:0.434783 
+## [18] train-error:0.232143    test-error:0.434783 
+## [19] train-error:0.232143    test-error:0.434783 
+## [20] train-error:0.232143    test-error:0.434783 
+## [21] train-error:0.214286    test-error:0.434783 
+## [22] train-error:0.214286    test-error:0.434783 
+## [23] train-error:0.214286    test-error:0.434783 
+## [24] train-error:0.214286    test-error:0.434783 
+## [25] train-error:0.214286    test-error:0.434783 
+## [26] train-error:0.214286    test-error:0.434783 
+## [27] train-error:0.214286    test-error:0.434783 
+## [28] train-error:0.214286    test-error:0.434783 
+## [29] train-error:0.214286    test-error:0.434783 
+## [30] train-error:0.232143    test-error:0.434783 
+## [31] train-error:0.214286    test-error:0.434783 
+## [32] train-error:0.214286    test-error:0.434783 
+## [33] train-error:0.214286    test-error:0.434783 
+## [34] train-error:0.214286    test-error:0.434783 
+## [35] train-error:0.214286    test-error:0.434783 
+## [36] train-error:0.214286    test-error:0.434783 
+## [37] train-error:0.214286    test-error:0.434783 
+## [38] train-error:0.214286    test-error:0.434783 
+## [39] train-error:0.214286    test-error:0.434783 
+## [40] train-error:0.214286    test-error:0.434783 
+## [41] train-error:0.214286    test-error:0.434783 
+## [42] train-error:0.214286    test-error:0.434783 
+## [43] train-error:0.214286    test-error:0.434783 
+## [44] train-error:0.214286    test-error:0.434783 
+## [45] train-error:0.214286    test-error:0.434783 
+## [46] train-error:0.214286    test-error:0.434783 
+## [47] train-error:0.214286    test-error:0.434783 
+## [48] train-error:0.214286    test-error:0.434783 
+## [49] train-error:0.214286    test-error:0.434783 
+## [50] train-error:0.214286    test-error:0.434783
+</code></pre>
+</div>
+
+<p>Each feature is grouped by importance with k-means clustering. Gain is the improvement in accuracy that the addition of a feature brings to the branches it is on.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">matrix_train</span><span class="p">)</span><span class="w">
+</span><span class="n">importance_matrix_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">xgb.importance</span><span class="p">(</span><span class="n">features</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bst_2</span><span class="p">)</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">importance_matrix_2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                    Feature     Weight
+##  1:                    age  0.0439012
+##  2:               hospital -0.3131160
+##  3:               gender_f  0.8067830
+##  4:       province_Jiangsu -0.8807380
+##  5:      province_Shanghai -0.4065330
+##  6:      province_Zhejiang -0.1284590
+##  7:         province_other  0.4510330
+##  8:  days_onset_to_outcome  0.0209952
+##  9: days_onset_to_hospital -0.0856504
+## 10:            early_onset  0.6452190
+## 11:          early_outcome  2.5134300
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">xgb.ggplot.importance</span><span class="p">(</span><span class="n">importance_matrix_2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="flu_outcome_ML_2_post_files/figure-markdown_github/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">bst_2</span><span class="p">,</span><span class="w"> </span><span class="n">xgb_test_matrix</span><span class="p">)</span><span class="w">
+
+</span><span class="n">result_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">case_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">val_test_data</span><span class="p">),</span><span class="w">
+                       </span><span class="n">outcome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">prediction_p_death</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">pred_2</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w">
+                       </span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="n">pred_2</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+                       </span><span class="n">prediction_eval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="nf">as.integer</span><span class="p">(</span><span class="n">pred_2</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">))</span><span class="w">
+</span><span class="n">result_2</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     case_ID outcome label prediction_p_death prediction prediction_eval
+## 1  case_123   Death     1               0.10          0           wrong
+## 2  case_127 Recover     0               0.03          0         correct
+## 3  case_128 Recover     0               0.13          0         correct
+## 4   case_14 Recover     0               0.15          0         correct
+## 5   case_19   Death     1               0.28          0           wrong
+## 6    case_2   Death     1               0.28          0           wrong
+## 7   case_20 Recover     0               0.80          1           wrong
+## 8   case_21 Recover     0               0.79          1           wrong
+## 9   case_34   Death     1               0.74          1         correct
+## 10  case_37 Recover     0               0.06          0         correct
+## 11   case_5 Recover     0               0.14          0         correct
+## 12  case_51 Recover     0               0.77          1           wrong
+## 13  case_55 Recover     0               0.23          0         correct
+## 14   case_6   Death     1               0.47          0           wrong
+## 15  case_61   Death     1               0.52          1         correct
+## 16  case_65 Recover     0               0.03          0         correct
+## 17  case_74 Recover     0               0.70          1           wrong
+## 18  case_78   Death     1               0.22          0           wrong
+## 19  case_79 Recover     0               0.06          0         correct
+## 20   case_8   Death     1               0.36          0           wrong
+## 21  case_87   Death     1               0.65          1         correct
+## 22  case_91 Recover     0               0.05          0         correct
+## 23  case_94 Recover     0               0.07          0         correct
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">err</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="nf">as.integer</span><span class="p">(</span><span class="n">pred_2</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">label</span><span class="p">))</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">label</span><span class="p">)</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"test-error ="</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">err</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] "test-error = 0.43"
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="caret">caret</h2>
+
+<p>Extreme gradient boosting is also implemented in the caret package. Caret also provides options for preprocessing, of which I will compare a few.</p>
+
+<p><br /></p>
+
+<h3 id="no-preprocessing">No preprocessing</h3>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span><span class="w">
+
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span><span class="w">
+</span><span class="n">model_xgb_null</span><span class="w"> </span><span class="o">&lt;-</span><span class="n">train</span><span class="p">(</span><span class="n">outcome</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                 </span><span class="n">data</span><span class="o">=</span><span class="n">val_train_data</span><span class="p">,</span><span class="w">
+                 </span><span class="n">method</span><span class="o">=</span><span class="s2">"xgbTree"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w">
+                 </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_null</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">]),</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction Death Recover
+##    Death       5       4
+##    Recover     4      10
+##                                           
+##                Accuracy : 0.6522          
+##                  95% CI : (0.4273, 0.8362)
+##     No Information Rate : 0.6087          
+##     P-Value [Acc &gt; NIR] : 0.4216          
+##                                           
+##                   Kappa : 0.2698          
+##  Mcnemar's Test P-Value : 1.0000          
+##                                           
+##             Sensitivity : 0.5556          
+##             Specificity : 0.7143          
+##          Pos Pred Value : 0.5556          
+##          Neg Pred Value : 0.7143          
+##              Prevalence : 0.3913          
+##          Detection Rate : 0.2174          
+##    Detection Prevalence : 0.3913          
+##       Balanced Accuracy : 0.6349          
+##                                           
+##        'Positive' Class : Death           
+## 
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="scaling-and-centering">Scaling and centering</h3>
+
+<p>With this method the column variables are centered (subtracting the column mean from each value in a column) and standardized (dividing by the column standard deviation).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span><span class="w">
+</span><span class="n">model_xgb_sc_cen</span><span class="w"> </span><span class="o">&lt;-</span><span class="n">train</span><span class="p">(</span><span class="n">outcome</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                 </span><span class="n">data</span><span class="o">=</span><span class="n">val_train_data</span><span class="p">,</span><span class="w">
+                 </span><span class="n">method</span><span class="o">=</span><span class="s2">"xgbTree"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"scale"</span><span class="p">,</span><span class="w"> </span><span class="s2">"center"</span><span class="p">),</span><span class="w">
+                 </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_sc_cen</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">]),</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction Death Recover
+##    Death       5       4
+##    Recover     4      10
+##                                           
+##                Accuracy : 0.6522          
+##                  95% CI : (0.4273, 0.8362)
+##     No Information Rate : 0.6087          
+##     P-Value [Acc &gt; NIR] : 0.4216          
+##                                           
+##                   Kappa : 0.2698          
+##  Mcnemar's Test P-Value : 1.0000          
+##                                           
+##             Sensitivity : 0.5556          
+##             Specificity : 0.7143          
+##          Pos Pred Value : 0.5556          
+##          Neg Pred Value : 0.7143          
+##              Prevalence : 0.3913          
+##          Detection Rate : 0.2174          
+##    Detection Prevalence : 0.3913          
+##       Balanced Accuracy : 0.6349          
+##                                           
+##        'Positive' Class : Death           
+## 
+</code></pre>
+</div>
+
+<p>Scaling and centering did not improve the predictions.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_sc_cen</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">])</span><span class="w">
+</span><span class="n">pred_3b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_sc_cen</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">],</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">result_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">case_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">val_test_data</span><span class="p">),</span><span class="w">
+                       </span><span class="n">outcome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_3</span><span class="p">,</span><span class="w">
+                       </span><span class="n">pred_3b</span><span class="p">)</span><span class="w">
+</span><span class="n">result_3</span><span class="o">$</span><span class="n">prediction_eval</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">result_3</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">result_3</span><span class="o">$</span><span class="n">outcome</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">)</span><span class="w">
+</span><span class="n">result_3</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     case_ID outcome label prediction Death Recover prediction_eval
+## 1  case_123   Death     1    Recover  0.04    0.96           wrong
+## 2  case_127 Recover     0    Recover  0.04    0.96         correct
+## 3  case_128 Recover     0      Death  0.81    0.19           wrong
+## 4   case_14 Recover     0      Death  0.70    0.30           wrong
+## 5   case_19   Death     1      Death  0.67    0.33         correct
+## 6    case_2   Death     1      Death  0.66    0.34         correct
+## 7   case_20 Recover     0      Death  0.76    0.24           wrong
+## 8   case_21 Recover     0    Recover  0.17    0.83         correct
+## 9   case_34   Death     1      Death  0.94    0.06         correct
+## 10  case_37 Recover     0    Recover  0.02    0.98         correct
+## 11   case_5 Recover     0    Recover  0.09    0.91         correct
+## 12  case_51 Recover     0    Recover  0.41    0.59         correct
+## 13  case_55 Recover     0    Recover  0.12    0.88         correct
+## 14   case_6   Death     1    Recover  0.30    0.70           wrong
+## 15  case_61   Death     1      Death  0.99    0.01         correct
+## 16  case_65 Recover     0    Recover  0.01    0.99         correct
+## 17  case_74 Recover     0      Death  0.85    0.15           wrong
+## 18  case_78   Death     1    Recover  0.21    0.79           wrong
+## 19  case_79 Recover     0    Recover  0.01    0.99         correct
+## 20   case_8   Death     1    Recover  0.20    0.80           wrong
+## 21  case_87   Death     1      Death  0.65    0.35         correct
+## 22  case_91 Recover     0    Recover  0.01    0.99         correct
+## 23  case_94 Recover     0    Recover  0.07    0.93         correct
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="box-cox-transformation">Box-Cox transformation</h3>
+
+<p>The Box-Cox power transformation is used to normalize data.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span><span class="w">
+</span><span class="n">model_xgb_BoxCox</span><span class="w"> </span><span class="o">&lt;-</span><span class="n">train</span><span class="p">(</span><span class="n">outcome</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                 </span><span class="n">data</span><span class="o">=</span><span class="n">val_train_data</span><span class="p">,</span><span class="w">
+                 </span><span class="n">method</span><span class="o">=</span><span class="s2">"xgbTree"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"BoxCox"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_BoxCox</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">]),</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction Death Recover
+##    Death       5       4
+##    Recover     4      10
+##                                           
+##                Accuracy : 0.6522          
+##                  95% CI : (0.4273, 0.8362)
+##     No Information Rate : 0.6087          
+##     P-Value [Acc &gt; NIR] : 0.4216          
+##                                           
+##                   Kappa : 0.2698          
+##  Mcnemar's Test P-Value : 1.0000          
+##                                           
+##             Sensitivity : 0.5556          
+##             Specificity : 0.7143          
+##          Pos Pred Value : 0.5556          
+##          Neg Pred Value : 0.7143          
+##              Prevalence : 0.3913          
+##          Detection Rate : 0.2174          
+##    Detection Prevalence : 0.3913          
+##       Balanced Accuracy : 0.6349          
+##                                           
+##        'Positive' Class : Death           
+## 
+</code></pre>
+</div>
+
+<p>Box-Cox transformation did not improve the predictions either.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_BoxCox</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">])</span><span class="w">
+</span><span class="n">pred_4b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_BoxCox</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">],</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">result_4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">case_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">val_test_data</span><span class="p">),</span><span class="w">
+                       </span><span class="n">outcome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_4</span><span class="p">,</span><span class="w">
+                       </span><span class="n">pred_4b</span><span class="p">)</span><span class="w">
+</span><span class="n">result_4</span><span class="o">$</span><span class="n">prediction_eval</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">result_4</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">result_4</span><span class="o">$</span><span class="n">outcome</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">)</span><span class="w">
+</span><span class="n">result_4</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     case_ID outcome label prediction Death Recover prediction_eval
+## 1  case_123   Death     1    Recover  0.01    0.99           wrong
+## 2  case_127 Recover     0    Recover  0.01    0.99         correct
+## 3  case_128 Recover     0      Death  0.88    0.12           wrong
+## 4   case_14 Recover     0      Death  0.81    0.19           wrong
+## 5   case_19   Death     1      Death  0.88    0.12         correct
+## 6    case_2   Death     1      Death  0.79    0.21         correct
+## 7   case_20 Recover     0      Death  0.84    0.16           wrong
+## 8   case_21 Recover     0    Recover  0.07    0.93         correct
+## 9   case_34   Death     1      Death  0.97    0.03         correct
+## 10  case_37 Recover     0    Recover  0.01    0.99         correct
+## 11   case_5 Recover     0    Recover  0.06    0.94         correct
+## 12  case_51 Recover     0    Recover  0.27    0.73         correct
+## 13  case_55 Recover     0    Recover  0.09    0.91         correct
+## 14   case_6   Death     1    Recover  0.30    0.70           wrong
+## 15  case_61   Death     1      Death  1.00    0.00         correct
+## 16  case_65 Recover     0    Recover  0.00    1.00         correct
+## 17  case_74 Recover     0      Death  0.90    0.10           wrong
+## 18  case_78   Death     1    Recover  0.11    0.89           wrong
+## 19  case_79 Recover     0    Recover  0.00    1.00         correct
+## 20   case_8   Death     1    Recover  0.13    0.87           wrong
+## 21  case_87   Death     1      Death  0.61    0.39         correct
+## 22  case_91 Recover     0    Recover  0.00    1.00         correct
+## 23  case_94 Recover     0    Recover  0.04    0.96         correct
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="principal-component-analysis-pca">Principal Component Analysis (PCA)</h4>
+
+<p>PCA is used for dimensionality reduction. When applied as a preprocessing method the number of features are reduced by using the eigenvectors of the covariance matrix.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span><span class="w">
+</span><span class="n">model_xgb_pca</span><span class="w"> </span><span class="o">&lt;-</span><span class="n">train</span><span class="p">(</span><span class="n">outcome</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                 </span><span class="n">data</span><span class="o">=</span><span class="n">val_train_data</span><span class="p">,</span><span class="w">
+                 </span><span class="n">method</span><span class="o">=</span><span class="s2">"xgbTree"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pca"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_pca</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">]),</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction Death Recover
+##    Death       4       2
+##    Recover     5      12
+##                                           
+##                Accuracy : 0.6957          
+##                  95% CI : (0.4708, 0.8679)
+##     No Information Rate : 0.6087          
+##     P-Value [Acc &gt; NIR] : 0.2644          
+##                                           
+##                   Kappa : 0.3207          
+##  Mcnemar's Test P-Value : 0.4497          
+##                                           
+##             Sensitivity : 0.4444          
+##             Specificity : 0.8571          
+##          Pos Pred Value : 0.6667          
+##          Neg Pred Value : 0.7059          
+##              Prevalence : 0.3913          
+##          Detection Rate : 0.1739          
+##    Detection Prevalence : 0.2609          
+##       Balanced Accuracy : 0.6508          
+##                                           
+##        'Positive' Class : Death           
+## 
+</code></pre>
+</div>
+
+<p>PCA did improve the predictions slightly.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_pca</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">])</span><span class="w">
+</span><span class="n">pred_5b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_pca</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">],</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">result_5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">case_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">val_test_data</span><span class="p">),</span><span class="w">
+                       </span><span class="n">outcome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_5</span><span class="p">,</span><span class="w">
+                       </span><span class="n">pred_5b</span><span class="p">)</span><span class="w">
+</span><span class="n">result_5</span><span class="o">$</span><span class="n">prediction_eval</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">result_5</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">result_5</span><span class="o">$</span><span class="n">outcome</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">)</span><span class="w">
+</span><span class="n">result_5</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     case_ID outcome label prediction Death Recover prediction_eval
+## 1  case_123   Death     1    Recover  0.02    0.98           wrong
+## 2  case_127 Recover     0    Recover  0.29    0.71         correct
+## 3  case_128 Recover     0    Recover  0.01    0.99         correct
+## 4   case_14 Recover     0    Recover  0.44    0.56         correct
+## 5   case_19   Death     1    Recover  0.07    0.93           wrong
+## 6    case_2   Death     1    Recover  0.26    0.74           wrong
+## 7   case_20 Recover     0    Recover  0.16    0.84         correct
+## 8   case_21 Recover     0      Death  0.57    0.43           wrong
+## 9   case_34   Death     1      Death  0.93    0.07         correct
+## 10  case_37 Recover     0    Recover  0.03    0.97         correct
+## 11   case_5 Recover     0    Recover  0.11    0.89         correct
+## 12  case_51 Recover     0    Recover  0.19    0.81         correct
+## 13  case_55 Recover     0    Recover  0.16    0.84         correct
+## 14   case_6   Death     1      Death  0.55    0.45         correct
+## 15  case_61   Death     1    Recover  0.22    0.78           wrong
+## 16  case_65 Recover     0    Recover  0.08    0.92         correct
+## 17  case_74 Recover     0      Death  0.67    0.33           wrong
+## 18  case_78   Death     1      Death  0.87    0.13         correct
+## 19  case_79 Recover     0    Recover  0.16    0.84         correct
+## 20   case_8   Death     1    Recover  0.22    0.78           wrong
+## 21  case_87   Death     1      Death  0.66    0.34         correct
+## 22  case_91 Recover     0    Recover  0.01    0.99         correct
+## 23  case_94 Recover     0    Recover  0.14    0.86         correct
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="median-imputation">Median imputation</h3>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span><span class="w">
+</span><span class="n">model_xgb_medianImpute</span><span class="w"> </span><span class="o">&lt;-</span><span class="n">train</span><span class="p">(</span><span class="n">outcome</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                 </span><span class="n">data</span><span class="o">=</span><span class="n">val_train_data</span><span class="p">,</span><span class="w">
+                 </span><span class="n">method</span><span class="o">=</span><span class="s2">"xgbTree"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"medianImpute"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">confusionMatrix</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_medianImpute</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">]),</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction Death Recover
+##    Death       5       4
+##    Recover     4      10
+##                                           
+##                Accuracy : 0.6522          
+##                  95% CI : (0.4273, 0.8362)
+##     No Information Rate : 0.6087          
+##     P-Value [Acc &gt; NIR] : 0.4216          
+##                                           
+##                   Kappa : 0.2698          
+##  Mcnemar's Test P-Value : 1.0000          
+##                                           
+##             Sensitivity : 0.5556          
+##             Specificity : 0.7143          
+##          Pos Pred Value : 0.5556          
+##          Neg Pred Value : 0.7143          
+##              Prevalence : 0.3913          
+##          Detection Rate : 0.2174          
+##    Detection Prevalence : 0.3913          
+##       Balanced Accuracy : 0.6349          
+##                                           
+##        'Positive' Class : Death           
+## 
+</code></pre>
+</div>
+
+<p>Median imputation did not improve the predictions either.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_6</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_medianImpute</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">])</span><span class="w">
+</span><span class="n">pred_6b</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_medianImpute</span><span class="p">,</span><span class="w"> </span><span class="n">val_test_data</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">],</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">result_6</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">case_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">val_test_data</span><span class="p">),</span><span class="w">
+                       </span><span class="n">outcome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">val_test_data</span><span class="o">$</span><span class="n">outcome</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_6</span><span class="p">,</span><span class="w">
+                       </span><span class="n">pred_6b</span><span class="p">)</span><span class="w">
+</span><span class="n">result_6</span><span class="o">$</span><span class="n">prediction_eval</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">result_6</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">result_6</span><span class="o">$</span><span class="n">outcome</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">)</span><span class="w">
+</span><span class="n">result_6</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     case_ID outcome label prediction Death Recover prediction_eval
+## 1  case_123   Death     1    Recover  0.04    0.96           wrong
+## 2  case_127 Recover     0    Recover  0.04    0.96         correct
+## 3  case_128 Recover     0      Death  0.81    0.19           wrong
+## 4   case_14 Recover     0      Death  0.70    0.30           wrong
+## 5   case_19   Death     1      Death  0.67    0.33         correct
+## 6    case_2   Death     1      Death  0.66    0.34         correct
+## 7   case_20 Recover     0      Death  0.76    0.24           wrong
+## 8   case_21 Recover     0    Recover  0.17    0.83         correct
+## 9   case_34   Death     1      Death  0.94    0.06         correct
+## 10  case_37 Recover     0    Recover  0.02    0.98         correct
+## 11   case_5 Recover     0    Recover  0.09    0.91         correct
+## 12  case_51 Recover     0    Recover  0.41    0.59         correct
+## 13  case_55 Recover     0    Recover  0.12    0.88         correct
+## 14   case_6   Death     1    Recover  0.30    0.70           wrong
+## 15  case_61   Death     1      Death  0.99    0.01         correct
+## 16  case_65 Recover     0    Recover  0.01    0.99         correct
+## 17  case_74 Recover     0      Death  0.85    0.15           wrong
+## 18  case_78   Death     1    Recover  0.21    0.79           wrong
+## 19  case_79 Recover     0    Recover  0.01    0.99         correct
+## 20   case_8   Death     1    Recover  0.20    0.80           wrong
+## 21  case_87   Death     1      Death  0.65    0.35         correct
+## 22  case_91 Recover     0    Recover  0.01    0.99         correct
+## 23  case_94 Recover     0    Recover  0.07    0.93         correct
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h1 id="comparison-of-extreme-gradient-boosting-models">Comparison of extreme gradient boosting models</h1>
+
+<h2 id="combining-results">Combining results</h2>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">result_1</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)],</span><span class="w"> </span><span class="n">result_2</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)],</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"case_ID"</span><span class="p">)</span><span class="w">
+</span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">result_3</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)],</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"case_ID"</span><span class="p">)</span><span class="w">
+</span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">result_4</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)],</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"case_ID"</span><span class="p">)</span><span class="w">
+</span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">result_5</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)],</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"case_ID"</span><span class="p">)</span><span class="w">
+</span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">result_6</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)],</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"case_ID"</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">result</span><span class="p">)[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"pred_xgboost_gbtree"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pred_xgboost_gblinear"</span><span class="p">,</span><span class="w"> </span><span class="s2">"model_xgb_sc_cen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"model_xgb_BoxCox"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pred_xgbTree_pca"</span><span class="p">,</span><span class="w"> </span><span class="s2">"model_xgb_medianImpute"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="whats-the-rate-of-correctly-predicted-cases-in-the-validation-data">What’s the rate of correctly predicted cases in the validation data?</h3>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">round</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">result</span><span class="o">$</span><span class="n">pred_xgboost_gbtree</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">)</span><span class="o">/</span><span class="n">nrow</span><span class="p">(</span><span class="n">result</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.65
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">round</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">result</span><span class="o">$</span><span class="n">pred_xgboost_gblinear</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">)</span><span class="o">/</span><span class="n">nrow</span><span class="p">(</span><span class="n">result</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.57
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">round</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">result</span><span class="o">$</span><span class="n">model_xgb_sc_cen</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">)</span><span class="o">/</span><span class="n">nrow</span><span class="p">(</span><span class="n">result</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.65
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">round</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">result</span><span class="o">$</span><span class="n">model_xgb_BoxCox</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">)</span><span class="o">/</span><span class="n">nrow</span><span class="p">(</span><span class="n">result</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.65
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">round</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">result</span><span class="o">$</span><span class="n">pred_xgbTree_pca</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">)</span><span class="o">/</span><span class="n">nrow</span><span class="p">(</span><span class="n">result</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.7
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">round</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">result</span><span class="o">$</span><span class="n">model_xgb_medianImpute</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">)</span><span class="o">/</span><span class="n">nrow</span><span class="p">(</span><span class="n">result</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.65
+</code></pre>
+</div>
+
+<p>PCA preprocessing combined with caret’s implementation of extreme gradient boosting had the highest number of accurately predicted cases in the validation data set.</p>
+
+<p><br /></p>
+
+<h1 id="predicting-unknown-output">Predicting unknown output</h1>
+
+<p>Because PCA preprocessing and caret’s implementation of extreme gradient boosting had the highest prediction accuracy, this model will be used to predict the unknown cases from the original dataset.</p>
+
+<p>Uncertainty of prediction is accounted for with a cutoff below 0.7.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">27</span><span class="p">)</span><span class="w">
+</span><span class="n">model_xgb_pca</span><span class="w"> </span><span class="o">&lt;-</span><span class="n">train</span><span class="p">(</span><span class="n">outcome</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                 </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+                 </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"xgbTree"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">preProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"pca"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_pca</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">)</span><span class="w">
+</span><span class="n">predb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb_pca</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">case_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">test_data</span><span class="p">),</span><span class="w">
+                       </span><span class="n">prediction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred</span><span class="p">,</span><span class="w">
+                       </span><span class="n">predb</span><span class="p">)</span><span class="w">
+</span><span class="n">result</span><span class="o">$</span><span class="n">predicted_outcome</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">result</span><span class="o">$</span><span class="n">Death</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="s2">"Death"</span><span class="p">,</span><span class="w">
+                                   </span><span class="n">ifelse</span><span class="p">(</span><span class="n">result</span><span class="o">$</span><span class="n">Recover</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="s2">"Recover"</span><span class="p">,</span><span class="w"> </span><span class="s2">"uncertain"</span><span class="p">))</span><span class="w">
+</span><span class="n">result</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     case_ID prediction Death Recover predicted_outcome
+## 1  case_100    Recover  0.08    0.92           Recover
+## 2  case_101    Recover  0.11    0.89           Recover
+## 3  case_102    Recover  0.04    0.96           Recover
+## 4  case_103    Recover  0.01    0.99           Recover
+## 5  case_104    Recover  0.19    0.81           Recover
+## 6  case_105    Recover  0.01    0.99           Recover
+## 7  case_108      Death  0.99    0.01             Death
+## 8  case_109    Recover  0.30    0.70         uncertain
+## 9  case_110    Recover  0.16    0.84           Recover
+## 10 case_112      Death  0.54    0.46         uncertain
+## 11 case_113    Recover  0.02    0.98           Recover
+## 12 case_114    Recover  0.30    0.70         uncertain
+## 13 case_115    Recover  0.02    0.98           Recover
+## 14 case_118      Death  0.65    0.35         uncertain
+## 15 case_120      Death  0.89    0.11             Death
+## 16 case_122    Recover  0.00    1.00           Recover
+## 17 case_126    Recover  0.04    0.96           Recover
+## 18 case_130    Recover  0.42    0.58         uncertain
+## 19 case_132    Recover  0.47    0.53         uncertain
+## 20 case_136      Death  0.86    0.14             Death
+## 21  case_15      Death  0.99    0.01             Death
+## 22  case_16      Death  0.91    0.09             Death
+## 23  case_22      Death  0.80    0.20             Death
+## 24  case_28      Death  0.91    0.09             Death
+## 25  case_31      Death  1.00    0.00             Death
+## 26  case_32      Death  0.93    0.07             Death
+## 27  case_38      Death  0.87    0.13             Death
+## 28  case_39      Death  0.88    0.12             Death
+## 29   case_4      Death  0.99    0.01             Death
+## 30  case_40      Death  1.00    0.00             Death
+## 31  case_41      Death  0.95    0.05             Death
+## 32  case_42    Recover  0.49    0.51         uncertain
+## 33  case_47      Death  0.91    0.09             Death
+## 34  case_48      Death  0.95    0.05             Death
+## 35  case_52      Death  0.62    0.38         uncertain
+## 36  case_54    Recover  0.43    0.57         uncertain
+## 37  case_56      Death  0.81    0.19             Death
+## 38  case_62      Death  0.58    0.42         uncertain
+## 39  case_63    Recover  0.44    0.56         uncertain
+## 40  case_66    Recover  0.18    0.82           Recover
+## 41  case_67    Recover  0.02    0.98           Recover
+## 42  case_68    Recover  0.27    0.73           Recover
+## 43  case_69    Recover  0.35    0.65         uncertain
+## 44  case_70    Recover  0.02    0.98           Recover
+## 45  case_71    Recover  0.17    0.83           Recover
+## 46  case_80    Recover  0.05    0.95           Recover
+## 47  case_84    Recover  0.02    0.98           Recover
+## 48  case_85      Death  0.99    0.01             Death
+## 49  case_86    Recover  0.02    0.98           Recover
+## 50  case_88    Recover  0.02    0.98           Recover
+## 51   case_9      Death  0.98    0.02             Death
+## 52  case_90    Recover  0.08    0.92           Recover
+## 53  case_92    Recover  0.04    0.96           Recover
+## 54  case_93    Recover  0.43    0.57         uncertain
+## 55  case_95    Recover  0.11    0.89           Recover
+## 56  case_96      Death  0.68    0.32         uncertain
+## 57  case_99    Recover  0.04    0.96           Recover
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="comparison-with-predicted-outcome-from-last-weeks-analyses">Comparison with predicted outcome from last week’s analyses</h2>
+
+<p><br /></p>
+
+<h3 id="plotting-predicted-outcome">Plotting predicted outcome</h3>
+
+<p>Results from last week’s analysis come from the following part of the analysis:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">randomForest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_rf</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+</span><span class="n">glmnet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_glmnet</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+</span><span class="n">kknn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_kknn</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+</span><span class="n">pda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_pda</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+</span><span class="n">slda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_slda</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+</span><span class="n">pam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_pam</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+</span><span class="n">C</span><span class="m">5.0</span><span class="n">Tree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_C5.0Tree</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+</span><span class="n">pls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">model_pls</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="s2">"prob"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">results</span><span class="o">$</span><span class="n">sum_Death</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rowSums</span><span class="p">(</span><span class="n">results</span><span class="p">[,</span><span class="w"> </span><span class="n">grep</span><span class="p">(</span><span class="s2">"Death"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">results</span><span class="p">))])</span><span class="w">
+</span><span class="n">results</span><span class="o">$</span><span class="n">sum_Recover</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rowSums</span><span class="p">(</span><span class="n">results</span><span class="p">[,</span><span class="w"> </span><span class="n">grep</span><span class="p">(</span><span class="s2">"Recover"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">results</span><span class="p">))])</span><span class="w">
+</span><span class="n">results</span><span class="o">$</span><span class="n">log2_ratio</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">log2</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">sum_Recover</span><span class="o">/</span><span class="n">results</span><span class="o">$</span><span class="n">sum_Death</span><span class="p">)</span><span class="w">
+</span><span class="n">results</span><span class="o">$</span><span class="n">predicted_outcome</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">log2_ratio</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="s2">"Recover"</span><span class="p">,</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">log2_ratio</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">-1.5</span><span class="p">,</span><span class="w"> </span><span class="s2">"Death"</span><span class="p">,</span><span class="w"> </span><span class="s2">"uncertain"</span><span class="p">))</span><span class="w">
+</span><span class="n">results</span><span class="p">[,</span><span class="w"> </span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">16</span><span class="p">)]</span><span class="w">
+
+</span><span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results_last_week</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Combining the table with predicted outcomes from this and last week with the original data.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">merge</span><span class="p">(</span><span class="n">result</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)],</span><span class="w"> </span><span class="n">results_last_week</span><span class="p">[,</span><span class="w"> </span><span class="n">ncol</span><span class="p">(</span><span class="n">results_last_week</span><span class="p">),</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">],</span><span class="w"> </span><span class="n">by.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"case_ID"</span><span class="p">,</span><span class="w"> </span><span class="n">by.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"row.names"</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">result</span><span class="p">)[</span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"predicted_outcome_xgboost"</span><span class="p">,</span><span class="w"> </span><span class="s2">"predicted_outcome_last_week"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">results_combined</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">merge</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">fluH7N9.china.2013</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">fluH7N9.china.2013</span><span class="o">$</span><span class="n">case.ID</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">result</span><span class="o">$</span><span class="n">case_ID</span><span class="p">),</span><span class="w"> </span><span class="p">],</span><span class="w"> 
+                          </span><span class="n">by.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"case_ID"</span><span class="p">,</span><span class="w"> </span><span class="n">by.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"case.ID"</span><span class="p">)</span><span class="w">
+</span><span class="n">results_combined</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results_combined</span><span class="p">[,</span><span class="w"> </span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="p">,</span><span class="m">7</span><span class="p">)]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>For plotting with ggplot2, the dataframe needs to be gathered.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+</span><span class="n">results_combined_gather</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results_combined</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">group_dates</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">date.of.onset</span><span class="o">:</span><span class="n">date.of.hospitalisation</span><span class="p">)</span><span class="w">
+
+</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">group_dates</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">group_dates</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"date.of.onset"</span><span class="p">,</span><span class="w"> </span><span class="s2">"date.of.hospitalisation"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">group_dates</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mapvalues</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">group_dates</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"date.of.onset"</span><span class="p">,</span><span class="w"> </span><span class="s2">"date.of.hospitalisation"</span><span class="p">),</span><span class="w"> 
+                                             </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Date of onset"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Date of hospitalisation"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">gender</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mapvalues</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">gender</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"f"</span><span class="p">,</span><span class="w"> </span><span class="s2">"m"</span><span class="p">),</span><span class="w"> 
+                                             </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Female"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">))</span><span class="w">
+</span><span class="n">levels</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">gender</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">levels</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">gender</span><span class="p">),</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">)</span><span class="w">
+</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">gender</span><span class="p">[</span><span class="nf">is.na</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">gender</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"unknown"</span><span class="w">
+
+</span><span class="n">results_combined_gather</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results_combined_gather</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">group_pred</span><span class="p">,</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">predicted_outcome_xgboost</span><span class="o">:</span><span class="n">predicted_outcome_last_week</span><span class="p">)</span><span class="w">
+
+</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">group_pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mapvalues</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">group_pred</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"predicted_outcome_xgboost"</span><span class="p">,</span><span class="w"> </span><span class="s2">"predicted_outcome_last_week"</span><span class="p">),</span><span class="w"> 
+                                             </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Predicted outcome from XGBoost"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Predicted outcome from last week"</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Setting a custom theme for plotting:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">my_theme</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">base_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sans"</span><span class="p">){</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base_size</span><span class="p">,</span><span class="w"> </span><span class="n">base_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base_family</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="w">
+    </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+    </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+    </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+    </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"aliceblue"</span><span class="p">),</span><span class="w">
+    </span><span class="n">strip.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lightgrey"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+    </span><span class="n">strip.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="p">,</span><span class="w">
+    </span><span class="n">legend.justification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"top"</span><span class="p">,</span><span class="w"> 
+    </span><span class="n">legend.box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"horizontal"</span><span class="p">,</span><span class="w">
+    </span><span class="n">legend.box.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey50"</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+    </span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.spacing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s2">"lines"</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">province</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mapvalues</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">province</span><span class="p">,</span><span class="w"> 
+                                                </span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Anhui"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Beijing"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Fujian"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Guangdong"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Hebei"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Henan"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Hunan"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Jiangxi"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Shandong"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Taiwan"</span><span class="p">),</span><span class="w"> 
+                                                </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"Other"</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">))</span><span class="w">
+
+</span><span class="n">levels</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">gender</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">levels</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">gender</span><span class="p">),</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">)</span><span class="w">
+</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">gender</span><span class="p">[</span><span class="nf">is.na</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">gender</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"unknown"</span><span class="w">
+
+</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">province</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="o">$</span><span class="n">province</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Jiangsu"</span><span class="p">,</span><span class="w">  </span><span class="s2">"Shanghai"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Zhejiang"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Other"</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">results_combined_gather</span><span class="p">,</span><span class="w"> </span><span class="n">group_dates</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Date of onset"</span><span class="p">),</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">age</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">stat_density2d</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">..level..</span><span class="p">),</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"polygon"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_jitter</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gender</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_rug</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Predicted outcome"</span><span class="p">,</span><span class="w">
+    </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Predicted outcome"</span><span class="p">,</span><span class="w">
+    </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Level"</span><span class="p">,</span><span class="w">
+    </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Gender"</span><span class="p">,</span><span class="w">
+    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Date of onset in 2013"</span><span class="p">,</span><span class="w">
+    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Age"</span><span class="p">,</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2013 Influenza A H7N9 cases in China"</span><span class="p">,</span><span class="w">
+    </span><span class="n">subtitle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Predicted outcome of cases with unknown outcome"</span><span class="p">,</span><span class="w">
+    </span><span class="n">caption</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_grid</span><span class="p">(</span><span class="n">group_pred</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">province</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">my_theme</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_shape_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="m">17</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_brewer</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">"Set1"</span><span class="p">,</span><span class="w"> </span><span class="n">na.value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey50"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="o">=</span><span class="s2">"Set1"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p><img src="flu_outcome_ML_2_post_files/figure-markdown_github/unnamed-chunk-37-1.png" style="display: block; margin: auto;" /></p>
+
+<p>There is much less uncertainty in the XGBoost data, even tough I used slightly different methods for classifying uncertainty: In last week’s analysis I based uncertainty on the ratio of combined prediction values from all analyses, this week uncertainty is based on the prediction value from one analysis.</p>
+
+<p><br /></p>
+
+<p>For a comparison of feature selection methods see <a href="https://shiring.github.io/machine_learning/2017/01/15/rfe_ga_post">here</a>.</p>
+
+<hr />
+
+<p>If you are interested in more machine learning posts, check out <a href="https://shiring.github.io/categories.html#machine_learning-ref">the category listing for <strong>machine_learning</strong></a>.</p>
+
+<hr />
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 7 x64 (build 7601) Service Pack 1
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252  LC_CTYPE=English_United States.1252    LC_MONETARY=English_United States.1252 LC_NUMERIC=C                           LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] tidyr_0.6.0     plyr_1.8.4      xgboost_0.6-0   caret_6.0-73    ggplot2_2.2.0   lattice_0.20-34 mice_2.25       Rcpp_0.12.8     dplyr_0.5.0     outbreaks_1.0.0
+## 
+## loaded via a namespace (and not attached):
+##  [1] Ckmeans.1d.dp_3.4.6-4 RColorBrewer_1.1-2    compiler_3.3.2        nloptr_1.0.4          class_7.3-14          iterators_1.0.8       tools_3.3.2           rpart_4.1-10          digest_0.6.10         lme4_1.1-12           evaluate_0.10         tibble_1.2            gtable_0.2.0          nlme_3.1-128          mgcv_1.8-16           Matrix_1.2-7.1        foreach_1.4.3         DBI_0.5-1             parallel_3.3.2        yaml_2.1.14           SparseM_1.74          e1071_1.6-7           stringr_1.1.0         knitr_1.15            MatrixModels_0.4-1    stats4_3.3.2          grid_3.3.2            nnet_7.3-12           data.table_1.9.6      R6_2.2.0              survival_2.40-1       rmarkdown_1.1         minqa_1.2.4           reshape2_1.4.2        car_2.1-3             magrittr_1.5          scales_0.4.1          codetools_0.2-15      ModelMetrics_1.1.0    htmltools_0.3.5       MASS_7.3-45           splines_3.3.2         assertthat_0.1        pbkrtest_0.4-6        colorspace_1.3-0      labeling_0.3          quantreg_5.29         stringi_1.1.2         lazyeval_0.2.0        munsell_0.4.3         chron_2.3-47
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#machine_learning-ref">
+    		machine_learning <span>14</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#Machine_Learning-ref">Machine_Learning <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+     
+    	<li><a href="/tags.html#Random_Forest-ref">Random_Forest <span>2</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/machine_learning/2016/11/27/flu_outcome_ML_post" title="Can we predict flu deaths with Machine Learning and R?">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/blogging/2016/12/04/diy_your_own_blog" title="How to set up your own R blog with Github pages and Jekyll Bootstrap">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

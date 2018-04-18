@@ -1,0 +1,816 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Exploring the human genome (Part 1) - Gene Annotations</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Exploring the human genome (Part 1) - Gene Annotations </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Exploring the human genome (Part 1) - Gene Annotations" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>23 October 2016</span>
+    </div>
+    <div class="content">
+      <p>When working with any type of genome data, we often look for annotation information about genes, e.g. what’s the gene’s full name, what’s its abbreviated symbol, what ID it has in other databases, what functions have been described, how many and which transcripts exist, etc.</p>
+
+<p>However, when looking for this information we (luckily) find a number of different databases and packages to access their information in R. But with this often comes confusion, because they all vary - sometimes only slightly, other times quite strongly - in how many genes they list and what they consider to be a “gene”.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="what-exactly-is-a-gene">What exactly is a gene?</h1>
+
+<p>The narrow traditional definition of a gene is that it is a hereditary unit of information, which meant that it is a unit of DNA which encodes for the production of a protein. The Human Genome Project has estimated that the human genome comprises 20000 to 25000 genes.</p>
+
+<p>However, if we take the definition of gene more liberally, we could also consider chunks of DNA which code for other functional units, like miRNAs, pseudogenes or other regulatory elements.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="annotationdbi">AnnotationDbi</h1>
+
+<p>The R package <a href="http://www.bioconductor.org/packages/release/bioc/html/AnnotationDbi.html">AnnotationDbi</a> provides connections to a large number of annotation resources for gene and genome information of many organisms. It can access feature data from a number of gene or genome centric packages.</p>
+
+<p>Here, I want to explore some of these packages and compare the information they contain.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="how-many-genes-are-there-in-different-databases">How many genes are there in different databases?</h3>
+
+<p>Because genes can have identifiers from many databases (but not necessarily from all and there is not always a one-to-one mapping between them), we compare the number of unique identifiers for Entrez and Ensembl, as well as for gene symbol.</p>
+
+<blockquote>
+  <p>“<a href="https://www.ncbi.nlm.nih.gov/gene">Entrez Gene</a> is NCBI’s database for gene-specific information. It does not include all known or predicted genes; instead Entrez Gene focuses on the genomes that have been completely sequenced, that have an active research community to contribute gene-specific information, or that are scheduled for intense sequence analysis.” <a href="http://nar.oxfordjournals.org/content/33/suppl_1/D54.full">Maglott et al., Nucleic Acids Research 2005</a></p>
+</blockquote>
+
+<blockquote>
+  <p><a href="http://www.ensembl.org/index.html">Ensembl</a> is a genome browser but it also includes gene annotations.</p>
+</blockquote>
+
+<blockquote>
+  <p>Gene symbols represent the official gene name abbreviation from <a href="http://www.genenames.org/">HGNC</a>.</p>
+</blockquote>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="orghsegdb">org.Hs.eg.db</h2>
+
+<p>The first package I looked at was <a href="http://bioconductor.org/packages/release/data/annotation/html/org.Hs.eg.db.html">org.Hs.eg.db</a>, which contains genome wide annotations for the human genome.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">AnnotationDbi</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">org.Hs.eg.db</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># We can find out which keys and/or columns can be accessed by running
+# keytypes(org.Hs.eg.db) or columns(org.Hs.eg.db)
+</span><span class="w">
+</span><span class="n">ENTREZID_org</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keys</span><span class="p">(</span><span class="n">org.Hs.eg.db</span><span class="p">,</span><span class="w"> </span><span class="n">keytype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ENTREZID"</span><span class="p">)</span><span class="w">
+</span><span class="n">ENSEMBL_org</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keys</span><span class="p">(</span><span class="n">org.Hs.eg.db</span><span class="p">,</span><span class="w"> </span><span class="n">keytype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ENSEMBL"</span><span class="p">)</span><span class="w">
+</span><span class="n">HGNC_org</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keys</span><span class="p">(</span><span class="n">org.Hs.eg.db</span><span class="p">,</span><span class="w"> </span><span class="n">keytype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SYMBOL"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="ensdbhsapiensv79">EnsDb.Hsapiens.v79</h2>
+
+<p><a href="https://bioconductor.org/packages/release/data/annotation/html/EnsDb.Hsapiens.v79.html">EnsDb.Hsapiens.v79</a> contains annotation information from Ensembl. Here, we also find genes based on Ensembl, Entrez and HGNC IDs.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">EnsDb.Hsapiens.v79</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># keytypes(EnsDb.Hsapiens.v79)
+</span><span class="w">
+</span><span class="n">ENTREZID_EnsDb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keys</span><span class="p">(</span><span class="n">EnsDb.Hsapiens.v79</span><span class="p">,</span><span class="w"> </span><span class="n">keytype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ENTREZID"</span><span class="p">)</span><span class="w">
+</span><span class="n">ENSEMBL_EnsDb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keys</span><span class="p">(</span><span class="n">EnsDb.Hsapiens.v79</span><span class="p">,</span><span class="w"> </span><span class="n">keytype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GENEID"</span><span class="p">)</span><span class="w">
+</span><span class="n">HGNC_EnsDb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keys</span><span class="p">(</span><span class="n">EnsDb.Hsapiens.v79</span><span class="p">,</span><span class="w"> </span><span class="n">keytype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SYMBOL"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="txdbhsapiensucschg38knowngene">TxDb.Hsapiens.UCSC.hg38.knownGene</h2>
+
+<p><a href="http://bioconductor.org/packages/release/data/annotation/html/TxDb.Hsapiens.UCSC.hg38.knownGene.html">TxDb.Hsapiens.UCSC.hg38.knownGene</a> provides annotation information from UCSC, specifically on transcripts in form of TxDb objects. Here, we only find comparable information on Entrez IDs.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">TxDb.Hsapiens.UCSC.hg38.knownGene</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># keytypes(TxDb.Hsapiens.UCSC.hg38.knownGene)
+</span><span class="w">
+</span><span class="n">ENTREZID_TxDb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keys</span><span class="p">(</span><span class="n">TxDb.Hsapiens.UCSC.hg38.knownGene</span><span class="p">,</span><span class="w"> </span><span class="n">keytype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GENEID"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="comparison-of-gene-numbers-from-the-three-databases-accessed-via-the-three-r-packages">Comparison of gene numbers from the three databases accessed via the three R packages</h1>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># setting my custom theme of choice
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">my_theme</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">base_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sans"</span><span class="p">){</span><span class="w">
+  </span><span class="n">theme_grey</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base_size</span><span class="p">,</span><span class="w"> </span><span class="n">base_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base_family</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="w">
+    </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+    </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+    </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">),</span><span class="w">
+    </span><span class="n">strip.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cornsilk"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"maroon"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w">
+    </span><span class="n">strip.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"maroon"</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># preparing the gene table for plotting
+</span><span class="n">gene_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">DB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Entrez_orgDb"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Ensembl_orgDb"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HGNC_orgDb"</span><span class="p">,</span><span class="w"> 
+                                </span><span class="s2">"Entrez_EnsDb"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Ensembl_EnsDb"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HGNC_EnsDb"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Entrez_TxDb"</span><span class="p">),</span><span class="w"> 
+                         </span><span class="n">no_genes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">ENTREZID_org</span><span class="p">)),</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">ENSEMBL_org</span><span class="p">)),</span><span class="w"> 
+                                      </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">HGNC_org</span><span class="p">)),</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">ENTREZID_EnsDb</span><span class="p">)),</span><span class="w">
+                                      </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">ENSEMBL_EnsDb</span><span class="p">)),</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">HGNC_EnsDb</span><span class="p">)),</span><span class="w"> 
+                                      </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">ENTREZID_TxDb</span><span class="p">))))</span><span class="w">
+
+</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">gene_table</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">DB</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">no_genes</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">no_genes</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"maroon"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">my_theme</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Number of genes in databases"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Count"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+
+</span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="AnnotationDbi_blog_files/figure-markdown_github/gene_numbers-1.png" style="display: block; margin: auto;" /></p>
+
+<p>When we compare the numbers of genes we can obtain from the three databases Ensembl, Entrez and HGNC via three R packages (org.Hs.eg.db, EnsDb.Hsapiens.v79 and TxDb.Hsapiens.UCSC.hg38.knownGene), we see that there are strong differences: There seem to be either around 25000 to 28000 genes or around 60000. The only database with consistent numbers is HGNC. The reason for these divergent numbers could be due to how they classify a “gene”. Everything that is around 25000 could be because they consider protein coding genes only. Will we check if that’s indeed the case in a minute.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h4 id="overlap-between-databases">Overlap between databases</h4>
+
+<p>First, I want to know how well the database information from different packages overlaps. Venn diagrams show us the number of genes overlapping between the three databases.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">gplots</span><span class="p">)</span><span class="w">
+
+</span><span class="n">venn</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">orgDb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">ENTREZID_org</span><span class="p">),</span><span class="w"> </span><span class="n">EnsDb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">ENTREZID_EnsDb</span><span class="p">),</span><span class="w"> </span><span class="n">TxDb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">ENTREZID_TxDb</span><span class="p">)),</span><span class="w"> 
+     </span><span class="n">show.plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">small</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">showSetLogicLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">simplify</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">mtext</span><span class="p">(</span><span class="s2">"Entrez database"</span><span class="p">,</span><span class="w"> </span><span class="n">side</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="AnnotationDbi_blog_files/figure-markdown_github/VennDiagram-1.png" style="display: block; margin: auto;" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">venn</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">orgDb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">ENSEMBL_org</span><span class="p">),</span><span class="w"> </span><span class="n">EnsDb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">ENSEMBL_EnsDb</span><span class="p">)),</span><span class="w"> 
+     </span><span class="n">show.plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">small</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">showSetLogicLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">simplify</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">mtext</span><span class="p">(</span><span class="s2">"Ensembl database"</span><span class="p">,</span><span class="w"> </span><span class="n">side</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="AnnotationDbi_blog_files/figure-markdown_github/VennDiagram2-1.png" style="display: block; margin: auto;" /></p>
+
+<p><img src="AnnotationDbi_blog_files/figure-markdown_github/VennDiagram3-1.png" style="display: block; margin: auto;" /></p>
+
+<p>While there is a reasonably large overlap between packages, there are still many genes which are either in one or the other package.</p>
+
+<p>For gene names this is worst, but it might be due to changing names of genes (one gene often has several symbols which can be used, the preferred one often changing with new knowledge about the gene’s function).</p>
+
+<p>For Ensembl and Entrez it seems like one of the databases simply contains more gene entries than the other(s), while the majority of genes from the smaller database are included.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="gene-biotypes">Gene biotypes</h3>
+
+<p>Gene biotype annotation tells us the general category of a gene. The biggest category is protein coding genes. They allow us to check whether the genes in different databases and package consider different categories as “genes”.</p>
+
+<p>Gene biotype information is only available for genes in EnsemblDb! Thus, the classification of genes in the other packages is biased in that only genes in EnsemblDb could be considered.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># gene dataframe for org.Hs.eg.db
+</span><span class="n">gene_dataframe_orgDb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">AnnotationDbi</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">org.Hs.eg.db</span><span class="p">,</span><span class="w"> </span><span class="n">keys</span><span class="o">=</span><span class="n">ENTREZID_org</span><span class="p">,</span><span class="w"> </span><span class="n">columns</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s2">"ENSEMBL"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SYMBOL"</span><span class="p">),</span><span class="w"> </span><span class="n">keytype</span><span class="o">=</span><span class="s2">"ENTREZID"</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">gene_dataframe_orgDb</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Entrez"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Ensembl"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HGNC"</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">gene_dataframe_orgDb</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">gene_dataframe_orgDb</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"_"</span><span class="p">)</span><span class="w">
+</span><span class="c1"># additional column with HGNC added for merging
+</span><span class="n">gene_dataframe_orgDb</span><span class="o">$</span><span class="n">HGNC</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gene_dataframe_orgDb</span><span class="o">$</span><span class="n">HGNC_orgDb</span><span class="w">
+
+</span><span class="c1"># gene dataframe for EnsDb.Hsapiens.v79
+</span><span class="n">gene_dataframe_EnsDb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ensembldb</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="n">EnsDb.Hsapiens.v79</span><span class="p">,</span><span class="w"> </span><span class="n">keys</span><span class="o">=</span><span class="n">ENSEMBL_EnsDb</span><span class="p">,</span><span class="w"> 
+                                          </span><span class="n">columns</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s2">"ENTREZID"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SYMBOL"</span><span class="p">,</span><span class="w"> </span><span class="s2">"GENEBIOTYPE"</span><span class="p">),</span><span class="w"> </span><span class="n">keytype</span><span class="o">=</span><span class="s2">"GENEID"</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">gene_dataframe_EnsDb</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Ensembl"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Entrez"</span><span class="p">,</span><span class="w"> </span><span class="s2">"HGNC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"GENEBIOTYPE"</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">gene_dataframe_EnsDb</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">gene_dataframe_EnsDb</span><span class="p">),</span><span class="w"> </span><span class="s2">"EnsDb"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"_"</span><span class="p">)</span><span class="w">
+</span><span class="c1"># additional column with HGNC added for merging &amp; keeping one copy of it in the merged dataframe
+</span><span class="n">gene_dataframe_EnsDb</span><span class="o">$</span><span class="n">HGNC</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gene_dataframe_EnsDb</span><span class="o">$</span><span class="n">HGNC_EnsDb</span><span class="w">
+
+</span><span class="c1"># merging the two dataframes by HGNC
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">gene_dataframe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">full_join</span><span class="p">(</span><span class="n">gene_dataframe_EnsDb</span><span class="p">,</span><span class="w"> </span><span class="n">gene_dataframe_orgDb</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"HGNC"</span><span class="p">)</span><span class="w">
+</span><span class="n">gene_dataframe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gene_dataframe</span><span class="p">[,</span><span class="w"> </span><span class="m">-5</span><span class="p">]</span><span class="w">
+
+</span><span class="c1"># making a dataframe with additional column for merging &amp; keeping one copy in the merged dataframe
+</span><span class="n">ENTREZID_TxDb_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">ENTREZID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">ENTREZID_TxDb</span><span class="p">),</span><span class="w"> </span><span class="n">Entrez_TxDb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ENTREZID_TxDb</span><span class="p">)</span><span class="w">
+</span><span class="n">gene_dataframe</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">gene_dataframe</span><span class="p">,</span><span class="w"> </span><span class="n">ENTREZID_TxDb_df</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Entrez_orgDb"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ENTREZID"</span><span class="p">))</span><span class="w"> 
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># calculating percentages of gene biotypes
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">gene_dataframe</span><span class="p">))){</span><span class="w">
+  </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">gene_dataframe</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span><span class="w">
+  
+  </span><span class="c1"># remove duplicate and NA plots
+</span><span class="w">  </span><span class="n">gene_dataframe_subs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gene_dataframe</span><span class="p">[</span><span class="o">!</span><span class="n">duplicated</span><span class="p">(</span><span class="n">gene_dataframe</span><span class="p">[,</span><span class="w"> </span><span class="n">key</span><span class="p">]),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s2">"GENEBIOTYPE_EnsDb"</span><span class="p">)]</span><span class="w">
+  </span><span class="n">gene_dataframe_subs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gene_dataframe_subs</span><span class="p">[</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">gene_dataframe_subs</span><span class="p">[,</span><span class="w"> </span><span class="n">key</span><span class="p">]),</span><span class="w"> </span><span class="p">]</span><span class="w">
+  
+  </span><span class="n">cat</span><span class="p">(</span><span class="s2">"\nKey:"</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s2">"has"</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">gene_dataframe_subs</span><span class="p">),</span><span class="w"> </span><span class="s2">"unique rows without NAs.\nOf these,"</span><span class="p">,</span><span class="w"> 
+      </span><span class="nf">sum</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">gene_dataframe_subs</span><span class="o">$</span><span class="n">GENEBIOTYPE_EnsDb</span><span class="p">)),</span><span class="w"> </span><span class="s2">"don't have a gene biotype annotation\n"</span><span class="p">)</span><span class="w">
+  
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">){</span><span class="w">
+    </span><span class="n">genebiotypes_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">gene_dataframe_subs</span><span class="o">$</span><span class="n">GENEBIOTYPE_EnsDb</span><span class="p">))</span><span class="w">
+    </span><span class="n">genebiotypes_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">genebiotypes_table</span><span class="p">,</span><span class="w">
+                                      </span><span class="n">data.frame</span><span class="p">(</span><span class="n">Var1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w"> 
+                                                 </span><span class="n">Freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">gene_dataframe_subs</span><span class="o">$</span><span class="n">GENEBIOTYPE_EnsDb</span><span class="p">))))</span><span class="w">
+    </span><span class="n">genebiotypes_table</span><span class="o">$</span><span class="n">percent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">genebiotypes_table</span><span class="o">$</span><span class="n">Freq</span><span class="w"> </span><span class="o">/</span><span class="w"> 
+                                                </span><span class="nf">sum</span><span class="p">(</span><span class="n">genebiotypes_table</span><span class="o">$</span><span class="n">Freq</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="n">genebiotypes_table_pre</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">gene_dataframe_subs</span><span class="o">$</span><span class="n">GENEBIOTYPE_EnsDb</span><span class="p">))</span><span class="w">
+      </span><span class="n">genebiotypes_table_pre</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">genebiotypes_table_pre</span><span class="p">,</span><span class="w">
+                                      </span><span class="n">data.frame</span><span class="p">(</span><span class="n">Var1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w"> 
+                                                 </span><span class="n">Freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">gene_dataframe_subs</span><span class="o">$</span><span class="n">GENEBIOTYPE_EnsDb</span><span class="p">))))</span><span class="w">
+      </span><span class="n">genebiotypes_table_pre</span><span class="o">$</span><span class="n">percent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">genebiotypes_table_pre</span><span class="o">$</span><span class="n">Freq</span><span class="w"> </span><span class="o">/</span><span class="w"> 
+                                                </span><span class="nf">sum</span><span class="p">(</span><span class="n">genebiotypes_table_pre</span><span class="o">$</span><span class="n">Freq</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">
+      </span><span class="n">genebiotypes_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">full_join</span><span class="p">(</span><span class="n">genebiotypes_table</span><span class="p">,</span><span class="w"> </span><span class="n">genebiotypes_table_pre</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Var1"</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+## Key: Ensembl_EnsDb has 65774 unique rows without NAs.
+## Of these, 0 don't have a gene biotype annotation
+## 
+## Key: Entrez_EnsDb has 24263 unique rows without NAs.
+## Of these, 0 don't have a gene biotype annotation
+## 
+## Key: HGNC_EnsDb has 59074 unique rows without NAs.
+## Of these, 0 don't have a gene biotype annotation
+## 
+## Key: Entrez_orgDb has 60136 unique rows without NAs.
+## Of these, 25740 don't have a gene biotype annotation
+## 
+## Key: Ensembl_orgDb has 28015 unique rows without NAs.
+## Of these, 2456 don't have a gene biotype annotation
+## 
+## Key: HGNC_orgDb has 60083 unique rows without NAs.
+## Of these, 25691 don't have a gene biotype annotation
+## 
+## Key: Entrez_TxDb has 25217 unique rows without NAs.
+## Of these, 2087 don't have a gene biotype annotation
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># create unique colnames
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">genebiotypes_table</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">make.unique</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"Key"</span><span class="p">,</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">gene_dataframe</span><span class="p">),</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)))</span><span class="w">
+</span><span class="n">genebiotypes_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genebiotypes_table</span><span class="p">[,</span><span class="w"> </span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">9</span><span class="p">)]</span><span class="w">
+
+</span><span class="c1"># order by percentage of Ensembl EnsDb
+</span><span class="n">genebiotypes_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genebiotypes_table</span><span class="p">[</span><span class="n">order</span><span class="p">(</span><span class="n">genebiotypes_table</span><span class="o">$</span><span class="n">Ensembl_EnsDb.1</span><span class="p">,</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="how-many-protein-coding-genes-are-in-each-database-and-annotation-package">How many protein coding genes are in each database and annotation package?</h4>
+
+<p>Ensembl IDs from EnsDb.Hsapiens.v79 have the most protein coding genes, which is consistent with also having the highest number of annotations in general. The number of protein coding genes in the other databases/ packages is only slightly lower, however and fits well with the predicted 20000 to 25000.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">genebiotypes_table_protein_coding</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genebiotypes_table</span><span class="p">[</span><span class="w">
+  </span><span class="n">which</span><span class="p">(</span><span class="n">genebiotypes_table</span><span class="o">$</span><span class="n">Key</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"protein_coding"</span><span class="p">,</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">)),</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+</span><span class="n">genebiotypes_table_count</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genebiotypes_table_protein_coding</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">grep</span><span class="p">(</span><span class="s2">".1"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">genebiotypes_table_protein_coding</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)]</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+</span><span class="n">genebiotypes_table_gather</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genebiotypes_table_count</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">Key</span><span class="p">,</span><span class="w"> </span><span class="n">Count</span><span class="p">,</span><span class="w"> </span><span class="n">Ensembl_EnsDb</span><span class="o">:</span><span class="n">Entrez_TxDb</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">genebiotypes_table_gather</span><span class="p">)[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"DB"</span><span class="w">
+
+</span><span class="c1"># plot
+</span><span class="n">bp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">genebiotypes_table_gather</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">],</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">DB</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Count</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Count</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"maroon"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">my_theme</span><span class="p">()</span><span class="w">
+</span><span class="n">bp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">labs</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Number of protein coding genes in databases"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Count"</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.5</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="AnnotationDbi_blog_files/figure-markdown_github/protein_coding-1.png" style="display: block; margin: auto;" /></p>
+
+<p>When looking at the percentage of protein coding genes among all gene annotations we can confirm that the database/ package combinations with lower gene numbers (Ensembl org.Db, Entrez EnsDb and Entrez TxDb) are mainly comprised of protein coding genes while databases/ packages with around 60000 gene entries consider other functional units as well.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">genebiotypes_table_percent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genebiotypes_table_protein_coding</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">grep</span><span class="p">(</span><span class="s2">".1"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">genebiotypes_table_protein_coding</span><span class="p">)))]</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+</span><span class="n">genebiotypes_table_gather</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genebiotypes_table_percent</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">Key</span><span class="p">,</span><span class="w"> </span><span class="n">Percent</span><span class="p">,</span><span class="w"> </span><span class="n">Ensembl_EnsDb.1</span><span class="o">:</span><span class="n">Entrez_TxDb.1</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">genebiotypes_table_gather</span><span class="p">)[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"DB"</span><span class="w">
+</span><span class="n">genebiotypes_table_gather</span><span class="o">$</span><span class="n">DB</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">".1"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">genebiotypes_table_gather</span><span class="o">$</span><span class="n">DB</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># plot
+</span><span class="n">bp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">genebiotypes_table_gather</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Percent</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Key</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme_minimal</span><span class="p">()</span><span class="w">
+
+</span><span class="n">pie</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">coord_polar</span><span class="p">(</span><span class="s2">"y"</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Percentage of protein coding genes in gene databases"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="w">
+  </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">),</span><span class="w">
+  </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="p">,</span><span class="w">
+  </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span><span class="n">pie</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">DB</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="AnnotationDbi_blog_files/figure-markdown_github/protein_coding2-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<h4 id="percentages-of-gene-biotypes">Percentages of gene biotypes</h4>
+
+<p>What are these other biotypes that most databases/ packages consider as genes? The second largest group following protein coding genes are processed pseudogenes, then come lincRNAs and other small RNAs.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">genebiotypes_table_percent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genebiotypes_table</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">grep</span><span class="p">(</span><span class="s2">".1"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">genebiotypes_table</span><span class="p">)))]</span><span class="w">
+</span><span class="n">genebiotypes_table_percent</span><span class="o">$</span><span class="n">Key</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">genebiotypes_table_percent</span><span class="o">$</span><span class="n">Key</span><span class="p">,</span><span class="w"> 
+                                         </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="n">genebiotypes_table_percent</span><span class="o">$</span><span class="n">Key</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># gather dataframe for plotting
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+</span><span class="n">genebiotypes_table_gather</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">genebiotypes_table_percent</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">Key</span><span class="p">,</span><span class="w"> </span><span class="n">Percent</span><span class="p">,</span><span class="w"> </span><span class="n">Ensembl_EnsDb.1</span><span class="o">:</span><span class="n">Entrez_TxDb.1</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">genebiotypes_table_gather</span><span class="p">)[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"DB"</span><span class="w">
+</span><span class="n">genebiotypes_table_gather</span><span class="o">$</span><span class="n">DB</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">".1"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">genebiotypes_table_gather</span><span class="o">$</span><span class="n">DB</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># plot
+</span><span class="n">bp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">genebiotypes_table_gather</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Percent</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Key</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme_minimal</span><span class="p">()</span><span class="w">
+
+</span><span class="n">pie</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bp</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">coord_polar</span><span class="p">(</span><span class="s2">"y"</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Percentage of gene biotypes in gene databases"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="w">
+  </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">panel.grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">),</span><span class="w">
+  </span><span class="n">legend.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+  </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="p">,</span><span class="w">
+  </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span><span class="n">pie</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="n">DB</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="AnnotationDbi_blog_files/figure-markdown_github/genebiotypes_percent-1.png" style="display: block; margin: auto;" /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h1 id="what-does-this-mean-for-genetics-and-genomics-research">What does this mean for genetics and genomics research?</h1>
+
+<p>Overall, Ensembl gene annotations from EnsDb.Hsapiens.v79 have the largest number of gene annotations.</p>
+
+<p>However, this comparison shows that it can be critical for identifying genes and annotating them correctly in your analyses to consider the strengths and weaknesses of the different databases and packages you use to access the information. I believe it is well worthwhile the time and effort to consider what information a database can or cannot give you before using it on your data.</p>
+
+<p><br /></p>
+
+<p>In a <a href="https://shiring.github.io/genome/2016/11/01/AnnotationDbi_part2">part 2</a> I am looking at transcripts.</p>
+
+<p><br /></p>
+
+<hr />
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.1 (2016-06-21)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: OS X 10.12 (Sierra)
+## 
+## locale:
+## [1] de_DE.UTF-8/de_DE.UTF-8/de_DE.UTF-8/C/de_DE.UTF-8/de_DE.UTF-8
+## 
+## attached base packages:
+## [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+## [8] methods   base     
+## 
+## other attached packages:
+##  [1] tidyr_0.6.0                            
+##  [2] dplyr_0.5.0                            
+##  [3] gplots_3.0.1                           
+##  [4] ggplot2_2.1.0                          
+##  [5] TxDb.Hsapiens.UCSC.hg38.knownGene_3.4.0
+##  [6] EnsDb.Hsapiens.v79_1.1.0               
+##  [7] ensembldb_1.6.0                        
+##  [8] GenomicFeatures_1.26.0                 
+##  [9] GenomicRanges_1.26.0                   
+## [10] GenomeInfoDb_1.10.0                    
+## [11] org.Hs.eg.db_3.4.0                     
+## [12] AnnotationDbi_1.36.0                   
+## [13] IRanges_2.8.0                          
+## [14] S4Vectors_0.12.0                       
+## [15] Biobase_2.34.0                         
+## [16] BiocGenerics_0.20.0                    
+## 
+## loaded via a namespace (and not attached):
+##  [1] SummarizedExperiment_1.4.0    gtools_3.5.0                 
+##  [3] lattice_0.20-34               colorspace_1.2-7             
+##  [5] htmltools_0.3.5               rtracklayer_1.34.0           
+##  [7] yaml_2.1.13                   interactiveDisplayBase_1.12.0
+##  [9] XML_3.98-1.4                  DBI_0.5-1                    
+## [11] BiocParallel_1.8.0            plyr_1.8.4                   
+## [13] stringr_1.1.0                 zlibbioc_1.20.0              
+## [15] Biostrings_2.42.0             munsell_0.4.3                
+## [17] gtable_0.2.0                  caTools_1.17.1               
+## [19] evaluate_0.10                 labeling_0.3                 
+## [21] knitr_1.14                    biomaRt_2.30.0               
+## [23] httpuv_1.3.3                  BiocInstaller_1.24.0         
+## [25] Rcpp_0.12.7                   KernSmooth_2.23-15           
+## [27] xtable_1.8-2                  scales_0.4.0                 
+## [29] formatR_1.4                   gdata_2.17.0                 
+## [31] XVector_0.14.0                mime_0.5                     
+## [33] Rsamtools_1.26.0              AnnotationHub_2.6.0          
+## [35] digest_0.6.10                 stringi_1.1.2                
+## [37] shiny_0.14.1                  grid_3.3.1                   
+## [39] tools_3.3.1                   bitops_1.0-6                 
+## [41] magrittr_1.5                  lazyeval_0.2.0               
+## [43] RCurl_1.95-4.8                tibble_1.2                   
+## [45] RSQLite_1.0.0                 Matrix_1.2-7.1               
+## [47] assertthat_0.1                rmarkdown_1.1                
+## [49] httr_1.2.1                    R6_2.2.0                     
+## [51] GenomicAlignments_1.10.0
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#genome-ref">
+    		genome <span>6</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#AnnotationDbi-ref">AnnotationDbi <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+     
+    	<li><a href="/tags.html#genes-ref">genes <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#genomics-ref">genomics <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#genetics-ref">genetics <span>2</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/maps/gpx/2016/10/16/roadtrip2016" title="USA/ Canada Roadtrip 2016">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/genome/2016/11/01/AnnotationDbi_part2" title="Exploring the human genome (Part 2) - Transcripts">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

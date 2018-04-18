@@ -1,0 +1,779 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>How to build a Shiny app for disease- & trait-associated locations of the human genome</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>How to build a Shiny app for disease- & trait-associated locations of the human genome </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="How to build a Shiny app for disease- & trait-associated locations of the human genome" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>18 December 2016</span>
+    </div>
+    <div class="content">
+      <p>This app is based on the <a href="http://bioconductor.org/packages/release/bioc/html/gwascat.html">gwascat</a> R package and its <em>ebicat38</em> database and shows trait-associated SNP locations of the human genome. You can visualize and compare the genomic locations of up to 8 traits simultaneously.</p>
+
+<p>The <a href="http://www.ebi.ac.uk/gwas/">National Human Genome Research Institute (NHGRI) catalog of Genome-Wide Association Studies (GWAS)</a> is a curated resource of single-nucleotide polymorphism (SNP)-trait associations. The database contains more than 100,000 SNPs and all SNP-trait associations with a p-value &lt;1 × 10^−5.</p>
+
+<p><br /></p>
+
+<p>You can access the app at</p>
+
+<blockquote>
+  <p><a href="https://shiring.shinyapps.io/gwas_shiny_app/">https://shiring.shinyapps.io/gwas_shiny_app/</a></p>
+</blockquote>
+
+<p>Loading the data might take a few seconds. Patience you must have, my young padawan… ;-)</p>
+
+<p><br /></p>
+
+<p>Alternatively, if you are using R, you can load the app via Github with <strong>shiny</strong>:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span><span class="w">
+</span><span class="n">runGitHub</span><span class="p">(</span><span class="s2">"ShirinG/GWAS_Shiny_App"</span><span class="p">)</span><span class="w"> 
+</span></code></pre>
+</div>
+
+<p><img src="shiny_app.jpg" style="display: block; margin: auto;" /></p>
+
+<hr />
+
+<p><br /></p>
+
+<p>If you want to know how I built this app, contine reading.</p>
+
+<p><br /></p>
+
+<h1 id="data-preparation">Data preparation</h1>
+
+<p>Initially, I wanted to load all data directly from R packages. And while this worked in principal, it made the app load super slowly.</p>
+
+<p>So, I decided to prepare the data beforehand and save the datatables as tab-delimited text files and load them in the app.</p>
+
+<p><br /></p>
+
+<h2 id="genome-information">Genome information</h2>
+
+<p>First, I’m preparing the genome information: for each chromosome I want to know its length:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">AnnotationDbi</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">org.Hs.eg.db</span><span class="p">)</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">EnsDb.Hsapiens.v79</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">edb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">EnsDb.Hsapiens.v79</span><span class="w">
+
+</span><span class="n">keys</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keys</span><span class="p">(</span><span class="n">edb</span><span class="p">,</span><span class="w"> </span><span class="n">keytype</span><span class="o">=</span><span class="s2">"SEQNAME"</span><span class="p">)</span><span class="w">
+</span><span class="n">chromosome_length</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">edb</span><span class="p">,</span><span class="w"> </span><span class="n">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">columns</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"SEQLENGTH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SEQNAME"</span><span class="p">),</span><span class="w"> </span><span class="n">keytype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"SEQNAME"</span><span class="p">)</span><span class="w">
+</span><span class="n">chromosome_length</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">chromosome_length</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"^[0-9]+$|^X$|^Y$|^MT$"</span><span class="p">,</span><span class="w"> </span><span class="n">chromosome_length</span><span class="o">$</span><span class="n">SEQNAME</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+</span><span class="n">write.table</span><span class="p">(</span><span class="n">chromosome_length</span><span class="p">,</span><span class="w"> </span><span class="s2">"chromosome_length.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">col.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="gwas-snp-data">GWAS SNP data</h2>
+
+<p>I am saving the GWAS data as a text file as well; this datatable will be used for plotting the SNP locations.</p>
+
+<p>I am also saving a table with the alphabetically sorted traits as input for the drop-down menu.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">gwascat</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data</span><span class="p">(</span><span class="n">ebicat38</span><span class="p">)</span><span class="w">
+
+</span><span class="n">gwas38</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">ebicat38</span><span class="p">)</span><span class="w">
+</span><span class="n">gwas38</span><span class="o">$</span><span class="n">DISEASE.TRAIT</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"&amp;beta;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"beta"</span><span class="p">,</span><span class="w"> </span><span class="n">gwas38</span><span class="o">$</span><span class="n">DISEASE.TRAIT</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># PVALUE_MLOG: -log(p-value)
+</span><span class="n">gwas38</span><span class="p">[</span><span class="nf">is.infinite</span><span class="p">(</span><span class="n">gwas38</span><span class="o">$</span><span class="n">PVALUE_MLOG</span><span class="p">),</span><span class="w"> </span><span class="s2">"PVALUE_MLOG"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">gwas38</span><span class="p">[</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">gwas38</span><span class="o">$</span><span class="n">PVALUE_MLOG</span><span class="p">),</span><span class="w"> </span><span class="s2">"PVALUE_MLOG"</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">gwas38</span><span class="p">[</span><span class="nf">is.finite</span><span class="p">(</span><span class="n">gwas38</span><span class="o">$</span><span class="n">PVALUE_MLOG</span><span class="p">),</span><span class="w"> </span><span class="s2">"PVALUE_MLOG"</span><span class="p">])</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">gwas38</span><span class="o">$</span><span class="n">PVALUE_MLOG</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># OR or BETA*: Reported odds ratio or beta-coefficient associated with strongest SNP risk allele. Note that if an OR &lt;1 is reported this is inverted, along with the reported allele, so that all ORs included in the Catalog are &gt;1. Appropriate unit and increase/decrease are included for beta coefficients.
+</span><span class="n">summary</span><span class="p">(</span><span class="n">gwas38</span><span class="o">$</span><span class="n">OR.or.BETA</span><span class="p">)</span><span class="w">
+
+</span><span class="n">write.table</span><span class="p">(</span><span class="n">gwas38</span><span class="p">,</span><span class="w"> </span><span class="s2">"gwas38.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">col.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">gwas38_traits</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">gwas38</span><span class="o">$</span><span class="n">DISEASE.TRAIT</span><span class="p">))</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">gwas38_traits</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Trait"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Frequency"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">write.table</span><span class="p">(</span><span class="n">gwas38_traits</span><span class="p">,</span><span class="w"> </span><span class="s2">"gwas38_traits.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">col.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h1 id="the-shiny-app">The Shiny App</h1>
+
+<p>I built my Shiny app with the traditional two-file system. This means that I have a “ui.R” file containing the layout and a “server.R” file, which contains the R code.</p>
+
+<p><br /></p>
+
+<h2 id="uir">ui.R</h2>
+
+<p>From top to bottom I chose the following settings:</p>
+
+<ul>
+  <li>loading the table with all traits</li>
+  <li>adding a “choose below” option before the traits to have no trait chosen by default</li>
+  <li>“united” theme for layout</li>
+  <li>two slider bars, one for the p-value threshold and one for the odds ratio/ beta coefficient threshold</li>
+  <li>drop-down menus for all traits, maximal eight can be chosen to be plotted simultaneously</li>
+  <li>main panel with explanatory text, main plot and output tables</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">shinythemes</span><span class="p">)</span><span class="w">
+
+</span><span class="n">gwas38_traits</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"gwas38_traits.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">diseases</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"choose below"</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">gwas38_traits</span><span class="o">$</span><span class="n">Trait</span><span class="p">))</span><span class="w">
+
+</span><span class="n">shinyUI</span><span class="p">(</span><span class="n">fluidPage</span><span class="p">(</span><span class="n">theme</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">shinytheme</span><span class="p">(</span><span class="s2">"united"</span><span class="p">),</span><span class="w">
+                  </span><span class="n">titlePanel</span><span class="p">(</span><span class="s2">"GWAS disease- &amp; trait-associated SNP locations of the human genome"</span><span class="p">),</span><span class="w">
+
+                  </span><span class="n">sidebarLayout</span><span class="p">(</span><span class="w">
+                    </span><span class="n">sidebarPanel</span><span class="p">(</span><span class="w">
+
+                      </span><span class="n">sliderInput</span><span class="p">(</span><span class="s2">"pvalmlog"</span><span class="p">,</span><span class="w">
+                                  </span><span class="s2">"-log(p-value):"</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-13</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">332</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-13</span><span class="p">),</span><span class="w">
+
+                      </span><span class="n">sliderInput</span><span class="p">(</span><span class="s2">"orbeta"</span><span class="p">,</span><span class="w">
+                                  </span><span class="s2">"odds ratio/ beta-coefficient :"</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4426</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+
+                      </span><span class="n">selectInput</span><span class="p">(</span><span class="s2">"variable1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"First trait:"</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diseases</span><span class="p">[</span><span class="m">-1</span><span class="p">]),</span><span class="w">
+
+                      </span><span class="n">selectInput</span><span class="p">(</span><span class="s2">"variable2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Second trait:"</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diseases</span><span class="p">),</span><span class="w">
+
+                      </span><span class="n">selectInput</span><span class="p">(</span><span class="s2">"variable3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Third trait:"</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diseases</span><span class="p">),</span><span class="w">
+
+                      </span><span class="n">selectInput</span><span class="p">(</span><span class="s2">"variable4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Fourth trait:"</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diseases</span><span class="p">),</span><span class="w">
+
+                      </span><span class="n">selectInput</span><span class="p">(</span><span class="s2">"variable5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Fifth trait:"</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diseases</span><span class="p">),</span><span class="w">
+
+                      </span><span class="n">selectInput</span><span class="p">(</span><span class="s2">"variable6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Sixth trait:"</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diseases</span><span class="p">),</span><span class="w">
+
+                      </span><span class="n">selectInput</span><span class="p">(</span><span class="s2">"variable7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Seventh trait:"</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diseases</span><span class="p">),</span><span class="w">
+
+                      </span><span class="n">selectInput</span><span class="p">(</span><span class="s2">"variable8"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Eighth trait:"</span><span class="p">,</span><span class="w">
+                                  </span><span class="n">choices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diseases</span><span class="p">)</span><span class="w">
+                    </span><span class="p">),</span><span class="w">
+                    </span><span class="n">mainPanel</span><span class="p">(</span><span class="w">
+                      </span><span class="n">br</span><span class="p">(),</span><span class="w">
+                      </span><span class="n">p</span><span class="p">(</span><span class="s2">"The National Human Genome Research Institute (NHGRI) catalog of Genome-Wide Association Studies (GWAS) is a curated resource of single-nucleotide polymorphisms (SNP)-trait associations. The database contains more than 100,000 SNPs and all SNP-trait associations with a p-value &lt;1 × 10^−5."</span><span class="p">),</span><span class="w">
+                      </span><span class="n">p</span><span class="p">(</span><span class="s2">"This app is based on the 'gwascat' R package and its 'ebicat38' database and shows trait-associated SNP locations of the human genome."</span><span class="p">),</span><span class="w">
+                      </span><span class="n">p</span><span class="p">(</span><span class="s2">"For more info on how I built this app check out"</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="s2">"my blog."</span><span class="p">,</span><span class="w"> </span><span class="n">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"https://shiring.github.io/"</span><span class="p">)),</span><span class="w">
+                      </span><span class="n">br</span><span class="p">(),</span><span class="w">
+                      </span><span class="n">h</span><span class="m">4</span><span class="p">(</span><span class="s2">"How to use this app:"</span><span class="p">),</span><span class="w">
+                      </span><span class="n">div</span><span class="p">(</span><span class="s2">"Out of 1320 available traits or diseases you can choose up to 8 on the left-side panel und see their chromosomal locations below. The traits are sorted alphabetically. You can also start typing in the drop-down panel and traits matching your query will be suggested."</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"color:blue"</span><span class="p">),</span><span class="w">
+                      </span><span class="n">br</span><span class="p">(),</span><span class="w">
+                      </span><span class="n">div</span><span class="p">(</span><span class="s2">"With the two sliders on the left-side panel you can select SNPs above a p-value threshold (-log of association p-value) and/or above an odds ratio/ beta-coefficient threshold. The higher the -log of the p-value the more significant the association of the SNP with the trait. Beware that some SNPs have no odds ratio value and will be shown regardless of the threshold."</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"color:blue"</span><span class="p">),</span><span class="w">
+                      </span><span class="n">br</span><span class="p">(),</span><span class="w">
+                      </span><span class="n">div</span><span class="p">(</span><span class="s2">"The table directly below the plot shows the number of SNPs for each selected trait (without subsetting when p-value or odds ratio are changed). The second table below the first shows detailed information for each SNP of the chosen traits. This table shows only SNPs which are plotted (it subsets according to p-value and odds ratio thresholds)."</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"color:blue"</span><span class="p">),</span><span class="w">
+                      </span><span class="n">br</span><span class="p">(),</span><span class="w">
+                      </span><span class="n">div</span><span class="p">(</span><span class="s2">"Loading might take a few seconds..."</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"color:red"</span><span class="p">),</span><span class="w">
+                      </span><span class="n">br</span><span class="p">(),</span><span class="w">
+                      </span><span class="n">plotOutput</span><span class="p">(</span><span class="s2">"plot"</span><span class="p">),</span><span class="w">
+                      </span><span class="n">tableOutput</span><span class="p">(</span><span class="s1">'table'</span><span class="p">),</span><span class="w">
+                      </span><span class="n">tableOutput</span><span class="p">(</span><span class="s1">'table2'</span><span class="p">),</span><span class="w">
+                      </span><span class="n">br</span><span class="p">(),</span><span class="w">
+                      </span><span class="n">p</span><span class="p">(</span><span class="s2">"GWAS catalog:"</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="s2">"http://www.ebi.ac.uk/gwas/"</span><span class="p">,</span><span class="w"> </span><span class="n">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"http://www.ebi.ac.uk/gwas/"</span><span class="p">)),</span><span class="w">
+                      </span><span class="n">p</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="s2">"Welter, Danielle et al. “The NHGRI GWAS Catalog, a Curated Resource of SNP-Trait Associations.” Nucleic Acids Research 42.Database issue (2014): D1001–D1006. PMC. Web. 17 Dec. 2016."</span><span class="p">,</span><span class="w"> </span><span class="n">href</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3965119/"</span><span class="p">))</span><span class="w">
+                    </span><span class="p">)</span><span class="w">
+                  </span><span class="p">)</span><span class="w">
+</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="serverr">server.R</h2>
+
+<p>This file contains the R code to produce the plot and output tables.</p>
+
+<ul>
+  <li>The chromosome data is loaded for the chromosome length barplot. In order to have the correct order, I am setting the chromosome factor order manually</li>
+  <li>renderPlot() contains the code for the plot</li>
+  <li>from the eight possible input traits, all unique traits are plotted (removing “choose below” first), unique traits were set here, so as not to plot the same trait on top of themselves if the same trait is chosen in two drop-down menus</li>
+  <li>the first output table shows the number of SNPs for the chosen traits</li>
+  <li>the second output table shows SNP information for all SNPs of the chosen trait(s) within the chosen thresholds</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">shiny</span><span class="p">)</span><span class="w">
+
+</span><span class="n">chr_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"chromosome_length.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">chr_data</span><span class="o">$</span><span class="n">SEQNAME</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">chr_data</span><span class="o">$</span><span class="n">SEQNAME</span><span class="p">)</span><span class="w">
+</span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w"> </span><span class="s2">"18"</span><span class="p">,</span><span class="w"> </span><span class="s2">"19"</span><span class="p">,</span><span class="w"> </span><span class="s2">"20"</span><span class="p">,</span><span class="w"> </span><span class="s2">"21"</span><span class="p">,</span><span class="w"> </span><span class="s2">"22"</span><span class="p">,</span><span class="w"> </span><span class="s2">"X"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MT"</span><span class="p">)</span><span class="w">
+</span><span class="n">chr_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">within</span><span class="p">(</span><span class="n">chr_data</span><span class="p">,</span><span class="w"> </span><span class="n">SEQNAME</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">SEQNAME</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">))</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">gwas38</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"gwas38.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">)</span><span class="w">
+</span><span class="n">gwas38_traits</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"gwas38_traits.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># Define server logic required to plot variables
+</span><span class="n">shinyServer</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">output</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+  </span><span class="c1"># Generate a plot of the requested variables
+</span><span class="w">  </span><span class="n">output</span><span class="o">$</span><span class="n">plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">renderPlot</span><span class="p">({</span><span class="w">
+
+    </span><span class="n">plot_snps</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">trait</span><span class="p">){</span><span class="w">
+
+      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nf">any</span><span class="p">(</span><span class="n">trait</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"choose below"</span><span class="p">)){</span><span class="w">
+        </span><span class="n">trait</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">trait</span><span class="p">[</span><span class="o">-</span><span class="n">which</span><span class="p">(</span><span class="n">trait</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"choose below"</span><span class="p">)]</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="n">trait</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">trait</span><span class="p">)</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+
+        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">trait</span><span class="p">))){</span><span class="w">
+
+          </span><span class="n">trait_pre</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">trait</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span><span class="w">
+          </span><span class="n">snps_data_pre</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gwas38</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">gwas38</span><span class="o">$</span><span class="n">DISEASE.TRAIT</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">trait_pre</span><span class="p">)),</span><span class="w"> </span><span class="p">]</span><span class="w">
+          </span><span class="n">snps_data_pre</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">Chr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">snps_data_pre</span><span class="o">$</span><span class="n">seqnames</span><span class="p">,</span><span class="w">
+                                      </span><span class="n">Start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">snps_data_pre</span><span class="o">$</span><span class="n">CHR_POS</span><span class="p">,</span><span class="w">
+                                      </span><span class="n">SNPid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">snps_data_pre</span><span class="o">$</span><span class="n">SNPS</span><span class="p">,</span><span class="w">
+                                      </span><span class="n">Trait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="n">trait_pre</span><span class="p">),</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">snps_data_pre</span><span class="p">)),</span><span class="w">
+                                      </span><span class="n">PVALUE_MLOG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">snps_data_pre</span><span class="o">$</span><span class="n">PVALUE_MLOG</span><span class="p">,</span><span class="w">
+                                      </span><span class="n">OR.or.BETA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">snps_data_pre</span><span class="o">$</span><span class="n">OR.or.BETA</span><span class="p">)</span><span class="w">
+
+          </span><span class="n">snps_data_pre</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">snps_data_pre</span><span class="p">,</span><span class="w"> </span><span class="n">PVALUE_MLOG</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">pvalmlog</span><span class="p">)</span><span class="w">
+          </span><span class="n">snps_data_pre</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">snps_data_pre</span><span class="p">,</span><span class="w"> </span><span class="n">OR.or.BETA</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">orbeta</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nf">is.na</span><span class="p">(</span><span class="n">OR.or.BETA</span><span class="p">))</span><span class="w">
+
+          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">){</span><span class="w">
+
+            </span><span class="n">snps_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">snps_data_pre</span><span class="w">
+
+          </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+            </span><span class="n">snps_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">snps_data</span><span class="p">,</span><span class="w"> </span><span class="n">snps_data_pre</span><span class="p">)</span><span class="w">
+
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+
+      </span><span class="n">snps_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">within</span><span class="p">(</span><span class="n">snps_data</span><span class="p">,</span><span class="w"> </span><span class="n">Chr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">Chr</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">))</span><span class="w">
+
+      </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">snps_data</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Chr</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">Start</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">chr_data</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SEQNAME</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">SEQLENGTH</span><span class="p">)),</span><span class="w"> </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey90"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">theme</span><span class="p">(</span><span class="w">
+          </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w">
+          </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w">
+          </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+          </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">),</span><span class="w">
+          </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="w">
+        </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Chromosome"</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Position"</span><span class="p">)</span><span class="w">
+
+      </span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">geom_segment</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">snps_data</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">Chr</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0.45</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">Chr</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.45</span><span class="p">,</span><span class="w">
+                                           </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Start</span><span class="p">,</span><span class="w"> </span><span class="n">yend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Start</span><span class="p">,</span><span class="w"> </span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Trait</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">scale_colour_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+        </span><span class="n">guides</span><span class="p">(</span><span class="n">colour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">guide_legend</span><span class="p">(</span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">byrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+
+      </span><span class="p">}</span><span class="w">
+
+    </span><span class="n">plot_snps</span><span class="p">(</span><span class="n">trait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">variable1</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable2</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable3</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable4</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable5</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable6</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable7</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable8</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable9</span><span class="p">))</span><span class="w">
+  </span><span class="p">})</span><span class="w">
+
+  </span><span class="n">output</span><span class="o">$</span><span class="n">table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">renderTable</span><span class="p">({</span><span class="w">
+    </span><span class="n">table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gwas38_traits</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">gwas38_traits</span><span class="o">$</span><span class="n">Trait</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">variable1</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable2</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable3</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable4</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable5</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable6</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable7</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable8</span><span class="p">)),</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+    </span><span class="p">})</span><span class="w">
+
+  </span><span class="n">output</span><span class="o">$</span><span class="n">table2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">renderTable</span><span class="p">({</span><span class="w">
+    </span><span class="n">table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gwas38</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">gwas38</span><span class="o">$</span><span class="n">DISEASE.TRAIT</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">variable1</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable2</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable3</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable4</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable5</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable6</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable7</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">variable8</span><span class="p">)),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">11</span><span class="p">,</span><span class="w"> </span><span class="m">13</span><span class="p">,</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">27</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">33</span><span class="p">,</span><span class="w"> </span><span class="m">34</span><span class="p">,</span><span class="w"> </span><span class="m">36</span><span class="p">)]</span><span class="w">
+
+    </span><span class="n">table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">PVALUE_MLOG</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">pvalmlog</span><span class="p">)</span><span class="w">
+    </span><span class="n">table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">OR.or.BETA</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">input</span><span class="o">$</span><span class="n">orbeta</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nf">is.na</span><span class="p">(</span><span class="n">OR.or.BETA</span><span class="p">))</span><span class="w">
+
+    </span><span class="n">table</span><span class="p">[</span><span class="n">order</span><span class="p">(</span><span class="n">table</span><span class="o">$</span><span class="n">seqnames</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="p">})</span><span class="w">
+
+</span><span class="p">})</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="deploying-to-shinyappsio">Deploying to shinyapps.io</h2>
+
+<p>Finally, I am deploying my finished app to shinyapps.io with the <em>rsconnect</em> package. You will need to register with shinyapps.io before you can host your Shiny app there and register rsconnect with the token you received.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">rsconnect</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">rsconnect</span><span class="o">::</span><span class="n">deployApp</span><span class="p">(</span><span class="s1">'~/Documents/Github/blog_posts_prep/gwas/shiny/GWAS_Shiny_App'</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>This will open your deployed app right aways. You can now share the link to your app with the world! :-)</p>
+
+<hr />
+
+<p><br /></p>
+
+<h4 id="if-you-are-interested-in-human-genomics">If you are interested in human genomics…</h4>
+
+<p>… you might also like these posts:</p>
+
+<ul>
+  <li><a href="https://shiring.github.io/genome/2016/10/23/AnnotationDbi">https://shiring.github.io/genome/2016/10/23/AnnotationDbi</a></li>
+  <li><a href="https://shiring.github.io/genome/2016/11/01/AnnotationDbi_part2">https://shiring.github.io/genome/2016/11/01/AnnotationDbi_part2</a></li>
+  <li><a href="https://shiring.github.io/genome/2016/12/11/homologous_genes_post">https://shiring.github.io/genome/2016/12/11/homologous_genes_post</a></li>
+  <li><a href="https://shiring.github.io/genome/2016/12/14/homologous_genes_part2_post">https://shiring.github.io/genome/2016/12/14/homologous_genes_part2_post</a></li>
+</ul>
+
+<hr />
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.1
+## 
+## locale:
+## [1] de_DE.UTF-8/de_DE.UTF-8/de_DE.UTF-8/C/de_DE.UTF-8/de_DE.UTF-8
+## 
+## attached base packages:
+## [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+## [8] methods   base     
+## 
+## other attached packages:
+##  [1] rsconnect_0.6                          
+##  [2] gwascat_2.6.0                          
+##  [3] Homo.sapiens_1.3.1                     
+##  [4] TxDb.Hsapiens.UCSC.hg19.knownGene_3.2.2
+##  [5] GO.db_3.4.0                            
+##  [6] OrganismDbi_1.16.0                     
+##  [7] EnsDb.Hsapiens.v79_2.1.0               
+##  [8] ensembldb_1.6.2                        
+##  [9] GenomicFeatures_1.26.0                 
+## [10] GenomicRanges_1.26.1                   
+## [11] GenomeInfoDb_1.10.1                    
+## [12] org.Hs.eg.db_3.4.0                     
+## [13] AnnotationDbi_1.36.0                   
+## [14] IRanges_2.8.1                          
+## [15] S4Vectors_0.12.1                       
+## [16] Biobase_2.34.0                         
+## [17] BiocGenerics_0.20.0                    
+## 
+## loaded via a namespace (and not attached):
+##   [1] colorspace_1.3-1              rprojroot_1.1                
+##   [3] biovizBase_1.22.0             htmlTable_1.7                
+##   [5] XVector_0.14.0                base64enc_0.1-3              
+##   [7] dichromat_2.0-0               base64_2.0                   
+##   [9] interactiveDisplayBase_1.12.0 codetools_0.2-15             
+##  [11] splines_3.3.2                 snpStats_1.24.0              
+##  [13] ggbio_1.22.0                  fail_1.3                     
+##  [15] doParallel_1.0.10             knitr_1.15.1                 
+##  [17] Formula_1.2-1                 gQTLBase_1.6.0               
+##  [19] Rsamtools_1.26.1              cluster_2.0.5                
+##  [21] graph_1.52.0                  shiny_0.14.2                 
+##  [23] httr_1.2.1                    backports_1.0.4              
+##  [25] assertthat_0.1                Matrix_1.2-7.1               
+##  [27] lazyeval_0.2.0                limma_3.30.6                 
+##  [29] acepack_1.4.1                 htmltools_0.3.5              
+##  [31] tools_3.3.2                   gtable_0.2.0                 
+##  [33] reshape2_1.4.2                dplyr_0.5.0                  
+##  [35] fastmatch_1.0-4               Rcpp_0.12.8                  
+##  [37] Biostrings_2.42.1             nlme_3.1-128                 
+##  [39] rtracklayer_1.34.1            iterators_1.0.8              
+##  [41] ffbase_0.12.3                 stringr_1.1.0                
+##  [43] mime_0.5                      XML_3.98-1.5                 
+##  [45] AnnotationHub_2.6.4           zlibbioc_1.20.0              
+##  [47] scales_0.4.1                  BSgenome_1.42.0              
+##  [49] VariantAnnotation_1.20.2      BiocInstaller_1.24.0         
+##  [51] SummarizedExperiment_1.4.0    RBGL_1.50.0                  
+##  [53] RColorBrewer_1.1-2            BBmisc_1.10                  
+##  [55] yaml_2.1.14                   memoise_1.0.0                
+##  [57] gridExtra_2.2.1               ggplot2_2.2.0                
+##  [59] biomaRt_2.30.0                rpart_4.1-10                 
+##  [61] reshape_0.8.6                 latticeExtra_0.6-28          
+##  [63] stringi_1.1.2                 RSQLite_1.1-1                
+##  [65] foreach_1.4.3                 checkmate_1.8.2              
+##  [67] BiocParallel_1.8.1            BatchJobs_1.6                
+##  [69] GenomicFiles_1.10.3           bitops_1.0-6                 
+##  [71] matrixStats_0.51.0            evaluate_0.10                
+##  [73] lattice_0.20-34               GenomicAlignments_1.10.0     
+##  [75] bit_1.1-12                    GGally_1.3.0                 
+##  [77] plyr_1.8.4                    magrittr_1.5                 
+##  [79] sendmailR_1.2-1               R6_2.2.0                     
+##  [81] Hmisc_4.0-1                   DBI_0.5-1                    
+##  [83] foreign_0.8-67                mgcv_1.8-16                  
+##  [85] survival_2.40-1               RCurl_1.95-4.8               
+##  [87] nnet_7.3-12                   tibble_1.2                   
+##  [89] rmarkdown_1.2                 grid_3.3.2                   
+##  [91] data.table_1.10.0             gQTLstats_1.6.0              
+##  [93] digest_0.6.10                 xtable_1.8-2                 
+##  [95] ff_2.2-13                     httpuv_1.3.3                 
+##  [97] brew_1.0-6                    openssl_0.9.5                
+##  [99] munsell_0.4.3                 beeswarm_0.2.3               
+## [101] Gviz_1.18.1
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#genome-ref">
+    		genome <span>6</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#shiny-ref">shiny <span>5</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+     
+    	<li><a href="/tags.html#gwas-ref">gwas <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/genome/2016/12/14/homologous_genes_part2_post" title="Gene homology Part 2 - creating directed networks with igraph">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/animation/2016/12/22/alcohol_post" title="Animating Plots of Beer Ingredients and Sin Taxes over Time">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

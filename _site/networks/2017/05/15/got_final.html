@@ -1,0 +1,1336 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Network analysis of Game of Thrones family ties</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Network analysis of Game of Thrones family ties </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Network analysis of Game of Thrones family ties" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>15 May 2017</span>
+    </div>
+    <div class="content">
+      <p>In this post, I am exploring network analysis techniques in a family network of major characters from Game of Thrones.</p>
+
+<p>Not surprisingly, we learn that House Stark (specifically Ned and Sansa) and House Lannister (especially Tyrion) are the most important family connections in Game of Thrones; they also connect many of the storylines and are central parts of the narrative.</p>
+
+<p><br /></p>
+
+<h2 id="what-is-a-network">What is a network?</h2>
+
+<p>A network in this context is a graph of interconnected nodes/vertices. Nodes can e.g. be people in a social network, genes in a co-expression network, etc. Nodes are connected via ties/edges.</p>
+
+<p><br /></p>
+
+<h2 id="what-can-network-analysis-tell-us">What can network analysis tell us?</h2>
+
+<p>Network analysis can e.g. be used to explore relationships in social or professional networks. In such cases, we would typically ask questions like:</p>
+
+<ul>
+  <li>How many connections does each person have?</li>
+  <li>Who is the most connected (i.e. influential or “important”) person?</li>
+  <li>Are there clusters of tightly connected people?</li>
+  <li>Are there a few key players that connect clusters of people?</li>
+  <li>etc.</li>
+</ul>
+
+<p>These answers can give us a lot of information about the patterns of how people interact.</p>
+
+<p><br /></p>
+
+<h2 id="the-game-of-thrones-character-network">The Game of Thrones character network</h2>
+
+<p>The basis for this network is <a href="https://www.kaggle.com/mylesoneill/game-of-thrones">Kaggle’s Game of Throne dataset (character-deaths.csv)</a>. Because most family relationships were missing in that dataset, I added the missing information in part by hand (based on <a href="http://awoiaf.westeros.org/">A Wiki of Ice and Fire</a>) and by scraping information from <a href="http://gameofthrones.wikia.com">the Game of Thrones wiki</a>. You can find the full code for how I generated the network <a href="https://github.com/ShirinG/blog_posts_prep/blob/master/GoT/got.Rmd">on my Github page</a>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">statnet</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">load</span><span class="p">(</span><span class="s2">"union_edges.RData"</span><span class="p">)</span><span class="w">
+</span><span class="n">load</span><span class="p">(</span><span class="s2">"union_characters.RData"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>I am using <strong>igraph</strong> to plot the initial network. To do so, I first create the graph from the edge- and node-table. An edge-table contains source and target nodes in the first two columns and optionally additional columns with edge attributes. Here, I have the type of interaction (mother, father or spouse), the color and line-type I want to assign to each edge.</p>
+
+<p>Because the books and the TV series differ slightly, I have introduced edges that are only supported or hinted at by the TV series and are not part of the original narrative in the books. These edges are marked by being dotted instead of solid. An additional color for edges with unspecified parental origin are introduced as well. Originally, these served for interactions that were extracted from character names (i.e. characters that ended with “… son/daughter of …”) and could either mean mother or father. Now, they show unclear parentage or cases where there are a biological and a de facto father, as in the case of Jon Snow.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">union_edges</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##               source            target   type   color   lty
+## 1         Lysa Arryn      Robert Arryn mother #7570B3 solid
+## 2       Jasper Arryn        Alys Arryn father #1B9E77 solid
+## 3       Jasper Arryn         Jon Arryn father #1B9E77 solid
+## 4          Jon Arryn      Robert Arryn father #1B9E77 solid
+## 110 Cersei Lannister  Tommen Baratheon mother #7570B3 solid
+## 210 Cersei Lannister Joffrey Baratheon mother #7570B3 solid
+</code></pre>
+</div>
+
+<p>The nodetable contains one row for each character that is either a source or a target in the edgetable. We can give any number and type of node attributes. Here, I chose the followin columns from the original Kaggle dataset: gender/male (male = 1, female = 0), house (as the house each character was born into) and popularity. House2 was meant to assign a color to only the major houses. Shape represents the gender.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">union_characters</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##            name male culture          house popularity      house2   color  shape
+## 1    Alys Arryn    0    &lt;NA&gt;    House Arryn 0.08026756        &lt;NA&gt;    &lt;NA&gt; circle
+## 2 Elys Waynwood    0    &lt;NA&gt; House Waynwood 0.07023411        &lt;NA&gt;    &lt;NA&gt; circle
+## 3  Jasper Arryn    1    &lt;NA&gt;    House Arryn 0.04347826        &lt;NA&gt;    &lt;NA&gt; square
+## 4   Jeyne Royce    0    &lt;NA&gt;    House Royce 0.00000000        &lt;NA&gt;    &lt;NA&gt; circle
+## 5     Jon Arryn    1 Valemen    House Arryn 0.83612040        &lt;NA&gt;    &lt;NA&gt; square
+## 6    Lysa Arryn    0    &lt;NA&gt;    House Tully 0.00000000 House Tully #F781BF circle
+</code></pre>
+</div>
+
+<p>By default, we have a directed graph.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">union_graph</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">graph_from_data_frame</span><span class="p">(</span><span class="n">union_edges</span><span class="p">,</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">vertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">union_characters</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>For plotting the legend, I am summarizing the edge and node colors.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">color_vertices</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">union_characters</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">house</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">color</span><span class="p">))</span><span class="w">
+
+</span><span class="n">colors_edges</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">union_edges</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">color</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Now, we can plot the graph object (here with Fruchterman-Reingold layout):</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">layout</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">layout_with_fr</span><span class="p">(</span><span class="n">union_graph</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Click on the image to get to the high resolution pdf:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">union_graph</span><span class="p">,</span><span class="w">
+     </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">),</span><span class="w">
+     </span><span class="n">vertex.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph</span><span class="p">)</span><span class="o">$</span><span class="n">shape</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph</span><span class="p">)</span><span class="o">$</span><span class="n">color</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">union_graph</span><span class="p">)</span><span class="o">$</span><span class="n">popularity</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.frame.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.arrow.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="p">(</span><span class="n">union_graph</span><span class="p">)</span><span class="o">$</span><span class="n">color</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="p">(</span><span class="n">union_graph</span><span class="p">)</span><span class="o">$</span><span class="n">lty</span><span class="p">)</span><span class="w">
+</span><span class="n">legend</span><span class="p">(</span><span class="s2">"topleft"</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="s2">"Node color:"</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">color_vertices</span><span class="o">$</span><span class="n">house</span><span class="p">),</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="s2">"Edge color:"</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">colors_edges</span><span class="o">$</span><span class="n">type</span><span class="p">)),</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w">
+       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">color_vertices</span><span class="o">$</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">colors_edges</span><span class="o">$</span><span class="n">color</span><span class="p">),</span><span class="w"> </span><span class="n">pt.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">bty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"n"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w">
+       </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> 
+</span><span class="n">legend</span><span class="p">(</span><span class="s2">"topleft"</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">bty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"n"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w">
+       </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Game of Thrones Family Ties"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><a href="got_final_files/family_tree_GoT.pdf"><img border="0" alt="family_ties_1" src="got_final_files/figure-markdown_github/unnamed-chunk-9-1.png" width="500" height="500" /></a></p>
+
+<p>Node color shows the major houses, node size the character’s popularity and node shape their gender (square for male, circle for female). Edge color shows interaction type.</p>
+
+<p>As we can see, even with only a subset of characters from the Game of Thrones world, the network is already quite big. You can click on the image to open the pdf and zoom into specific parts of the plot and read the node labels/character names.</p>
+
+<p>What we can see right away is that there are only limited connections between houses and that the Greyjoys are the only house that has no ties to any of the others.</p>
+
+<p><br /></p>
+
+<h2 id="network-analysis">Network analysis</h2>
+
+<p>How do we find out who the most important characters are in this network?</p>
+
+<p>We consider a character “important” if he has connections to many other characters. There are a few network properties, that tell us more about this. For this, I am considering the network as undirected to account for parent/child relationships as being mutual.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">union_graph_undir</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.undirected</span><span class="p">(</span><span class="n">union_graph</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"collapse"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="centrality">Centrality</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Centrality">Centrality</a> describes the number of edges that are in- or outgoing to/from nodes. High centrality networks have few nodes with many connections, low centrality networks have many nodes with similar numbers of edges.</p>
+
+<blockquote>
+  <p>“Centralization is a method for creating a graph level centralization measure from the centrality scores of the vertices.” <em>centralize()</em> help</p>
+</blockquote>
+
+<p>For the whole network, we can calculate centrality by degree (<code class="highlighter-rouge">centr_degree()</code>), closeness (<code class="highlighter-rouge">centr_clo()</code>) or eigenvector centrality (<code class="highlighter-rouge">centr_eigen()</code>) of vertices.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">centr_degree</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"total"</span><span class="p">)</span><span class="o">$</span><span class="n">centralization</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.04282795
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">centr_clo</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"total"</span><span class="p">)</span><span class="o">$</span><span class="n">centralization</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.01414082
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">centr_eigen</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="o">$</span><span class="n">centralization</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.8787532
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="node-degree">Node degree</h3>
+
+<p>Node degree or degree centrality describes how central a node is in the network (i.e. how many in- and outgoing edges it has or to how many other nodes it is directly connected via one edge).</p>
+
+<blockquote>
+  <p>“The degree of a vertex is its most basic structural property, the number of its adjacent edges.” From the help pages of <em>degree()</em></p>
+</blockquote>
+
+<p>We can calculate the number of out- or ingoing edges of each node, or - as I am doing here - the sum of both.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">union_graph_undir_degree</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">igraph</span><span class="o">::</span><span class="n">degree</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"total"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#standardized by number of nodes
+</span><span class="n">union_graph_undir_degree_std</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">union_graph_undir_degree</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">vcount</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">node_degree</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">degree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">union_graph_undir_degree</span><span class="p">,</span><span class="w">
+                          </span><span class="n">degree_std</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">union_graph_undir_degree_std</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">tibble</span><span class="o">::</span><span class="n">rownames_to_column</span><span class="p">()</span><span class="w">
+
+</span><span class="n">union_characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">union_characters</span><span class="p">,</span><span class="w"> </span><span class="n">node_degree</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"name"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rowname"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">node_degree</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="o">-</span><span class="n">degree</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">.</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##            rowname degree degree_std
+## 1  Quellon Greyjoy     12 0.05797101
+## 2      Walder Frey     10 0.04830918
+## 3   Oberyn Martell     10 0.04830918
+## 4     Eddard Stark      9 0.04347826
+## 5    Catelyn Stark      8 0.03864734
+## 6       Emmon Frey      7 0.03381643
+## 7  Genna Lannister      7 0.03381643
+## 8     Merrett Frey      7 0.03381643
+## 9    Balon Greyjoy      7 0.03381643
+## 10 Jason Lannister      7 0.03381643
+</code></pre>
+</div>
+
+<p>In this case, the node degree reflects how many offspring and spouses a character had. With 3 wifes and several children, Quellon Greyjoy, the grandfather of Theon and Asha/Yara comes out on top (of course, had I included all offspring and wifes of Walder Frey’s, he would easily be on top but the network would have gotten infinitely more confusing).</p>
+
+<p><br /></p>
+
+<h3 id="closeness">Closeness</h3>
+
+<p>The closeness of a node describes its distance to all other nodes. A node with highest closeness is more central and can spread information to many other nodes.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">closeness</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">igraph</span><span class="o">::</span><span class="n">closeness</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"total"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#standardized by number of nodes
+</span><span class="n">closeness_std</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">closeness</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">vcount</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">node_closeness</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">closeness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">closeness</span><span class="p">,</span><span class="w">
+                          </span><span class="n">closeness_std</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">closeness_std</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">tibble</span><span class="o">::</span><span class="n">rownames_to_column</span><span class="p">()</span><span class="w">
+
+</span><span class="n">union_characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">union_characters</span><span class="p">,</span><span class="w"> </span><span class="n">node_closeness</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"name"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rowname"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">node_closeness</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="o">-</span><span class="n">closeness</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">.</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##             rowname    closeness closeness_std
+## 1       Sansa Stark 0.0002013288  9.726028e-07
+## 2  Tyrion Lannister 0.0002012882  9.724070e-07
+## 3   Tywin Lannister 0.0002011668  9.718201e-07
+## 4  Joanna Lannister 0.0002005616  9.688965e-07
+## 5      Eddard Stark 0.0002002804  9.675381e-07
+## 6     Catelyn Stark 0.0001986492  9.596579e-07
+## 7  Cersei Lannister 0.0001984915  9.588960e-07
+## 8   Jaime Lannister 0.0001975894  9.545382e-07
+## 9    Jeyne Marbrand 0.0001966568  9.500330e-07
+## 10  Tytos Lannister 0.0001966568  9.500330e-07
+</code></pre>
+</div>
+
+<p>The characters with highest closeness all surround central characters that connect various storylines and houses in Game of Thrones.</p>
+
+<p><br /></p>
+
+<h3 id="betweenness-centrality">Betweenness centrality</h3>
+
+<p>Betweenness describes the number of shortest paths between nodes. Nodes with high betweenness centrality are on the path between many other nodes, i.e. they are people who are key connections or bridges between different groups of nodes. In a social network, these nodes would be very important because they are likely to pass on information to a wide reach of people.</p>
+
+<p>The <strong>igraph</strong> function <em>betweenness()</em> calculates vertex betweenness, <em>edge_betweenness()</em> calculates edge betweenness:</p>
+
+<blockquote>
+  <p>“The vertex and edge betweenness are (roughly) defined by the number of geodesics (shortest paths) going through a vertex or an edge.” igraph help for <em>estimate_betweenness()</em></p>
+</blockquote>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">betweenness</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">igraph</span><span class="o">::</span><span class="n">betweenness</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># standardize by number of node pairs
+</span><span class="n">betweenness_std</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">betweenness</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">((</span><span class="n">vcount</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">vcount</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">node_betweenness</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">betweenness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betweenness</span><span class="p">,</span><span class="w">
+                               </span><span class="n">betweenness_std</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betweenness_std</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">tibble</span><span class="o">::</span><span class="n">rownames_to_column</span><span class="p">()</span><span class="w"> 
+
+</span><span class="n">union_characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">union_characters</span><span class="p">,</span><span class="w"> </span><span class="n">node_betweenness</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"name"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rowname"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">node_betweenness</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="o">-</span><span class="n">betweenness</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">.</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##              rowname betweenness betweenness_std
+## 1       Eddard Stark    6926.864       0.3248846
+## 2        Sansa Stark    6165.667       0.2891828
+## 3   Tyrion Lannister    5617.482       0.2634718
+## 4    Tywin Lannister    5070.395       0.2378123
+## 5   Joanna Lannister    4737.524       0.2221999
+## 6  Rhaegar Targaryen    4301.583       0.2017533
+## 7    Margaery Tyrell    4016.417       0.1883784
+## 8           Jon Snow    3558.884       0.1669192
+## 9        Mace Tyrell    3392.500       0.1591154
+## 10   Jason Lannister    3068.500       0.1439191
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">edge_betweenness</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">igraph</span><span class="o">::</span><span class="n">edge_betweenness</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">data.frame</span><span class="p">(</span><span class="n">edge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">attr</span><span class="p">(</span><span class="n">E</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">),</span><span class="w"> </span><span class="s2">"vnames"</span><span class="p">),</span><span class="w">
+           </span><span class="n">betweenness</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">edge_betweenness</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">tibble</span><span class="o">::</span><span class="n">rownames_to_column</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="o">-</span><span class="n">betweenness</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">.</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##    rowname                              edge betweenness
+## 1      160      Sansa Stark|Tyrion Lannister    5604.149
+## 2      207          Sansa Stark|Eddard Stark    4709.852
+## 3      212        Rhaegar Targaryen|Jon Snow    3560.083
+## 4      296       Margaery Tyrell|Mace Tyrell    3465.000
+## 5      213             Eddard Stark|Jon Snow    3163.048
+## 6      131  Jason Lannister|Joanna Lannister    3089.500
+## 7      159 Joanna Lannister|Tyrion Lannister    2983.591
+## 8      171  Tyrion Lannister|Tywin Lannister    2647.224
+## 9      192    Elia Martell|Rhaegar Targaryen    2580.000
+## 10     300         Luthor Tyrell|Mace Tyrell    2565.000
+</code></pre>
+</div>
+
+<p>This, we can now plot by feeding the node betweenness as vertex.size and edge betweenness as edge.width to our plot function:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w">
+     </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">),</span><span class="w">
+     </span><span class="n">vertex.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">shape</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">color</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">betweenness</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.001</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.frame.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">edge_betweenness</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.arrow.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">color</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">lty</span><span class="p">)</span><span class="w">
+</span><span class="n">legend</span><span class="p">(</span><span class="s2">"topleft"</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Node color:"</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">color_vertices</span><span class="o">$</span><span class="n">house</span><span class="p">),</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="s2">"Edge color:"</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">colors_edges</span><span class="o">$</span><span class="n">type</span><span class="p">)),</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w">
+       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">color_vertices</span><span class="o">$</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">colors_edges</span><span class="o">$</span><span class="n">color</span><span class="p">),</span><span class="w"> </span><span class="n">pt.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">bty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"n"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><a href="got_final_files/family_tree_GoT_betweenness.pdf"><img border="0" alt="family_ties_1" src="got_final_files/figure-markdown_github/unnamed-chunk-21-1.png" width="500" height="500" /></a></p>
+
+<p>Ned Stark is the character with highest betweenness. This makes sense, as he and his children (specifically Sansa and her arranged marriage to Tyrion) connect to other houses and are the central points from which the story unfolds. However, we have to keep in mind here, that my choice of who is important enough to include in the network (e.g. the Stark ancestors) and who not (e.g. the whole complicated mess that is the Targaryen and Frey family tree) makes this result somewhat biased.</p>
+
+<p><br /></p>
+
+<h3 id="diameter">Diameter</h3>
+
+<p>In contrast to the shortest path between two nodes, we can also calculate the longest path, or diameter:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">diameter</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 21
+</code></pre>
+</div>
+
+<p>In our network, the longest path connects 21 nodes.</p>
+
+<blockquote>
+  <p>“get_diameter returns a path with the actual diameter. If there are many shortest paths of the length of the diameter, then it returns the first one found.” <em>diameter()</em> help</p>
+</blockquote>
+
+<p>This, we can also plot:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">union_graph_undir_diameter</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">union_graph_undir</span><span class="w">
+</span><span class="n">node_diameter</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get.diameter</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">,</span><span class="w">  </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">)</span><span class="o">$</span><span class="n">color</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scales</span><span class="o">::</span><span class="n">alpha</span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">)</span><span class="o">$</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w">
+</span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">)</span><span class="o">$</span><span class="n">size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">2</span><span class="w">
+
+</span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">)[</span><span class="n">node_diameter</span><span class="p">]</span><span class="o">$</span><span class="n">color</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"red"</span><span class="w">
+</span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">)[</span><span class="n">node_diameter</span><span class="p">]</span><span class="o">$</span><span class="n">size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">
+
+</span><span class="n">E</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">)</span><span class="o">$</span><span class="n">color</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"grey"</span><span class="w">
+</span><span class="n">E</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">)</span><span class="o">$</span><span class="n">width</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w">
+
+</span><span class="n">E</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node_diameter</span><span class="p">)</span><span class="o">$</span><span class="n">color</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"red"</span><span class="w">
+</span><span class="n">E</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node_diameter</span><span class="p">)</span><span class="o">$</span><span class="n">width</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">5</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">,</span><span class="w">
+     </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">),</span><span class="w">
+     </span><span class="n">vertex.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">)</span><span class="o">$</span><span class="n">shape</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.frame.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.arrow.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="p">(</span><span class="n">union_graph_undir_diameter</span><span class="p">)</span><span class="o">$</span><span class="n">lty</span><span class="p">)</span><span class="w">
+</span><span class="n">legend</span><span class="p">(</span><span class="s2">"topleft"</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Node color:"</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">color_vertices</span><span class="o">$</span><span class="n">house</span><span class="p">),</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="s2">"Edge color:"</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">colors_edges</span><span class="o">$</span><span class="n">type</span><span class="p">)),</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">,</span><span class="w">
+       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">color_vertices</span><span class="o">$</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">colors_edges</span><span class="o">$</span><span class="n">color</span><span class="p">),</span><span class="w"> </span><span class="n">pt.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">bty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"n"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><a href="got_final_files/family_tree_GoT_diameter.pdf"><img border="0" alt="family_ties_1" src="got_final_files/figure-markdown_github/unnamed-chunk-23-1.png" width="500" height="500" /></a></p>
+
+<p><br /></p>
+
+<h3 id="transitivity">Transitivity</h3>
+
+<blockquote>
+  <p>“Transitivity measures the probability that the adjacent vertices of a vertex are connected. This is sometimes also called the clustering coefficient.” <em>transitivity()</em> help</p>
+</blockquote>
+
+<p>We can calculate the transitivity or ratio of triangles to connected triples for the whole network:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">transitivity</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"global"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.2850679
+</code></pre>
+</div>
+
+<p>Or for each node:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">transitivity</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">,</span><span class="w">
+      </span><span class="n">transitivity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transitivity</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"local"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">name</span><span class="p">))</span><span class="w">
+
+</span><span class="n">union_characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">union_characters</span><span class="p">,</span><span class="w"> </span><span class="n">transitivity</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"name"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">transitivity</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="o">-</span><span class="n">transitivity</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">.</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                 name transitivity
+## 1       Robert Arryn            1
+## 2   Ormund Baratheon            1
+## 3     Selyse Florent            1
+## 4  Shireen Baratheon            1
+## 5   Amarei Crakehall            1
+## 6       Marissa Frey            1
+## 7        Olyvar Frey            1
+## 8        Perra Royce            1
+## 9        Perwyn Frey            1
+## 10         Tion Frey            1
+</code></pre>
+</div>
+
+<p>Because ours is a family network, characters with a transitivity of one form triangles with their parents or offspring.</p>
+
+<p><br /></p>
+
+<h3 id="pagerank-centrality">PageRank centrality</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Centrality#PageRank_centrality">PageRank</a> (originally used by Google to rank the importance of search results) is similar to eigenvector centrality. Eigenvector centrality scores nodes in a network according to the number of connections to high-degree nodes they have. It is therefore a measure of node importance. PageRank similarly considers nodes as more important if they have many incoming edges (or links).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">page_rank</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">page.rank</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">page_rank_centrality</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">page_rank</span><span class="o">$</span><span class="n">vector</span><span class="p">),</span><span class="w">
+      </span><span class="n">page_rank</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">page_rank</span><span class="o">$</span><span class="n">vector</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">name</span><span class="p">))</span><span class="w">
+
+</span><span class="n">union_characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">union_characters</span><span class="p">,</span><span class="w"> </span><span class="n">page_rank_centrality</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"name"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">page_rank_centrality</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="o">-</span><span class="n">page_rank</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">.</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                 name   page_rank
+## 1     Oberyn Martell 0.018402407
+## 2    Quellon Greyjoy 0.016128129
+## 3        Walder Frey 0.012956029
+## 4       Eddard Stark 0.011725019
+## 5       Cregan Stark 0.010983561
+## 6      Catelyn Stark 0.010555473
+## 7       Lyarra Stark 0.009876629
+## 8  Aegon V Targaryen 0.009688458
+## 9      Balon Greyjoy 0.009647049
+## 10         Jon Arryn 0.009623742
+</code></pre>
+</div>
+
+<p>Oberyn Martell, Quellon Greyjoy and Walder Frey all have the highest number of spouses, children and grandchildren are are therefore scored highest for PageRank.</p>
+
+<p><br /></p>
+
+<h3 id="matrix-representation-of-a-network">Matrix representation of a network</h3>
+
+<p>Connections between nodes can also be represented as an adjacency matrix. We can convert our graph object to an adjacency matrix with <strong>igraph</strong>’s <em>as_adjacency_matrix()</em> function. Whenever there is an edge between two nodes, this field in the matrix will get assigned a 1, otherwise it is 0.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">adjacency</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">as_adjacency_matrix</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="eigenvector-centrality">Eigenvector centrality</h3>
+
+<p>We can now calculate the eigenvalues and eigenvectors of the adjacency matrix.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#degree diagonal matrix
+</span><span class="n">degree_diag</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">diag</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">igraph</span><span class="o">::</span><span class="n">degree</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># PageRank matrix
+</span><span class="n">pagerank</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">adjacency</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">degree_diag</span><span class="w">
+
+</span><span class="n">eigenvalues</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">eigen</span><span class="p">(</span><span class="n">pagerank</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The eigenvector with the highest eigenvalue scores those vertices highly, that have many eges or that are connected to vertices with many edges.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">eigenvector</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">pagerank</span><span class="p">),</span><span class="w">
+           </span><span class="n">eigenvector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">eigenvalues</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="w"> </span><span class="n">which.max</span><span class="p">(</span><span class="n">eigenvalues</span><span class="o">$</span><span class="n">values</span><span class="p">)]))</span><span class="w">
+
+</span><span class="n">union_characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">union_characters</span><span class="p">,</span><span class="w"> </span><span class="n">eigenvector</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"name"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">eigenvector</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">eigenvector</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">.</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                       name eigenvector
+## 1          Quellon Greyjoy  -0.6625628
+## 2            Balon Greyjoy  -0.3864950
+## 3   Lady of House Sunderly  -0.3312814
+## 4           Alannys Harlaw  -0.2760678
+## 5  Lady of House Stonetree  -0.2208543
+## 6      Asha (Yara) Greyjoy  -0.1656407
+## 7            Robin Greyjoy  -0.1104271
+## 8            Euron Greyjoy  -0.1104271
+## 9          Urrigon Greyjoy  -0.1104271
+## 10       Victarion Greyjoy  -0.1104271
+</code></pre>
+</div>
+
+<p>Because of their highly connected family ties (i.e. there are only a handful of connections but they are almost all triangles), the Greyjoys have been scored with the highest eigenvalues.</p>
+
+<p>We can find the eigenvector centrality scores with:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">eigen_centrality</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">igraph</span><span class="o">::</span><span class="n">eigen_centrality</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">eigen_centrality</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">eigen_centrality</span><span class="o">$</span><span class="n">vector</span><span class="p">),</span><span class="w">
+           </span><span class="n">eigen_centrality</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eigen_centrality</span><span class="o">$</span><span class="n">vector</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">name</span><span class="p">))</span><span class="w">
+
+</span><span class="n">union_characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">union_characters</span><span class="p">,</span><span class="w"> </span><span class="n">eigen_centrality</span><span class="p">,</span><span class="w"> </span><span class="n">eigenvector</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"name"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">eigen_centrality</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="o">-</span><span class="n">eigen_centrality</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">.</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                name eigen_centrality
+## 1   Tywin Lannister        1.0000000
+## 2  Cersei Lannister        0.9168980
+## 3  Joanna Lannister        0.8358122
+## 4    Jeyne Marbrand        0.8190076
+## 5   Tytos Lannister        0.8190076
+## 6   Genna Lannister        0.7788376
+## 7   Jaime Lannister        0.7642870
+## 8  Robert Baratheon        0.7087042
+## 9        Emmon Frey        0.6538709
+## 10      Walder Frey        0.6516021
+</code></pre>
+</div>
+
+<p>When we consider eigenvector centrality, Tywin and the core Lannister family score highest.</p>
+
+<p><br /></p>
+
+<h3 id="who-are-the-most-important-characters">Who are the most important characters?</h3>
+
+<p>We can now compare all the node-level information to decide which characters are the most important in Game of Thrones. Such node level characteristics could also be used as input for machine learning algorithms.</p>
+
+<p>Let’s look at all characters from the major houses:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">union_characters</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">house2</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">contains</span><span class="p">(</span><span class="s2">"_std"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">degree</span><span class="o">:</span><span class="n">eigen_centrality</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">house2</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_grid</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">house2</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="o">=</span><span class="m">1</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><a href="got_final_files/GoT_centrality.pdf"><img border="0" alt="family_ties_1" src="got_final_files/figure-markdown_github/unnamed-chunk-32-1.png" width="1000" height="1000" /></a></p>
+
+<p>Taken together, we could say that House Stark (specifically Ned and Sansa) and House Lannister (especially Tyrion) are the most important family connections in Game of Thrones.</p>
+
+<p><br /></p>
+
+<h3 id="groups-of-nodes">Groups of nodes</h3>
+
+<p>We can also analyze dyads (pairs of two nodes), triads (groups of three nodes) and bigger cliques in our network. For dyads, we can use the function <em>dyad_census()</em> from <strong>igraph</strong> or <em>dyad.census()</em> from <strong>sna</strong>. Both are identical and calculate a Holland and Leinhardt dyad census with</p>
+
+<ul>
+  <li>mut: The number of pairs with mutual connections (in our case, spouses).</li>
+  <li>asym: The number of pairs with non-mutual connections (in the original network: mother-child and father-child relationships; but in the undirected network, there are none).</li>
+  <li>null: The number of pairs with no connection between them.</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#igraph::dyad_census(union_graph_undir)
+</span><span class="n">sna</span><span class="o">::</span><span class="n">dyad.census</span><span class="p">(</span><span class="n">adjacency</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##      Mut Asym  Null
+## [1,] 326    0 21202
+</code></pre>
+</div>
+
+<p>The same can be calculated for triads (see <code class="highlighter-rouge">?triad_census</code> for details on what each output means).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#igraph::triad_census(union_graph_undir)
+</span><span class="n">sna</span><span class="o">::</span><span class="n">triad.census</span><span class="p">(</span><span class="n">adjacency</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##          003 012   102 021D 021U 021C 111D 111U 030T 030C 201 120D 120U 120C 210 300
+## [1,] 1412100   0 65261    0    0    0    0    0    0    0 790    0    0    0   0 105
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">triad.classify</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"graph"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 2
+</code></pre>
+</div>
+
+<p>We can also calculate the number of paths and cycles of any length we specify, here e.g. of length &lt;= 5. For edges, we obtain the sum of counts for all paths or cycles up to the given maximum length. For vertices/nodes, we obtain the number of paths or cycles to which each node belongs.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">node_kpath</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">kpath.census</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span><span class="w"> </span><span class="n">maxlen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"graph"</span><span class="p">,</span><span class="w"> </span><span class="n">tabulate.by.vertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">dyadic.tabulation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sum"</span><span class="p">)</span><span class="w">
+</span><span class="n">edge_kpath</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">kpath.census</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span><span class="w"> </span><span class="n">maxlen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"graph"</span><span class="p">,</span><span class="w"> </span><span class="n">tabulate.by.vertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">edge_kpath</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## $path.count
+##     1     2     3     4     5 
+##   326  1105  2973  7183 17026
+</code></pre>
+</div>
+
+<p>This, we could plot with (but here, it does not give much additional information):</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">gplot</span><span class="p">(</span><span class="n">node_kpath</span><span class="o">$</span><span class="n">paths.bydyad</span><span class="p">,</span><span class="w">
+      </span><span class="n">label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> 
+      </span><span class="n">vertex.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w">
+      </span><span class="n">displaylabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+      </span><span class="n">edge.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">node_kcycle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">kcycle.census</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span><span class="w"> </span><span class="n">maxlen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"graph"</span><span class="p">,</span><span class="w"> </span><span class="n">tabulate.by.vertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">cycle.comembership</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sum"</span><span class="p">)</span><span class="w">
+</span><span class="n">edge_kcycle</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">kcycle.census</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span><span class="w"> </span><span class="n">maxlen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"graph"</span><span class="p">,</span><span class="w"> </span><span class="n">tabulate.by.vertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">edge_kcycle</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## $cycle.count
+##   2   3   4   5   6   7   8 
+##   0 105 136  27  57  58  86
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">node_kcycle_reduced</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">node_kcycle</span><span class="o">$</span><span class="n">cycle.comemb</span><span class="w">
+</span><span class="n">node_kcycle_reduced</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">node_kcycle_reduced</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">rowSums</span><span class="p">(</span><span class="n">node_kcycle_reduced</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">which</span><span class="p">(</span><span class="n">colSums</span><span class="p">(</span><span class="n">node_kcycle_reduced</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)]</span><span class="w">
+
+</span><span class="n">gplot</span><span class="p">(</span><span class="n">node_kcycle_reduced</span><span class="p">,</span><span class="w">
+      </span><span class="n">label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> 
+      </span><span class="n">vertex.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w">
+      </span><span class="n">displaylabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+      </span><span class="n">edge.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><a href="got_final_files/node_kcycle.pdf"><img border="0" alt="family_ties_1" src="got_final_files/figure-markdown_github/unnamed-chunk-39-1.png" width="500" height="500" /></a></p>
+
+<blockquote>
+  <p>“A (maximal) clique is a maximal set of mutually adjacency vertices.” <em>clique.census()</em> help</p>
+</blockquote>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">node_clique</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">clique.census</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"graph"</span><span class="p">,</span><span class="w"> </span><span class="n">tabulate.by.vertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">clique.comembership</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sum"</span><span class="p">)</span><span class="w">
+</span><span class="n">edge_clique</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">clique.census</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"graph"</span><span class="p">,</span><span class="w"> </span><span class="n">tabulate.by.vertex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">clique.comembership</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sum"</span><span class="p">)</span><span class="w">
+</span><span class="n">edge_clique</span><span class="o">$</span><span class="n">clique.count</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   1   2   3 
+##   0  74 105
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">node_clique_reduced</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">node_clique</span><span class="o">$</span><span class="n">clique.comemb</span><span class="w">
+</span><span class="n">node_clique_reduced</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">node_clique_reduced</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">rowSums</span><span class="p">(</span><span class="n">node_clique_reduced</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">which</span><span class="p">(</span><span class="n">colSums</span><span class="p">(</span><span class="n">node_clique_reduced</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)]</span><span class="w">
+
+</span><span class="n">gplot</span><span class="p">(</span><span class="n">node_clique_reduced</span><span class="p">,</span><span class="w">
+      </span><span class="n">label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> 
+      </span><span class="n">vertex.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span><span class="w">
+      </span><span class="n">displaylabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+      </span><span class="n">edge.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><a href="got_final_files/node_clique.pdf"><img border="0" alt="family_ties_1" src="got_final_files/figure-markdown_github/unnamed-chunk-42-1.png" width="500" height="500" /></a></p>
+
+<p>The largest group of nodes ín this network is three, i.e. all parent/child relationships. Therefore, it does not really make sense to plot them all, but we could plot and color them with:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">vcol</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"grey80"</span><span class="p">,</span><span class="w"> </span><span class="n">vcount</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># highlight first of largest cliques
+</span><span class="n">vcol</span><span class="p">[</span><span class="n">unlist</span><span class="p">(</span><span class="n">largest_cliques</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)[[</span><span class="m">1</span><span class="p">]])]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"red"</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w">
+     </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">),</span><span class="w">
+     </span><span class="n">vertex.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">shape</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vcol</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.frame.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.arrow.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">color</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">lty</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="clustering">Clustering</h3>
+
+<p>We can also look for groups within our network by clustering node groups according to their edge betweenness:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ceb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cluster_edge_betweenness</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="w">
+</span><span class="n">modularity</span><span class="p">(</span><span class="n">ceb</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.8359884
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot</span><span class="p">(</span><span class="n">ceb</span><span class="p">,</span><span class="w">
+     </span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w">
+     </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">),</span><span class="w">
+     </span><span class="n">vertex.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">shape</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">popularity</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.frame.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><a href="got_final_files/cluster_edge_betweenness.pdf"><img border="0" alt="family_ties_1" src="got_final_files/figure-markdown_github/unnamed-chunk-48-1.png" width="500" height="500" /></a></p>
+
+<p>Or based on propagating labels:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">clp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cluster_label_prop</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">clp</span><span class="p">,</span><span class="w">
+     </span><span class="n">union_graph_undir</span><span class="p">,</span><span class="w">
+     </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">,</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">),</span><span class="w">
+     </span><span class="n">vertex.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">shape</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">union_graph_undir</span><span class="p">)</span><span class="o">$</span><span class="n">popularity</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.frame.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gray"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w"> 
+     </span><span class="n">vertex.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><a href="got_final_files/cluster_label_prop.pdf"><img border="0" alt="family_ties_1" src="got_final_files/figure-markdown_github/unnamed-chunk-50-1.png" width="500" height="500" /></a></p>
+
+<p><br /></p>
+
+<h3 id="network-properties">Network properties</h3>
+
+<p>We can also feed our adjacency matrix to other functions, like <em>GenInd()</em> from the <strong>NetIndices</strong> packages. This function calculates a number of network properties, like number of compartments (N), total system throughput (T..), total system throughflow (TST), number of internal links (Lint), total number of links (Ltot), like density (LD), connectance (C), average link weight (Tijbar), average compartment throughflow (TSTbar) and compartmentalization or degree of connectedness of subsystems in the network (Cbar).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">NetIndices</span><span class="p">)</span><span class="w">
+</span><span class="n">graph.properties</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">GenInd</span><span class="p">(</span><span class="n">adjacency</span><span class="p">)</span><span class="w">
+</span><span class="n">graph.properties</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## $N
+## [1] 208
+## 
+## $T..
+## [1] 652
+## 
+## $TST
+## [1] 652
+## 
+## $Lint
+## [1] 652
+## 
+## $Ltot
+## [1] 652
+## 
+## $LD
+## [1] 3.134615
+## 
+## $C
+## [1] 0.01514307
+## 
+## $Tijbar
+## [1] 1
+## 
+## $TSTbar
+## [1] 3.134615
+## 
+## $Cbar
+## [1] 0.01086163
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<p>Alternatively, the <strong>network</strong> package provides additional functions to obtain network properties. Here, we can again feed in the adjacency matrix of our network and convert it to a network object.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">network</span><span class="p">)</span><span class="w">
+</span><span class="n">adj_network</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">network</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span><span class="w"> </span><span class="n">directed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">adj_network</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  Network attributes:
+##   vertices = 208 
+##   directed = TRUE 
+##   hyper = FALSE 
+##   loops = FALSE 
+##   multiple = FALSE 
+##   bipartite = FALSE 
+##   total edges= 652 
+##     missing edges= 0 
+##     non-missing edges= 652 
+## 
+##  Vertex attribute names: 
+##     vertex.names 
+## 
+## No edge attributes
+</code></pre>
+</div>
+
+<p>From this network object, we can e.g. get the number of dyads and edges within a network and the network size.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">network.dyadcount</span><span class="p">(</span><span class="n">adj_network</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 43056
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">network.edgecount</span><span class="p">(</span><span class="n">adj_network</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 652
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">network.size</span><span class="p">(</span><span class="n">adj_network</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 208
+</code></pre>
+</div>
+
+<blockquote>
+  <p>“equiv.clust uses a definition of approximate equivalence (equiv.fun) to form a hierarchical clustering of network positions. Where dat consists of multiple relations, all specified relations are considered jointly in forming the equivalence clustering.” <em>equiv.clust()</em> help</p>
+</blockquote>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ec</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">equiv.clust</span><span class="p">(</span><span class="n">adj_network</span><span class="p">,</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"graph"</span><span class="p">,</span><span class="w"> </span><span class="n">cluster.method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"average"</span><span class="p">,</span><span class="w"> </span><span class="n">plabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">network.vertex.names</span><span class="p">(</span><span class="n">adj_network</span><span class="p">))</span><span class="w">
+</span><span class="n">ec</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Position Clustering:
+## 
+##  Equivalence function: sedist 
+##  Equivalence metric: hamming 
+##  Cluster method: average 
+##  Graph order: 208
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ec</span><span class="o">$</span><span class="n">cluster</span><span class="o">$</span><span class="n">labels</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ec</span><span class="o">$</span><span class="n">plabels</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">ec</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><a href="got_final_files/equiv_clust.pdf"><img border="0" alt="family_ties_1" src="got_final_files/figure-markdown_github/unnamed-chunk-55-1.png" width="500" height="500" /></a></p>
+
+<p>From the <strong>sna</strong> package, we can e.g. use functions that tell us the graph density and the dyadic reciprocity of the vertices or edges</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">gden</span><span class="p">(</span><span class="n">adjacency</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.01514307
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">grecip</span><span class="p">(</span><span class="n">adjacency</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Mut 
+##   1
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">grecip</span><span class="p">(</span><span class="n">adjacency</span><span class="p">,</span><span class="w"> </span><span class="n">measure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"edgewise"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Mut 
+##   1
+</code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 7 x64 (build 7601) Service Pack 1
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252  LC_CTYPE=English_United States.1252    LC_MONETARY=English_United States.1252 LC_NUMERIC=C                           LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] NetIndices_1.4.4     MASS_7.3-47          statnet_2016.9       sna_2.4              ergm.count_3.2.2     tergm_3.4.0          networkDynamic_0.9.0 ergm_3.7.1           network_1.13.0       statnet.common_3.3.0 igraph_1.0.1         dplyr_0.5.0          purrr_0.2.2          readr_1.1.0          tidyr_0.6.2          tibble_1.3.0         ggplot2_2.2.1        tidyverse_1.1.1     
+## 
+## loaded via a namespace (and not attached):
+##  [1] lpSolve_5.6.13    reshape2_1.4.2    haven_1.0.0       lattice_0.20-35   colorspace_1.3-2  htmltools_0.3.6   yaml_2.1.14       foreign_0.8-68    DBI_0.6-1         modelr_0.1.0      readxl_1.0.0      trust_0.1-7       plyr_1.8.4        robustbase_0.92-7 stringr_1.2.0     munsell_0.4.3     gtable_0.2.0      cellranger_1.1.0  rvest_0.3.2       coda_0.19-1       psych_1.7.5       evaluate_0.10     labeling_0.3      knitr_1.15.1      forcats_0.2.0     parallel_3.4.0    DEoptimR_1.0-8    broom_0.4.2       Rcpp_0.12.10      scales_0.4.1      backports_1.0.5   jsonlite_1.4      mnormt_1.5-5      hms_0.3           digest_0.6.12     stringi_1.1.5     grid_3.4.0        rprojroot_1.2     tools_3.4.0       magrittr_1.5      lazyeval_0.2.0    Matrix_1.2-10     xml2_1.1.1        lubridate_1.6.0   assertthat_0.2.0  rmarkdown_1.5     httr_1.2.1        R6_2.2.0          nlme_3.1-131      compiler_3.4.0
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#networks-ref">
+    		networks <span>1</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#networks-ref">networks <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#igraph-ref">igraph <span>5</span></a></li>
+     
+    	<li><a href="/tags.html#sna-ref">sna <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/machine_learning/2017/05/02/fraud_2" title="Update to autoencoders and anomaly detection with machine learning in fraud analytics">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/r_users_group/2017/05/20/muenster_r_user_group" title="New R Users group in Münster!">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

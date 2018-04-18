@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Hyper-parameter Tuning with Grid Search for Deep Learning</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Hyper-parameter Tuning with Grid Search for Deep Learning </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Hyper-parameter Tuning with Grid Search for Deep Learning" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>07 March 2017</span>
+    </div>
+    <div class="content">
+      <p><a href="https://shiring.github.io/machine_learning/2017/02/27/h2o">Last week I showed how to build a deep neural network with <strong>h2o</strong> and <strong>rsparkling</strong></a>. As we could see there, it is not trivial to optimize the hyper-parameters for modeling. Hyper-parameter tuning with grid search allows us to test different combinations of hyper-parameters and find one with improved accuracy.</p>
+
+<p>Keep in mind though, that hyper-parameter tuning can only improve the model so much without overfitting. If you can’t achieve sufficient accuracy, the input features might simply not be adequate for the predictions you are trying to model. It might be necessary to go back to the original features and try e.g. feature engineering methods.</p>
+
+<p><br /></p>
+
+<h3 id="preparing-spark-instance-and-plotting-theme">Preparing Spark instance and plotting theme</h3>
+
+<p>Check out <a href="(https://shiring.github.io/machine_learning/2017/02/27/h2o)">last week’s post</a> for details on how I prepared the data.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">rsparkling</span><span class="p">)</span><span class="w">
+</span><span class="n">options</span><span class="p">(</span><span class="n">rsparkling.sparklingwater.version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2.0.3"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">sparklyr</span><span class="p">)</span><span class="w">
+
+</span><span class="n">sc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spark_connect</span><span class="p">(</span><span class="n">master</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"local"</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2.0.0"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggrepel</span><span class="p">)</span><span class="w">
+
+</span><span class="n">my_theme</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">base_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sans"</span><span class="p">){</span><span class="w">
+  </span><span class="n">theme_minimal</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base_size</span><span class="p">,</span><span class="w"> </span><span class="n">base_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base_family</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="w">
+    </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+    </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+    </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"aliceblue"</span><span class="p">),</span><span class="w">
+    </span><span class="n">strip.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"darkgrey"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+    </span><span class="n">strip.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">,</span><span class="w">
+    </span><span class="n">legend.justification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"top"</span><span class="p">,</span><span class="w"> 
+    </span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">arrhythmia_sc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">copy_to</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span><span class="w"> </span><span class="n">arrhythmia_subset</span><span class="p">)</span><span class="w">
+</span><span class="n">arrhythmia_hf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as_h2o_frame</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span><span class="w"> </span><span class="n">arrhythmia_sc</span><span class="p">,</span><span class="w"> </span><span class="n">strict_version_check</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">arrhythmia_hf</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.asfactor</span><span class="p">(</span><span class="n">arrhythmia_hf</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">])</span><span class="w">
+</span><span class="n">arrhythmia_hf</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.asfactor</span><span class="p">(</span><span class="n">arrhythmia_hf</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="p">])</span><span class="w">
+
+</span><span class="n">splits</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.splitFrame</span><span class="p">(</span><span class="n">arrhythmia_hf</span><span class="p">,</span><span class="w"> 
+                         </span><span class="n">ratios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="m">0.15</span><span class="p">),</span><span class="w"> 
+                         </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span><span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">splits</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">valid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">splits</span><span class="p">[[</span><span class="m">2</span><span class="p">]]</span><span class="w">
+</span><span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">splits</span><span class="p">[[</span><span class="m">3</span><span class="p">]]</span><span class="w">
+
+</span><span class="n">response</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"diagnosis"</span><span class="w">
+</span><span class="n">weights</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"weights"</span><span class="w">
+</span><span class="n">features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">setdiff</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">train</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">weights</span><span class="p">,</span><span class="w"> </span><span class="s2">"class"</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="grid-search">Grid Search</h3>
+
+<p>We can use the <code class="highlighter-rouge">h2o.grid()</code> function to perform a Random Grid Search (RGS). We could also test all possible combinations of parameters with Cartesian Grid or exhaustive search, but RGS is much faster when we have a large number of possible combinations and usually finds sufficiently accurate models.</p>
+
+<p>For RGS, we first define a set of hyper-parameters and search criteria to fine-tune our models. Because there are many hyper-parameters, each with a range of possible values, we want to find an (ideally) optimal combination to maximize our model’s accuracy. 
+We can also specify how long we want to run the grid search for. Based on the results of each model tested in the grid, we can choose the one with the highest accuracy or best performance for the question on hand.</p>
+
+<h4 id="activation-functions">Activation Functions</h4>
+
+<ul>
+  <li><code class="highlighter-rouge">Rectifier</code>: is the default activation function. It is the fastest and most versatile option. It can lead to instability though and tends to be lower in accuracy.</li>
+  <li><code class="highlighter-rouge">Tanh</code>: The hyperbolic tangent is a scaled and shifted variant of the sigmoid activation function. It can take on values from -1 to 1 and centers around 0. Tanh needs more computational power than e.g. the Rectifier function.</li>
+  <li>
+    <p><code class="highlighter-rouge">Maxout</code>: is an activation function that is the max of the inputs. It is computationally quite demanding but can produce high accuracy models.</p>
+  </li>
+  <li><code class="highlighter-rouge">...WithDropout</code>: When we specify <code class="highlighter-rouge">with dropout</code>, a random subset of the network is trained and the weights of all sub-networks are averaged. It works together with the parameter <code class="highlighter-rouge">hidden_dropout_ratios</code>, which controls the amount of layer neurons that are randomly dropped for each hidden layer. Hidden dropout ratios are useful for preventing overfitting on learned features.</li>
+</ul>
+
+<h4 id="hidden-layers">Hidden layers</h4>
+
+<ul>
+  <li>are the most important hyper-parameter to set for deep neural networks, as they specify how many hidden layers and how many nodes per hidden layer the model should learn</li>
+</ul>
+
+<h4 id="l1-and-l2-penalties">L1 and L2 penalties</h4>
+
+<ul>
+  <li><code class="highlighter-rouge">L1</code>: lets only strong weights survive</li>
+  <li><code class="highlighter-rouge">L2</code>: prevents any single weight from getting too big.</li>
+</ul>
+
+<h4 id="rho-and-epsilon">Rho and Epsilon</h4>
+
+<ul>
+  <li><code class="highlighter-rouge">rho</code>: similar to prior weight updates</li>
+  <li><code class="highlighter-rouge">epsilon</code>: prevents getting stuck in local optima</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">hyper_params</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="w">
+                     </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Rectifier"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Maxout"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Tanh"</span><span class="p">,</span><span class="w"> </span><span class="s2">"RectifierWithDropout"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MaxoutWithDropout"</span><span class="p">,</span><span class="w"> </span><span class="s2">"TanhWithDropout"</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">hidden</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">)),</span><span class="w">
+                     </span><span class="n">epochs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w">
+                     </span><span class="n">l</span><span class="m">1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.00001</span><span class="p">,</span><span class="w"> </span><span class="m">0.0001</span><span class="p">),</span><span class="w"> 
+                     </span><span class="n">l</span><span class="m">2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.00001</span><span class="p">,</span><span class="w"> </span><span class="m">0.0001</span><span class="p">),</span><span class="w">
+                     </span><span class="n">rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">01</span><span class="p">,</span><span class="w"> </span><span class="m">0.005</span><span class="p">,</span><span class="w"> </span><span class="m">0.001</span><span class="p">),</span><span class="w">
+                     </span><span class="n">rate_annealing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e-8</span><span class="p">,</span><span class="w"> </span><span class="m">1e-7</span><span class="p">,</span><span class="w"> </span><span class="m">1e-6</span><span class="p">),</span><span class="w">
+                     </span><span class="n">rho</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="m">0.95</span><span class="p">,</span><span class="w"> </span><span class="m">0.99</span><span class="p">,</span><span class="w"> </span><span class="m">0.999</span><span class="p">),</span><span class="w">
+                     </span><span class="n">epsilon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1e-10</span><span class="p">,</span><span class="w"> </span><span class="m">1e-8</span><span class="p">,</span><span class="w"> </span><span class="m">1e-6</span><span class="p">,</span><span class="w"> </span><span class="m">1e-4</span><span class="p">),</span><span class="w">
+                     </span><span class="n">momentum_start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w">
+                     </span><span class="n">momentum_stable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.99</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">
+                     </span><span class="n">input_dropout_ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.2</span><span class="p">),</span><span class="w">
+                     </span><span class="n">max_w2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="m">3.4028235e+38</span><span class="p">)</span><span class="w">
+                     </span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="early-stopping-criteria">Early stopping criteria</h4>
+
+<ul>
+  <li><code class="highlighter-rouge">stopping_metric</code>: metric that we want to use as stopping criterion</li>
+  <li><code class="highlighter-rouge">stopping_tolerance</code> and <code class="highlighter-rouge">stopping_rounds</code>: training stops when the the stopping metric does not improve by the stopping tolerance proportion any more (e.g. by 0.05 or 5%) for the number of consecutive rounds defined by stopping rounds.</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">search_criteria</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"RandomDiscrete"</span><span class="p">,</span><span class="w"> 
+                        </span><span class="n">max_models</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w">
+                        </span><span class="n">max_runtime_secs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">900</span><span class="p">,</span><span class="w">
+                        </span><span class="n">stopping_tolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.001</span><span class="p">,</span><span class="w">
+                        </span><span class="n">stopping_rounds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w">
+                        </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">42</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Now, we can train the model with combinations of hyper-parameters from our specified stopping criteria and hyper-parameter grid.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">dl_grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.grid</span><span class="p">(</span><span class="n">algorithm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"deeplearning"</span><span class="p">,</span><span class="w"> 
+                    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">features</span><span class="p">,</span><span class="w">
+                    </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w">
+                    </span><span class="n">weights_column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">weights</span><span class="p">,</span><span class="w">
+                    </span><span class="n">grid_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dl_grid"</span><span class="p">,</span><span class="w">
+                    </span><span class="n">training_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">,</span><span class="w">
+                    </span><span class="n">validation_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valid</span><span class="p">,</span><span class="w">
+                    </span><span class="n">nfolds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">,</span><span class="w">                           
+                    </span><span class="n">fold_assignment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Stratified"</span><span class="p">,</span><span class="w">
+                    </span><span class="n">hyper_params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hyper_params</span><span class="p">,</span><span class="w">
+                    </span><span class="n">search_criteria</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">search_criteria</span><span class="p">,</span><span class="w">
+                    </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">42</span><span class="w">
+                    </span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>We now want to extract the best model from the grid model list. What makes a model <em>the best</em> depends on the question you want to address with it: in some cases, the model with highest AUC is the most suitable, or the one with the lowest mean squared error, etc. See <a href="https://shiring.github.io/machine_learning/2017/02/27/h2o">last week’s post</a> again for a more detailed discussion of performance metrics.</p>
+
+<p>For demonstration purposes, I am choosing the best models from a range of possible quality criteria. We first use the <code class="highlighter-rouge">h2o.getGrid()</code> function to sort all models by the quality metric we choose (depending on the metric, you want it ordered by descending or ascending values). We can then get the model that’s the first in the list to work with further. This model’s hyper-parameters can be found with <code class="highlighter-rouge">best_model@allparameters</code>. You can now work with your best model as with any regular model in <strong>h2o</strong> (for an example see <a href="https://shiring.github.io/machine_learning/2017/02/27/h2o">last week’s post</a>).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># performance metrics where smaller is better -&gt; order with decreasing = FALSE
+</span><span class="n">sort_options_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"mean_per_class_error"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mse"</span><span class="p">,</span><span class="w"> </span><span class="s2">"err"</span><span class="p">)</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">sort_by_1</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">sort_options_1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.getGrid</span><span class="p">(</span><span class="s2">"dl_grid"</span><span class="p">,</span><span class="w"> </span><span class="n">sort_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sort_by_1</span><span class="p">,</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">model_ids</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">grid</span><span class="o">@</span><span class="n">model_ids</span><span class="w">
+  </span><span class="n">best_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.getModel</span><span class="p">(</span><span class="n">model_ids</span><span class="p">[[</span><span class="m">1</span><span class="p">]])</span><span class="w">
+  
+  </span><span class="n">assign</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"best_model_"</span><span class="p">,</span><span class="w"> </span><span class="n">sort_by_1</span><span class="p">),</span><span class="w"> </span><span class="n">best_model</span><span class="p">)</span><span class="w">
+  
+</span><span class="p">}</span><span class="w">
+
+
+</span><span class="c1"># performance metrics where bigger is better -&gt; order with decreasing = TRUE
+</span><span class="n">sort_options_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"auc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"precision"</span><span class="p">,</span><span class="w"> </span><span class="s2">"accuracy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"recall"</span><span class="p">,</span><span class="w"> </span><span class="s2">"specificity"</span><span class="p">)</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">sort_by_2</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">sort_options_2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">grid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.getGrid</span><span class="p">(</span><span class="s2">"dl_grid"</span><span class="p">,</span><span class="w"> </span><span class="n">sort_by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sort_by_2</span><span class="p">,</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">model_ids</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">grid</span><span class="o">@</span><span class="n">model_ids</span><span class="w">
+  </span><span class="n">best_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.getModel</span><span class="p">(</span><span class="n">model_ids</span><span class="p">[[</span><span class="m">1</span><span class="p">]])</span><span class="w">
+  
+  </span><span class="n">assign</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"best_model_"</span><span class="p">,</span><span class="w"> </span><span class="n">sort_by_2</span><span class="p">),</span><span class="w"> </span><span class="n">best_model</span><span class="p">)</span><span class="w">
+  
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Let’s plot the mean per class error for each best model:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tibble</span><span class="p">)</span><span class="w">
+
+</span><span class="n">sort_options</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"mean_per_class_error"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mse"</span><span class="p">,</span><span class="w"> </span><span class="s2">"err"</span><span class="p">,</span><span class="w"> </span><span class="s2">"auc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"precision"</span><span class="p">,</span><span class="w"> </span><span class="s2">"accuracy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"recall"</span><span class="p">,</span><span class="w"> </span><span class="s2">"specificity"</span><span class="p">)</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">sort_by</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">sort_options</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">best_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"best_model_"</span><span class="p">,</span><span class="w"> </span><span class="n">sort_by</span><span class="p">))</span><span class="w">
+  </span><span class="n">errors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.mean_per_class_error</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span><span class="w"> </span><span class="n">train</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">valid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">xval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+ 
+  </span><span class="n">errors_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">model_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">best_model</span><span class="o">@</span><span class="n">model_id</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sort_by</span><span class="p">,</span><span class="w"> </span><span class="n">errors</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">rownames_to_column</span><span class="p">(</span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rowname"</span><span class="p">)</span><span class="w">
+  
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sort_by</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"mean_per_class_error"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">errors_df_comb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">errors_df</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">errors_df_comb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">errors_df_comb</span><span class="p">,</span><span class="w"> </span><span class="n">errors_df</span><span class="p">)</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">order</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">errors_df_comb</span><span class="p">,</span><span class="w"> </span><span class="n">rowname</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"xval"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">errors</span><span class="p">)</span><span class="w">
+  
+</span><span class="n">errors_df_comb</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">sort</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">order</span><span class="o">$</span><span class="n">sort</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sort</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">errors</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_id</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_grid</span><span class="p">(</span><span class="n">rowname</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">my_theme</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="o">=</span><span class="m">1</span><span class="p">),</span><span class="w">
+          </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="grid_search_files/figure-markdown_github/unnamed-chunk-11-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="model-performance">Model performance</h3>
+
+<p>The ultimate performance test for our model will be it’s prediction accuracy on the test set it hasn’t seen before. Here, I will compare the AUC and mean squared error for each best model from before. You could of course look at any other quality metric that is most appropriate for your model.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">sort_by</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">sort_options</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">best_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"best_model_"</span><span class="p">,</span><span class="w"> </span><span class="n">sort_by</span><span class="p">))</span><span class="w">
+  </span><span class="n">mse_auc_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">model_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">best_model</span><span class="o">@</span><span class="n">model_id</span><span class="p">,</span><span class="w">
+                             </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sort_by</span><span class="p">,</span><span class="w"> 
+                             </span><span class="n">mse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.mse</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o.performance</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">)),</span><span class="w">
+                             </span><span class="n">auc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.auc</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o.performance</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">)))</span><span class="w">
+  
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sort_by</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"mean_per_class_error"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">mse_auc_test_comb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mse_auc_test</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">mse_auc_test_comb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">mse_auc_test_comb</span><span class="p">,</span><span class="w"> </span><span class="n">mse_auc_test</span><span class="p">)</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+
+</span><span class="n">mse_auc_test_comb</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">mse</span><span class="o">:</span><span class="n">auc</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sort</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_id</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_grid</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">my_theme</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="o">=</span><span class="m">1</span><span class="p">),</span><span class="w">
+          </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="grid_search_files/figure-markdown_github/unnamed-chunk-13-1.png" alt="" /></p>
+
+<p>I will then create a dataframe with predictions for each test sample with all best models. As in last week’s post, I want to compare the default predictions with stringent predictions.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">sort_by</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">sort_options</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">best_model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"best_model_"</span><span class="p">,</span><span class="w"> </span><span class="n">sort_by</span><span class="p">))</span><span class="w">
+  
+  </span><span class="n">finalRf_predictions</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">model_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">best_model</span><span class="o">@</span><span class="n">model_id</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">test</span><span class="p">)),</span><span class="w">
+                                    </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="n">sort_by</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">test</span><span class="p">)),</span><span class="w">
+                                    </span><span class="n">class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">class</span><span class="p">),</span><span class="w"> 
+                                    </span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">test</span><span class="o">$</span><span class="n">diagnosis</span><span class="p">),</span><span class="w"> 
+                                    </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o.predict</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">best_model</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test</span><span class="p">)))</span><span class="w">
+  
+  </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">accurate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict</span><span class="p">,</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">,</span><span class="w"> </span><span class="s2">"no"</span><span class="p">)</span><span class="w">
+  
+  </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict_stringent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">arrhythmia</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="s2">"arrhythmia"</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">healthy</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="s2">"healthy"</span><span class="p">,</span><span class="w"> </span><span class="s2">"uncertain"</span><span class="p">))</span><span class="w">
+  </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">accurate_stringent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict_stringent</span><span class="p">,</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">,</span><span class="w"> 
+                                         </span><span class="n">ifelse</span><span class="p">(</span><span class="n">finalRf_predictions</span><span class="o">$</span><span class="n">predict_stringent</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"uncertain"</span><span class="p">,</span><span class="w"> </span><span class="s2">"na"</span><span class="p">,</span><span class="w"> </span><span class="s2">"no"</span><span class="p">))</span><span class="w">
+  
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sort_by</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"mean_per_class_error"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">finalRf_predictions_comb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">finalRf_predictions</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">finalRf_predictions_comb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">finalRf_predictions_comb</span><span class="p">,</span><span class="w"> </span><span class="n">finalRf_predictions</span><span class="p">)</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>To get a better overview, I am going to plot the predictions (default and stringent):</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">finalRf_predictions_comb</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accurate</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">my_theme</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">sort</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Were\npredictions\naccurate?"</span><span class="p">,</span><span class="w">
+         </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Default predictions"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="grid_search_files/figure-markdown_github/unnamed-chunk-15-1.png" alt="" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">finalRf_predictions_comb</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="n">accurate_stringent</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">"na"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accurate_stringent</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">my_theme</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">sort</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Were\npredictions\naccurate?"</span><span class="p">,</span><span class="w">
+         </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Stringent predictions"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="grid_search_files/figure-markdown_github/unnamed-chunk-16-1.png" alt="" /></p>
+
+<p>With predictions made by different models, we can see where each model performs best. This obviously corresponds with the quality metric we chose to define the best model. Stringent prediction thresholds reduced the number of false predictions but of course also the number of predictions made at all.</p>
+
+<p>We can now decide which model is most relevant. Let’s say, we want this model to give recommendations for further validating a diagnosis of arrhythmia, we might want to detect as many arrhythmia cases as possible, while being okay with also getting some erroneously diagnosed healthy subjects. In this case, the people could flag patients with likely arrhythmia for further testing. Here, this would mean that we wanted to minimize the number of wrong predictions of arrhythmia cases, so we would prefer the mse, auc and specificity model (which is the same model, chosen by all three qualitry metrics). The worst model for this purpose would be the recall model, which also did not make any predictions that passed the stringency threshold. The recall model would have been best if we wanted to be confident that healthy people get flagged correctly. However, in a real-life setting, you can imagine that it would be much worse if a sick patient got sent home because he was wrongly diagnosed as healthy than if a healthy person got submitted to further testing for possible arrhythmia.</p>
+
+<hr />
+
+<p>If you are interested in more machine learning posts, check out <a href="https://shiring.github.io/categories.html#machine_learning-ref">the category listing for <strong>machine_learning</strong></a>.</p>
+
+<hr />
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 7 x64 (build 7601) Service Pack 1
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] tidyr_0.6.1         tibble_1.2          ggrepel_0.6.5      
+## [4] ggplot2_2.2.1.9000  sparklyr_0.5.3-9002 dplyr_0.5.0        
+## [7] h2o_3.10.3.6        rsparkling_0.1.0   
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.9        RColorBrewer_1.1-2 plyr_1.8.4        
+##  [4] bitops_1.0-6       base64enc_0.1-3    tools_3.3.2       
+##  [7] digest_0.6.12      jsonlite_1.2       evaluate_0.10     
+## [10] gtable_0.2.0       shiny_1.0.0        DBI_0.5-1         
+## [13] rstudioapi_0.6     yaml_2.1.14        parallel_3.3.2    
+## [16] withr_1.0.2        httr_1.2.1         stringr_1.2.0     
+## [19] knitr_1.15.1       rappdirs_0.3.1     rprojroot_1.2     
+## [22] grid_3.3.2         R6_2.2.0           rmarkdown_1.3     
+## [25] reshape2_1.4.2     magrittr_1.5       backports_1.0.5   
+## [28] scales_0.4.1       htmltools_0.3.5    assertthat_0.1    
+## [31] mime_0.5           xtable_1.8-2       colorspace_1.3-2  
+## [34] httpuv_1.3.3       labeling_0.3       config_0.2        
+## [37] stringi_1.1.2      RCurl_1.95-4.8     lazyeval_0.2.0    
+## [40] munsell_0.4.3
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#machine_learning-ref">
+    		machine_learning <span>14</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+     
+    	<li><a href="/tags.html#machine_learning-ref">machine_learning <span>13</span></a></li>
+     
+    	<li><a href="/tags.html#spark-ref">spark <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#h2o-ref">h2o <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#neural_nets-ref">neural_nets <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#deep_learning-ref">deep_learning <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#grid_search-ref">grid_search <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/machine_learning/2017/02/27/h2o" title="Building deep neural nets with h2o and rsparkling that predict arrhythmia of the heart">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/machine_learning/2017/03/16/rf_plot_ggraph" title="Plotting trees from Random Forest models with ggraph">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Gene homology Part 2 - creating directed networks with igraph</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Gene homology Part 2 - creating directed networks with igraph </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Gene homology Part 2 - creating directed networks with igraph" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>14 December 2016</span>
+    </div>
+    <div class="content">
+      <p>In my <a href="https://shiring.github.io/genome/2016/12/11/homologous_genes_post">last post</a> I created a gene homology network for human genes. In this post I want to extend the network to include edges for other species.</p>
+
+<p>First, I am loading biomaRt and extract a list of all available datasets.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">biomaRt</span><span class="p">)</span><span class="w">
+</span><span class="n">ensembl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">useMart</span><span class="p">(</span><span class="s2">"ensembl"</span><span class="p">)</span><span class="w">
+</span><span class="n">datasets</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">listDatasets</span><span class="p">(</span><span class="n">ensembl</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>For this network I don’t want to include all species with available information in Biomart because it would get way too messy. So, I am only picking the 11 species below: Human, fruitfly, mouse, C. elegans, dog, zebrafish, chicken, chimp, rat, yeast and pig. For all of these species, I am going to use their respective org.db database to extract gene information.</p>
+
+<p>In order to loop over all species’ org.dbs for installation and loading, I create a new column with the name of the library.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">datasets</span><span class="o">$</span><span class="n">orgDb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"hsapiens"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Hs.eg.db"</span><span class="w">
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"dmel"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Dm.eg.db"</span><span class="w">
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"mmus"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Mm.eg.db"</span><span class="w">
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"celegans"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Ce.eg.db"</span><span class="w">
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"cfam"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Cf.eg.db"</span><span class="w">
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"drerio"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Dr.eg.db"</span><span class="w">
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"ggallus"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Gg.eg.db"</span><span class="w">
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"ptrog"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Pt.eg.db"</span><span class="w">
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"rnor"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Rn.eg.db"</span><span class="w">
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"scer"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Sc.sgd.db"</span><span class="w">
+</span><span class="n">datasets</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"sscrofa"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="s2">"orgDb"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"org.Ss.eg.db"</span><span class="w">
+
+</span><span class="n">datasets</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="p">[</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">orgDb</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">datasets</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                       dataset                              description
+## 9    rnorvegicus_gene_ensembl                     Rat genes (Rnor_6.0)
+## 13   scerevisiae_gene_ensembl Saccharomyces cerevisiae genes (R64-1-1)
+## 14      celegans_gene_ensembl  Caenorhabditis elegans genes (WBcel235)
+## 22  ptroglodytes_gene_ensembl            Chimpanzee genes (CHIMP2.1.4)
+## 26       sscrofa_gene_ensembl                  Pig genes (Sscrofa10.2)
+## 32      hsapiens_gene_ensembl                  Human genes (GRCh38.p7)
+## 36       ggallus_gene_ensembl        Chicken genes (Gallus_gallus-5.0)
+## 41        drerio_gene_ensembl                 Zebrafish genes (GRCz10)
+## 53 dmelanogaster_gene_ensembl                   Fruitfly genes (BDGP6)
+## 61     mmusculus_gene_ensembl                  Mouse genes (GRCm38.p5)
+## 69   cfamiliaris_gene_ensembl                    Dog genes (CanFam3.1)
+##              version         orgDb
+## 9           Rnor_6.0  org.Rn.eg.db
+## 13           R64-1-1 org.Sc.sgd.db
+## 14          WBcel235  org.Ce.eg.db
+## 22        CHIMP2.1.4  org.Pt.eg.db
+## 26       Sscrofa10.2  org.Ss.eg.db
+## 32         GRCh38.p7  org.Hs.eg.db
+## 36 Gallus_gallus-5.0  org.Gg.eg.db
+## 41            GRCz10  org.Dr.eg.db
+## 53             BDGP6  org.Dm.eg.db
+## 61         GRCm38.p5  org.Mm.eg.db
+## 69         CanFam3.1  org.Cf.eg.db
+</code></pre>
+</div>
+
+<p>Now I can load the Ensembl mart for each species.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">datasets</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">ensembl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">
+  </span><span class="n">assign</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="n">ensembl</span><span class="p">),</span><span class="w"> </span><span class="n">useMart</span><span class="p">(</span><span class="s2">"ensembl"</span><span class="p">,</span><span class="w"> </span><span class="n">dataset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="n">ensembl</span><span class="p">)))</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">specieslist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>And install all org.db libraries, if necessary.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">AnnotationDbi</span><span class="p">)</span><span class="w">
+
+</span><span class="n">load_orgDb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">orgDb</span><span class="p">){</span><span class="w">
+  </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">orgDb</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">installed.packages</span><span class="p">()[,</span><span class="s2">"Package"</span><span class="p">]){</span><span class="w">
+    </span><span class="n">source</span><span class="p">(</span><span class="s2">"https://bioconductor.org/biocLite.R"</span><span class="p">)</span><span class="w">
+    </span><span class="n">biocLite</span><span class="p">(</span><span class="n">orgDb</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">sapply</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">orgDb</span><span class="p">,</span><span class="w"> </span><span class="n">load_orgDb</span><span class="p">,</span><span class="w"> </span><span class="n">simplify</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">USE.NAMES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Once they are all installed, I can load the libraries.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">lapply</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">orgDb</span><span class="p">,</span><span class="w"> </span><span class="n">require</span><span class="p">,</span><span class="w"> </span><span class="n">character.only</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Because I want to exctract and compare information on homologus genes for all possible combinations of species, they need to have a common identifier. To find them, I first produce a list with all available keytypes and then ask for common elements using <em>rlist</em>’s <strong>list.common()</strong> function.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">keytypes_list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">lapply</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">orgDb</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="kc">NULL</span><span class="p">)</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">keytypes_list</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">orgDb</span><span class="p">)</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">orgDb</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">orgDb</span><span class="p">){</span><span class="w">
+  </span><span class="n">keytypes_list</span><span class="p">[[</span><span class="n">orgDb</span><span class="p">]]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keytypes</span><span class="p">(</span><span class="n">get</span><span class="p">(</span><span class="n">orgDb</span><span class="p">))</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">rlist</span><span class="p">)</span><span class="w">
+</span><span class="n">list.common</span><span class="p">(</span><span class="n">keytypes_list</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  [1] "ENTREZID"    "ENZYME"      "EVIDENCE"    "EVIDENCEALL" "GENENAME"   
+##  [6] "GO"          "GOALL"       "ONTOLOGY"    "ONTOLOGYALL" "PATH"       
+## [11] "PMID"        "REFSEQ"      "UNIPROT"
+</code></pre>
+</div>
+
+<p>Entrez IDs are available for all species, so these are the keys I am using as gene identifiers. I am first creating a table of homologous genes for each species with all other species separately by looping over the datasets table.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">datasets</span><span class="p">)){</span><span class="w">
+  </span><span class="n">orgDbs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">orgDb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
+  </span><span class="n">values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">keys</span><span class="p">(</span><span class="n">get</span><span class="p">(</span><span class="n">orgDbs</span><span class="p">),</span><span class="w"> </span><span class="n">keytype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ENTREZID"</span><span class="p">)</span><span class="w">
+
+  </span><span class="n">ds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
+  </span><span class="n">mart</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">useMart</span><span class="p">(</span><span class="s2">"ensembl"</span><span class="p">,</span><span class="w"> </span><span class="n">dataset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">ds</span><span class="p">))</span><span class="w">
+  </span><span class="n">print</span><span class="p">(</span><span class="n">mart</span><span class="p">)</span><span class="w">
+
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">listFilters</span><span class="p">(</span><span class="n">mart</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"^entrezgene$"</span><span class="p">,</span><span class="w"> </span><span class="n">listFilters</span><span class="p">(</span><span class="n">mart</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">)])){</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">listAttributes</span><span class="p">(</span><span class="n">mart</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"^entrezgene$"</span><span class="p">,</span><span class="w"> </span><span class="n">listAttributes</span><span class="p">(</span><span class="n">mart</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">)])){</span><span class="w">
+    </span><span class="n">print</span><span class="p">(</span><span class="s2">"TRUE"</span><span class="p">)</span><span class="w">
+    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">specieslist</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="n">print</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="w">
+      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ds</span><span class="p">){</span><span class="w">
+        </span><span class="n">assign</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"homologs"</span><span class="p">,</span><span class="w"> </span><span class="n">orgDbs</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"_"</span><span class="p">),</span><span class="w"> </span><span class="n">getLDS</span><span class="p">(</span><span class="n">attributes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"entrezgene"</span><span class="p">),</span><span class="w">
+                                                                     </span><span class="n">filters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"entrezgene"</span><span class="p">,</span><span class="w">
+                                                                     </span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">values</span><span class="p">,</span><span class="w">
+                                                                     </span><span class="n">mart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mart</span><span class="p">,</span><span class="w">
+                                                                     </span><span class="n">attributesL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"entrezgene"</span><span class="p">),</span><span class="w">
+                                                                     </span><span class="n">martL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">species</span><span class="p">)))</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Now I sort and combine these tables into one big table and remove duplicate entries.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">datasets</span><span class="p">)){</span><span class="w">
+  </span><span class="n">orgDbs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">orgDb</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
+  </span><span class="n">values</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">GeneID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keys</span><span class="p">(</span><span class="n">get</span><span class="p">(</span><span class="n">orgDbs</span><span class="p">),</span><span class="w"> </span><span class="n">keytype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ENTREZID"</span><span class="p">))</span><span class="w">
+  </span><span class="n">values</span><span class="o">$</span><span class="n">GeneID</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">values</span><span class="o">$</span><span class="n">GeneID</span><span class="p">)</span><span class="w">
+  </span><span class="n">ds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
+
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">specieslist</span><span class="p">)){</span><span class="w">
+    </span><span class="n">species</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">specieslist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w">
+
+    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">){</span><span class="w">
+      </span><span class="n">homologs_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">values</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">species</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ds</span><span class="p">){</span><span class="w">
+      </span><span class="n">homologs_species</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"homologs"</span><span class="p">,</span><span class="w"> </span><span class="n">orgDbs</span><span class="p">,</span><span class="w"> </span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"_"</span><span class="p">))</span><span class="w">
+      </span><span class="n">homologs_species</span><span class="o">$</span><span class="n">EntrezGene.ID</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">homologs_species</span><span class="o">$</span><span class="n">EntrezGene.ID</span><span class="p">)</span><span class="w">
+
+      </span><span class="n">homologs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">values</span><span class="p">,</span><span class="w"> </span><span class="n">homologs_species</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"GeneID"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"EntrezGene.ID"</span><span class="p">))</span><span class="w">
+      </span><span class="n">homologs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">homologs</span><span class="p">[</span><span class="o">!</span><span class="n">duplicated</span><span class="p">(</span><span class="n">homologs</span><span class="o">$</span><span class="n">GeneID</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+      </span><span class="n">colnames</span><span class="p">(</span><span class="n">homologs</span><span class="p">)[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">species</span><span class="p">)</span><span class="w">
+
+      </span><span class="n">homologs_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">homologs_table</span><span class="p">,</span><span class="w"> </span><span class="n">homologs</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GeneID"</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+  </span><span class="n">colnames</span><span class="p">(</span><span class="n">homologs_table</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span><span class="w">
+
+  </span><span class="n">assign</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"homologs_table"</span><span class="p">,</span><span class="w"> </span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"_"</span><span class="p">),</span><span class="w"> </span><span class="n">homologs_table</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">datasets</span><span class="p">)){</span><span class="w">
+  </span><span class="n">ds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
+
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">){</span><span class="w">
+    </span><span class="n">homologs_table_combined</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"homologs_table"</span><span class="p">,</span><span class="w"> </span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"_"</span><span class="p">))</span><span class="w">
+    </span><span class="n">homologs_table_combined</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">homologs_table_combined</span><span class="p">[,</span><span class="w"> </span><span class="n">order</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">))]</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">homologs_table_species</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">paste</span><span class="p">(</span><span class="s2">"homologs_table"</span><span class="p">,</span><span class="w"> </span><span class="n">ds</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"_"</span><span class="p">))</span><span class="w">
+    </span><span class="n">homologs_table_species</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">homologs_table_species</span><span class="p">[,</span><span class="w"> </span><span class="n">order</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">homologs_table_species</span><span class="p">))]</span><span class="w">
+
+    </span><span class="n">homologs_table_combined</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">,</span><span class="w"> </span><span class="n">homologs_table_species</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">homologs_table_combined</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">homologs_table_combined</span><span class="p">[</span><span class="o">!</span><span class="n">duplicated</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Now each row in the table shows one gene and its homologs in all of the 11 species. Some genes have multiple homologs in other species (e.g. gene 44071 of the fruitfly has two homologs in zebrafish).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   celegans_gene_ensembl cfamiliaris_gene_ensembl
+## 1                    NA                       NA
+## 2                    NA                   477699
+## 3                    NA                   477023
+## 4                173979                   490207
+## 5                179795                   607852
+## 6                177055                       NA
+##   dmelanogaster_gene_ensembl drerio_gene_ensembl ggallus_gene_ensembl
+## 1                         NA                  NA                   NA
+## 2                      44071                  NA                   NA
+## 3                         NA              431754               770094
+## 4                      38864              406283                   NA
+## 5                      36760              794259               395373
+## 6                    3772179              541489               421909
+##   hsapiens_gene_ensembl mmusculus_gene_ensembl ptroglodytes_gene_ensembl
+## 1                    NA                     NA                        NA
+## 2                     2                 232345                    465372
+## 3                    30                 235674                    460268
+## 4                    34                  11364                    469356
+## 5                    47                 104112                    454672
+## 6                    52                  11431                    458990
+##   rnorvegicus_gene_ensembl scerevisiae_gene_ensembl sscrofa_gene_ensembl
+## 1                    24152                       NA                   NA
+## 2                    24153                       NA               403166
+## 3                    24157                   854646            100515577
+## 4                    24158                       NA               397104
+## 5                    24159                   854310                   NA
+## 6                    24161                   856187            100737301
+</code></pre>
+</div>
+
+<p>In order to create the cooccurrence matrix, I am converting gene names to “1” and NAs to “0” and multiply the matrix with its transposed self. This is now the basis for <em>igraph</em>’s <strong>graph_from_adjacency_matrix()</strong> function with which I’m creating a directed network. Before plotting the network, I am removing multiple entries and loops.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">homologs_table_combined_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">ifelse</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">
+
+</span><span class="n">co_occurrence</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">as.matrix</span><span class="p">(</span><span class="n">homologs_table_combined_matrix</span><span class="p">))</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">homologs_table_combined_matrix</span><span class="p">)</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span><span class="w">
+</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">graph_from_adjacency_matrix</span><span class="p">(</span><span class="n">co_occurrence</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">weighted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"directed"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">simplify</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">remove.multiple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">remove.loops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>I am also preparing a node annotation table with colors for each species group and the count of unique gene identifiers for species.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">datasets</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"(.*)( genes (.*))"</span><span class="p">,</span><span class="w"> </span><span class="s2">"\\1"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">])</span><span class="w">
+</span><span class="n">datasets</span><span class="o">$</span><span class="n">description</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"Saccharomyces"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">description</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"Yeast"</span><span class="w">
+</span><span class="n">datasets</span><span class="o">$</span><span class="n">description</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"elegans"</span><span class="p">,</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">description</span><span class="p">)]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"C. elegans"</span><span class="w">
+
+</span><span class="n">datasets</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">description</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Yeast"</span><span class="p">,</span><span class="w"> </span><span class="s2">"fungus"</span><span class="p">,</span><span class="w">
+                         </span><span class="n">ifelse</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">description</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"C. elegans"</span><span class="p">,</span><span class="w"> </span><span class="s2">"roundworm"</span><span class="p">,</span><span class="w">
+                                </span><span class="n">ifelse</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">description</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Chicken"</span><span class="p">,</span><span class="w"> </span><span class="s2">"bird"</span><span class="p">,</span><span class="w">
+                                       </span><span class="n">ifelse</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Zebrafish"</span><span class="p">,</span><span class="w"> </span><span class="s2">"fish"</span><span class="p">,</span><span class="w">
+                                              </span><span class="n">ifelse</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">description</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Fruitfly"</span><span class="p">,</span><span class="w"> </span><span class="s2">"insect"</span><span class="p">,</span><span class="w"> </span><span class="s2">"mammal"</span><span class="p">)))))</span><span class="w">
+
+</span><span class="n">list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">))</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span><span class="w">
+</span><span class="n">set3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">brewer.pal</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">list</span><span class="p">),</span><span class="w"> </span><span class="s2">"Set3"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">datasets</span><span class="o">$</span><span class="n">col</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">list</span><span class="p">)){</span><span class="w">
+  </span><span class="n">datasets</span><span class="p">[</span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="s2">"col"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">set3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">no_genes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">apply</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">x</span><span class="p">))))</span><span class="w">
+</span><span class="n">no_genes</span><span class="o">$</span><span class="n">dataset</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">no_genes</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">no_genes</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"no_genes"</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">datasets</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span><span class="w"> </span><span class="n">no_genes</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dataset"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">datasets</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="p">[</span><span class="n">order</span><span class="p">(</span><span class="n">datasets</span><span class="o">$</span><span class="n">dataset</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>I also want to have the proportion of genes that have homologs in each of the respective other species as edge attributes. I am preparing an extra table for this of all possible combinations of nodes.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">)){</span><span class="w">
+  </span><span class="n">input</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">na.omit</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">[,</span><span class="w"> </span><span class="n">i</span><span class="p">]))</span><span class="w">
+  </span><span class="n">homologs_table_combined_subset</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">homologs_table_combined</span><span class="p">[</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">[,</span><span class="w"> </span><span class="n">i</span><span class="p">]),</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">)){</span><span class="w">
+    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">j</span><span class="p">){</span><span class="w">
+      </span><span class="n">output</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">na.omit</span><span class="p">(</span><span class="n">homologs_table_combined_subset</span><span class="p">[,</span><span class="w"> </span><span class="n">j</span><span class="p">]))</span><span class="w">
+      
+      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="p">){</span><span class="w">
+        </span><span class="n">edge_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="w"> 
+                                 </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">)[</span><span class="n">j</span><span class="p">],</span><span class="w"> 
+                                 </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">input</span><span class="p">))</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="n">table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">)[</span><span class="n">i</span><span class="p">],</span><span class="w"> 
+                            </span><span class="n">target</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">homologs_table_combined</span><span class="p">)[</span><span class="n">j</span><span class="p">],</span><span class="w"> 
+                            </span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">output</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">input</span><span class="p">))</span><span class="w">
+        </span><span class="n">edge_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">edge_table</span><span class="p">,</span><span class="w"> </span><span class="n">table</span><span class="p">)</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">edge_table</span><span class="o">$</span><span class="n">source</span><span class="p">))</span><span class="w">
+
+</span><span class="n">edge_table</span><span class="o">$</span><span class="n">col</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">list</span><span class="p">)){</span><span class="w">
+  </span><span class="n">edge_table</span><span class="p">[</span><span class="n">edge_table</span><span class="o">$</span><span class="n">source</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="s2">"col"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">set3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>And finally I can produce the plot:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">V</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">$</span><span class="n">color</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">col</span><span class="w">
+</span><span class="n">V</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">$</span><span class="n">label</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">description</span><span class="w">
+</span><span class="n">V</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">$</span><span class="n">size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">datasets</span><span class="o">$</span><span class="n">no_genes</span><span class="o">/</span><span class="m">2000</span><span class="w">
+</span><span class="n">E</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">$</span><span class="n">arrow.size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">3</span><span class="w">
+</span><span class="n">E</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">$</span><span class="n">width</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">edge_table</span><span class="o">$</span><span class="n">weight</span><span class="o">*</span><span class="m">25</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label.font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sphere"</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label.cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.frame.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.curved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">ecount</span><span class="p">(</span><span class="n">g</span><span class="p">)),</span><span class="w">
+     </span><span class="n">edge.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">edge_table</span><span class="o">$</span><span class="n">col</span><span class="p">,</span><span class="w">
+     </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layout_in_circle</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="homologous_genes_part2_post_files/figure-markdown_github/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /></p>
+
+<p>Node size shows the total number of genes of each species and edge width shows the proportion of these genes with homologs in the respective other species. Edge and node colors show the 11 species and their outgoing edges.</p>
+
+<p>Weirdly, the mouse seems to have more gene entries in the org.db library than human. If anyone knows why that is, please let me know!</p>
+
+<hr />
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.1
+## 
+## locale:
+## [1] de_DE.UTF-8/de_DE.UTF-8/de_DE.UTF-8/C/de_DE.UTF-8/de_DE.UTF-8
+## 
+## attached base packages:
+## [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
+## [8] methods   base     
+## 
+## other attached packages:
+##  [1] dplyr_0.5.0          RColorBrewer_1.1-2   igraph_1.0.1        
+##  [4] rlist_0.4.6.1        org.Cf.eg.db_3.4.0   org.Mm.eg.db_3.4.0  
+##  [7] org.Dm.eg.db_3.4.0   org.Dr.eg.db_3.4.0   org.Gg.eg.db_3.4.0  
+## [10] org.Hs.eg.db_3.4.0   org.Ss.eg.db_3.4.0   org.Pt.eg.db_3.4.0  
+## [13] org.Ce.eg.db_3.4.0   org.Sc.sgd.db_3.4.0  org.Rn.eg.db_3.4.0  
+## [16] AnnotationDbi_1.36.0 IRanges_2.8.1        S4Vectors_0.12.1    
+## [19] Biobase_2.34.0       BiocGenerics_0.20.0  biomaRt_2.30.0      
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.8       bitops_1.0-6      tools_3.3.2      
+##  [4] digest_0.6.10     tibble_1.2        RSQLite_1.1-1    
+##  [7] evaluate_0.10     memoise_1.0.0     DBI_0.5-1        
+## [10] yaml_2.1.14       stringr_1.1.0     knitr_1.15.1     
+## [13] rprojroot_1.1     data.table_1.10.0 R6_2.2.0         
+## [16] XML_3.98-1.5      rmarkdown_1.2     magrittr_1.5     
+## [19] backports_1.0.4   htmltools_0.3.5   assertthat_0.1   
+## [22] stringi_1.1.2     RCurl_1.95-4.8
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#genome-ref">
+    		genome <span>6</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#AnnotatioDbi-ref">AnnotatioDbi <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#biomaRt-ref">biomaRt <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#igraph-ref">igraph <span>5</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/genome/2016/12/11/homologous_genes_post" title="Creating a network of human gene homology with R and D3">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/genome/2016/12/18/gwas_catalog_post" title="How to build a Shiny app for disease- & trait-associated locations of the human genome">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

@@ -1,0 +1,488 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Migrating from GitHub to GitLab with RStudio (Tutorial)</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Migrating from GitHub to GitLab with RStudio (Tutorial) </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Migrating from GitHub to GitLab with RStudio (Tutorial)" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>04 September 2017</span>
+    </div>
+    <div class="content">
+      <h2 id="github-vs-gitlab">GitHub vs. GitLab</h2>
+
+<p>Git is a distributed implementation of version control. Many people have written very eloquently about why it is a good idea to use version control, not only if you collaborate in a team but also if you work on your own; one example is <a href="https://support.rstudio.com/hc/en-us/articles/200532077?version=1.0.153&amp;mode=desktop">this article from RStudio’s Support pages</a>.</p>
+
+<p>In short, its main feature is that version control allows you to keep track of the changes you make to your code. It will also keep a history of all the changes you have made in the past and allows you to go back to specific versions if you made a major mistake. And Git makes collaborating on the same code very easy.</p>
+
+<p>Most R packages are also hosted on <a href="https://github.com/">GitHub</a>. You can check out their R code in the repositories if you want to get a deeper understanding of the functions, you can install the latest development versions of packages or install packages that are not on CRAN. The issue tracker function of GitHub also makes it easy to report and respond to issues/problems with your code.</p>
+
+<h3 id="why-would-you-want-to-leave-github">Why would you want to leave GitHub?</h3>
+
+<p>Public repositories are free on GitHub but you need to pay for private repos (if you are a student or work in academia, you <a href="https://education.github.com/discount_requests/new">get private repos for free</a>). Since I switched from academia to industry lately and no longer fulfil these criteria, all my private repos would have to be switched to public in the future. Here, GitLab is a great alternative!</p>
+
+<p><a href="https://gitlab.com/">GitLab</a> offers very similar functionalities as GitHub. There are <a href="https://www.slant.co/versus/532/4860/~github_vs_gitlab">many pros and cons for using GitHub versus GitLab</a> but for me, the selling point was that GitLab offers unlimited private projects and collaborators in its free plan.</p>
+
+<p><br /></p>
+
+<h1 id="tutorial">Tutorial</h1>
+
+<p>Migrating from GitHub to <a href="https://gitlab.com/">GitLab</a> with RStudio is very easy! Here, I will show how I migrated my GitHub repositories of R projects, that I work with from within RStudio, to GitLab.</p>
+
+<p><img src="GitLab_logo.png" alt="" /></p>
+
+<p>Beware, that ALL code snippets below show Terminal code (they are NOT from the R console)!</p>
+
+<p><br /></p>
+
+<h2 id="migrating-existing-repositories">Migrating existing repositories</h2>
+
+<p>You first need to set up your GitLab account (you can login with your GitHub account) and connect your old GitHub account. Under <a href="https://gitlab.com/profile/account">Settings &amp;Account</a>, you will find “Social sign-in”; here click on “Connect” next to the GitHub symbol (if you signed in with your GitHub account, it will already be connected).</p>
+
+<p>Once you have done this, you can import all your GitHub repositories to GitLab. To do this, you first need to create a new project. Click on the drop-down arrow next to the plus sign in the top-right corner and select “New project”. This will open the following window:</p>
+
+<p><img src="Bildschirmfoto1.png" alt="" /></p>
+
+<p>Here, choose “Import project from GitHub” and choose the repositories you want to import.</p>
+
+<p>If you go into one of your repositories, GitLab will show you a message at the top of the site that tells you that you need to add an SSH key. The SSH key is used for secure communication between the GitLab server and your computer when you want to share information, like push/pull commits.</p>
+
+<p><img src="Bildschirmfoto2.png" alt="" /></p>
+
+<p>If you already work with GitHub on your computer, you will have an SSH key set up and you can <a href="https://gitlab.com/profile/keys">copy your public SSH key to GitLab</a>. Follow the instructions <a href="https://gitlab.com/help/ssh/README">here</a>.</p>
+
+<p>Here is how you do it on a Mac:</p>
+
+<ol>
+  <li>Look for your public key and copy it to the clipboard</li>
+</ol>
+
+<!-- -->
+
+<div class="highlighter-rouge"><pre class="highlight"><code>cat ~/.ssh/id_rsa.pub
+pbcopy &lt; ~/.ssh/id_rsa.pub
+</code></pre>
+</div>
+
+<p>Then paste it into the respective field <a href="https://gitlab.com/profile/keys">here</a>.</p>
+
+<p>The next step is to change the remote URL for pushing/pulling your project from RStudio. In your Git window (tab next to “Environment” and “History” for me), click on Settings and “Shell”.</p>
+
+<p><img src="Bildschirmfoto3.png" alt="" /></p>
+
+<p>Then write in the shell window that opened:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git remote set-url origin git@&lt;GITLABHOST&gt;:&lt;ORGNAME&gt;/&lt;REPO&gt;.git
+</code></pre>
+</div>
+
+<p>You can copy the link in the navigation bar of your repo on GitLab.</p>
+
+<p><img src="Bildschirmfoto4.png" alt="" /></p>
+
+<p>Check that you now have the correct new gitlab path by going to “Tools”, “Project Options” and “Git/SVN”.</p>
+
+<p>Also check your SSH key configuration with:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ssh -T git@&lt;GITLABHOST&gt;
+</code></pre>
+</div>
+
+<p>If you get the following message</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>The authenticity of host 'gitlab.com (52.167.219.168)' can't be established.
+ECDSA key fingerprint is ...
+Are you sure you want to continue connecting (yes/no)?
+</code></pre>
+</div>
+
+<p>type “yes” (and enter passphrase if prompted).</p>
+
+<p>If everything is okay, you now get a message saying <code class="highlighter-rouge">Welcome to GitLab!</code></p>
+
+<p>Now, you can commit, push and pull from within RStudio just as you have done before!</p>
+
+<p><br /></p>
+
+<h2 id="in-case-of-problems-with-pushingpulling">In case of problems with pushing/pulling</h2>
+
+<p>In my case, I migrated both, my private as well as my company’s GitHub repos to GitLab. While my private repos could be migrated without a hitch, migrating my company’s repos was a bit more tricky (because they had additional security settings, I assume).</p>
+
+<p>Here is how I solved this problem with my company’s repos:</p>
+
+<p>I have protected my SSH key with a passphrase. When pushing or pulling commits via the shell with <code class="highlighter-rouge">git pull</code> and <code class="highlighter-rouge">git push origin master</code>, I am prompted to enter my passphrase and everything works fine. Pushing/pulling from within RStudio, however, threw an error:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ssh_askpass: exec(/usr/X11R6/bin/ssh-askpass): No such file or directory
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+</code></pre>
+</div>
+
+<p>I am using a MacBook Pro with MacOS Sierra version 10.12.6, so this might not be an issue with another operating system.</p>
+
+<p>The following solution worked for me:</p>
+
+<ol>
+  <li>Add your SSH key</li>
+</ol>
+
+<!-- -->
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ssh-add ~/.ssh/id_rsa
+</code></pre>
+</div>
+
+<ol>
+  <li>And reinstall <a href="https://vscode-eastus.azurewebsites.net/docs/setup/mac">VS Code</a></li>
+</ol>
+
+<p>Now I could commit, push and pull from within RStudio just as before!</p>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#tutorials-ref">
+    		tutorials <span>1</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#github-ref">github <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#gitlab-ref">gitlab <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/text_analysis/2017/07/28/codecentric_twitter" title="Social Network Analysis and Topic Modeling of codecentric’s Twitter friends and followers">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/machine_learning/2017/09/06/fraud_codecentric" title="Data Science for Fraud Detection">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

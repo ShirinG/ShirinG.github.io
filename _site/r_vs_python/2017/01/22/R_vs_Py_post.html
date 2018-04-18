@@ -1,0 +1,1464 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>R vs Python - a One-on-One Comparison</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>R vs Python - a One-on-One Comparison </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="R vs Python - a One-on-One Comparison" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>22 January 2017</span>
+    </div>
+    <div class="content">
+      <p>I’m an avid R user and rarely use anything else for data analysis and visualisations. But while R is my go-to, in some cases, <a href="https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis#gs.JrY_3bk">Python might actually be a better alternative</a>.</p>
+
+<p>That’s why I wanted to see how R and Python fare in a one-on-one comparison of an analysis that’s representative of what I would typically work with.</p>
+
+<h4 id="conclusions">Conclusions</h4>
+
+<p>All in all, the Python code could easily be translated into R and was comparable in length and simplicity between the two languages. While Python’s syntax is inherently cleaner/ tidier, we can use packages that implement piping in R and achieve similar results (even though Python’s dot-separated syntax is still much easier to type than using the piping operator of magrittr). For plotting and visualisation I still think that R’s ggplot2 is top of the line in both syntax, customizability and outcome (admittedly, I don’t know matplotlib as well as ggplot)! In terms of functionality, I couldn’t find major differences between the two languages and I would say they both have their merits. For me, R comes more natural as that is what I’m more fluent in, but I can see why Python holds an appeal too and I think I’ll make more of an effort to use both languages in my future projects.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="r-and-python">R and Python</h2>
+
+<p>R and Python are both open-source languages used in a wide range of data analysis fields. Their main difference is that R has traditionally been geared towards statistical analysis, while Python is more generalist. Both comprise a large collection of packages for specific tasks and have a growing community that offers support and tutorials online.</p>
+
+<p>For a nice overview of the languages respective strengths and weaknesses, check out <a href="https://www.datacamp.com/community/tutorials/r-or-python-for-data-analysis#gs.JrY_3bk">Datacamp’s nice infographic</a>.</p>
+
+<p><br /></p>
+
+<h2 id="comparative-analysis-of-genome-data">Comparative analysis of genome data</h2>
+
+<p>To directly compare R and Python, I am following <a href="https://www.toptal.com/python/comprehensive-introduction-your-genome-scipy">Zhuyi Xue’s “A Comprehensive Introduction To Your Genome With the SciPy Stack”</a> (with some minor tweaks here and there). He gives a nice introduction to the data, so I will not repeat it here but focus on the comparison between the code lines.</p>
+
+<p>For R, I am working with <a href="https://www.rstudio.com/">RStudio</a>, for Python with <a href="https://docs.continuum.io/">Anaconda</a> and <a href="https://pythonhosted.org/spyder/">Spyder</a>.</p>
+
+<p><em>Python</em>:</p>
+
+<p>For this analysis, we need the <a href="https://www.scipy.org/index.html">SciPy stack</a> with <a href="http://pandas.pydata.org/">pandas</a> for data wrangling and <a href="http://matplotlib.org/">matplotlib</a> for visualisation. <a href="https://docs.continuum.io/">Anaconda</a> already comes with all these packages that we need. Zhuyi Xue first imports pandas as “pd”, so that we can call pandas function by prefixing them with “pd.”.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<p>While the code could be replicated with base R, I prefer <a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">dplyr</a> for data wrangling and <a href="http://ggplot2.org/">ggplot2</a> for visualisation.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<h3 id="reading-in-data">Reading in data</h3>
+
+<p>Reading in data is straight forward in both R and Python. The code we need to read in the file is comparable between R and Python. Zhuyi Xue specified “compression = ‘gzip’”, but this would not have been necessary as the default is to infer it from the file suffix.</p>
+
+<p>One big difference in the general syntax we can see here too: Boolean true/false values are written in all caps in R (TRUE/FALSE), while Python uses first letter capitalisation (True/False). The same prinicple applies to “none”.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'Homo_sapiens.GRCh38.85.gff3.gz'</span><span class="p">,</span> 
+                         <span class="n">compression</span> <span class="o">=</span> <span class="s">'gzip'</span><span class="p">,</span>
+                         <span class="n">sep</span> <span class="o">=</span> <span class="s">'</span><span class="se">\t</span><span class="s">'</span><span class="p">,</span> 
+                         <span class="n">comment</span> <span class="o">=</span> <span class="s">'#'</span><span class="p">,</span> 
+                         <span class="n">low_memory</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+                         <span class="n">header</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> 
+                         <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s">'seqid'</span><span class="p">,</span> <span class="s">'source'</span><span class="p">,</span> <span class="s">'type'</span><span class="p">,</span> <span class="s">'start'</span><span class="p">,</span> <span class="s">'end'</span><span class="p">,</span> <span class="s">'score'</span><span class="p">,</span> <span class="s">'strand'</span><span class="p">,</span> <span class="s">'phase'</span><span class="p">,</span> <span class="s">'attributes'</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"~/Documents/Github/Homo_sapiens.GRCh38.85.gff3.gz"</span><span class="p">,</span><span class="w"> 
+               </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> 
+               </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\t"</span><span class="p">,</span><span class="w"> 
+               </span><span class="n">col.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s1">'seqid'</span><span class="p">,</span><span class="w"> </span><span class="s1">'source'</span><span class="p">,</span><span class="w"> </span><span class="s1">'type'</span><span class="p">,</span><span class="w"> </span><span class="s1">'start'</span><span class="p">,</span><span class="w"> </span><span class="s1">'end'</span><span class="p">,</span><span class="w"> </span><span class="s1">'score'</span><span class="p">,</span><span class="w"> </span><span class="s1">'strand'</span><span class="p">,</span><span class="w"> </span><span class="s1">'phase'</span><span class="p">,</span><span class="w"> </span><span class="s1">'attributes'</span><span class="p">),</span><span class="w"> 
+               </span><span class="n">comment.char</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#"</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   seqid source              type start       end   score strand phase
+## 1     1 GRCh38        chromosome     1 248956422       .      .     .
+## 2     1      . biological_region 10469     11240 1.3e+03      .     .
+## 3     1      . biological_region 10650     10657   0.999      +     .
+## 4     1      . biological_region 10655     10657   0.999      -     .
+## 5     1      . biological_region 10678     10687   0.999      +     .
+## 6     1      . biological_region 10681     10688   0.999      -     .
+##                                           attributes
+## 1 ID=chromosome:1;Alias=CM000663.2,chr1,NC_000001.11
+## 2           external_name=oe %3D 0.79;logic_name=cpg
+## 3                                 logic_name=eponine
+## 4                                 logic_name=eponine
+## 5                                 logic_name=eponine
+## 6                                 logic_name=eponine
+</code></pre>
+</div>
+
+<h3 id="examining-data">Examining data</h3>
+
+<ul>
+  <li>listing unique strings</li>
+</ul>
+
+<p>The first thing we want to know from the data is how many unique entries there are in the “seqid” column.</p>
+
+<p>Here, we can already see the main difference in syntax between R and Python:</p>
+
+<p>Python concatenates the object name (“df) with the column name and the functions that we want to run on this column in a sequential manner, separated by a dot. Base R uses nested functions, where each function is called with “function_name()” and we specify columns with “object_name$column_name”.</p>
+
+<p>However, both R and Python can also call columns in a dataframe with “[ ]” with the difference that Python per default subsets data columns df[“seqid”], while R always needs index specifications for rows and columns, separated by “,”: e.g. df[, “seqid”] would subset every row and only the column named “seqid”.</p>
+
+<p>The sequential calling of functions is indeed very handy, it makes the code easier to read and understand than lots of interwoven functions and brackets. But while this isn’t the concept of base R, dplyr uses the <a href="https://www.r-bloggers.com/why-bother-with-magrittr/">magrittr</a> principle of chaining functions with the pipe symbol “%&gt;%”. Even though this symbol isn’t as easily typed, it’s functionality is often superior to base R, especially if you need to run many functions on a dataframe. However, with just or two functions, I usually keep to base R as it is shorter.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">df</span><span class="o">.</span><span class="n">seqid</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span> <span class="c"># alternatively: df['seqid'].unique()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">seqid</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   [1] 1          10         11         12         13         14        
+##   [7] 15         16         17         18         19         2         
+##  [13] 20         21         22         3          4          5         
+##  [19] 6          7          8          9          GL000008.2 GL000009.2
+##  [25] GL000194.1 GL000195.1 GL000205.2 GL000208.1 GL000213.1 GL000214.1
+##  [31] GL000216.2 GL000218.1 GL000219.1 GL000220.1 GL000221.1 GL000224.1
+##  [37] GL000225.1 GL000226.1 KI270302.1 KI270303.1 KI270304.1 KI270305.1
+##  [43] KI270310.1 KI270311.1 KI270312.1 KI270315.1 KI270316.1 KI270317.1
+##  [49] KI270320.1 KI270322.1 KI270329.1 KI270330.1 KI270333.1 KI270334.1
+##  [55] KI270335.1 KI270336.1 KI270337.1 KI270338.1 KI270340.1 KI270362.1
+##  [61] KI270363.1 KI270364.1 KI270366.1 KI270371.1 KI270372.1 KI270373.1
+##  [67] KI270374.1 KI270375.1 KI270376.1 KI270378.1 KI270379.1 KI270381.1
+##  [73] KI270382.1 KI270383.1 KI270384.1 KI270385.1 KI270386.1 KI270387.1
+##  [79] KI270388.1 KI270389.1 KI270390.1 KI270391.1 KI270392.1 KI270393.1
+##  [85] KI270394.1 KI270395.1 KI270396.1 KI270411.1 KI270412.1 KI270414.1
+##  [91] KI270417.1 KI270418.1 KI270419.1 KI270420.1 KI270422.1 KI270423.1
+##  [97] KI270424.1 KI270425.1 KI270429.1 KI270435.1 KI270438.1 KI270442.1
+## [103] KI270448.1 KI270465.1 KI270466.1 KI270467.1 KI270468.1 KI270507.1
+## [109] KI270508.1 KI270509.1 KI270510.1 KI270511.1 KI270512.1 KI270515.1
+## [115] KI270516.1 KI270517.1 KI270518.1 KI270519.1 KI270521.1 KI270522.1
+## [121] KI270528.1 KI270529.1 KI270530.1 KI270538.1 KI270539.1 KI270544.1
+## [127] KI270548.1 KI270579.1 KI270580.1 KI270581.1 KI270582.1 KI270583.1
+## [133] KI270584.1 KI270587.1 KI270588.1 KI270589.1 KI270590.1 KI270591.1
+## [139] KI270593.1 KI270706.1 KI270707.1 KI270708.1 KI270709.1 KI270710.1
+## [145] KI270711.1 KI270712.1 KI270713.1 KI270714.1 KI270715.1 KI270716.1
+## [151] KI270717.1 KI270718.1 KI270719.1 KI270720.1 KI270721.1 KI270722.1
+## [157] KI270723.1 KI270724.1 KI270725.1 KI270726.1 KI270727.1 KI270728.1
+## [163] KI270729.1 KI270730.1 KI270731.1 KI270732.1 KI270733.1 KI270734.1
+## [169] KI270735.1 KI270736.1 KI270737.1 KI270738.1 KI270739.1 KI270740.1
+## [175] KI270741.1 KI270742.1 KI270743.1 KI270744.1 KI270745.1 KI270746.1
+## [181] KI270747.1 KI270748.1 KI270749.1 KI270750.1 KI270751.1 KI270752.1
+## [187] KI270753.1 KI270754.1 KI270755.1 KI270756.1 KI270757.1 MT        
+## [193] X          Y         
+## 194 Levels: 1 10 11 12 13 14 15 16 17 18 19 2 20 21 22 3 4 5 6 7 8 ... Y
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># with dplyr:
+# df %&gt;% select(seqid) %&gt;% unique
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<ul>
+  <li>how many unique seqids are there?</li>
+</ul>
+
+<p>To get the number of unique entries in the “seqid” column, we simply need to append “.shape” to the above Python code. In R, we can either wrap the above R code with the “length()” function or use dplyr and piping instead. If we use the latter, we need to use the “nrow()” function because base R returns a vector, while dplyr returns a dataframe. Here, we can see that with two functions, using dplyr is still a bit more code but it already looks much <a href="https://blog.rstudio.org/2014/07/22/introducing-tidyr/">tidier</a>.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">df</span><span class="o">.</span><span class="n">seqid</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">seqid</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 194
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># with dplyr:
+# df %&gt;% select(seqid) %&gt;% unique %&gt;% nrow
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<ul>
+  <li>counting occurrences</li>
+</ul>
+
+<p>To count the frequencies of each unique entry in the “source” column, we use the “value_counts()” function in Python and the “table()” function in R. These two functions differ in how they sort the output table: value_counts() sorts by decreasing frequency, while R alphabetically sorts the variables. To order the data as in Python, we need to add the “sort()” function to our R code.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">df</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># table(df$source) is per default ordered alphabetically, if we want it ordered by decreasing counts, like with Python:
+</span><span class="n">sort</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">source</span><span class="p">),</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+##         havana ensembl_havana        ensembl              .        mirbase 
+##        1441093         745065         228212         182510           4701 
+##         GRCh38          insdc 
+##            194             74
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># dplyr:
+# df %&gt;% select(source) %&gt;% table %&gt;% sort(decreasing = TRUE)
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="how-much-of-the-genome-is-incomplete">How Much of the Genome Is Incomplete?</h4>
+
+<ul>
+  <li>subsetting a dataframe</li>
+</ul>
+
+<p>We are now subsetting our original dataframe and assign it a new object name with “ = “ or “ &lt;- “.</p>
+
+<p>To subset the dataframe to keep only rows which say “GRCh38” in the “source” column, ther are several ways to do this in R: the way that would be directly comparable to how it was done in Python would be to also use the square bracket indexing. However, there are two solutions which are more elegant: 1) base R’s “subset()” or dplyr’s “filter()” function. But with this short example, there is no big difference between the three.</p>
+
+<p>Python’s “shape” gives us the same information as R’s “dim()” function: how many rows and columns our dataframe has.</p>
+
+<p>To preview a random subset of 10 rows from our dataframe, we use Python’s “sample()” and dplyr’s “sample_n()” function.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">gdf</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="s">'GRCh38'</span><span class="p">]</span>
+
+<span class="n">gdf</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">gdf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">$</span><span class="n">source</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"GRCh38"</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+</span><span class="c1"># alternatively:
+# gdf &lt;- subset(df, source == "GRCh38")
+</span><span class="w">
+</span><span class="c1"># dplyr:
+# gdf &lt;- df %&gt;% filter(source == "GRCh38")
+</span><span class="w">
+</span><span class="c1"># get number of rows and columns
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">gdf</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 194   9
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># randomly sample 10 rows for observation
+</span><span class="n">sample_n</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##              seqid source        type start       end score strand phase
+## 2511484 KI270375.1 GRCh38 supercontig     1      2378     .      .     .
+## 2511545 KI270466.1 GRCh38 supercontig     1      1233     .      .     .
+## 2511473 KI270337.1 GRCh38 supercontig     1      1121     .      .     .
+## 2511504 KI270411.1 GRCh38 supercontig     1      2646     .      .     .
+## 2511487 KI270379.1 GRCh38 supercontig     1      1045     .      .     .
+## 483371          12 GRCh38  chromosome     1 133275309     .      .     .
+## 2511494 KI270387.1 GRCh38 supercontig     1      1537     .      .     .
+## 674768          14 GRCh38  chromosome     1 107043718     .      .     .
+## 2511493 KI270386.1 GRCh38 supercontig     1      1788     .      .     .
+## 2511505 KI270412.1 GRCh38 supercontig     1      1179     .      .     .
+##                                                           attributes
+## 2511484 ID=supercontig:KI270375.1;Alias=chrUn_KI270375v1,NT_187493.1
+## 2511545 ID=supercontig:KI270466.1;Alias=chrUn_KI270466v1,NT_187421.1
+## 2511473 ID=supercontig:KI270337.1;Alias=chrUn_KI270337v1,NT_187466.1
+## 2511504 ID=supercontig:KI270411.1;Alias=chrUn_KI270411v1,NT_187409.1
+## 2511487 ID=supercontig:KI270379.1;Alias=chrUn_KI270379v1,NT_187472.1
+## 483371          ID=chromosome:12;Alias=CM000674.2,chr12,NC_000012.12
+## 2511494 ID=supercontig:KI270387.1;Alias=chrUn_KI270387v1,NT_187475.1
+## 674768           ID=chromosome:14;Alias=CM000676.2,chr14,NC_000014.9
+## 2511493 ID=supercontig:KI270386.1;Alias=chrUn_KI270386v1,NT_187480.1
+## 2511505 ID=supercontig:KI270412.1;Alias=chrUn_KI270412v1,NT_187408.1
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<ul>
+  <li>creating new columns and performing calculations</li>
+</ul>
+
+<p>Now we want to create a new column called “length”. It should contain the gene lengths, i.e. the distance in base pairs between the start and end point on the chromosomes (“start” and “end” columns). In R we don’t need to copy the dataframe first but the rest of the code is very similar: we define a new column name for the dataframe and assign its value by subtracting the values of the “start” from the values of the “end” column (+1). Here, we can see again that in Python we use a dot to define columns, while R uses the Dollar sign.</p>
+
+<p>The sum of all lengths is calculated with the “sum()” function in both languages.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">gdf</span><span class="p">[</span><span class="s">'length'</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="n">gdf</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">gdf</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">gdf</span><span class="o">$</span><span class="n">length</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gdf</span><span class="o">$</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">gdf</span><span class="o">$</span><span class="n">start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="w">
+
+</span><span class="nf">sum</span><span class="p">(</span><span class="n">gdf</span><span class="o">$</span><span class="n">length</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 3096629726
+</code></pre>
+</div>
+
+<p>Next, we want to calculating the proportion of the genome that is not on main chromosome assemblies. For that, we first define a character string with the main chromosomes: 1 to 23, X, Y and MT (mitochondrial chromosome). Defining this string is a bit easier in R.</p>
+
+<p>We will use this string to calculate the sum of lengths of the subsetted dataframe and divide it by the sum of lengths of the whole dataframe. For subsetting, we use the “isin()” function of Python, which corresponds to R’s “%in%”.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">chrs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">_</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="s">'X'</span><span class="p">,</span> <span class="s">'Y'</span><span class="p">,</span> <span class="s">'MT'</span><span class="p">]</span>
+<span class="n">gdf</span><span class="p">[</span><span class="o">-</span><span class="n">gdf</span><span class="o">.</span><span class="n">seqid</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">chrs</span><span class="p">)]</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">gdf</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+
+<span class="c"># or</span>
+<span class="n">gdf</span><span class="p">[(</span><span class="n">gdf</span><span class="p">[</span><span class="s">'type'</span><span class="p">]</span> <span class="o">==</span> <span class="s">'supercontig'</span><span class="p">)]</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">gdf</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="nb">sum</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">chrs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">23</span><span class="p">,</span><span class="w"> </span><span class="s2">"X"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MT"</span><span class="p">)</span><span class="w">
+</span><span class="nf">sum</span><span class="p">(</span><span class="n">subset</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span><span class="w"> </span><span class="o">!</span><span class="n">seqid</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">chrs</span><span class="p">)</span><span class="o">$</span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">gdf</span><span class="o">$</span><span class="n">length</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.003702192
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="how-many-genes-are-there">How Many Genes Are There?</h4>
+
+<p>Here, we are again using the same functions as above for subsetting the dataframe, asking for its dimensions, printing 10 random lines and asking for the frequencies of each unique item in the “type” column. For the latter I am using base R over dplyr, because it’s faster to type.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">edf</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s">'ensembl'</span><span class="p">,</span> <span class="s">'havana'</span><span class="p">,</span> <span class="s">'ensembl_havana'</span><span class="p">])]</span>
+<span class="n">edf</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">edf</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">edf</span><span class="o">.</span><span class="nb">type</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">edf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"ensembl"</span><span class="p">,</span><span class="w"> </span><span class="s2">"havana"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ensembl_havana"</span><span class="p">))</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">edf</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 2414370       9
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sample_n</span><span class="p">(</span><span class="n">edf</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##         seqid         source            type     start       end score
+## 2548897     X        ensembl three_prime_UTR  67723842  67730618     .
+## 790670     15 ensembl_havana             CDS  42352030  42352139     .
+## 1298369    19         havana             CDS  38942683  38942751     .
+## 189728      1 ensembl_havana             CDS 186304108 186304257     .
+## 1080599    17         havana            exon  44401337  44401453     .
+## 1562968    20 ensembl_havana            exon   2964272   2964350     .
+## 1965100     5        ensembl      transcript    144087    144197     .
+## 2581554     X         havana            exon 147927670 147928807     .
+## 785399     15         havana            exon  40611478  40611511     .
+## 1417830     2 ensembl_havana             CDS  71520178  71520208     .
+##         strand phase
+## 2548897      +     .
+## 790670       +     2
+## 1298369      -     0
+## 189728       +     2
+## 1080599      -     .
+## 1562968      +     .
+## 1965100      -     .
+## 2581554      +     .
+## 785399       +     .
+## 1417830      +     0
+##                                                                                                                                                                         attributes
+## 2548897                                                                                                                                          Parent=transcript:ENST00000612452
+## 790670                                                                                         ID=CDS:ENSP00000326227;Parent=transcript:ENST00000318010;protein_id=ENSP00000326227
+## 1298369                                                                                        ID=CDS:ENSP00000472465;Parent=transcript:ENST00000599996;protein_id=ENSP00000472465
+## 189728                                                                                         ID=CDS:ENSP00000356453;Parent=transcript:ENST00000367483;protein_id=ENSP00000356453
+## 1080599                         Parent=transcript:ENST00000585614;Name=ENSE00002917300;constitutive=0;ensembl_end_phase=2;ensembl_phase=2;exon_id=ENSE00002917300;rank=7;version=1
+## 1562968                        Parent=transcript:ENST00000216877;Name=ENSE00003603687;constitutive=1;ensembl_end_phase=1;ensembl_phase=-1;exon_id=ENSE00003603687;rank=4;version=1
+## 1965100 ID=transcript:ENST00000362670;Parent=gene:ENSG00000199540;Name=Y_RNA.43-201;biotype=misc_RNA;tag=basic;transcript_id=ENST00000362670;transcript_support_level=NA;version=1
+## 2581554                       Parent=transcript:ENST00000620828;Name=ENSE00003724969;constitutive=0;ensembl_end_phase=-1;ensembl_phase=-1;exon_id=ENSE00003724969;rank=1;version=1
+## 785399                          Parent=transcript:ENST00000399668;Name=ENSE00003659959;constitutive=0;ensembl_end_phase=2;ensembl_phase=1;exon_id=ENSE00003659959;rank=7;version=1
+## 1417830                                                                                        ID=CDS:ENSP00000398305;Parent=transcript:ENST00000429174;protein_id=ENSP00000398305
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sort</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">edf</span><span class="o">$</span><span class="n">type</span><span class="p">),</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+##                          exon                           CDS 
+##                       1180596                        704604 
+##                five_prime_UTR               three_prime_UTR 
+##                        142387                        133938 
+##                    transcript                          gene 
+##                         96375                         42470 
+##          processed_transcript aberrant_processed_transcript 
+##                         28228                         26944 
+##        NMD_transcript_variant                       lincRNA 
+##                         13761                         13247 
+##          processed_pseudogene                  lincRNA_gene 
+##                         10722                          7533 
+##                    pseudogene                           RNA 
+##                          3049                          2221 
+##                         snRNA                    snRNA_gene 
+##                          1909                          1909 
+##                        snoRNA                   snoRNA_gene 
+##                           956                           944 
+##        pseudogenic_transcript                          rRNA 
+##                           737                           549 
+##                     rRNA_gene                         miRNA 
+##                           549                           302 
+##                V_gene_segment                J_gene_segment 
+##                           216                           158 
+##               VD_gene_segment                C_gene_segment 
+##                            37                            29 
+##             biological_region                    chromosome 
+##                             0                             0 
+##                    miRNA_gene                       mt_gene 
+##                             0                             0 
+##                   supercontig 
+##                             0
+</code></pre>
+</div>
+
+<p>Now we want to subset the dataframe to rows with the attribute “gene” in the “type” column, look at 10 random lines from the “attributes” column and get the dataframe dimensions.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span> <span class="o">=</span> <span class="n">edf</span><span class="p">[</span><span class="n">edf</span><span class="o">.</span><span class="nb">type</span> <span class="o">==</span> <span class="s">'gene'</span><span class="p">]</span>
+<span class="n">ndf</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">ndf</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">values</span>
+<span class="n">ndf</span><span class="o">.</span><span class="n">shape</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">edf</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"gene"</span><span class="p">)</span><span class="w">
+</span><span class="n">sample_n</span><span class="p">(</span><span class="n">ndf</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="o">$</span><span class="n">attributes</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  [1] ID=gene:ENSG00000170949;Name=ZNF160;biotype=protein_coding;description=zinc finger protein 160 [Source:HGNC Symbol%3BAcc:HGNC:12948];gene_id=ENSG00000170949;havana_gene=OTTHUMG00000182854;havana_version=3;logic_name=ensembl_havana_gene;version=17                  
+##  [2] ID=gene:ENSG00000215088;Name=RPS5P3;biotype=processed_pseudogene;description=ribosomal protein S5 pseudogene 3 [Source:HGNC Symbol%3BAcc:HGNC:10427];gene_id=ENSG00000215088;havana_gene=OTTHUMG00000065532;havana_version=1;logic_name=havana;version=3                
+##  [3] ID=gene:ENSG00000249077;Name=RP11-478C1.8;biotype=processed_pseudogene;gene_id=ENSG00000249077;havana_gene=OTTHUMG00000160290;havana_version=1;logic_name=havana;version=1                                                                                              
+##  [4] ID=gene:ENSG00000110619;Name=CARS;biotype=protein_coding;description=cysteinyl-tRNA synthetase [Source:HGNC Symbol%3BAcc:HGNC:1493];gene_id=ENSG00000110619;havana_gene=OTTHUMG00000010927;havana_version=9;logic_name=ensembl_havana_gene;version=16                   
+##  [5] ID=gene:ENSG00000168010;Name=ATG16L2;biotype=protein_coding;description=autophagy related 16 like 2 [Source:HGNC Symbol%3BAcc:HGNC:25464];gene_id=ENSG00000168010;havana_gene=OTTHUMG00000167961;havana_version=2;logic_name=ensembl_havana_gene;version=10             
+##  [6] ID=gene:ENSG00000055957;Name=ITIH1;biotype=protein_coding;description=inter-alpha-trypsin inhibitor heavy chain 1 [Source:HGNC Symbol%3BAcc:HGNC:6166];gene_id=ENSG00000055957;havana_gene=OTTHUMG00000150312;havana_version=9;logic_name=ensembl_havana_gene;version=10
+##  [7] ID=gene:ENSG00000258781;Name=RP11-496I2.4;biotype=unprocessed_pseudogene;gene_id=ENSG00000258781;havana_gene=OTTHUMG00000170502;havana_version=2;logic_name=havana;version=2                                                                                            
+##  [8] ID=gene:ENSG00000157965;Name=SSX8;biotype=unprocessed_pseudogene;description=SSX family member 8 [Source:HGNC Symbol%3BAcc:HGNC:19654];gene_id=ENSG00000157965;havana_gene=OTTHUMG00000021573;havana_version=4;logic_name=havana;version=11                             
+##  [9] ID=gene:ENSG00000273489;Name=RP11-180C16.1;biotype=antisense;gene_id=ENSG00000273489;havana_gene=OTTHUMG00000186336;havana_version=1;logic_name=havana;version=1                                                                                                        
+## [10] ID=gene:ENSG00000279532;Name=CTB-96E2.6;biotype=TEC;gene_id=ENSG00000279532;havana_gene=OTTHUMG00000179414;havana_version=1;logic_name=havana;version=1                                                                                                                 
+## 1623077 Levels: external_name=Ala;logic_name=trnascan ...
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">dim</span><span class="p">(</span><span class="n">ndf</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 42470     9
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<ul>
+  <li>extracting gene information from attributes field</li>
+</ul>
+
+<p>I don’t know if there is an easier way in Python but in R we don’t need to create big helper functions around it. We can simply use “gsub()” with defining the regular expression for what we want to extract. This makes the R code much shorter and easier to understand! We then drop the original “attributes” column.</p>
+
+<p>To have a look at the dataframe, we use “head()” this time.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">RE_GENE_NAME</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r'Name=(?P&lt;gene_name&gt;.+?);'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">extract_gene_name</span><span class="p">(</span><span class="n">attributes_str</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">RE_GENE_NAME</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">attributes_str</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'gene_name'</span><span class="p">)</span>
+
+
+<span class="n">ndf</span><span class="p">[</span><span class="s">'gene_name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="n">extract_gene_name</span><span class="p">)</span>
+
+<span class="n">RE_GENE_ID</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r'gene_id=(?P&lt;gene_id&gt;ENSG.+?);'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">extract_gene_id</span><span class="p">(</span><span class="n">attributes_str</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">RE_GENE_ID</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">attributes_str</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'gene_id'</span><span class="p">)</span>
+
+
+<span class="n">ndf</span><span class="p">[</span><span class="s">'gene_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="n">extract_gene_id</span><span class="p">)</span>
+
+
+<span class="n">RE_DESC</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">'description=(?P&lt;desc&gt;.+?);'</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">extract_description</span><span class="p">(</span><span class="n">attributes_str</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">RE_DESC</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">attributes_str</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">res</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">''</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s">'desc'</span><span class="p">)</span>
+
+
+<span class="n">ndf</span><span class="p">[</span><span class="s">'desc'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="nb">apply</span><span class="p">(</span><span class="n">extract_description</span><span class="p">)</span>
+
+<span class="n">ndf</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s">'attributes'</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">ndf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span><span class="o">$</span><span class="n">gene_name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"(.*Name=)(.*?)(;biotype.*)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"\\2"</span><span class="p">,</span><span class="w"> </span><span class="n">ndf</span><span class="o">$</span><span class="n">attributes</span><span class="p">)</span><span class="w">
+</span><span class="n">ndf</span><span class="o">$</span><span class="n">gene_id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"(ID=gene:)(.*?)(;Name.*)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"\\2"</span><span class="p">,</span><span class="w"> </span><span class="n">ndf</span><span class="o">$</span><span class="n">attributes</span><span class="p">)</span><span class="w">
+</span><span class="n">ndf</span><span class="o">$</span><span class="n">desc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"(.*description=)(.*?)(;.*)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"\\2"</span><span class="p">,</span><span class="w"> </span><span class="n">ndf</span><span class="o">$</span><span class="n">attributes</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># some genes don't have a description
+</span><span class="n">ndf</span><span class="o">$</span><span class="n">desc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"^ID=.*"</span><span class="p">,</span><span class="w"> </span><span class="n">ndf</span><span class="o">$</span><span class="n">desc</span><span class="p">),</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">ndf</span><span class="o">$</span><span class="n">desc</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ndf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">ndf</span><span class="p">,</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">attributes</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">ndf</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     seqid         source type  start    end score strand phase gene_name
+## 17      1         havana gene  11869  14409     .      +     .   DDX11L1
+## 29      1         havana gene  14404  29570     .      -     .    WASH7P
+## 72      1         havana gene  52473  53312     .      +     .    OR4G4P
+## 75      1         havana gene  62948  63887     .      +     .   OR4G11P
+## 78      1 ensembl_havana gene  69091  70008     .      +     .     OR4F5
+## 109     1         havana gene 131025 134836     .      +     .    CICP27
+##             gene_id
+## 17  ENSG00000223972
+## 29  ENSG00000227232
+## 72  ENSG00000268020
+## 75  ENSG00000240361
+## 78  ENSG00000186092
+## 109 ENSG00000233750
+##                                                                                                   desc
+## 17                                 DEAD/H-box helicase 11 like 1 [Source:HGNC Symbol%3BAcc:HGNC:37102]
+## 29                       WAS protein family homolog 7 pseudogene [Source:HGNC Symbol%3BAcc:HGNC:38034]
+## 72   olfactory receptor family 4 subfamily G member 4 pseudogene [Source:HGNC Symbol%3BAcc:HGNC:14822]
+## 75  olfactory receptor family 4 subfamily G member 11 pseudogene [Source:HGNC Symbol%3BAcc:HGNC:31276]
+## 78              olfactory receptor family 4 subfamily F member 5 [Source:HGNC Symbol%3BAcc:HGNC:14825]
+## 109              capicua transcriptional repressor pseudogene 27 [Source:HGNC Symbol%3BAcc:HGNC:48835]
+</code></pre>
+</div>
+
+<p>Next, we want to know how many unique gene names and gene IDs there are. As above we use the “unique()”, “shape()” (Python) and “length()” (R) functions.</p>
+
+<p>The count table for gene names can again be obtained with R’s “table()” function, even though Zhuyi Xue uses a slightly different approach: he first groups the “gene_name” column, then counts and sorts.</p>
+
+<p>Finally, we can calculate the proportion of genes that have more than appear more than once and we can have a closer look at the SCARNA20 gene.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">ndf</span><span class="o">.</span><span class="n">gene_id</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">ndf</span><span class="o">.</span><span class="n">gene_name</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+
+<span class="n">count_df</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">'gene_name'</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">ix</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">ix</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">count_df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">count_df</span><span class="p">[</span><span class="n">count_df</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">count_df</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">count_df</span><span class="p">[</span><span class="n">count_df</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">count_df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">ndf</span><span class="p">[</span><span class="n">ndf</span><span class="o">.</span><span class="n">gene_name</span> <span class="o">==</span> <span class="s">'SCARNA20'</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">dim</span><span class="p">(</span><span class="n">ndf</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 42470    11
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">ndf</span><span class="o">$</span><span class="n">gene_id</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 42470
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">ndf</span><span class="o">$</span><span class="n">gene_name</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 42387
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">count_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">ndf</span><span class="o">$</span><span class="n">gene_name</span><span class="p">),</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">count_df</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+##        SCARNA20        SCARNA16        SCARNA17        SCARNA11 
+##               7               6               5               4 
+##        SCARNA15        SCARNA21 Clostridiales-1         SCARNA4 
+##               4               4               3               3 
+##        ACTR3BP2           AGBL1 
+##               2               2
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">length</span><span class="p">(</span><span class="n">count_df</span><span class="p">[</span><span class="n">count_df</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">])</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 63
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">length</span><span class="p">(</span><span class="n">count_df</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 42387
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">length</span><span class="p">(</span><span class="n">count_df</span><span class="p">[</span><span class="n">count_df</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">count_df</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 0.001486305
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span><span class="p">[</span><span class="n">ndf</span><span class="o">$</span><span class="n">gene_name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"SCARNA20"</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##         seqid  source type     start       end score strand phase
+## 179400      1 ensembl gene 171768070 171768175     .      +     .
+## 201038      1 ensembl gene 204727991 204728106     .      +     .
+## 349204     11 ensembl gene   8555016   8555146     .      +     .
+## 718521     14 ensembl gene  63479272  63479413     .      +     .
+## 837234     15 ensembl gene  75121536  75121666     .      -     .
+## 1039875    17 ensembl gene  28018770  28018907     .      +     .
+## 1108216    17 ensembl gene  60231516  60231646     .      -     .
+##         gene_name         gene_id
+## 179400   SCARNA20 ENSG00000253060
+## 201038   SCARNA20 ENSG00000251861
+## 349204   SCARNA20 ENSG00000252778
+## 718521   SCARNA20 ENSG00000252800
+## 837234   SCARNA20 ENSG00000252722
+## 1039875  SCARNA20 ENSG00000251818
+## 1108216  SCARNA20 ENSG00000252577
+##                                                                           desc
+## 179400            Small Cajal body specific RNA 20 [Source:RFAM%3BAcc:RF00601]
+## 201038            Small Cajal body specific RNA 20 [Source:RFAM%3BAcc:RF00601]
+## 349204            Small Cajal body specific RNA 20 [Source:RFAM%3BAcc:RF00601]
+## 718521            Small Cajal body specific RNA 20 [Source:RFAM%3BAcc:RF00601]
+## 837234            Small Cajal body specific RNA 20 [Source:RFAM%3BAcc:RF00601]
+## 1039875           Small Cajal body specific RNA 20 [Source:RFAM%3BAcc:RF00601]
+## 1108216 small Cajal body-specific RNA 20 [Source:HGNC Symbol%3BAcc:HGNC:32578]
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># dplyr:
+# ndf %&gt;% filter(gene_name == "SCARNA20")
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="how-long-is-a-typical-gene">How Long Is a Typical Gene?</h4>
+
+<p>To calculate gene lengths we use the same code as before. R’s summary() is not exactly the same as Python’s describe() but it’s close enough.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span><span class="p">[</span><span class="s">'length'</span><span class="p">]</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">end</span> <span class="o">-</span> <span class="n">ndf</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">ndf</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span><span class="o">$</span><span class="n">length</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ndf</span><span class="o">$</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ndf</span><span class="o">$</span><span class="n">start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">ndf</span><span class="o">$</span><span class="n">length</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       8     884    5170   35830   30550 2305000
+</code></pre>
+</div>
+
+<p>Now we produce the first plot, showing a histogram of gene length. In base R you can’t really plot a histogram with logarithmic y-axis scales (at least not without manually tweaking the hist() output but it isn’t recommended anyway because 0 will become -Inf). But we can do it easily with ggplot2 with “scale_y_log10()”. The code we need for ggplot2 is a bit longer than with matplotlib. We could of course further customize our plot but for now, let’s keep it simple.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="n">ndf</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s">'hist'</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">logy</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">scale_y_log10</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="R_vs_Py_post_files/figure-markdown_github/unnamed-chunk-28-1.png" alt="" /></p>
+
+<p>Now, we subset the dataframe to keep only rows where the “length” column contains values bigger than 2 million and order it by descending gene length. To see the shortest genes, we order the original dataframe and view the first 6 rows. Instead of “sort()”, we use dplyr’s “arrange()” function this time (I didn’t use it before because it can only be applied to dataframes).</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span><span class="p">[</span><span class="n">ndf</span><span class="o">.</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mf">2e6</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'length'</span><span class="p">)</span><span class="o">.</span><span class="n">ix</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">ndf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'length'</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">2e6</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">arrange</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="n">length</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   seqid         source type     start       end score strand phase
+## 1     7 ensembl_havana gene 146116002 148420998     .      +     .
+## 2     9 ensembl_havana gene   8314246  10612723     .      -     .
+## 3     X ensembl_havana gene  31097677  33339441     .      -     .
+## 4    11 ensembl_havana gene  83455012  85627922     .      -     .
+## 5     8 ensembl_havana gene   2935353   4994972     .      -     .
+## 6    20 ensembl_havana gene  13995369  16053197     .      +     .
+##   gene_name         gene_id
+## 1   CNTNAP2 ENSG00000174469
+## 2     PTPRD ENSG00000153707
+## 3       DMD ENSG00000198947
+## 4      DLG2 ENSG00000150672
+## 5     CSMD1 ENSG00000183117
+## 6   MACROD2 ENSG00000172264
+##                                                                                   desc
+## 1            contactin associated protein-like 2 [Source:HGNC Symbol%3BAcc:HGNC:13830]
+## 2 protein tyrosine phosphatase%2C receptor type D [Source:HGNC Symbol%3BAcc:HGNC:9668]
+## 3                                      dystrophin [Source:HGNC Symbol%3BAcc:HGNC:2928]
+## 4            discs large MAGUK scaffold protein 2 [Source:HGNC Symbol%3BAcc:HGNC:2901]
+## 5               CUB and Sushi multiple domains 1 [Source:HGNC Symbol%3BAcc:HGNC:14026]
+## 6                      MACRO domain containing 2 [Source:HGNC Symbol%3BAcc:HGNC:16126]
+##    length
+## 1 2304997
+## 2 2298478
+## 3 2241765
+## 4 2172911
+## 5 2059620
+## 6 2057829
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">arrange</span><span class="p">(</span><span class="n">ndf</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   seqid source type     start       end score strand phase    gene_name
+## 1    14 havana gene  22438547  22438554     .      +     .        TRDD1
+## 2    14 havana gene  22439007  22439015     .      +     .        TRDD2
+## 3     7 havana gene 142786213 142786224     .      +     .        TRBD1
+## 4    14 havana gene  22449113  22449125     .      +     .        TRDD3
+## 5     4 havana gene  10238213  10238235     .      -     .   AC006499.9
+## 6     3 havana gene 179452395 179452419     .      -     . RP11-145M9.2
+##           gene_id
+## 1 ENSG00000223997
+## 2 ENSG00000237235
+## 3 ENSG00000282431
+## 4 ENSG00000228985
+## 5 ENSG00000271544
+## 6 ENSG00000239255
+##                                                                      desc
+## 1 T cell receptor delta diversity 1 [Source:HGNC Symbol%3BAcc:HGNC:12254]
+## 2 T cell receptor delta diversity 2 [Source:HGNC Symbol%3BAcc:HGNC:12255]
+## 3  T cell receptor beta diversity 1 [Source:HGNC Symbol%3BAcc:HGNC:12158]
+## 4 T cell receptor delta diversity 3 [Source:HGNC Symbol%3BAcc:HGNC:12256]
+## 5                                                                        
+## 6                                                                        
+##   length
+## 1      8
+## 2      9
+## 3     12
+## 4     13
+## 5     23
+## 6     25
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="gene-distribution-among-chromosomes">Gene Distribution Among Chromosomes</h4>
+
+<p>The number of genes per chromosome are counted with the “subset()”, “table()” and “sort()” functions as described earlier.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span> <span class="o">=</span> <span class="n">ndf</span><span class="p">[</span><span class="n">ndf</span><span class="o">.</span><span class="n">seqid</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">chrs</span><span class="p">)]</span>
+<span class="n">chr_gene_counts</span> <span class="o">=</span> <span class="n">ndf</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s">'seqid'</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">ix</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">ix</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">chr_gene_counts</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ndf</span><span class="o">$</span><span class="n">seqid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">ndf</span><span class="o">$</span><span class="n">seqid</span><span class="p">)</span><span class="w"> </span><span class="c1"># as factors it will subset the dataframe but keep the factor levels
+</span><span class="n">ndf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">ndf</span><span class="p">,</span><span class="w"> </span><span class="n">seqid</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">chrs</span><span class="p">)</span><span class="w">
+</span><span class="n">chr_gene_counts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sort</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">ndf</span><span class="o">$</span><span class="n">seqid</span><span class="p">),</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">chr_gene_counts</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+##    1    2   11   19   17    3    6   12    7    5   16    X    4    9    8 
+## 3902 2806 2561 2412 2280 2204 2154 2140 2106 2002 1881 1852 1751 1659 1628 
+##   10   15   14   22   20   13   18   21    Y 
+## 1600 1476 1449  996  965  872  766  541  436
+</code></pre>
+</div>
+
+<p>To see all genes that are on mitochondrial chromosome, we subset the first dataframe by two conditions. In both, R and Python this is done with the ampersand symbol but in R we don’t need brackets around the individual conditions.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="nb">type</span> <span class="o">==</span> <span class="s">'gene'</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">seqid</span> <span class="o">==</span> <span class="s">'MT'</span><span class="p">)]</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">subset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"gene"</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">seqid</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"MT"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##         seqid source type start   end score strand phase
+## 2514004    MT  insdc gene   648  1601     .      +     .
+## 2514010    MT  insdc gene  1671  3229     .      +     .
+## 2514017    MT  insdc gene  3307  4262     .      +     .
+## 2514030    MT  insdc gene  4470  5511     .      +     .
+## 2514049    MT  insdc gene  5904  7445     .      +     .
+## 2514059    MT  insdc gene  7586  8269     .      +     .
+## 2514066    MT  insdc gene  8366  8572     .      +     .
+## 2514070    MT  insdc gene  8527  9207     .      +     .
+## 2514074    MT  insdc gene  9207  9990     .      +     .
+## 2514081    MT  insdc gene 10059 10404     .      +     .
+## 2514088    MT  insdc gene 10470 10766     .      +     .
+## 2514092    MT  insdc gene 10760 12137     .      +     .
+## 2514105    MT  insdc gene 12337 14148     .      +     .
+## 2514109    MT  insdc gene 14149 14673     .      -     .
+## 2514116    MT  insdc gene 14747 15887     .      +     .
+##                                                                                                                                                                                                                                                 attributes
+## 2514004                                               ID=gene:ENSG00000211459;Name=MT-RNR1;biotype=Mt_rRNA;description=mitochondrially encoded 12S RNA [Source:HGNC Symbol%3BAcc:HGNC:7470];gene_id=ENSG00000211459;logic_name=mt_genbank_import;version=2
+## 2514010                                               ID=gene:ENSG00000210082;Name=MT-RNR2;biotype=Mt_rRNA;description=mitochondrially encoded 16S RNA [Source:HGNC Symbol%3BAcc:HGNC:7471];gene_id=ENSG00000210082;logic_name=mt_genbank_import;version=2
+## 2514017   ID=gene:ENSG00000198888;Name=MT-ND1;biotype=protein_coding;description=mitochondrially encoded NADH:ubiquinone oxidoreductase core subunit 1 [Source:HGNC Symbol%3BAcc:HGNC:7455];gene_id=ENSG00000198888;logic_name=mt_genbank_import;version=2
+## 2514030   ID=gene:ENSG00000198763;Name=MT-ND2;biotype=protein_coding;description=mitochondrially encoded NADH:ubiquinone oxidoreductase core subunit 2 [Source:HGNC Symbol%3BAcc:HGNC:7456];gene_id=ENSG00000198763;logic_name=mt_genbank_import;version=3
+## 2514049                          ID=gene:ENSG00000198804;Name=MT-CO1;biotype=protein_coding;description=mitochondrially encoded cytochrome c oxidase I [Source:HGNC Symbol%3BAcc:HGNC:7419];gene_id=ENSG00000198804;logic_name=mt_genbank_import;version=2
+## 2514059                         ID=gene:ENSG00000198712;Name=MT-CO2;biotype=protein_coding;description=mitochondrially encoded cytochrome c oxidase II [Source:HGNC Symbol%3BAcc:HGNC:7421];gene_id=ENSG00000198712;logic_name=mt_genbank_import;version=1
+## 2514066                                 ID=gene:ENSG00000228253;Name=MT-ATP8;biotype=protein_coding;description=mitochondrially encoded ATP synthase 8 [Source:HGNC Symbol%3BAcc:HGNC:7415];gene_id=ENSG00000228253;logic_name=mt_genbank_import;version=1
+## 2514070                                 ID=gene:ENSG00000198899;Name=MT-ATP6;biotype=protein_coding;description=mitochondrially encoded ATP synthase 6 [Source:HGNC Symbol%3BAcc:HGNC:7414];gene_id=ENSG00000198899;logic_name=mt_genbank_import;version=2
+## 2514074                        ID=gene:ENSG00000198938;Name=MT-CO3;biotype=protein_coding;description=mitochondrially encoded cytochrome c oxidase III [Source:HGNC Symbol%3BAcc:HGNC:7422];gene_id=ENSG00000198938;logic_name=mt_genbank_import;version=2
+## 2514081   ID=gene:ENSG00000198840;Name=MT-ND3;biotype=protein_coding;description=mitochondrially encoded NADH:ubiquinone oxidoreductase core subunit 3 [Source:HGNC Symbol%3BAcc:HGNC:7458];gene_id=ENSG00000198840;logic_name=mt_genbank_import;version=2
+## 2514088 ID=gene:ENSG00000212907;Name=MT-ND4L;biotype=protein_coding;description=mitochondrially encoded NADH:ubiquinone oxidoreductase core subunit 4L [Source:HGNC Symbol%3BAcc:HGNC:7460];gene_id=ENSG00000212907;logic_name=mt_genbank_import;version=2
+## 2514092   ID=gene:ENSG00000198886;Name=MT-ND4;biotype=protein_coding;description=mitochondrially encoded NADH:ubiquinone oxidoreductase core subunit 4 [Source:HGNC Symbol%3BAcc:HGNC:7459];gene_id=ENSG00000198886;logic_name=mt_genbank_import;version=2
+## 2514105   ID=gene:ENSG00000198786;Name=MT-ND5;biotype=protein_coding;description=mitochondrially encoded NADH:ubiquinone oxidoreductase core subunit 5 [Source:HGNC Symbol%3BAcc:HGNC:7461];gene_id=ENSG00000198786;logic_name=mt_genbank_import;version=2
+## 2514109   ID=gene:ENSG00000198695;Name=MT-ND6;biotype=protein_coding;description=mitochondrially encoded NADH:ubiquinone oxidoreductase core subunit 6 [Source:HGNC Symbol%3BAcc:HGNC:7462];gene_id=ENSG00000198695;logic_name=mt_genbank_import;version=2
+## 2514116                                    ID=gene:ENSG00000198727;Name=MT-CYB;biotype=protein_coding;description=mitochondrially encoded cytochrome b [Source:HGNC Symbol%3BAcc:HGNC:7427];gene_id=ENSG00000198727;logic_name=mt_genbank_import;version=2
+</code></pre>
+</div>
+
+<p>We can get the chromosome lengths from the dataframe as well. We again subset to only the main chromosomes, then drop unwanted columns and order by length.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="n">gdf</span><span class="o">.</span><span class="n">seqid</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">chrs</span><span class="p">)]</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s">'start'</span><span class="p">,</span> <span class="s">'end'</span><span class="p">,</span> <span class="s">'score'</span><span class="p">,</span> <span class="s">'strand'</span><span class="p">,</span> <span class="s">'phase'</span> <span class="p">,</span><span class="s">'attributes'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'length'</span><span class="p">)</span><span class="o">.</span><span class="n">ix</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">gdf</span><span class="o">$</span><span class="n">seqid</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">gdf</span><span class="o">$</span><span class="n">seqid</span><span class="p">)</span><span class="w"> </span><span class="c1"># as factors it will subset the dataframe but keep the factor levels
+</span><span class="n">gdf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">seqid</span><span class="p">)</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">chrs</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">start</span><span class="o">:</span><span class="n">attributes</span><span class="p">))</span><span class="w">
+</span><span class="n">arrange</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span><span class="w"> </span><span class="n">desc</span><span class="p">(</span><span class="n">length</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##    seqid source       type    length
+## 1      1 GRCh38 chromosome 248956422
+## 2      2 GRCh38 chromosome 242193529
+## 3      3 GRCh38 chromosome 198295559
+## 4      4 GRCh38 chromosome 190214555
+## 5      5 GRCh38 chromosome 181538259
+## 6      6 GRCh38 chromosome 170805979
+## 7      7 GRCh38 chromosome 159345973
+## 8      X GRCh38 chromosome 156040895
+## 9      8 GRCh38 chromosome 145138636
+## 10     9 GRCh38 chromosome 138394717
+## 11    11 GRCh38 chromosome 135086622
+## 12    10 GRCh38 chromosome 133797422
+## 13    12 GRCh38 chromosome 133275309
+## 14    13 GRCh38 chromosome 114364328
+## 15    14 GRCh38 chromosome 107043718
+## 16    15 GRCh38 chromosome 101991189
+## 17    16 GRCh38 chromosome  90338345
+## 18    17 GRCh38 chromosome  83257441
+## 19    18 GRCh38 chromosome  80373285
+## 20    20 GRCh38 chromosome  64444167
+## 21    19 GRCh38 chromosome  58617616
+## 22     Y GRCh38 chromosome  54106423
+## 23    22 GRCh38 chromosome  50818468
+## 24    21 GRCh38 chromosome  46709983
+## 25    MT GRCh38 chromosome     16569
+</code></pre>
+</div>
+
+<p>Now, we merge the dataframe with the number of genes per chromosome with the dataframe of chromosome lengths. Because R’s “table()” function produces a vector, we need to convert it to a dataframe first and define the column names. Then, we use the “merge()” function and point to the name of the column we want to merge by.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">cdf</span> <span class="o">=</span> <span class="n">chr_gene_counts</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">'gene_count'</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">cdf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">merged</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">cdf</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s">'seqid'</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">cdf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">chr_gene_counts</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">cdf</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"seqid"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gene_count"</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">cdf</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   seqid gene_count
+## 1     1       3902
+## 2     2       2806
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">merged</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">merge</span><span class="p">(</span><span class="n">gdf</span><span class="p">,</span><span class="w"> </span><span class="n">cdf</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"seqid"</span><span class="p">)</span><span class="w">
+</span><span class="n">merged</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##    seqid source       type    length gene_count
+## 1      1 GRCh38 chromosome 248956422       3902
+## 2     10 GRCh38 chromosome 133797422       1600
+## 3     11 GRCh38 chromosome 135086622       2561
+## 4     12 GRCh38 chromosome 133275309       2140
+## 5     13 GRCh38 chromosome 114364328        872
+## 6     14 GRCh38 chromosome 107043718       1449
+## 7     15 GRCh38 chromosome 101991189       1476
+## 8     16 GRCh38 chromosome  90338345       1881
+## 9     17 GRCh38 chromosome  83257441       2280
+## 10    18 GRCh38 chromosome  80373285        766
+## 11    19 GRCh38 chromosome  58617616       2412
+## 12     2 GRCh38 chromosome 242193529       2806
+## 13    20 GRCh38 chromosome  64444167        965
+## 14    21 GRCh38 chromosome  46709983        541
+## 15    22 GRCh38 chromosome  50818468        996
+## 16     3 GRCh38 chromosome 198295559       2204
+## 17     4 GRCh38 chromosome 190214555       1751
+## 18     5 GRCh38 chromosome 181538259       2002
+## 19     6 GRCh38 chromosome 170805979       2154
+## 20     7 GRCh38 chromosome 159345973       2106
+## 21     8 GRCh38 chromosome 145138636       1628
+## 22     9 GRCh38 chromosome 138394717       1659
+## 23     X GRCh38 chromosome 156040895       1852
+## 24     Y GRCh38 chromosome  54106423        436
+</code></pre>
+</div>
+
+<p>To calculate the correlation between length and gene count, we subset the merged dataframe to those two columns and use the “corr()” (Python) or “cor()” (R) function.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">merged</span><span class="p">[[</span><span class="s">'length'</span><span class="p">,</span> <span class="s">'gene_count'</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">cor</span><span class="p">(</span><span class="n">merged</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"length"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gene_count"</span><span class="p">)])</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##               length gene_count
+## length     1.0000000  0.7282208
+## gene_count 0.7282208  1.0000000
+</code></pre>
+</div>
+
+<p>And now we produce the final plot: a line plot of chromosome length by number of genes per chromosome. For Python, we again use the matplotlib and for R the ggplot2 packages. Because Zhuyi Xue creates a new dataframe and tweaks the plot somewhat, our ggplot2 code is simpler and tidier here.</p>
+
+<p><em>Python:</em></p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="n">ax</span> <span class="o">=</span> <span class="n">merged</span><span class="p">[[</span><span class="s">'length'</span><span class="p">,</span> <span class="s">'gene_count'</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'length'</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">'length'</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s">'gene_count'</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s">'o-'</span><span class="p">)</span>
+<span class="c"># add some margin to both ends of x axis</span>
+<span class="n">xlim</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">()</span>
+<span class="n">margin</span> <span class="o">=</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.1</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">margin</span><span class="p">,</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">margin</span><span class="p">])</span>
+<span class="c"># Label each point on the graph</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="n">merged</span><span class="p">[[</span><span class="s">'seqid'</span><span class="p">,</span> <span class="s">'length'</span><span class="p">,</span> <span class="s">'gene_count'</span><span class="p">]]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s">'length'</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">-</span> <span class="mi">100</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+</code></pre>
+</div>
+
+<p><em>R:</em></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">merged</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"seqid"</span><span class="p">,</span><span class="w"> </span><span class="s2">"length"</span><span class="p">,</span><span class="w"> </span><span class="s2">"gene_count"</span><span class="p">)]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="n">length</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gene_count</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seqid</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_text</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="R_vs_Py_post_files/figure-markdown_github/unnamed-chunk-42-1.png" alt="" /></p>
+
+<hr />
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.1
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] ggplot2_2.2.1 dplyr_0.5.0  
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.8      codetools_0.2-15 digest_0.6.11    rprojroot_1.1   
+##  [5] assertthat_0.1   plyr_1.8.4       grid_3.3.2       R6_2.2.0        
+##  [9] gtable_0.2.0     DBI_0.5-1        backports_1.0.4  magrittr_1.5    
+## [13] scales_0.4.1     evaluate_0.10    stringi_1.1.2    lazyeval_0.2.0  
+## [17] rmarkdown_1.3    labeling_0.3     tools_3.3.2      stringr_1.1.0   
+## [21] munsell_0.4.3    yaml_2.1.14      colorspace_1.3-2 htmltools_0.3.5 
+## [25] knitr_1.15.1     tibble_1.2
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#r_vs_python-ref">
+    		r_vs_python <span>1</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#R-ref">R <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#Python-ref">Python <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+     
+    	<li><a href="/tags.html#dplyr-ref">dplyr <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#magrittr-ref">magrittr <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#pandas-ref">pandas <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#matplotlib-ref">matplotlib <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/machine_learning/2017/01/15/rfe_ga_post" title="Feature Selection in Machine Learning (Breast Cancer Datasets)">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/shiny/2017/01/29/WGS" title="Exploring World Gender Statistics with Shiny">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

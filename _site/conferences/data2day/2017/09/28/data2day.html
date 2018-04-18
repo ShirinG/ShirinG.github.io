@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Blockchain & distributed ML - my report from the data2day conference</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Blockchain & distributed ML - my report from the data2day conference </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Blockchain & distributed ML - my report from the data2day conference" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>28 September 2017</span>
+    </div>
+    <div class="content">
+      <p><img src="https://www.data2day.de/common/images/konferenzen/data2day2017.svg" alt="" /></p>
+
+<p>Yesterday and today I attended the <a href="www.data2day.de">data2day</a>, a conference about Big Data, Machine Learning and Data Science in Heidelberg, Germany. Topics and workshops covered a range of topics surrounding (big) data analysis and Machine Learning, like Deep Learning, Reinforcement Learning, TensorFlow applications, etc. Distributed systems and scalability were a major part of a lot of the talks as well, reflecting the growing desire to build bigger and more complex models that can’t (or would take too long to) run on a single computer. Most of the application examples were built in Python but one talk by Andreas Prawitt was specifically titled “Using R for Predictive Maintenance: an example from the TRUMPF Laser GmbH”. I also saw quite a few graphs that were obviously made with ggplot!</p>
+
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="de" dir="ltr">
+Guten Morgen auf der <a href="https://twitter.com/data2day">@data2day</a> Kommt uns doch mal am Stand besuchen :-) <a href="https://t.co/YK46ACdNj9">pic.twitter.com/YK46ACdNj9</a>
+</p>
+— codecentric AG (@codecentric) <a href="https://twitter.com/codecentric/status/912928993279606784">September 27, 2017</a>
+</blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p><br /></p>
+
+<p>The keynote lecture on Wednesday about <strong>Blockchains for AI</strong> was given by Trent McConaghy. <a href="https://www.sitepen.com/blog/2017/09/21/blockchain-basics/">Blockchain technology</a> is based on a decentralized system of storing and validating data and changes in data. It experiences a huge hype at the moment but it is only starting to gain track in Data Science and Machine Learning as well. I therefore found it a very fitting topic for the keynote lecture! Trent and his colleagues at <a href="www.bigchaindb.com">BigchainDB</a> are implementing an “internet-scale blockchain database for the world” - the Interplanetary Database (IPDB).</p>
+
+<blockquote>
+  <p>“IPDB is a blockchain database that offers decentralized control, immutability and the creation and trading of digital assets. […] As a database for the world, IPDB offers decentralized control, strong governance and universal accessibility. IPDB relies on “caretaker” organizations around the world, who share responsibility for managing the network and governing the IPDB Foundation. Anyone in the world will be able to use IPDB. […]” <a href="https://blog.bigchaindb.com/ipdb-announced-as-public-planetary-scale-blockchain-database-7a363824fc14">https://blog.bigchaindb.com/ipdb-announced-as-public-planetary-scale-blockchain-database-7a363824fc14</a></p>
+</blockquote>
+
+<p>He presented a number of examples where blockchain technology for decentralized data storage/access can be beneficial to Machine Learning and AI, like exchanging data from self-driving cars, of online market places and for generating art with computers. You can learn more about him <a href="https://blog.oceanprotocol.com/from-ai-to-blockchain-to-data-meet-ocean-f210ff460465">here</a>:</p>
+
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+It's always been about the data.<br />Announcing Ocean.<a href="https://twitter.com/hashtag/AI?src=hash&amp;ref_src=twsrc%5Etfw">\#AI</a> <a href="https://twitter.com/hashtag/Blockchain?src=hash&amp;ref_src=twsrc%5Etfw">\#Blockchain</a> <a href="https://twitter.com/oceanprotocol?ref_src=twsrc%5Etfw">@OceanProtocol</a><a href="https://t.co/Do4XNn3ucN">https://t.co/Do4XNn3ucN</a>
+</p>
+— Trent McConaghy (@trentmc0) <a href="https://twitter.com/trentmc0/status/909793166416662528?ref_src=twsrc%5Etfw">September 18, 2017</a>
+</blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p><br /></p>
+
+<p>The other talks were a mix of high- and low-level topics: from introductions to machine learning, Apache Spark and data analysis with Python to (distributed) data streaming with Kappa architecture or Apache Kafka, containerization with Docker and Kubernetes, data archiving with Apache Cassandra, relevance tuning with Solr and much more. While I spent most of the time at my company’s conference stand, I did hear three of the talks. I summarize each of them below…</p>
+
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="de" dir="ltr">
+Tag 2 auf der <a href="https://twitter.com/data2day?ref_src=twsrc%5Etfw">@data2day</a> kommt am Stand vorbei, wir haben noch ein paar T-Shirts und Softwerker für euch :-) <a href="https://t.co/xyG8Leg3lF">pic.twitter.com/xyG8Leg3lF</a>
+</p>
+— codecentric AG (@codecentric) <a href="https://twitter.com/codecentric/status/913301091755941888?ref_src=twsrc%5Etfw">September 28, 2017</a>
+</blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<p><br /></p>
+
+<ol>
+  <li><strong>Scalable Machine Learning with Apache Spark for Fraud Detection</strong></li>
+</ol>
+
+<p>In this first talk I heard, Dr. Patrick Baier and Dr. Stanimir Dragiev presented their work at <a href="www.zalando.de/">Zalando</a>. They built a scalable machine learning framework with Apache Spark, Scala and AWS to assess and predict fraud in online transactions. <a href="www.zalando.de/">Zalando</a> is a German online store that sells clothes, shoes and accessories. Normally, they allow registered customers to buy via invoice, i.e. they receive their ordered items before they pay them. This leaves them vulnerable to fraud where item are not paid for. The goal of their data science team is to use customer and basket data to obtain a probability score for how likely a transaction is going to be fraudulent. High-risk payment options, like invoice, can then be disabled in transactions with high fraud probability. To build and run such machine learning models, the Zalando data science team uses a combination of Spark, Scala, R, AWS, SQL, Python, Docker, etc. In their workflow, they use a combination of static and dynamic features, imputing missing values and building a decision model. In order to scale their modeling workflow to process more requests, use more data in training, update models more frequently and/or run more models, they described a workflow that uses Spark, Scala and Amazon Web Services (AWS). Spark’s machine learning library can be used for modeling and scaled horizontally by increasing the number of clusters on which to run the models. Scala provides multi-threading functionality and AWS is used for storing data in S3 and extending computation power depending on changing needs. Finally, they include a model inspector into their workflow to assure comparability of training and test data and check that the model is behaving as expected. Problems that they are dealing with include highly unbalanced data (which is getting even worse the better their models work as they keep reducing the number of fraud cases), delayed labeling due to the long process of the transactions, seasonality in data.</p>
+
+<p><br /></p>
+
+<ol>
+  <li><strong>Sparse Data: Don’t Mind the Gap!</strong></li>
+</ol>
+
+<p>In this talk, my colleagues from <a href="www.codecentric.de">codecentric</a> Dr. Daniel Pape and Dr. Michael Plümacher showed an example from ad targeting of how to deal with sparse data. Sparse data occurs in many areas, e.g. as rare events over a long period of time or in areas where there are many items and few occurrences per item, like in recommender systems or in natural language processing (NLP). In ad targeting, the measure of success is the rate of the click-through rate (CRT): this is the number of clicks on a given advertisement displayed to a user on a website divided by the total number of advertisements, or impressions. Because financial revenue comes from a high CTR, advertisements should be placed in a way that maximizes their chance of being clicked, i.e. we want to recommend advertisements for specific users that match their interests or are of actual relevance. Sparsity come into play with ad targeting because the number of clicks is very low compared to two metrics: a) from all the potential ads that a user could see, only a small proportion is actually shown to her/him and b) of the ads that a user sees, she/he only clicks on very few. This means that, a CTR matrix of advertisements x targets will have very few combinations that have been clicked (the mean CTR is 0.003) and contain many missing values. The approach they took was to impute the missing values and predict for each target/user the most similar ads from the imputed CTR matrix. This approach worked well for a reasonably large data set but it didn’t perform so well with smaller (and therefore even sparser) data. They then talked about alternative approaches, like grouping users and/or ads into groups in order to reduce the sparsity of the data. Their take-home messages were that 1) there is no one-size-fits-all solution, what works depends on the context and 2) if the underlying data is of bad quality, the results will be sub-optimal - no matter how sophisticated the model.</p>
+
+<p><br /></p>
+
+<ol>
+  <li><strong>Distributed TensorFlow with Kubernetes</strong></li>
+</ol>
+
+<p>In the third talk, another colleague of mine from <a href="www.codecentric.de">codecentric</a>, Jakob Karalus, explained in detail how to set up a distributed machine learning modelling set-up with <a href="https://www.tensorflow.org/">TensorFlow</a> and <a href="https://kubernetes.io/">Kubernetes</a>. TensorFlow is used to build neural networks in a graph-based manner. Distributed and parallel machine learning can be necessary when training big neural networks with a lot of training data, very deep neural networks, with complex parameters, grid search for hyper-parameter tuning, etc. A good way to build neural networks in a controlled and stable environment is to use <a href="https://www.docker.com/">Docker</a> containers. Kubernetes is a container orchestration tool that can set up distribution of nodes from our TensorFlow modeling container. Setting up this distributed system is quite complex, though and Jakob recommended to try to stay on one CPU/GPU as long as possible.</p>
+
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="de" dir="ltr">
+Verteiltes Deep Learning mit TensorFlow und Kubernetes - <a href="https://twitter.com/krallistic">@krallistic</a> auf der <a href="https://twitter.com/data2day">@data2day</a> <a href="https://t.co/5AGJdhL5U1">pic.twitter.com/5AGJdhL5U1</a>
+</p>
+— codecentric AG (@codecentric) <a href="https://twitter.com/codecentric/status/913041395128111105">September 27, 2017</a>
+</blockquote>
+<script async="" src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#conferences-ref">
+    		conferences <span>1</span>
+    	</a></li>
+     
+    	<li><a href="/categories.html#data2day-ref">
+    		data2day <span>1</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#data_science-ref">data_science <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#machine_learning-ref">machine_learning <span>13</span></a></li>
+     
+    	<li><a href="/tags.html#artificial_intelligence-ref">artificial_intelligence <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#business_intelligence-ref">business_intelligence <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#scalability-ref">scalability <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/blogging/2017/09/20/webinar_biology_to_data_science" title="From Biology to Industry. A Blogger’s Journey to Data Science.">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/flexdashboard/2017/11/02/predictive_maintenance_flexdashboard" title="Explore Predictive Maintenance with flexdashboard">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

@@ -1,0 +1,961 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>DESeq2 Course Work</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>DESeq2 Course Work </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="DESeq2 Course Work" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>29 September 2016</span>
+    </div>
+    <div class="content">
+      <p>Go to <a href="https://github.com/ShirinG/exprAnalysis/">exprAnalysis</a> for installation instructions.</p>
+
+<p>For all functions, use the help pages to find out more about parameters and usage.</p>
+
+<p>See Vignette for additional information.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">exprAnalysis</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="input-data">Input data</h2>
+
+<blockquote>
+  <p>“As input, the DESeq2 package expects count data as obtained, e. g., from RNAseq or another high-throughput sequencing experiment, in the form of a matrix of integer values. The value in the i-th row and the j-th column of the matrix tells how many reads can be assigned to gene i in sample j.” Love et al., DESeq2 vignette</p>
+</blockquote>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data</span><span class="p">(</span><span class="s2">"countmatrix"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="count-data-analysis-with-deseq2">Count data analysis with DESeq2</h2>
+
+<p>See <a href="https://www.bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.pdf">DESeq2 Vignette</a> for details.</p>
+
+<ul>
+  <li>read in saved count matrix</li>
+  <li>define experimental design</li>
+  <li>convert to DESeq data set</li>
+</ul>
+
+<h3 id="count-matrix-input">Count matrix input</h3>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">design</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"(.*)(_[0-9])"</span><span class="p">,</span><span class="w"> </span><span class="s2">"\\1"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">countmatrix</span><span class="p">))</span><span class="w">
+</span><span class="n">ExpDesign</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">row.names</span><span class="o">=</span><span class="n">colnames</span><span class="p">(</span><span class="n">countmatrix</span><span class="p">),</span><span class="w"> </span><span class="n">treatment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">design</span><span class="p">)</span><span class="w">
+
+</span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DESeq2</span><span class="o">::</span><span class="n">DESeqDataSetFromMatrix</span><span class="p">(</span><span class="n">countData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">countmatrix</span><span class="p">,</span><span class="w"> </span><span class="n">colData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ExpDesign</span><span class="p">,</span><span class="w"> </span><span class="n">design</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">treatment</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## converting counts to integer mode
+</code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="deseq2">DESeq2</h2>
+
+<ul>
+  <li>optional, but recommended: remove genes with zero counts over all samples</li>
+  <li>run DESeq</li>
+  <li>Extracting transformed values</li>
+</ul>
+
+<blockquote>
+  <p>“While it is not necessary to pre-filter low count genes before running the DESeq2 functions, there are two reasons which make pre-filtering useful: by removing rows in which there are no reads or nearly no reads, we reduce the memory size of the dds data object and we increase the speed of the transformation and testing functions within DESeq2.” Love et al., DESeq2 vignette</p>
+</blockquote>
+
+<p>Note: the rlog transformation is provided for applications other than differential testing. For differential testing we recommend the DESeq function applied to raw counts, as described later in this workflow, which also takes into account the dependence of the variance of counts on the mean value during the dispersion estimation step.</p>
+
+<p>For a quick first glance at the data, we can use <span style="color:red">pcaExplorer</span>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">rowSums</span><span class="p">(</span><span class="n">DESeq2</span><span class="o">::</span><span class="n">counts</span><span class="p">(</span><span class="n">data</span><span class="p">))</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+</span><span class="n">data_DESeq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DESeq2</span><span class="o">::</span><span class="n">DESeq</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## estimating size factors
+
+## estimating dispersions
+
+## gene-wise dispersion estimates
+
+## mean-dispersion relationship
+
+## final dispersion estimates
+
+## fitting model and testing
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">expmatrix_DESeq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DESeq2</span><span class="o">::</span><span class="n">rlog</span><span class="p">(</span><span class="n">data_DESeq</span><span class="p">,</span><span class="w"> </span><span class="n">fitType</span><span class="o">=</span><span class="s2">"local"</span><span class="p">)</span><span class="w">
+</span><span class="n">expmatrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">SummarizedExperiment</span><span class="o">::</span><span class="n">assay</span><span class="p">(</span><span class="n">expmatrix_DESeq</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="s2">"pcaExplorer"</span><span class="p">)</span><span class="w">
+</span><span class="n">pcaExplorer</span><span class="p">(</span><span class="n">data_DESeq</span><span class="p">,</span><span class="w"> </span><span class="n">expmatrix_DESeq</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="dispersion-plot">Dispersion plot</h2>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">DESeq2</span><span class="o">::</span><span class="n">plotDispEsts</span><span class="p">(</span><span class="n">data_DESeq</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s2">"Dispersion Estimates"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/dispersion_plot-1.png?raw=true" alt="" /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="exploratory-analysis-of-all-genes">Exploratory analysis of all genes</h2>
+
+<h3 id="variance-vs-mean-gene-expression-across-samples">Variance vs mean gene expression across samples</h3>
+
+<p>Plots variance against mean gene expression across samples and calculates the correlation of a linear regression model.</p>
+
+<p><strong>var_vs_mean()</strong> uses the R package matrixStats.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">var_vs_mean</span><span class="p">(</span><span class="n">countmatrix</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/var_vs_mean-1.png" alt="" /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+##  Pearson's product-moment correlation
+## 
+## data:  log2(dispersion[, 1] + 1) and log2(dispersion[, 2] + 1)
+## t = 281.2, df = 9998, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.9399669 0.9443684
+## sample estimates:
+##       cor 
+## 0.9422083
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">var_vs_mean</span><span class="p">(</span><span class="n">expmatrix</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/var_vs_mean-2.png" alt="" /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+##  Pearson's product-moment correlation
+## 
+## data:  log2(dispersion[, 1] + 1) and log2(dispersion[, 2] + 1)
+## t = 12.133, df = 9998, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.1010951 0.1397267
+## sample estimates:
+##       cor 
+## 0.1204565
+</code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="intersample-variances">Intersample variances</h3>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">corrgram</span><span class="p">)</span><span class="w">
+
+</span><span class="n">Ctrl_cor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">expmatrix</span><span class="p">[,</span><span class="n">grep</span><span class="p">(</span><span class="s2">"Ctrl"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">expmatrix</span><span class="p">))]</span><span class="w">
+
+</span><span class="n">corrgram</span><span class="o">::</span><span class="n">corrgram</span><span class="p">(</span><span class="n">Ctrl_cor</span><span class="p">,</span><span class="w"> </span><span class="n">order</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">lower.panel</span><span class="o">=</span><span class="n">corrgram</span><span class="o">::</span><span class="n">panel.pie</span><span class="p">,</span><span class="w">
+         </span><span class="n">upper.panel</span><span class="o">=</span><span class="n">corrgram</span><span class="o">::</span><span class="n">panel.pts</span><span class="p">,</span><span class="w"> </span><span class="n">text.panel</span><span class="o">=</span><span class="n">corrgram</span><span class="o">::</span><span class="n">panel.txt</span><span class="p">,</span><span class="w">
+         </span><span class="n">main</span><span class="o">=</span><span class="s2">"Correlogram of controls"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/variance_sumOverlaps-1.png" alt="" /></p>
+
+<h3 id="repeat-for-other-treatment-groups">Repeat for other treatment groups</h3>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="principle-component-analysis">Principle Component Analysis</h2>
+
+<p>Uses functions from the R package pcaGoPromoter.</p>
+
+<p>You can only plot the principle components using:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">groups</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s2">"Ctrl"</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"TolLPS"</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"TolS100A8"</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"ActLPS"</span><span class="p">,</span><span class="m">4</span><span class="p">)))</span><span class="w">
+</span><span class="n">pca_plot</span><span class="p">(</span><span class="n">expmatrix</span><span class="p">,</span><span class="w"> </span><span class="n">groups</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/pca_plot-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>Or you can plot the principle components and calculate TF and GO term enrichments of genes (defaults to top 2.5%) with highest and lowest loadings. With this function, the ouput files are directly saved to .pdf and .txt (by default to working directory).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pca_plot_enrich</span><span class="p">(</span><span class="n">expmatrix</span><span class="p">,</span><span class="w"> </span><span class="n">groups</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="heatmaps">Heatmaps</h2>
+
+<p><strong>heatmaps()</strong> uses the R package gplots.</p>
+
+<p>Here, of the 30 most highly expressed genes.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">select</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">order</span><span class="p">(</span><span class="n">rowMeans</span><span class="p">(</span><span class="n">expmatrix</span><span class="p">),</span><span class="n">decreasing</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">30</span><span class="p">]</span><span class="w">
+</span><span class="n">heatmaps</span><span class="p">(</span><span class="n">expmatrix</span><span class="p">[</span><span class="n">select</span><span class="p">,],</span><span class="w"> </span><span class="n">samplecols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"#E41A1C"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#377EB8"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#4DAF4A"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#984EA3"</span><span class="p">),</span><span class="w"> </span><span class="n">each</span><span class="o">=</span><span class="m">4</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/heatmaps-1.png" alt="" /></p>
+
+<h3 id="heatmap-function-from-deseq2-using-pheatmap">Heatmap function from DESeq2, using pheatmap:</h3>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">pheatmap</span><span class="p">)</span><span class="w">
+
+</span><span class="n">sampleDists</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dist</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">expmatrix</span><span class="p">))</span><span class="w">
+</span><span class="n">sampleDistMatrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">sampleDists</span><span class="p">)</span><span class="w">
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">sampleDistMatrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">expmatrix_DESeq</span><span class="o">$</span><span class="n">treatment</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">sampleDistMatrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NULL</span><span class="w">
+</span><span class="n">colors</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">grDevices</span><span class="o">::</span><span class="n">colorRampPalette</span><span class="p">(</span><span class="w"> </span><span class="n">rev</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="o">::</span><span class="n">brewer.pal</span><span class="p">(</span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="s2">"Blues"</span><span class="p">))</span><span class="w"> </span><span class="p">)(</span><span class="m">255</span><span class="p">)</span><span class="w">
+</span><span class="n">pheatmap</span><span class="o">::</span><span class="n">pheatmap</span><span class="p">(</span><span class="n">sampleDistMatrix</span><span class="p">,</span><span class="w">
+         </span><span class="n">clustering_distance_rows</span><span class="o">=</span><span class="n">sampleDists</span><span class="p">,</span><span class="w">
+         </span><span class="n">clustering_distance_cols</span><span class="o">=</span><span class="n">sampleDists</span><span class="p">,</span><span class="w">
+         </span><span class="n">col</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/heatmaps2-1.png" alt="" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">treatment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SummarizedExperiment</span><span class="o">::</span><span class="n">colData</span><span class="p">(</span><span class="n">data_DESeq</span><span class="p">)[,</span><span class="nf">c</span><span class="p">(</span><span class="s2">"treatment"</span><span class="p">)],</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">SummarizedExperiment</span><span class="o">::</span><span class="n">colData</span><span class="p">(</span><span class="n">data_DESeq</span><span class="p">)))</span><span class="w">
+</span><span class="n">pheatmap</span><span class="o">::</span><span class="n">pheatmap</span><span class="p">(</span><span class="n">expmatrix</span><span class="p">[</span><span class="n">select</span><span class="p">,],</span><span class="w"> </span><span class="n">cluster_rows</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">show_rownames</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">cluster_cols</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">annotation_col</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/heatmaps2-2.png" alt="" /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="hierarchical-clustering-and-outlier-detection">Hierarchical Clustering and outlier detection</h2>
+
+<p>Uses adjacency matrix function from the R package WGCNA and hierarchical clustering from the R package flashClust.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">datTraits</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">Ctrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">)),</span><span class="w"> </span><span class="n">TolPS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">)),</span><span class="w"> 
+                        </span><span class="n">TolS100A8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)),</span><span class="w"> </span><span class="n">ActLPS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)),</span><span class="w"> 
+                        </span><span class="n">Tol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">)),</span><span class="w"> 
+                        </span><span class="n">ExPhenotype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">stats</span><span class="o">::</span><span class="n">rnorm</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="n">stats</span><span class="o">::</span><span class="n">rnorm</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="n">stats</span><span class="o">::</span><span class="n">rnorm</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)),</span><span class="w"> 
+                        </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">expmatrix</span><span class="p">))</span><span class="w">
+
+</span><span class="n">datExpr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">wgcna_sample_dendrogram</span><span class="p">(</span><span class="n">expmatrix</span><span class="p">,</span><span class="w"> </span><span class="n">datTraits</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+</code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/wgcna_sample_dendrogram-1.png" alt="" width="700px" /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  Flagging genes and samples with too many missing values...
+##   ..step 1
+## All genes are okay!
+## All samples are okay!
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># Optional: Remove outlier samples and repeats: All genes flagged for removal are saved to the object "remove_genes"
+#head(remove_genes)
+</span></code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="differential-expression-analysis-using-deseq2">Differential expression analysis using DESeq2</h2>
+
+<p>For raw read count data.</p>
+
+<h3 id="contrast-de-groups">contrast DE groups:</h3>
+
+<ul>
+  <li>lfc = treatment &gt; Ctrl, - lfc = treatment &lt; Ctrl p-value &amp; p.adjust values of NA indicate outliers detected by Cook’s distance NA only for p.adjust means the gene is filtered by automatic independent filtering for having a low mean normalized count</li>
+</ul>
+
+<p>Information about which variables and tests were used can be found by calling the function <span style="color:red">mcols</span>, on the results object.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">DESeq2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggrepel</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># find possible contrasts with
+</span><span class="n">DESeq2</span><span class="o">::</span><span class="n">resultsNames</span><span class="p">(</span><span class="n">data_DESeq</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] "Intercept"          "treatmentActLPS"    "treatmentCtrl"     
+## [4] "treatmentTolLPS"    "treatmentTolS100A8"
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">DESeq2</span><span class="o">::</span><span class="n">results</span><span class="p">(</span><span class="n">data_DESeq</span><span class="p">,</span><span class="w"> </span><span class="n">contrast</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="s2">"treatmentActLPS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"treatmentCtrl"</span><span class="p">),</span><span class="w"> </span><span class="n">cooksCutoff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.99</span><span class="p">,</span><span class="w"> </span><span class="n">independentFiltering</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="n">pAdjustMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"BH"</span><span class="p">)</span><span class="w">
+</span><span class="n">summary</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+## out of 10000 with nonzero total read count
+## adjusted p-value &lt; 0.05
+## LFC &gt; 0 (up)     : 2608, 26% 
+## LFC &lt; 0 (down)   : 2407, 24% 
+## outliers [1]     : 175, 1.8% 
+## low counts [2]   : 0, 0% 
+## (mean count &lt; 5)
+## [1] see 'cooksCutoff' argument of ?results
+## [2] see 'independentFiltering' argument of ?results
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">mcols</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="o">$</span><span class="n">description</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] "mean of normalized counts for all samples"               
+## [2] "log2 fold change (MAP): treatmentActLPS vs treatmentCtrl"
+## [3] "standard error: treatmentActLPS vs treatmentCtrl"        
+## [4] "Wald statistic: treatmentActLPS vs treatmentCtrl"        
+## [5] "Wald test p-value: treatmentActLPS vs treatmentCtrl"     
+## [6] "BH adjusted p-values"
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># order results table by the smallest adjusted p value:
+</span><span class="n">res</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">res</span><span class="p">[</span><span class="n">order</span><span class="p">(</span><span class="n">res</span><span class="o">$</span><span class="n">padj</span><span class="p">),]</span><span class="w">
+
+</span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">dplyr</span><span class="o">::</span><span class="n">mutate</span><span class="p">(</span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">res</span><span class="p">),</span><span class="w"> </span><span class="n">sig</span><span class="o">=</span><span class="n">ifelse</span><span class="p">(</span><span class="n">res</span><span class="o">$</span><span class="n">padj</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="s2">"FDR&lt;0.05"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Not Sig"</span><span class="p">)),</span><span class="w"> </span><span class="n">row.names</span><span class="o">=</span><span class="n">rownames</span><span class="p">(</span><span class="n">res</span><span class="p">))</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##               baseMean log2FoldChange      lfcSE     stat        pvalue
+## CATSPER3     2469.0350       4.094351 0.08958149 45.70532  0.000000e+00
+## GDA          5578.3392       4.200987 0.13525887 31.05886 8.660849e-212
+## CCDC64B       544.6121       5.878983 0.19906885 29.53241 1.104831e-191
+## GRB2         1751.2594       2.506512 0.09224234 27.17312 1.350120e-162
+## LOC100507387  716.7431       9.537221 0.36844495 25.88506 9.810056e-148
+## TMEM102      1346.0139       4.244962 0.16534946 25.67267 2.360945e-145
+##                       padj      sig
+## CATSPER3      0.000000e+00 FDR&lt;0.05
+## GDA          4.254642e-208 FDR&lt;0.05
+## CCDC64B      3.618323e-188 FDR&lt;0.05
+## GRB2         3.316233e-159 FDR&lt;0.05
+## LOC100507387 1.927676e-144 FDR&lt;0.05
+## TMEM102      3.866048e-142 FDR&lt;0.05
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">DEgenes_DESeq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">log2FoldChange</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">log2</span><span class="p">(</span><span class="m">1.5</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">results</span><span class="o">$</span><span class="n">padj</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.05</span><span class="p">),]</span><span class="w">
+
+</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ggplot2</span><span class="o">::</span><span class="n">ggplot</span><span class="p">(</span><span class="n">results</span><span class="p">,</span><span class="w"> </span><span class="n">ggplot2</span><span class="o">::</span><span class="n">aes</span><span class="p">(</span><span class="n">log2FoldChange</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">log10</span><span class="p">(</span><span class="n">pvalue</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggplot2</span><span class="o">::</span><span class="n">geom_point</span><span class="p">(</span><span class="n">ggplot2</span><span class="o">::</span><span class="n">aes</span><span class="p">(</span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sig</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggplot2</span><span class="o">::</span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="s2">"black"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">ggplot2</span><span class="o">::</span><span class="n">ggtitle</span><span class="p">(</span><span class="s2">"Volcano Plot of DESeq2 analysis"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ggrepel</span><span class="o">::</span><span class="n">geom_text_repel</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">results</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="n">ggplot2</span><span class="o">::</span><span class="n">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">rownames</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">])))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Warning: Removed 175 rows containing missing values (geom_point).
+</code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/DEgenes_DESeq2-1.png" alt="" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># If there aren't too many DE genes:
+#p + geom_text_repel(data = dplyr::filter(results, padj&lt;0.05), aes(label = rownames(results[1:10, ])))
+</span></code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="ma-plot">MA-plot</h3>
+
+<blockquote>
+  <p>“These plots show the log2 fold changes from the treatment over the mean of normalized counts, i.e. the average of counts normalized by size factors. The left plot shows the “unshrunken” log2 fold changes, while the right plot, produced by the code above, shows the shrinkage of log2 fold changes resulting from the incorporation of zero-centered normal prior. The shrinkage is greater for the log2 fold change estimates from genes with low counts and high dispersion, as can be seen by the narrowing of spread of leftmost points in the right plot.” Love et al., DESeq2 vignette</p>
+</blockquote>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">DESeq2</span><span class="o">::</span><span class="n">plotMA</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="o">=</span><span class="s2">"MA Plot"</span><span class="p">,</span><span class="w"> </span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/ma_plot-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="plotcounts">plotCounts</h3>
+
+<blockquote>
+  <p>“It can also be useful to examine the counts of reads for a single gene across the groups. A simple function for making this plot is plotCounts, which normalizes counts by sequencing depth and adds a pseudocount of 1/2 to allow for log scale plotting. The counts are grouped by the variables in intgroup, where more than one variable can be specified.” Love et al., DESeq2 vignette</p>
+</blockquote>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">))</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">){</span><span class="w">
+  </span><span class="n">gene</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">res</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span><span class="w">
+  </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gene</span><span class="w">
+  </span><span class="n">DESeq2</span><span class="o">::</span><span class="n">plotCounts</span><span class="p">(</span><span class="n">data_DESeq</span><span class="p">,</span><span class="w"> </span><span class="n">gene</span><span class="o">=</span><span class="n">gene</span><span class="p">,</span><span class="w"> </span><span class="n">intgroup</span><span class="o">=</span><span class="s2">"treatment"</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">main</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/plot_counts-1.png" alt="" width="700px" /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="gene-annotations">Gene annotations</h2>
+
+<p>Can be used to add e.g. ENTREZ ID, ENSEMBL ID, etc. to gene name.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">results_anno</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">geneAnnotations</span><span class="p">(</span><span class="n">input</span><span class="o">=</span><span class="n">results</span><span class="p">,</span><span class="w"> </span><span class="n">keys</span><span class="o">=</span><span class="n">row.names</span><span class="p">(</span><span class="n">results</span><span class="p">),</span><span class="w"> </span><span class="n">column</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s2">"ENTREZID"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ENSEMBL"</span><span class="p">),</span><span class="w"> </span><span class="n">keytype</span><span class="o">=</span><span class="s2">"SYMBOL"</span><span class="p">,</span><span class="w"> </span><span class="n">organism</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"human"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+
+## 'select()' returned 1:many mapping between keys and columns
+## 'select()' returned 1:many mapping between keys and columns
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">results_anno</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##               baseMean log2FoldChange      lfcSE     stat        pvalue
+## CATSPER3     2469.0350       4.094351 0.08958149 45.70532  0.000000e+00
+## GDA          5578.3392       4.200987 0.13525887 31.05886 8.660849e-212
+## CCDC64B       544.6121       5.878983 0.19906885 29.53241 1.104831e-191
+## GRB2         1751.2594       2.506512 0.09224234 27.17312 1.350120e-162
+## LOC100507387  716.7431       9.537221 0.36844495 25.88506 9.810056e-148
+## TMEM102      1346.0139       4.244962 0.16534946 25.67267 2.360945e-145
+##                       padj      sig  ENTREZID         ENSEMBL
+## CATSPER3      0.000000e+00 FDR&lt;0.05    347732 ENSG00000152705
+## GDA          4.254642e-208 FDR&lt;0.05      9615 ENSG00000119125
+## CCDC64B      3.618323e-188 FDR&lt;0.05    146439 ENSG00000162069
+## GRB2         3.316233e-159 FDR&lt;0.05      2885 ENSG00000177885
+## LOC100507387 1.927676e-144 FDR&lt;0.05 100507387 ENSG00000182230
+## TMEM102      3.866048e-142 FDR&lt;0.05    284114 ENSG00000181284
+</code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="enrichment-analysis-using-clusterpofiler">Enrichment Analysis using clusterPofiler</h2>
+
+<p>See <a href="https://bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/clusterProfiler.html">clusterProfiler</a> instructions for details.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">clusterProfiler</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Loading required package: DOSE
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">org.Hs.eg.db</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Loading required package: AnnotationDbi
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">OrgDb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">org.Hs.eg.db</span><span class="w"> </span><span class="c1"># can also be other organisms
+</span><span class="w">
+</span><span class="n">geneList</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">results_anno</span><span class="o">$</span><span class="n">log2FoldChange</span><span class="p">)</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">geneList</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">results_anno</span><span class="o">$</span><span class="n">ENTREZID</span><span class="w">
+</span><span class="n">gene</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">na.omit</span><span class="p">(</span><span class="n">results_anno</span><span class="o">$</span><span class="n">ENTREZID</span><span class="p">)</span><span class="w">
+
+
+</span><span class="c1"># Group GO
+</span><span class="n">ggo</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">clusterProfiler</span><span class="o">::</span><span class="n">groupGO</span><span class="p">(</span><span class="n">gene</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">gene</span><span class="p">,</span><span class="w">
+                                </span><span class="n">OrgDb</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">OrgDb</span><span class="p">,</span><span class="w">
+                                </span><span class="n">ont</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="s2">"BP"</span><span class="p">,</span><span class="w">
+                                </span><span class="n">level</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
+                                </span><span class="n">readable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">summary</span><span class="p">(</span><span class="n">ggo</span><span class="p">)[,</span><span class="m">-5</span><span class="p">])</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                    ID                                    Description Count
+## GO:0003006 GO:0003006 developmental process involved in reproduction   261
+## GO:0019953 GO:0019953                            sexual reproduction   303
+## GO:0019954 GO:0019954                           asexual reproduction     0
+## GO:0022414 GO:0022414                           reproductive process   547
+## GO:0032504 GO:0032504            multicellular organism reproduction   317
+## GO:0032505 GO:0032505       reproduction of a single-celled organism     0
+##            GeneRatio
+## GO:0003006  261/9735
+## GO:0019953  303/9735
+## GO:0019954    0/9735
+## GO:0022414  547/9735
+## GO:0032504  317/9735
+## GO:0032505    0/9735
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">barplot</span><span class="p">(</span><span class="n">ggo</span><span class="p">,</span><span class="w"> </span><span class="n">drop</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">showCategory</span><span class="o">=</span><span class="m">12</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/clusterProfiler-1.png" alt="" width="700px" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># GO over-representation test
+</span><span class="n">ego</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">clusterProfiler</span><span class="o">::</span><span class="n">enrichGO</span><span class="p">(</span><span class="n">gene</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">gene</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">OrgDb</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">OrgDb</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">ont</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="s2">"BP"</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">pAdjustMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"BH"</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">pvalueCutoff</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w">
+                                 </span><span class="n">qvalueCutoff</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> 
+                                 </span><span class="n">readable</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">summary</span><span class="p">(</span><span class="n">ego</span><span class="p">)[,</span><span class="m">-8</span><span class="p">])</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                    ID                                        Description
+## GO:0072657 GO:0072657                   protein localization to membrane
+## GO:0006893 GO:0006893                 Golgi to plasma membrane transport
+## GO:0007051 GO:0007051                               spindle organization
+## GO:0044772 GO:0044772                mitotic cell cycle phase transition
+## GO:0060999 GO:0060999 positive regulation of dendritic spine development
+## GO:0048193 GO:0048193                            Golgi vesicle transport
+##            GeneRatio   BgRatio       pvalue   p.adjust     qvalue Count
+## GO:0072657  260/7259 487/16655 6.475400e-06 0.02201028 0.02035249   260
+## GO:0006893   36/7259  48/16655 9.648441e-06 0.02201028 0.02035249    36
+## GO:0007051   81/7259 130/16655 1.246381e-05 0.02201028 0.02035249    81
+## GO:0044772  253/7259 477/16655 1.597263e-05 0.02201028 0.02035249   253
+## GO:0060999   27/7259  34/16655 2.158731e-05 0.02379785 0.02200542    27
+## GO:0048193  179/7259 329/16655 4.371899e-05 0.03540965 0.03274263   179
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">barplot</span><span class="p">(</span><span class="n">ego</span><span class="p">,</span><span class="w"> </span><span class="n">showCategory</span><span class="o">=</span><span class="m">25</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/clusterProfilerGO-1.png" alt="" width="700px" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">clusterProfiler</span><span class="o">::</span><span class="n">dotplot</span><span class="p">(</span><span class="n">ego</span><span class="p">,</span><span class="w"> </span><span class="n">showCategory</span><span class="o">=</span><span class="m">25</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/clusterProfilerGO-2.png" alt="" width="700px" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#clusterProfiler::plotGOgraph(ego)
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">## KEGG over-representation test
+</span><span class="n">kk</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">clusterProfiler</span><span class="o">::</span><span class="n">enrichKEGG</span><span class="p">(</span><span class="n">gene</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">gene</span><span class="p">,</span><span class="w">
+                 </span><span class="n">organism</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s1">'hsa'</span><span class="p">,</span><span class="w">
+                 </span><span class="n">pAdjustMethod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"BH"</span><span class="p">,</span><span class="w">
+                 </span><span class="n">pvalueCutoff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w">
+                 </span><span class="n">qvalueCutoff</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">summary</span><span class="p">(</span><span class="n">kk</span><span class="p">)[,</span><span class="m">-8</span><span class="p">])</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                ID                  Description GeneRatio  BgRatio
+## hsa04144 hsa04144                  Endocytosis  142/3071 260/7119
+## hsa04210 hsa04210                    Apoptosis   80/3071 140/7119
+## hsa05169 hsa05169 Epstein-Barr virus infection  111/3071 204/7119
+## hsa05134 hsa05134                Legionellosis   36/3071  55/7119
+##                pvalue   p.adjust     qvalue Count
+## hsa04144 9.858484e-05 0.02858960 0.02345281   142
+## hsa04210 5.292257e-04 0.04885909 0.04008042    80
+## hsa05169 6.639562e-04 0.04885909 0.04008042   111
+## hsa05134 6.739185e-04 0.04885909 0.04008042    36
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">cnetplot</span><span class="p">(</span><span class="n">kk</span><span class="p">,</span><span class="w"> </span><span class="n">categorySize</span><span class="o">=</span><span class="s2">"geneNum"</span><span class="p">,</span><span class="w"> </span><span class="n">foldChange</span><span class="o">=</span><span class="n">geneList</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="DESeq2_course_blog_files/figure-markdown_github/clusterProfilerKEGG-1.png" alt="" width="700px" /></p>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev disabled"><a>&larr; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next disabled"><a>Next &rarr;</a>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

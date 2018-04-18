@@ -1,0 +1,849 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Conditional ggplot2 geoms in functions (QTL plots)</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Conditional ggplot2 geoms in functions (QTL plots) </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Conditional ggplot2 geoms in functions (QTL plots)" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>12 February 2017</span>
+    </div>
+    <div class="content">
+      <p>When running an analysis, I am usually combining functions from multiple packages. Most of these packages come with their own plotting functions. And while they are certainly convenient in that they allow me to get a quick glance at the data or the output, they all have their own style. If I want to prepare a report, proposal or a paper though, I want all my plots to come from a single cast so that they give a consistent feel to the story I want to tell with my data.</p>
+
+<p>I have grown very fond of ggplot2 for producing plots, because of it’s tidy grammar, flexibility and easy customization. Here, I want to show an example of my own ggplot2 function to produce QTL plots for <a href="http://www.rqtl.org/">Karl Broman’s qtl package</a>.</p>
+
+<p>Specifically, I want to show how to incorporate conditional geoms when using ggplot2 in a function call.</p>
+
+<p>I will show how my function can be used with the output from qtl’s <strong>scanone()</strong> function by following the examples from the <a href="http://www.rqtl.org/tutorials/rqtltour.pdf">package tutorial</a>. The tutorial does an excellent job describing the workflow, so I am not going to explain it here.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">qtl</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>For defining the function and preparing the data for plotting, I am working with ggplot2, ggrepel (for adding text labels that don’t overlap), tidyr and dplyr. This is my function code:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggrepel</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qtl_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w">              </span><span class="c1"># data frame input from scanone
+</span><span class="w">                     </span><span class="n">mult.pheno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="c1"># multiple phenotypes?
+</span><span class="w">                     </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w">   </span><span class="c1"># model used in scanone
+</span><span class="w">                     </span><span class="n">chrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w">          </span><span class="c1"># chromosomes to display
+</span><span class="w">                     </span><span class="n">lod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w">           </span><span class="c1"># LOD threshold
+</span><span class="w">                     </span><span class="n">rug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">        </span><span class="c1"># plot marker positions as rug?
+</span><span class="w">                     </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w">          </span><span class="c1"># number of columns for facetting
+</span><span class="w">                     </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="w">         </span><span class="c1"># optional dataframe to plot QTL labels
+</span><span class="w">                     </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+                     
+                  </span><span class="c1"># if we have multiple phenotypes and/or a 2part model, gather input
+</span><span class="w">                  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mult.pheno</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"2part"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="n">input</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gather</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="p">,</span><span class="w"> </span><span class="n">lod</span><span class="p">,</span><span class="w"> </span><span class="n">grep</span><span class="p">(</span><span class="s2">"pheno"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">input</span><span class="p">)))</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mult.pheno</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="n">input</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gather</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="p">,</span><span class="w"> </span><span class="n">lod</span><span class="p">,</span><span class="w"> </span><span class="n">grep</span><span class="p">(</span><span class="s2">"pheno"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">input</span><span class="p">)))</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"2part"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="n">input</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gather</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">lod</span><span class="p">,</span><span class="w"> </span><span class="n">lod.p.mu</span><span class="o">:</span><span class="n">lod.mu</span><span class="p">)</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+    
+                  </span><span class="c1"># if not all chromosomes should be displayed, subset input
+</span><span class="w">                  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">chrs</span><span class="p">)[</span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="n">input</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">input</span><span class="p">[</span><span class="nf">as.character</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chr</span><span class="p">)</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">chrs</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+
+                  </span><span class="c1"># if there is more than one LOD column, gather input
+</span><span class="w">                  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">any</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">input</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"lod"</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="n">input</span><span class="o">$</span><span class="n">lod</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">input</span><span class="p">[,</span><span class="w"> </span><span class="n">grep</span><span class="p">(</span><span class="s2">"lod"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">input</span><span class="p">))]</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+
+                  </span><span class="c1"># if no number of columns for facetting is defined, plot all in one row
+</span><span class="w">                  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">ncol</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="n">ncol</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">chr</span><span class="p">))</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+
+                  </span><span class="c1"># if labels are set and there is no name column, set from rownames
+</span><span class="w">                  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">labels</span><span class="p">)[</span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nf">is.null</span><span class="p">(</span><span class="n">labels</span><span class="o">$</span><span class="n">name</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+                      </span><span class="n">labels</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+
+                  </span><span class="c1"># plot input data frame position and LOD score
+</span><span class="w">                  </span><span class="n">plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">(</span><span class="n">input</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lod</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                    </span><span class="c1"># if LOD threshold is given, plot as horizontal line
+</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">lod</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lod</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lod</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dashed"</span><span class="p">)</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">lod</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">lod</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lod</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lod</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">))</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                    </span><span class="c1"># plot rug on bottom, if TRUE
+</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">rug</span><span class="p">)</span><span class="w"> </span><span class="n">geom_rug</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">sides</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"b"</span><span class="p">)</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                    </span><span class="c1"># if input has column method but not group, plot line and color by method
+</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.null</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">method</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nf">is.null</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">group</span><span class="p">))</span><span class="w"> </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">method</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                    </span><span class="c1"># if input has column group but not method, plot line and color by group
+</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.null</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">group</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nf">is.null</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">method</span><span class="p">))</span><span class="w"> </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                    </span><span class="c1"># if input has columns method and group, plot line and color by method &amp; linetype by group
+</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.null</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">group</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">!</span><span class="nf">is.null</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">method</span><span class="p">))</span><span class="w"> </span><span class="n">geom_line</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                    </span><span class="c1"># set linetype, if input has columns method and group
+</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.null</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">group</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">!</span><span class="nf">is.null</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">method</span><span class="p">))</span><span class="w"> </span><span class="n">scale_linetype_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"solid"</span><span class="p">,</span><span class="w"> </span><span class="s2">"twodash"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dotted"</span><span class="p">))</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                    </span><span class="c1"># if input has neither columns method nor group, plot black line
+</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nf">is.null</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">group</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="nf">is.null</span><span class="p">(</span><span class="n">input</span><span class="o">$</span><span class="n">method</span><span class="p">))</span><span class="w"> </span><span class="n">geom_line</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">)</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                    </span><span class="c1"># if QTL positions are given in labels df, plot as point...
+</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">labels</span><span class="p">)[</span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="n">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">labels</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lod</span><span class="p">))</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+                    </span><span class="c1"># ... and plot name as text with ggrepel to avoid overlapping
+</span><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">labels</span><span class="p">)[</span><span class="m">1</span><span class="p">])</span><span class="w"> </span><span class="n">geom_text_repel</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">labels</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lod</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">),</span><span class="w"> </span><span class="n">nudge_y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w">
+                  </span><span class="p">}</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+                    </span><span class="c1"># facet by chromosome
+</span><span class="w">                    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ncol</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free_x"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+                    </span><span class="c1"># minimal plotting theme
+</span><span class="w">                    </span><span class="n">theme_minimal</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+                    </span><span class="c1"># increase strip title size
+</span><span class="w">                    </span><span class="n">theme</span><span class="p">(</span><span class="n">strip.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+                    </span><span class="c1"># use RcolorBrewer palette
+</span><span class="w">                    </span><span class="n">scale_color_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+                    </span><span class="c1"># Change plot labels
+</span><span class="w">                    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Chromosome"</span><span class="p">,</span><span class="w">
+                         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"LOD"</span><span class="p">,</span><span class="w">
+                         </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                         </span><span class="n">linetype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w">
+
+                  </span><span class="n">print</span><span class="p">(</span><span class="n">plot</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>The first example uses the <em>hyper</em> data set and builds a simple QTL model with three modeling functions: the EM algorithm, Haley-Knott regression and multiple imputation. The genome wide LOD threshold is calculated with permutation. Feeding this LOD threshold into the summary output gives us the markers with a significant phenotype association (i.e. the QTL).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data</span><span class="p">(</span><span class="n">hyper</span><span class="p">)</span><span class="w">
+
+</span><span class="n">hyper</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">est.rf</span><span class="p">(</span><span class="n">hyper</span><span class="p">)</span><span class="w">
+
+</span><span class="n">hyper</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">calc.genoprob</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">error.prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">)</span><span class="w">
+</span><span class="n">out.em</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">)</span><span class="w">
+</span><span class="n">out.hk</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hk"</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">hyper</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sim.geno</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">n.draws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">error.prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">)</span><span class="w">
+</span><span class="n">out.imp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"imp"</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">operm.hk</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hk"</span><span class="p">,</span><span class="w"> </span><span class="n">n.perm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">lod_threshold</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary</span><span class="p">(</span><span class="n">operm.hk</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w">
+</span><span class="n">labels_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">summary</span><span class="p">(</span><span class="n">out.hk</span><span class="p">,</span><span class="w"> </span><span class="n">perms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">operm.hk</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="n">pvalues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The most basic version of my plotting function takes as input a data frame from the <strong>scanone()</strong> function: It needs to have a column with chromosome information, position and LOD score. Without defining anything else, the function will return a line plot of the LOD scores for each marker position on each chromosome in the input data.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">qtl_plot</span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out.hk</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="qtl_plots_files/figure-markdown_github/unnamed-chunk-4-1.png" alt="" /></p>
+
+<p>If we want to compare the output from e.g. different QTL models, we can follow the tidyverse principle by combining the output data frames in long format and adding a column with the respective method names. If the input has a <em>method</em> column, it will color the lines accordingly. We can also specify, which chromosomes to display (here, 1 and 4) and give a LOD threshold to plot as a horizontal dashed line. If we want to see each marker position, we can specify <em>rug = TRUE</em> to plot them underneath the line plots.</p>
+
+<p>And we can also plot the markers with a significant phenotype association (the QTL) by adding a data frame with the labeling information to the function call. This data frame needs to contain the chromosome, position and LOD score information. If there is no <em>name</em> column, it will take the row names (which usually give the marker name) as labels.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">qtl_plot</span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">data.frame</span><span class="p">(</span><span class="n">out.em</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"EM algorithm"</span><span class="p">),</span><span class="w"> 
+                       </span><span class="n">data.frame</span><span class="p">(</span><span class="n">out.hk</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Haley-Knott regression"</span><span class="p">),</span><span class="w"> 
+                       </span><span class="n">data.frame</span><span class="p">(</span><span class="n">out.imp</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Multiple imputation"</span><span class="p">)),</span><span class="w"> 
+         </span><span class="n">chrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> 
+         </span><span class="n">lod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lod_threshold</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> 
+         </span><span class="n">rug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+         </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">labels_df</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="qtl_plots_files/figure-markdown_github/unnamed-chunk-5-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>The second example I want to show is from the <em>listeria</em> data. This time, a slightly more complex <em>2-part</em> model is built.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data</span><span class="p">(</span><span class="n">listeria</span><span class="p">)</span><span class="w">
+
+</span><span class="n">listeria</span><span class="o">$</span><span class="n">pheno</span><span class="o">$</span><span class="n">logSurv</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">listeria</span><span class="o">$</span><span class="n">pheno</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span><span class="w">
+</span><span class="n">listeria</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">est.rf</span><span class="p">(</span><span class="n">listeria</span><span class="p">)</span><span class="w">
+
+</span><span class="n">newmap</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">est.map</span><span class="p">(</span><span class="n">listeria</span><span class="p">,</span><span class="w"> </span><span class="n">error.prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">)</span><span class="w">
+</span><span class="n">listeria</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">replace.map</span><span class="p">(</span><span class="n">listeria</span><span class="p">,</span><span class="w"> </span><span class="n">newmap</span><span class="p">)</span><span class="w">
+
+</span><span class="n">listeria</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">calc.errorlod</span><span class="p">(</span><span class="n">listeria</span><span class="p">,</span><span class="w"> </span><span class="n">error.prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">)</span><span class="w">
+
+</span><span class="n">listeria</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">calc.genoprob</span><span class="p">(</span><span class="n">listeria</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">out.2p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">listeria</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2part"</span><span class="p">,</span><span class="w"> </span><span class="n">upper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">operm.2p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">listeria</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2part"</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">upper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">n.perm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">lod_threshold</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary</span><span class="p">(</span><span class="n">operm.2p</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w">
+
+</span><span class="n">labels_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">summary</span><span class="p">(</span><span class="n">out.2p</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"allpeaks"</span><span class="p">,</span><span class="w"> </span><span class="n">perms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">operm.2p</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="n">pvalues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The output from a 2-part model looks different than from the other model functions: Instead of only one LOD score column, we now get three columns named <em>lod.pu.mu</em>, <em>lod.p</em> and <em>lod.mu</em> (check back with the tutorial if you want to know what they mean). The plotting function is built so that if you define the model parameter as <em>“2part”</em>, each of the three LOD columns will be plotted in a different color.</p>
+
+<p>If we also want to plot the QTL labels, we need to prepare the label data frame before feeding it into the plotting function:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">p.mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">labels_df</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">]</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">p.mu</span><span class="p">)[</span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"lod"</span><span class="w">
+</span><span class="n">p.mu</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"p.mu"</span><span class="w">
+
+</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">labels_df</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="o">:</span><span class="m">7</span><span class="p">)]</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">p</span><span class="p">)[</span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"lod"</span><span class="w">
+</span><span class="n">p</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"p"</span><span class="w">
+
+</span><span class="n">mu</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">labels_df</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="o">:</span><span class="m">10</span><span class="p">)]</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">mu</span><span class="p">)[</span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"lod"</span><span class="w">
+</span><span class="n">mu</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"mu"</span><span class="w">
+
+</span><span class="n">labels_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">p.mu</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">mu</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>If the chromosomes are not in the right order, we can reorder the factor labels:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w"> </span><span class="s2">"18"</span><span class="p">,</span><span class="w"> </span><span class="s2">"19"</span><span class="p">,</span><span class="w"> </span><span class="s2">"X"</span><span class="p">)</span><span class="w">
+</span><span class="n">out.2p</span><span class="o">$</span><span class="n">chr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">out.2p</span><span class="o">$</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">)</span><span class="w">
+</span><span class="n">labels_df</span><span class="o">$</span><span class="n">chr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">labels_df</span><span class="o">$</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The parameter <em>ncol</em> let’s you define how many facet columns you want to have. Here, I want two rows and three columns to display the six chromosomes I chose for plotting:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">qtl_plot</span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out.2p</span><span class="p">,</span><span class="w"> 
+         </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2part"</span><span class="p">,</span><span class="w">
+         </span><span class="n">chrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="o">:</span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">13</span><span class="p">,</span><span class="w"> </span><span class="m">15</span><span class="p">),</span><span class="w">
+         </span><span class="n">lod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lod_threshold</span><span class="p">[</span><span class="m">1</span><span class="p">],</span><span class="w"> 
+         </span><span class="n">rug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+         </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w">
+         </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">labels_df</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="qtl_plots_files/figure-markdown_github/unnamed-chunk-9-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>Binary models are again treated the same way as e.g. normal models:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">listeria</span><span class="o">$</span><span class="n">pheno</span><span class="o">$</span><span class="n">logSurv</span><span class="w">
+</span><span class="n">my</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">z</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">my</span><span class="p">)</span><span class="w">
+</span><span class="n">y</span><span class="p">[</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">my</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+</span><span class="n">listeria</span><span class="o">$</span><span class="n">pheno</span><span class="o">$</span><span class="n">logSurv2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">y</span><span class="w">
+</span><span class="n">listeria</span><span class="o">$</span><span class="n">pheno</span><span class="o">$</span><span class="n">binary</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">z</span><span class="w">
+
+</span><span class="n">out.p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">listeria</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"binary"</span><span class="p">)</span><span class="w">
+</span><span class="n">out.np1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">listeria</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"np"</span><span class="p">,</span><span class="w"> </span><span class="n">ties.random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">out.np2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">listeria</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"np"</span><span class="p">,</span><span class="w"> </span><span class="n">ties.random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">qtl_plot</span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">data.frame</span><span class="p">(</span><span class="n">out.np1</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"out.2p"</span><span class="p">),</span><span class="w">
+                       </span><span class="n">data.frame</span><span class="p">(</span><span class="n">out.np1</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"np1"</span><span class="p">),</span><span class="w">
+                       </span><span class="n">data.frame</span><span class="p">(</span><span class="n">out.np2</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"np2"</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="qtl_plots_files/figure-markdown_github/unnamed-chunk-11-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>The <em>fake.bc</em> data is used to show how to run QTL models with multiple phenotypes simultaneously and how to add additive or interactive covariates.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data</span><span class="p">(</span><span class="n">fake.bc</span><span class="p">)</span><span class="w">
+
+</span><span class="n">fake.bc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">calc.genoprob</span><span class="p">(</span><span class="n">fake.bc</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2.5</span><span class="p">)</span><span class="w">
+</span><span class="n">out.nocovar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">fake.bc</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>If the parameter <em>mult.pheno</em> is set to TRUE, the plotting function gathers the phenotype columns and plots each phenotype in a different color.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">qtl_plot</span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out.nocovar</span><span class="p">,</span><span class="w"> </span><span class="n">mult.pheno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="qtl_plots_files/figure-markdown_github/unnamed-chunk-13-1.png" alt="" /></p>
+
+<p>If we specify both <em>mult.pheno = TRUE</em> and <em>model = “2part”</em>, the function plots each LOD score for each phenotype in a different color. If you wanted to plot only the <em>lod.p</em> column for example, you could subset the input data frame before feeding it into the plotting function.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">out.nocovar.2p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">fake.bc</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2part"</span><span class="p">,</span><span class="w"> </span><span class="n">upper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qtl_plot</span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out.nocovar.2p</span><span class="p">,</span><span class="w">
+         </span><span class="n">chrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span><span class="w">
+         </span><span class="n">mult.pheno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+         </span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"2part"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="qtl_plots_files/figure-markdown_github/unnamed-chunk-14-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>If we run a multiple phenotype model and want to determine the QTL positions, we get a different LOD threshold for each of the phenotypes and respectively, for significantly associated markers as well.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sex</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fake.bc</span><span class="o">$</span><span class="n">pheno</span><span class="o">$</span><span class="n">sex</span><span class="w">
+</span><span class="n">out.acovar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">fake.bc</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">addcovar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span><span class="w">
+
+</span><span class="n">out.icovar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">fake.bc</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">addcovar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">intcovar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">)</span><span class="w">
+
+</span><span class="n">out.sexint</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">out.icovar</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">out.acovar</span><span class="w">
+
+</span><span class="n">operm.icovar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">fake.bc</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">addcovar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">intcovar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">n.perm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">lod_threshold</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary</span><span class="p">(</span><span class="n">operm.icovar</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">)</span><span class="w">
+
+</span><span class="n">labels_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">summary</span><span class="p">(</span><span class="n">out.icovar</span><span class="p">,</span><span class="w"> </span><span class="n">perms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">operm.icovar</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="n">pvalues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>This means that, if we want to plot QTL labels for both phenotypes, we first need to prepare the label data frame:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pheno1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">labels_df</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">]</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">pheno1</span><span class="p">)[</span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"lod"</span><span class="w">
+</span><span class="n">pheno1</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="s2">"pheno1"</span><span class="p">,</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">pheno1</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pheno2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">labels_df</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">)]</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">pheno2</span><span class="p">)[</span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"lod"</span><span class="w">
+</span><span class="n">pheno2</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="s2">"pheno2"</span><span class="p">,</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">pheno1</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">labels_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">pheno1</span><span class="p">,</span><span class="w"> </span><span class="n">pheno2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w"> </span><span class="s2">"9"</span><span class="p">,</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w"> </span><span class="s2">"12"</span><span class="p">,</span><span class="w"> </span><span class="s2">"13"</span><span class="p">,</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span><span class="w"> </span><span class="s2">"15"</span><span class="p">,</span><span class="w"> </span><span class="s2">"16"</span><span class="p">,</span><span class="w"> </span><span class="s2">"17"</span><span class="p">,</span><span class="w"> </span><span class="s2">"18"</span><span class="p">,</span><span class="w"> </span><span class="s2">"19"</span><span class="p">,</span><span class="w"> </span><span class="s2">"X"</span><span class="p">)</span><span class="w">
+</span><span class="n">labels_df</span><span class="o">$</span><span class="n">chr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">labels_df</span><span class="o">$</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>If different methods and groups are detected in the input data frame, the methods will be drawn with different colors, while the groups will have different line types. If we want to plot two LOD thresholds for the two phenotypes, we can give a data frame to the function that has a group column that corresponds to the phenotypes of the input data frame. The LOD threshold will now be plotted in the same line type as the phenotype LOD score plot.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">qtl_plot</span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">data.frame</span><span class="p">(</span><span class="n">out.acovar</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"acovar"</span><span class="p">),</span><span class="w">
+                       </span><span class="n">data.frame</span><span class="p">(</span><span class="n">out.icovar</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"icovar"</span><span class="p">),</span><span class="w">
+                       </span><span class="n">data.frame</span><span class="p">(</span><span class="n">out.sexint</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sexint"</span><span class="p">)),</span><span class="w"> 
+         </span><span class="n">chrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">17</span><span class="p">),</span><span class="w">
+         </span><span class="n">mult.pheno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+         </span><span class="n">lod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"pheno1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pheno2"</span><span class="p">),</span><span class="w">
+                 </span><span class="n">lod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lod_threshold</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">]),</span><span class="w">
+         </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">labels_df</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="qtl_plots_files/figure-markdown_github/unnamed-chunk-17-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>For QTL models with covariates, the same principles apply:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">seed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ceiling</span><span class="p">(</span><span class="n">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="o">^</span><span class="m">8</span><span class="p">))</span><span class="w">
+</span><span class="n">set.seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span><span class="w">
+</span><span class="n">operm.acovar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">fake.bc</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">addcovar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hk"</span><span class="p">,</span><span class="w"> </span><span class="n">n.perm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">set.seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span><span class="w">
+</span><span class="n">operm.icovar</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">fake.bc</span><span class="p">,</span><span class="w"> </span><span class="n">pheno.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">addcovar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">intcovar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hk"</span><span class="p">,</span><span class="w"> </span><span class="n">n.perm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">operm.sexint</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">operm.icovar</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">operm.acovar</span><span class="w">
+
+</span><span class="n">lod_threshold</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">summary</span><span class="p">(</span><span class="n">operm.sexint</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="m">0.20</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">labels</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">summary</span><span class="p">(</span><span class="n">out.sexint</span><span class="p">,</span><span class="w"> </span><span class="n">perms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">operm.sexint</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"allpeaks"</span><span class="p">,</span><span class="w"> </span><span class="n">pvalues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w">
+</span><span class="n">pheno1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">labels</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">])</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">pheno1</span><span class="p">)[</span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"lod"</span><span class="w">
+</span><span class="n">pheno1</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"p1"</span><span class="w">
+
+</span><span class="n">pheno2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">labels</span><span class="p">[,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="o">:</span><span class="m">7</span><span class="p">)])</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">pheno2</span><span class="p">)[</span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"lod"</span><span class="w">
+</span><span class="n">pheno2</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"p2"</span><span class="w">
+
+</span><span class="n">labels_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">pheno1</span><span class="p">,</span><span class="w"> </span><span class="n">pheno2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">qtl_plot</span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out.sexint</span><span class="p">,</span><span class="w"> 
+         </span><span class="n">mult.pheno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+         </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">labels_df</span><span class="p">,</span><span class="w">
+         </span><span class="n">chrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">17</span><span class="p">),</span><span class="w"> 
+         </span><span class="n">lod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"pheno1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pheno2"</span><span class="p">),</span><span class="w">
+                 </span><span class="n">lod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lod_threshold</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="p">]),</span><span class="w">
+         </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="qtl_plots_files/figure-markdown_github/unnamed-chunk-20-1.png" alt="" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">hyper</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sim.geno</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2.5</span><span class="p">,</span><span class="w"> </span><span class="n">n.draws</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">)</span><span class="w">
+</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pull.geno</span><span class="p">(</span><span class="n">fill.geno</span><span class="p">(</span><span class="n">hyper</span><span class="p">))[,</span><span class="w"> </span><span class="s2">"D4Mit164"</span><span class="p">]</span><span class="w">
+</span><span class="n">out1.c4i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scanone</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"imp"</span><span class="p">,</span><span class="w"> </span><span class="n">addcovar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">intcovar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">qtl_plot</span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">out1.c4i</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="qtl_plots_files/figure-markdown_github/unnamed-chunk-22-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>And as well for model fitting:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">qc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">15</span><span class="p">)</span><span class="w">
+</span><span class="n">qp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">43.3</span><span class="p">,</span><span class="w"> </span><span class="m">78.3</span><span class="p">,</span><span class="w"> </span><span class="m">30.0</span><span class="p">,</span><span class="w"> </span><span class="m">62.5</span><span class="p">,</span><span class="w"> </span><span class="m">18.0</span><span class="p">)</span><span class="w">
+</span><span class="n">qtl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeqtl</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">chr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qc</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qp</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">myformula</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Q</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">4</span><span class="o">:</span><span class="n">Q</span><span class="m">5</span><span class="w">
+</span><span class="n">out.fq</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fitqtl</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">qtl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qtl</span><span class="p">,</span><span class="w"> </span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myformula</span><span class="p">,</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">get.ests</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">revqtl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">refineqtl</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">qtl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qtl</span><span class="p">,</span><span class="w"> </span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myformula</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">out1.c4r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">addqtl</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">qtl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">revqtl</span><span class="p">,</span><span class="w"> </span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Q</span><span class="m">3</span><span class="p">)</span><span class="w">
+
+</span><span class="n">out2.c4r</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">addpair</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">qtl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">revqtl</span><span class="p">,</span><span class="w"> </span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Q</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">chr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">15</span><span class="p">),</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">out.iw4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">addqtl</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">qtl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">revqtl</span><span class="p">,</span><span class="w"> </span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Q</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">4</span><span class="o">:</span><span class="n">Q</span><span class="m">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">6</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Q</span><span class="m">5</span><span class="o">:</span><span class="n">Q</span><span class="m">6</span><span class="p">)</span><span class="w">
+</span><span class="n">out.1more</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">addqtl</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">qtl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">revqtl</span><span class="p">,</span><span class="w"> </span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">myformula</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qtl2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">addtoqtl</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">revqtl</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">,</span><span class="w"> </span><span class="m">53.6</span><span class="p">)</span><span class="w">
+</span><span class="n">qtl3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dropfromqtl</span><span class="p">(</span><span class="n">qtl2</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">qtl4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">replaceqtl</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">qtl3</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">chr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">)</span><span class="w">
+</span><span class="n">qtl5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">reorderqtl</span><span class="p">(</span><span class="n">qtl4</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">))</span><span class="w">
+
+</span><span class="n">stepout.i</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">stepwiseqtl</span><span class="p">(</span><span class="n">hyper</span><span class="p">,</span><span class="w"> </span><span class="n">max.qtl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Here, we also need to prepare the label data frame before the plotting function can handle it:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">label_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stepout.i</span><span class="o">$</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">chr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stepout.i</span><span class="o">$</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stepout.i</span><span class="o">$</span><span class="n">pos</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qtl1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">attr</span><span class="p">(</span><span class="n">stepout.i</span><span class="p">,</span><span class="w"> </span><span class="s2">"lodprofile"</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">qtl4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">attr</span><span class="p">(</span><span class="n">stepout.i</span><span class="p">,</span><span class="w"> </span><span class="s2">"lodprofile"</span><span class="p">)[[</span><span class="m">2</span><span class="p">]]</span><span class="w">
+</span><span class="n">qtl6</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">attr</span><span class="p">(</span><span class="n">stepout.i</span><span class="p">,</span><span class="w"> </span><span class="s2">"lodprofile"</span><span class="p">)[[</span><span class="m">3</span><span class="p">]]</span><span class="w">
+</span><span class="n">qtl15</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">attr</span><span class="p">(</span><span class="n">stepout.i</span><span class="p">,</span><span class="w"> </span><span class="s2">"lodprofile"</span><span class="p">)[[</span><span class="m">4</span><span class="p">]]</span><span class="w">
+
+</span><span class="n">input_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">qtl1</span><span class="p">,</span><span class="w"> </span><span class="n">qtl4</span><span class="p">,</span><span class="w"> </span><span class="n">qtl6</span><span class="p">,</span><span class="w"> </span><span class="n">qtl15</span><span class="p">)</span><span class="w">
+</span><span class="n">input_df</span><span class="o">$</span><span class="n">marker</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">input_df</span><span class="p">)</span><span class="w">
+</span><span class="n">input_df</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">input_df</span><span class="o">$</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">input_df</span><span class="o">$</span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"@"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">label_df</span><span class="o">$</span><span class="n">pos</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">gsub</span><span class="p">(</span><span class="s2">"(^[0-9]+)(.0$)"</span><span class="p">,</span><span class="w"> </span><span class="s2">"\\1"</span><span class="p">,</span><span class="w"> </span><span class="n">label_df</span><span class="o">$</span><span class="n">pos</span><span class="p">))</span><span class="w">
+</span><span class="n">label_df</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">label_df</span><span class="o">$</span><span class="n">chr</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">label_df</span><span class="o">$</span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"@"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">label_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">label_df</span><span class="p">,</span><span class="w"> </span><span class="n">input_df</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">drop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">],</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"name"</span><span class="p">)</span><span class="w">
+</span><span class="n">label_df</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">label_df</span><span class="o">$</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">label_df</span><span class="o">$</span><span class="n">marker</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">qtl_plot</span><span class="p">(</span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">input_df</span><span class="p">,</span><span class="w">
+         </span><span class="n">labels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label_df</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="qtl_plots_files/figure-markdown_github/unnamed-chunk-26-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>These examples show only the simple QTL models. The qtl package also gives examples for building <strong>scantwo()</strong> models. But they can not be plotted in the same way as a <strong>scanone()</strong> output and thus, won’t be covered here.</p>
+
+<hr />
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.1
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] dplyr_0.5.0   tidyr_0.6.0   ggrepel_0.6.5 ggplot2_2.2.1 qtl_1.40-8   
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.8        knitr_1.15.1       magrittr_1.5      
+##  [4] munsell_0.4.3      colorspace_1.3-2   R6_2.2.0          
+##  [7] stringr_1.1.0      plyr_1.8.4         tools_3.3.2       
+## [10] parallel_3.3.2     grid_3.3.2         gtable_0.2.0      
+## [13] DBI_0.5-1          htmltools_0.3.5    yaml_2.1.14       
+## [16] lazyeval_0.2.0     rprojroot_1.1      digest_0.6.11     
+## [19] assertthat_0.1     tibble_1.2         RColorBrewer_1.1-2
+## [22] codetools_0.2-15   evaluate_0.10      rmarkdown_1.3     
+## [25] labeling_0.3       stringi_1.1.2      scales_0.4.1      
+## [28] backports_1.0.4
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#ggplot2-ref">
+    		ggplot2 <span>2</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+     
+    	<li><a href="/tags.html#qtl-ref">qtl <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#functions-ref">functions <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/shiny/2017/02/06/WGS_final" title="Scratching the Surface of Gender Biases">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/machine_learning/2017/02/19/food_spark" title="Predicting food preferences with sparklyr (machine learning)">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

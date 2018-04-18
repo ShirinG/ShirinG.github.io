@@ -1,0 +1,929 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Happy EasteR: Plotting hare populations in Germany</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Happy EasteR: Plotting hare populations in Germany </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Happy EasteR: Plotting hare populations in Germany" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>16 April 2017</span>
+    </div>
+    <div class="content">
+      <p>For Easter, I wanted to have a look at the number of hares in Germany. Wild hare populations have been rapidly declining over the last 10 years but during the last three years they have at least been stable.</p>
+
+<p>This plot shows the 16 federal states of Germany. Their fill color shows the proportion of hares per square kilometer in 2015/2016. The black area of the pie charts shows the percentage of the total number of hares (not corrected by area) for each federal state in regard to the total number of hares in all of Germany during that time. The size of the hares in the background reflects the total number of hares in the eight federal states with the highest percentages.</p>
+
+<p><img src="hasen_files/figure-markdown_github/unnamed-chunk-47-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>Below, you can find the code I used to produce this plot.</p>
+
+<hr />
+
+<h3 id="hare-population-numbers">Hare population numbers</h3>
+
+<p>The German hunter’s association (<a href="www.jagdverband.de">Deutscher Jagdverband</a>) publishes population numbers for a variety of common species of wild game, including hares. The most recent numbers are for the year 2015/16.</p>
+
+<p>I downloaded the pdf and extracted the table on page 1 with the <strong>tabulizer</strong> package.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#devtools::install_github("ropensci/tabulizer")
+</span><span class="n">library</span><span class="p">(</span><span class="n">tabulizer</span><span class="p">)</span><span class="w">
+
+</span><span class="n">txt</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">extract_tables</span><span class="p">(</span><span class="s2">"2015-16 Jahresstrecke Feldhase.pdf"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">hares</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">txt</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># first row contains column names, remove from df and set as colnames
+</span><span class="n">hares_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">hares</span><span class="p">[</span><span class="m">-1</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="p">])</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">hares_df</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"bundesland"</span><span class="p">,</span><span class="w"> </span><span class="n">unlist</span><span class="p">(</span><span class="n">hares</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">-1</span><span class="p">]))))</span><span class="w">
+
+</span><span class="c1"># remove the spaces in the numbers and make numeric
+</span><span class="n">hares_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">hares_df</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w">
+</span><span class="n">hares_df</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">hares_df</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">],</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w">
+
+</span><span class="n">hare_final</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">hares_df</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="the-map">The map</h3>
+
+<p>I downloaded the ESRI Shapefile of German federal states from the <a href="https://www.arcgis.com/home/item.html?id=ae25571c60d94ce5b7fcbf74e27c00e0">Bundesamt für Kartographie und Geodäsie, Frankfurt am Main, 2011</a> and read it in with the <strong>rgdal</strong> package.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">maptools</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ger</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rgdal</span><span class="o">::</span><span class="n">readOGR</span><span class="p">(</span><span class="n">dsn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"shp"</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"vg2500_bld"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## OGR data source with driver: ESRI Shapefile 
+## Source: "shp", layer: "vg2500_bld"
+## with 16 features
+## It has 6 fields
+</code></pre>
+</div>
+
+<p>I then convert the shapefile into a dataframe for plotting. This allowes the plotting of polygons in the shape of ech federal state with ggplot.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">plyr</span><span class="p">)</span><span class="w">
+</span><span class="n">ger_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fortify</span><span class="p">(</span><span class="n">ger</span><span class="p">)</span><span class="w">
+</span><span class="n">ger</span><span class="o">@</span><span class="n">data</span><span class="o">$</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">ger</span><span class="o">@</span><span class="n">data</span><span class="p">)</span><span class="w">
+</span><span class="n">ger_df_final</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">join</span><span class="p">(</span><span class="n">ger_df</span><span class="p">,</span><span class="w"> </span><span class="n">ger</span><span class="o">@</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"id"</span><span class="p">)</span><span class="w">
+</span><span class="n">ger_df_final</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">ger_df_final</span><span class="o">$</span><span class="n">GEN</span><span class="p">)</span><span class="w">
+</span><span class="n">ger_df_final</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"\xfc"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ü"</span><span class="p">,</span><span class="w"> </span><span class="n">ger_df_final</span><span class="o">$</span><span class="n">GEN</span><span class="p">)</span><span class="w">
+</span><span class="n">ger_df_final</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"ü"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ue"</span><span class="p">,</span><span class="w"> </span><span class="n">ger_df_final</span><span class="o">$</span><span class="n">GEN</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>To match the names of the federal states in the map dataframe with the hare population table, I assign a corresponding column to the latter.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">hare_final2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">hare_final</span><span class="p">,</span><span class="w"> </span><span class="n">bundesland</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">"gesamt"</span><span class="p">)</span><span class="w">
+</span><span class="n">hare_final2</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"Baden-Wuerttemberg"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Bayern"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Brandenburg"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Bremen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Hamburg"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Hessen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Mecklenburg-Vorpommern"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Niedersachsen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Nordrhein-Westfalen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Rheinland-Pfalz"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Saarland"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Sachsen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Sachsen-Anhalt"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Schleswig-Holstein"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Thueringen"</span><span class="p">))</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">hare_final2</span><span class="p">)[</span><span class="m">2</span><span class="o">:</span><span class="m">12</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"Y_"</span><span class="p">,</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"/"</span><span class="p">,</span><span class="w"> </span><span class="s2">"_"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">hare_final</span><span class="p">)[</span><span class="m">2</span><span class="o">:</span><span class="m">12</span><span class="p">]))</span><span class="w">
+
+</span><span class="n">hare_final2</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">12</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">hare_final2</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">12</span><span class="p">],</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="area">Area</h3>
+
+<p>The hare population numbers are given as absolute numbers but I want them normalized by area. The German statistics portal (<a href="http://www.statistik-portal.de">http://www.statistik-portal.de</a>) provides this data on their website. I use the <strong>XML</strong> package to scrape it from there.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">XML</span><span class="p">)</span><span class="w">
+</span><span class="n">table</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">readHTMLTable</span><span class="p">(</span><span class="s2">"http://www.statistik-portal.de/Statistik-Portal/de_jb01_jahrtab1.asp"</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">stringsAsFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">table</span><span class="o">$</span><span class="n">V</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"Ã¼"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ü"</span><span class="p">,</span><span class="w"> </span><span class="n">table</span><span class="o">$</span><span class="n">V</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">table</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"GEN"</span><span class="p">,</span><span class="w"> </span><span class="s2">"area"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pop_total"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pop_male"</span><span class="p">,</span><span class="w"> </span><span class="s2">"pop_female"</span><span class="p">,</span><span class="w"> </span><span class="s2">"inh_p_km2"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># numbers are in German format, so need to convert them to English decimal notation
+</span><span class="n">table</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">table</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">],</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">gsub</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span><span class="w"> </span><span class="s2">"."</span><span class="p">,</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"\\."</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">))))</span><span class="w">
+
+</span><span class="n">table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">table</span><span class="p">[</span><span class="m">-17</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">table</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">table</span><span class="o">$</span><span class="n">GEN</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>I then divide each population number by area (in km2).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">hare_final2</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">hare_final2</span><span class="o">$</span><span class="n">GEN</span><span class="p">)</span><span class="w">
+</span><span class="n">table</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hare_final2</span><span class="o">$</span><span class="n">GEN</span><span class="w">
+
+</span><span class="n">hare_final3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hare_final2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">left_join</span><span class="p">(</span><span class="n">table</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GEN"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">hare_final3</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">12</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">apply</span><span class="p">(</span><span class="n">hare_final3</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">12</span><span class="p">],</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">hare_final3</span><span class="o">$</span><span class="n">area</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>This final table I then join with the map dataframe.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">map</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">left_join</span><span class="p">(</span><span class="n">ger_df_final</span><span class="p">,</span><span class="w"> </span><span class="n">hare_final3</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GEN"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="the-background-map">The background map</h3>
+
+<p>The background map shows Germany’s federal states (as polygons) colored according to how many hares there were relative to the area in km2.</p>
+
+<p>I define the mapping theme for ggplot, so that I have no axes, grids, etc. and a transparent background.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">map_theme</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">theme</span><span class="p">(</span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span><span class="w">
+                        </span><span class="n">plot.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">),</span><span class="w">
+                        </span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The background of each polygon is also filled with a hare image with the hare’s size being proportional to the percentage of total hare numbers of each federal state compared to the total number of hares in Germany in 2015/16.</p>
+
+<p>To achieve this, I first downloaded an open-source image of a rabbit and read it with the <strong>png</strong> package. This image I then want to plot with <strong>gplot</strong>’s <em>annotation_custom()</em> function, so I need to convert the image to a raster.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">png</span><span class="p">)</span><span class="w">
+</span><span class="n">bunny</span><span class="w"> </span><span class="o">&lt;-</span><span class="w">  </span><span class="n">readPNG</span><span class="p">(</span><span class="s2">"rabbit-297212_1280.png"</span><span class="p">)</span><span class="w"> </span><span class="c1">#https://pixabay.com
+</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="w">
+</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rasterGrob</span><span class="p">(</span><span class="n">bunny</span><span class="p">,</span><span class="w"> </span><span class="n">interpolate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>I am plotting hares only for the 8 federal states with percentage above 1, because the other ones would be too small on the plot.</p>
+
+<p>For each of these 8 federal states, I am plotting the hare image in relative size by scaling the xmax and ymax values according to the percentage values for each state. The image canvas always has a size of 15 by 15, so I am centering the images at 7.5. I then save each image as a png with transparent background.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">val</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">hare_final_pie</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Bayern"</span><span class="p">)</span><span class="o">$</span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w">
+
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qplot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blank"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotation_custom</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymin</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymax</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w">
+</span><span class="n">ggsave</span><span class="p">(</span><span class="s2">"my_image_Bayern.png"</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">val</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">hare_final_pie</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Niedersachsen"</span><span class="p">)</span><span class="o">$</span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w">
+
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qplot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blank"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotation_custom</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymin</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymax</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w">
+</span><span class="n">ggsave</span><span class="p">(</span><span class="s2">"my_image_Niedersachsen.png"</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">val</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">hare_final_pie</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Nordrhein-Westfalen"</span><span class="p">)</span><span class="o">$</span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w">
+
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qplot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blank"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotation_custom</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymin</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymax</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w">
+</span><span class="n">ggsave</span><span class="p">(</span><span class="s2">"my_image_Nordrhein-Westfalen.png"</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">val</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">hare_final_pie</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Schleswig-Holstein"</span><span class="p">)</span><span class="o">$</span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w">
+
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qplot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blank"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotation_custom</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymin</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymax</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w">
+</span><span class="n">ggsave</span><span class="p">(</span><span class="s2">"my_image_Schleswig-Holstein.png"</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">val</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">hare_final_pie</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Baden-Wuerttemberg"</span><span class="p">)</span><span class="o">$</span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w">
+
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qplot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blank"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotation_custom</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymin</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymax</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w">
+</span><span class="n">ggsave</span><span class="p">(</span><span class="s2">"my_image_Baden-Wuerttemberg.png"</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">val</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">hare_final_pie</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Hessen"</span><span class="p">)</span><span class="o">$</span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w">
+
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qplot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blank"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotation_custom</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymin</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymax</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w">
+</span><span class="n">ggsave</span><span class="p">(</span><span class="s2">"my_image_Hessen.png"</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">val</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">hare_final_pie</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Rheinland-Pfalz"</span><span class="p">)</span><span class="o">$</span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w">
+
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qplot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blank"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotation_custom</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymin</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymax</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w">
+</span><span class="n">ggsave</span><span class="p">(</span><span class="s2">"my_image_Rheinland-Pfalz.png"</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">val</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">hare_final_pie</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Brandenburg"</span><span class="p">)</span><span class="o">$</span><span class="n">percent</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.5</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w">
+
+</span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w">
+                 </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w">
+
+</span><span class="n">qplot</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="o">:</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blank"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">annotation_custom</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">xmin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmin</span><span class="p">,</span><span class="w"> </span><span class="n">xmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">xmax</span><span class="p">,</span><span class="w"> </span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymin</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">ymax</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w">
+</span><span class="n">ggsave</span><span class="p">(</span><span class="s2">"my_image_Brandenburg.png"</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>Next, I follow the instructions and code from a <a href="http://stackoverflow.com/questions/28206611/adding-custom-image-to-geom-polygon-fill-in-ggplot">StackOverflow post</a>: Each image is now read in again and converted to a dataframe for plotting. Because I only want to fill within the polygon borders, I am restricting the points to those, that fall in these shapes. I need to use the “groups” column here, because this is the column that was used for plotting the map polygons.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#http://stackoverflow.com/questions/28206611/adding-custom-image-to-geom-polygon-fill-in-ggplot
+# converting raster image to plottable data.frame
+</span><span class="n">library</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggplot_rasterdf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">color_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">require</span><span class="p">(</span><span class="s2">"dplyr"</span><span class="p">)</span><span class="w">
+  </span><span class="n">require</span><span class="p">(</span><span class="s2">"tidyr"</span><span class="p">)</span><span class="w">
+
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nf">dim</span><span class="p">(</span><span class="n">color_matrix</span><span class="p">)[</span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="n">hasalpha</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nb">T</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="n">hasalpha</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nb">F</span><span class="w">
+
+  </span><span class="n">outMatrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">matrix</span><span class="p">(</span><span class="s2">"#00000000"</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">color_matrix</span><span class="p">)[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">color_matrix</span><span class="p">)[</span><span class="m">2</span><span class="p">])</span><span class="w">
+
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">color_matrix</span><span class="p">)[</span><span class="m">1</span><span class="p">])</span><span class="w">
+    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">color_matrix</span><span class="p">)[</span><span class="m">2</span><span class="p">])</span><span class="w"> 
+      </span><span class="n">outMatrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rgb</span><span class="p">(</span><span class="n">color_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">color_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="m">2</span><span class="p">],</span><span class="w"> </span><span class="n">color_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="m">3</span><span class="p">],</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">hasalpha</span><span class="p">,</span><span class="w"> </span><span class="n">color_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="m">4</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">
+
+  </span><span class="n">colnames</span><span class="p">(</span><span class="n">outMatrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="p">(</span><span class="n">outMatrix</span><span class="p">))</span><span class="w">
+  </span><span class="n">rownames</span><span class="p">(</span><span class="n">outMatrix</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">outMatrix</span><span class="p">))</span><span class="w">
+  </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">outMatrix</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">mutate</span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">outMatrix</span><span class="p">)</span><span class="o">:</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">gather</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">Y</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">X</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">as.integer</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">X</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">left</span><span class="p">)</span><span class="o">/</span><span class="n">ncol</span><span class="p">(</span><span class="n">outMatrix</span><span class="p">),</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Y</span><span class="o">*</span><span class="p">(</span><span class="n">top</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">bottom</span><span class="p">)</span><span class="o">/</span><span class="n">nrow</span><span class="p">(</span><span class="n">outMatrix</span><span class="p">))</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">my_image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readPNG</span><span class="p">(</span><span class="s2">"my_image_Bayern.png"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">groups</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Bayern"</span><span class="p">)</span><span class="o">$</span><span class="n">group</span><span class="p">))</span><span class="w">
+
+</span><span class="n">my_image_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot_rasterdf</span><span class="p">(</span><span class="n">my_image</span><span class="p">,</span><span class="w"> 
+                                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w"> 
+                                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w">
+                                </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">),</span><span class="w">
+                                </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">
+
+</span><span class="n">bayern</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">my_image_dat</span><span class="p">[</span><span class="n">point.in.polygon</span><span class="p">(</span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">Y</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.logical</span><span class="p">,]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">my_image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readPNG</span><span class="p">(</span><span class="s2">"my_image_Niedersachsen.png"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">groups</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Niedersachsen"</span><span class="p">)</span><span class="o">$</span><span class="n">group</span><span class="p">))</span><span class="w">
+
+</span><span class="n">my_image_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot_rasterdf</span><span class="p">(</span><span class="n">my_image</span><span class="p">,</span><span class="w"> 
+                                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w"> 
+                                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w">
+                                </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">),</span><span class="w">
+                                </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">
+
+</span><span class="n">niedersachsen</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">my_image_dat</span><span class="p">[</span><span class="n">point.in.polygon</span><span class="p">(</span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">Y</span><span class="p">,</span><span class="w"> 
+                                        </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">,</span><span class="w"> 
+                                        </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.logical</span><span class="p">,]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">my_image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readPNG</span><span class="p">(</span><span class="s2">"my_image_Nordrhein-Westfalen.png"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">groups</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Nordrhein-Westfalen"</span><span class="p">)</span><span class="o">$</span><span class="n">group</span><span class="p">))</span><span class="w">
+
+</span><span class="n">my_image_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot_rasterdf</span><span class="p">(</span><span class="n">my_image</span><span class="p">,</span><span class="w"> 
+                                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w"> 
+                                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w">
+                                </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">),</span><span class="w">
+                                </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">
+
+</span><span class="n">nrw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">my_image_dat</span><span class="p">[</span><span class="n">point.in.polygon</span><span class="p">(</span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">Y</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.logical</span><span class="p">,]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">my_image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readPNG</span><span class="p">(</span><span class="s2">"my_image_Schleswig-Holstein.png"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">groups</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Schleswig-Holstein"</span><span class="p">)</span><span class="o">$</span><span class="n">group</span><span class="p">))</span><span class="w">
+
+</span><span class="n">my_image_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot_rasterdf</span><span class="p">(</span><span class="n">my_image</span><span class="p">,</span><span class="w"> 
+                                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w"> 
+                                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w">
+                                </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">),</span><span class="w">
+                                </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">
+
+</span><span class="n">sh</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">my_image_dat</span><span class="p">[</span><span class="n">point.in.polygon</span><span class="p">(</span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">Y</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.logical</span><span class="p">,]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">my_image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readPNG</span><span class="p">(</span><span class="s2">"my_image_Baden-Wuerttemberg.png"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">groups</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Baden-Wuerttemberg"</span><span class="p">)</span><span class="o">$</span><span class="n">group</span><span class="p">))</span><span class="w">
+
+</span><span class="n">my_image_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot_rasterdf</span><span class="p">(</span><span class="n">my_image</span><span class="p">,</span><span class="w"> 
+                                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w"> 
+                                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w">
+                                </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">),</span><span class="w">
+                                </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">
+
+</span><span class="n">bw</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">my_image_dat</span><span class="p">[</span><span class="n">point.in.polygon</span><span class="p">(</span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">Y</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.logical</span><span class="p">,]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">my_image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readPNG</span><span class="p">(</span><span class="s2">"my_image_Hessen.png"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">groups</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Hessen"</span><span class="p">)</span><span class="o">$</span><span class="n">group</span><span class="p">))</span><span class="w">
+
+</span><span class="n">my_image_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot_rasterdf</span><span class="p">(</span><span class="n">my_image</span><span class="p">,</span><span class="w"> 
+                                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w"> 
+                                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w">
+                                </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">),</span><span class="w">
+                                </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">
+
+</span><span class="n">hessen</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">my_image_dat</span><span class="p">[</span><span class="n">point.in.polygon</span><span class="p">(</span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">Y</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.logical</span><span class="p">,]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">my_image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readPNG</span><span class="p">(</span><span class="s2">"my_image_Rheinland-Pfalz.png"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">groups</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Rheinland-Pfalz"</span><span class="p">)</span><span class="o">$</span><span class="n">group</span><span class="p">))</span><span class="w">
+
+</span><span class="n">my_image_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot_rasterdf</span><span class="p">(</span><span class="n">my_image</span><span class="p">,</span><span class="w"> 
+                                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w"> 
+                                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w">
+                                </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">),</span><span class="w">
+                                </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">
+
+</span><span class="n">rp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">my_image_dat</span><span class="p">[</span><span class="n">point.in.polygon</span><span class="p">(</span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">Y</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.logical</span><span class="p">,]</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">my_image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readPNG</span><span class="p">(</span><span class="s2">"my_image_Brandenburg.png"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">groups</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">filter</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Brandenburg"</span><span class="p">)</span><span class="o">$</span><span class="n">group</span><span class="p">))</span><span class="w">
+
+</span><span class="n">my_image_dat</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot_rasterdf</span><span class="p">(</span><span class="n">my_image</span><span class="p">,</span><span class="w"> 
+                                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w"> 
+                                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">),</span><span class="w">
+                                </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">min</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">),</span><span class="w">
+                                </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">
+
+</span><span class="n">brandenburg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">my_image_dat</span><span class="p">[</span><span class="n">point.in.polygon</span><span class="p">(</span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">my_image_dat</span><span class="o">$</span><span class="n">Y</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">long</span><span class="p">,</span><span class="w"> 
+                                               </span><span class="n">map</span><span class="p">[</span><span class="n">map</span><span class="o">$</span><span class="n">group</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">groups</span><span class="p">,]</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">as.logical</span><span class="p">,]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>Now, I can plot the background plot. I also set the x- and y-limits now, as well as an empty title because I want to overlay the pie charts onto this plot and need to have the same coordinates and margins for this. I am also defining the legend position to be on the top right, so that I can plot the legend of the pie charts on the bottom right.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">p</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_polygon</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">long</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y_2015_16</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_path</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">long</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">group</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">scale_fill_gradientn</span><span class="p">(</span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rev</span><span class="p">(</span><span class="n">terrain.colors</span><span class="p">(</span><span class="m">10</span><span class="p">)),</span><span class="w"> </span><span class="n">limits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">hare_final3</span><span class="o">$</span><span class="n">Y_2015_16</span><span class="p">))))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">47</span><span class="p">,</span><span class="w"> </span><span class="m">55.5</span><span class="p">),</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">15.5</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.justification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"top"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
+    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"# / km2"</span><span class="w">
+  </span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bayern</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bayern</span><span class="o">$</span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">niedersachsen</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">niedersachsen</span><span class="o">$</span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nrw</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nrw</span><span class="o">$</span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sh</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sh</span><span class="o">$</span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bw</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bw</span><span class="o">$</span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hessen</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hessen</span><span class="o">$</span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rp</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rp</span><span class="o">$</span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brandenburg</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Y</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">brandenburg</span><span class="o">$</span><span class="n">color</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="the-pie-plot">The pie plot</h3>
+
+<p>Over each federal state, I want to plot a pie chart that shows the percentage of the total hare population that falls on each federal state. I use the <strong>scatterpie</strong> package for that. The coordinates for each pie should be the center points of each federal state, which I determined with the following code from a <a href="http://stackoverflow.com/questions/10368180/plotting-pie-graphs-on-map-in-ggplot">StackOverflow post</a>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">scatterpie</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># http://stackoverflow.com/questions/10368180/plotting-pie-graphs-on-map-in-ggplot
+</span><span class="n">getLabelPoint</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">county</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">Polygon</span><span class="p">(</span><span class="n">county</span><span class="p">[</span><span class="nf">c</span><span class="p">(</span><span class="s1">'long'</span><span class="p">,</span><span class="w"> </span><span class="s1">'lat'</span><span class="p">)])</span><span class="o">@</span><span class="n">labpt</span><span class="p">}</span><span class="w">
+
+</span><span class="n">centroids</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">by</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">map</span><span class="o">$</span><span class="n">GEN</span><span class="p">,</span><span class="w"> </span><span class="n">getLabelPoint</span><span class="p">)</span><span class="w">    
+</span><span class="n">centroids</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">do.call</span><span class="p">(</span><span class="s2">"rbind.data.frame"</span><span class="p">,</span><span class="w"> </span><span class="n">centroids</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">tibble</span><span class="o">::</span><span class="n">rownames_to_column</span><span class="p">()</span><span class="w">
+</span><span class="nf">names</span><span class="p">(</span><span class="n">centroids</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"GEN"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>I then calculate the percentages and join them with the centroid coordinates. I am also adjusting the positions of the pie charts for some federal states so that they don’t overlap with other pie charts or with the background images.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">hare_final_pie</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hare_final2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="n">one_of</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s2">"GEN"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Y_2015_16"</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">Y_2015_16</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">Y_2015_16</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w">
+         </span><span class="n">rest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">percent</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">left_join</span><span class="p">(</span><span class="n">centroids</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"GEN"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Brandenburg"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">14</span><span class="w">
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Brandenburg"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">52</span><span class="w">
+
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Niedersachsen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">8</span><span class="w">
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Niedersachsen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">52.8</span><span class="w">
+
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Schleswig-Holstein"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10.5</span><span class="w">
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Schleswig-Holstein"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">54</span><span class="w">
+
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Hamburg"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">10.2</span><span class="w">
+
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Berlin"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">13.6</span><span class="w">
+
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Nordrhein-Westfalen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">6.8</span><span class="w">
+
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Hessen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">9.2</span><span class="w">
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Hessen"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">50.9</span><span class="w">
+
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Rheinland-Pfalz"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">7</span><span class="w">
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Rheinland-Pfalz"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">50</span><span class="w">
+
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Baden-Wuerttemberg"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">9.5</span><span class="w">
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Baden-Wuerttemberg"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">49</span><span class="w">
+
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Bayern"</span><span class="p">,</span><span class="w"> </span><span class="s2">"long"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">11</span><span class="w">
+</span><span class="n">hare_final_pie</span><span class="p">[</span><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">GEN</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Bayern"</span><span class="p">,</span><span class="w"> </span><span class="s2">"lat"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">49.6</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Now, I am plottin the second plot with only the pie charts. Theoretically, one could plot these pie charts directly on top of another ggplot but here this doesn’t work because I am using conflicting fill attributes: one with a continuous scale for the polygons and another with a categorical scale for the pie charts. Therefore, I am overlaying the two plots instead.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">hare_final_pie</span><span class="o">$</span><span class="n">radius</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0.2</span><span class="w">
+
+</span><span class="n">p</span><span class="m">2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_scatterpie</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hare_final_pie</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">long</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GEN</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">radius</span><span class="p">),</span><span class="w"> </span><span class="n">cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">hare_final_pie</span><span class="p">)[</span><span class="m">3</span><span class="o">:</span><span class="m">4</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">coord_cartesian</span><span class="p">(</span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">47</span><span class="p">,</span><span class="w"> </span><span class="m">55.5</span><span class="p">),</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">15.5</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.justification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bottom"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"black"</span><span class="p">,</span><span class="w"> </span><span class="s2">"transparent"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="w">
+    </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"German hare populations in 2015/16 by federal state"</span><span class="p">,</span><span class="w">
+    </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">grid.newpage</span><span class="p">()</span><span class="w">
+</span><span class="n">pushViewport</span><span class="p">(</span><span class="n">viewport</span><span class="p">(</span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid.layout</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">,</span><span class="n">widths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="p">,</span><span class="s2">"npc"</span><span class="p">))))</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">p</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">),</span><span class="w"> </span><span class="n">vp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewport</span><span class="p">(</span><span class="n">layout.pos.row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">layout.pos.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">
+</span><span class="n">print</span><span class="p">(</span><span class="n">p</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">),</span><span class="w"> </span><span class="n">vp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewport</span><span class="p">(</span><span class="n">layout.pos.row</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">layout.pos.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.3 (2017-03-06)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.3
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+##  [1] scatterpie_0.0.7 png_0.1-7        plyr_1.8.4       maptools_0.9-2  
+##  [5] sp_1.2-4         dplyr_0.5.0      purrr_0.2.2      readr_1.1.0     
+##  [9] tidyr_0.6.1      tibble_1.3.0     ggplot2_2.2.1    tidyverse_1.1.1 
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.10     forcats_0.2.0    tools_3.3.3      digest_0.6.12   
+##  [5] jsonlite_1.4     lubridate_1.6.0  evaluate_0.10    nlme_3.1-131    
+##  [9] gtable_0.2.0     lattice_0.20-35  psych_1.7.3.21   DBI_0.6-1       
+## [13] rgdal_1.2-6      yaml_2.1.14      parallel_3.3.3   haven_1.0.0     
+## [17] xml2_1.1.1       stringr_1.2.0    httr_1.2.1       knitr_1.15.1    
+## [21] hms_0.3          rprojroot_1.2    R6_2.2.0         readxl_0.1.1    
+## [25] foreign_0.8-67   rmarkdown_1.4    udunits2_0.13    tweenr_0.1.5    
+## [29] modelr_0.1.0     reshape2_1.4.2   magrittr_1.5     units_0.4-3     
+## [33] MASS_7.3-45      backports_1.0.5  scales_0.4.1     htmltools_0.3.5 
+## [37] rvest_0.3.2      assertthat_0.2.0 mnormt_1.5-5     ggforce_0.1.1   
+## [41] colorspace_1.3-2 labeling_0.3     stringi_1.1.5    lazyeval_0.2.0  
+## [45] munsell_0.4.3    broom_0.4.2
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#ggplot2-ref">
+    		ggplot2 <span>2</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#maps-ref">maps <span>4</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/maps/2017/04/09/gran_canaria" title="Data on tour: Plotting 3D maps and location tracks">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/machine_learning/2017/04/23/lime" title="Explaining complex machine learning models with LIME">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Data on tour: Plotting 3D maps and location tracks</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Data on tour: Plotting 3D maps and location tracks </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Data on tour: Plotting 3D maps and location tracks" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>09 April 2017</span>
+    </div>
+    <div class="content">
+      <p>Recently, I was on Gran Canaria for a vacation. So, what better way to keep up the holiday spirit a while longer than to visualize all the places we went in R!?</p>
+
+<p>I am combining location data collected by</p>
+
+<ol>
+  <li>our car GPS,</li>
+  <li>Google location data from my phone and</li>
+  <li>the hiking tracks we followed.</li>
+</ol>
+
+<p>Obviously, the data itself is not public this time but the principles for plotting can be used with any .gpx files that cointain latitude, longitude and elevation data.</p>
+
+<p><br /></p>
+
+<h2 id="gran-canaria">Gran Canaria</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Gran_Canaria">Gran Canaria</a> is one of the Spanish Canary Islands off the coast of Morocco. As its sister islands, it is of volcanic origin.</p>
+
+<p><img src="gran_canaria_files/20170320_122047.png" alt="" />
+<img src="gran_canaria_files/20170319_171857.png" alt="" />
+<img src="gran_canaria_files/20170324_113732_Richtone(HDR).png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="car-gps-tracks">Car GPS tracks</h3>
+
+<p>The GPS tracks in .gpx format were downloaded from the device (Garmin) the same way as I had already done with the tracks from our <a href="https://shiring.github.io/maps/gpx/2016/10/16/roadtrip2016">US/Canada roadtrip last year</a>. Garmin’s .gpx tracks are not in a standard format that could be read with <code class="highlighter-rouge">readGPX()</code>, so I had to use <code class="highlighter-rouge">htmlTreeParse()</code> from the <em>XML</em> library.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">XML</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># list of files in directory
+</span><span class="n">myfiles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">list.files</span><span class="p">(</span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Takeout_2017_March"</span><span class="p">,</span><span class="w"> </span><span class="n">full.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># all gpx files in that directory
+</span><span class="n">myfiles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">myfiles</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">".gpx"</span><span class="p">,</span><span class="w"> </span><span class="n">myfiles</span><span class="p">)]</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">myfiles</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+    </span><span class="c1"># parse document
+</span><span class="w">    </span><span class="n">pfile</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">htmlTreeParse</span><span class="p">(</span><span class="n">myfiles</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">useInternalNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">)</span><span class="w">
+  
+    </span><span class="c1"># Get all elevations, times and coordinates via the respective xpath
+</span><span class="w">    </span><span class="n">elevations</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">xpathSApply</span><span class="p">(</span><span class="n">pfile</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"//trkpt/ele"</span><span class="p">,</span><span class="w"> </span><span class="n">xmlValue</span><span class="p">)))</span><span class="w">
+    </span><span class="n">times</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">xpathSApply</span><span class="p">(</span><span class="n">pfile</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"//trkpt/time"</span><span class="p">,</span><span class="w"> </span><span class="n">xmlValue</span><span class="p">)</span><span class="w">
+    </span><span class="n">coords</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">xpathSApply</span><span class="p">(</span><span class="n">pfile</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"//trkpt"</span><span class="p">,</span><span class="w"> </span><span class="n">xmlAttrs</span><span class="p">)</span><span class="w">
+    
+    </span><span class="c1"># Extract latitude and longitude from the coordinates
+</span><span class="w">    </span><span class="n">lats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="s2">"lat"</span><span class="p">,]))</span><span class="w">
+    </span><span class="n">lons</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="s2">"lon"</span><span class="p">,]))</span><span class="w">
+    
+    </span><span class="c1"># Put everything in a dataframe
+</span><span class="w">    </span><span class="n">geodf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lats</span><span class="p">,</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lons</span><span class="p">,</span><span class="w"> </span><span class="n">ele</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">elevations</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">times</span><span class="p">)</span><span class="w">
+
+    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="n">geodata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">geodf</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="n">geodata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">geodata</span><span class="p">,</span><span class="w"> </span><span class="n">geodf</span><span class="p">)</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">geodata_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">geodata</span><span class="w">
+
+</span><span class="c1"># Transforming the time column
+</span><span class="n">geodata_all</span><span class="o">$</span><span class="n">time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">strptime</span><span class="p">(</span><span class="n">geodata_all</span><span class="o">$</span><span class="n">time</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%dT%H:%M:%SZ"</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># ordering by date
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">geodata_all</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">arrange</span><span class="p">(</span><span class="n">geodata_all</span><span class="p">,</span><span class="w"> </span><span class="n">time</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># keep only data points from Gran Canaria
+</span><span class="n">geodata_gc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">geodata_all</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">28.5</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">27.5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">lon</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">-16</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">-15</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="hiking-tracks">Hiking tracks</h3>
+
+<p>The hiking tracks we followed came mostly from a German hiking guide-book, the <a href="https://www.rother.de/rother%20wanderf%FChrer-gran%20canaria-4459.htm">Rother Wanderführer, 7th edition from 2016</a>. They were in standard .gpx format and could be read with <code class="highlighter-rouge">readGPX()</code>.</p>
+
+<p>Only one of our hikes did not come from this book, but from <a href="https://de.wikiloc.com/wikiloc/view.do?id=12137335">Wikiloc</a>. It could be treated the same way as the other hiking tracks, though, so I combined all hiking tracks.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">plotKML</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># get file names
+</span><span class="n">myfiles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">list.files</span><span class="p">(</span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"hiking"</span><span class="p">,</span><span class="w"> </span><span class="n">full.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">myfiles</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">myfiles</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">".gpx"</span><span class="p">,</span><span class="w"> </span><span class="n">myfiles</span><span class="p">)]</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">myfiles</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+  </span><span class="c1"># read in gpx files
+</span><span class="w">  </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readGPX</span><span class="p">(</span><span class="n">myfiles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w">
+  
+  </span><span class="c1"># extract latitude, longitude and elevation
+</span><span class="w">  </span><span class="n">geodf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">lon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="o">$</span><span class="n">tracks</span><span class="p">[[</span><span class="m">1</span><span class="p">]][[</span><span class="m">1</span><span class="p">]]</span><span class="o">$</span><span class="n">lon</span><span class="p">,</span><span class="w">
+                      </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="o">$</span><span class="n">tracks</span><span class="p">[[</span><span class="m">1</span><span class="p">]][[</span><span class="m">1</span><span class="p">]]</span><span class="o">$</span><span class="n">lat</span><span class="p">,</span><span class="w">
+                      </span><span class="n">ele</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t</span><span class="o">$</span><span class="n">tracks</span><span class="p">[[</span><span class="m">1</span><span class="p">]][[</span><span class="m">1</span><span class="p">]]</span><span class="o">$</span><span class="n">ele</span><span class="p">,</span><span class="w">
+                      </span><span class="n">tour</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">t</span><span class="o">$</span><span class="n">tracks</span><span class="p">[[</span><span class="m">1</span><span class="p">]]))</span><span class="w">
+
+    </span><span class="c1"># combine into data frame
+</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="n">geodata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">geodf</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="n">geodata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">geodata</span><span class="p">,</span><span class="w"> </span><span class="n">geodf</span><span class="p">)</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="n">rm</span><span class="p">(</span><span class="n">pfile</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">geodata_tracks</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">geodata</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="google-location-history">Google location history</h3>
+
+<p>The Google location data from my phone were prepared the same way as in <a href="https://shiring.github.io/maps/2016/12/30/Standortverlauf_post">my post about plotting your Google location history</a>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">jsonlite</span><span class="p">)</span><span class="w">
+</span><span class="n">system.time</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fromJSON</span><span class="p">(</span><span class="s2">"Standortverlauf.json"</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># extracting the locations dataframe
+</span><span class="n">loc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">$</span><span class="n">locations</span><span class="w">
+
+</span><span class="c1"># converting time column from posix milliseconds into a readable time scale
+</span><span class="n">loc</span><span class="o">$</span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.POSIXct</span><span class="p">(</span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="o">$</span><span class="n">locations</span><span class="o">$</span><span class="n">timestampMs</span><span class="p">)</span><span class="o">/</span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"1970-01-01"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># converting longitude and latitude from E7 to GPS coordinates
+</span><span class="n">loc</span><span class="o">$</span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loc</span><span class="o">$</span><span class="n">latitudeE7</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1e7</span><span class="w">
+</span><span class="n">loc</span><span class="o">$</span><span class="n">lon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loc</span><span class="o">$</span><span class="n">longitudeE7</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1e7</span><span class="w">
+
+</span><span class="c1"># keep only data from Gran Canaria
+</span><span class="n">loc_gc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">loc</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">28.5</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">27.5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">lon</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">-16</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">-15</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>All three datasets had information about the latitude/longitude coordinate pairs and of the elevation of each observation, so I can combine these three attributes from the three location data sources.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">geodata_tracks</span><span class="o">$</span><span class="n">ele</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">geodata_tracks</span><span class="o">$</span><span class="n">ele</span><span class="p">))</span><span class="w">
+</span><span class="n">data_combined</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">geodata_gc</span><span class="o">$</span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">loc_gc</span><span class="o">$</span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">geodata_tracks</span><span class="o">$</span><span class="n">lat</span><span class="p">),</span><span class="w">
+                            </span><span class="n">lon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">geodata_gc</span><span class="o">$</span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">loc_gc</span><span class="o">$</span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">geodata_tracks</span><span class="o">$</span><span class="n">lon</span><span class="p">),</span><span class="w">
+                            </span><span class="n">ele</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">geodata_gc</span><span class="o">$</span><span class="n">ele</span><span class="p">,</span><span class="w"> </span><span class="n">loc_gc</span><span class="o">$</span><span class="n">altitude</span><span class="p">,</span><span class="w"> </span><span class="n">geodata_tracks</span><span class="o">$</span><span class="n">ele</span><span class="p">),</span><span class="w">
+                            </span><span class="n">track</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s2">"GPS"</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">geodata_gc</span><span class="p">)),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"Google"</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">loc_gc</span><span class="p">)),</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="s2">"Hiking"</span><span class="p">,</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">geodata_tracks</span><span class="p">))))</span><span class="w">
+</span><span class="n">data_combined</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data_combined</span><span class="p">[</span><span class="o">!</span><span class="n">duplicated</span><span class="p">(</span><span class="n">data_combined</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="elevation-profile">Elevation profile</h3>
+
+<p>I downloaded the elevation profile of Gran Canaria with the <strong>maptools</strong> and <strong>raster</strong> packages.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">maptools</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span><span class="w">
+</span><span class="n">srtm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getData</span><span class="p">(</span><span class="s2">"SRTM"</span><span class="p">,</span><span class="w"> </span><span class="n">lon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-15.59972</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">27.965</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># crop to Gran Canaria &amp; Tenerife
+</span><span class="n">e</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">extent</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lon</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span><span class="w"> </span><span class="c1"># xmin
+</span><span class="w">            </span><span class="nf">max</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lon</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="c1"># xmax
+</span><span class="w">            </span><span class="nf">min</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="c1"># ymin
+</span><span class="w">            </span><span class="nf">max</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="c1"># ymax
+</span><span class="w">
+</span><span class="n">srtm_ct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">crop</span><span class="p">(</span><span class="n">srtm</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># plot slope and aspect with hill shades
+</span><span class="n">slope</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terrain</span><span class="p">(</span><span class="n">srtm_ct</span><span class="p">,</span><span class="w"> </span><span class="n">opt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"slope"</span><span class="p">)</span><span class="w">
+</span><span class="n">aspect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terrain</span><span class="p">(</span><span class="n">srtm_ct</span><span class="p">,</span><span class="w"> </span><span class="n">opt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"aspect"</span><span class="p">)</span><span class="w">
+</span><span class="n">hill</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hillShade</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span><span class="w"> </span><span class="n">aspect</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">normalize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">hill</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grey</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">100</span><span class="o">/</span><span class="m">100</span><span class="p">),</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">srtm_ct</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rainbow</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.35</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="gran_canaria_files/figure-markdown_github/unnamed-chunk-14-1.png" alt="" /></p>
+
+<p>Its sister island to the west, Tenerife is a bit larger and, as can be seen in the image above, its highest point, the Teide, is about 1000 meters higher than Gran Canaria’s highest point.</p>
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># crop to Gran Canaria
+</span><span class="n">e</span><span class="m">2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">extent</span><span class="p">(</span><span class="nf">min</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lon</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="c1"># xmin
+</span><span class="w">            </span><span class="nf">max</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lon</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="c1"># xmax
+</span><span class="w">            </span><span class="nf">min</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="c1"># ymin
+</span><span class="w">            </span><span class="nf">max</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w"> </span><span class="c1"># ymax
+</span><span class="w">
+</span><span class="n">srtm_c</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">crop</span><span class="p">(</span><span class="n">srtm</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="m">2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">slope</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terrain</span><span class="p">(</span><span class="n">srtm_c</span><span class="p">,</span><span class="w"> </span><span class="n">opt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"slope"</span><span class="p">)</span><span class="w">
+</span><span class="n">aspect</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">terrain</span><span class="p">(</span><span class="n">srtm_c</span><span class="p">,</span><span class="w"> </span><span class="n">opt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"aspect"</span><span class="p">)</span><span class="w">
+</span><span class="n">hill</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hillShade</span><span class="p">(</span><span class="n">slope</span><span class="p">,</span><span class="w"> </span><span class="n">aspect</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">normalize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">hill</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grey</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">100</span><span class="o">/</span><span class="m">100</span><span class="p">),</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">plot</span><span class="p">(</span><span class="n">srtm_c</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rainbow</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.35</span><span class="p">),</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="gran_canaria_files/figure-markdown_github/unnamed-chunk-18-1.png" alt="" /></p>
+
+<p>Looking only at Gran Canaria’s slope and aspect profile, the plots nicely show its highest point (almost 2000 m) in the center of the island and that it slopes down towards sea level at the coast.</p>
+
+<p><br /></p>
+
+<h3 id="ggmap">ggmap</h3>
+
+<p>I centered the map at the midpoint of Gran Canaria, which is given by <a href="http://www.travelmath.com/island/Gran+Canaria">http://www.travelmath.com/island/Gran+Canaria</a> as 27Â° 57’ 54” N / 15Â° 35’ 59” W. Converted to decimal with <a href="http://www.rapidtables.com/convert/number/degrees-minutes-seconds-to-degrees.htm">http://www.rapidtables.com/convert/number/degrees-minutes-seconds-to-degrees.htm</a> that is 27.965 &amp; 15.59972.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggmap</span><span class="p">)</span><span class="w">
+
+</span><span class="n">map_theme</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"top"</span><span class="p">,</span><span class="w">
+                        </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">plot.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">),</span><span class="w">
+                        </span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.text.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.ticks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.title.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">axis.title.y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+                        </span><span class="n">plot.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">map</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get_map</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">lon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-15.59972</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">27.965</span><span class="p">),</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">maptype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"terrain-background"</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"google"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggmap</span><span class="p">(</span><span class="n">map</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_combined</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">track</span><span class="p">),</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w">
+</span></code></pre>
+</div>
+<p><img src="gran_canaria_files/figure-markdown_github/map1.png" alt="" /></p>
+
+<p>The above plot shows the different location data sources. Our car GPS recorded the most data points along our routes (blue), while Google location data (red) is only recorded occasionally (usually, when I turn on my phone, so it primarily shows places we walked around in). The hiking tracks in green show the 7 hikes we’ve followed.</p>
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">map</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get_map</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">lon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-15.59972</span><span class="p">,</span><span class="w"> </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">27.965</span><span class="p">),</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggmap</span><span class="p">(</span><span class="n">map</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> 
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">na.omit</span><span class="p">(</span><span class="n">data_combined</span><span class="p">),</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ele</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_gradient2</span><span class="p">(</span><span class="n">low</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lightblue"</span><span class="p">,</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">high</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Elevation"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">map_theme</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="gran_canaria_files/figure-markdown_github/map2.png" alt="" /></p>
+
+<p>This plots shows the elevation of the location points we’ve been.</p>
+
+<p><br /></p>
+
+<h3 id="3d-plots">3D plots</h3>
+
+<p>Because the 2D plot doesn’t show the elevation very clearly, I wanted to plot this in 3D.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">scatterplot3d</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># http://gis.stackexchange.com/questions/142156/r-how-to-get-latitudes-and-longitudes-from-a-rasterlayer
+</span><span class="n">r.pts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rasterToPoints</span><span class="p">(</span><span class="n">srtm_c</span><span class="p">,</span><span class="w"> </span><span class="n">spatial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">geo.prj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">proj4string</span><span class="p">(</span><span class="n">r.pts</span><span class="p">)</span><span class="w">
+</span><span class="n">r.pts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">spTransform</span><span class="p">(</span><span class="n">r.pts</span><span class="p">,</span><span class="w"> </span><span class="n">CRS</span><span class="p">(</span><span class="n">geo.prj</span><span class="p">))</span><span class="w"> 
+</span><span class="n">bg_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">lon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coordinates</span><span class="p">(</span><span class="n">r.pts</span><span class="p">)[,</span><span class="m">1</span><span class="p">],</span><span class="w">
+                         </span><span class="n">lat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coordinates</span><span class="p">(</span><span class="n">r.pts</span><span class="p">)[,</span><span class="m">2</span><span class="p">])</span><span class="w">
+
+</span><span class="n">ex_bg</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">extract</span><span class="p">(</span><span class="n">srtm_c</span><span class="p">,</span><span class="w"> </span><span class="n">bg_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">cellnumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">bg_matrix</span><span class="o">$</span><span class="n">ele</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ex_bg</span><span class="o">$</span><span class="n">srtm_33_07</span><span class="w">
+
+</span><span class="n">ex_points</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">extract</span><span class="p">(</span><span class="n">srtm_c</span><span class="p">,</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">data_combined</span><span class="o">$</span><span class="n">lat</span><span class="p">),</span><span class="w"> </span><span class="n">cellnumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">s</span><span class="m">3</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">scatterplot3d</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bg_matrix</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">],</span><span class="w"> 
+                     </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bg_matrix</span><span class="p">[,</span><span class="w"> </span><span class="m">2</span><span class="p">],</span><span class="w"> 
+                     </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bg_matrix</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="p">],</span><span class="w"> 
+                     </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"p"</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">highlight.3d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">cex.symbols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> 
+                     </span><span class="n">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                     </span><span class="n">grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                     </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Longitude"</span><span class="p">,</span><span class="w">
+                     </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Latitude"</span><span class="p">,</span><span class="w">
+                     </span><span class="n">zlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Elevation"</span><span class="p">)</span><span class="w">
+</span><span class="n">s</span><span class="m">3</span><span class="n">d</span><span class="o">$</span><span class="n">points3d</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_combined</span><span class="o">$</span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_combined</span><span class="o">$</span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ex_points</span><span class="o">$</span><span class="n">srtm_33_07</span><span class="p">,</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="gran_canaria_files/figure-markdown_github/unnamed-chunk-28-1.png" alt="" /></p>
+
+<p>The first 3D plot shows a scatterplot of our location points on the elevation profile of Gran Canaria. It was created with <strong>scatterplot3d</strong>.</p>
+
+<p><br /></p>
+
+<p>But I also wanted to be able to see the 3D plot from different angles, soI used <strong>rgl</strong> to make interactive 3D plots.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">rgdal</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rasterVis</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rgl</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">htmlwidgets</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">options</span><span class="p">(</span><span class="n">rgl.printRglwidget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">open3d</span><span class="p">()</span><span class="w">
+</span><span class="n">plot3D</span><span class="p">(</span><span class="n">srtm_c</span><span class="p">,</span><span class="w">  </span><span class="n">maxpixels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">7e4</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p><strong>Click to open the interactive 3D image and use the mouse to zoom and turn the plot:</strong></p>
+
+<p><a href="3dplot1.html"><img border="0" alt="3dplot1" src="3dplot1.png" width="500" height="500" /></a></p>
+
+<p>This interactive 3D plot shows the elevation profile of the whole island and you can clearly see the various ravines that have been shaped over the years.</p>
+
+<p>Now, I would have liked to plot our location points directly onto this plot, but I couldn’t figure out how to do this (if someone knows, please let me know). Instead, I plotted only our location points in 3D.</p>
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">options</span><span class="p">(</span><span class="n">rgl.printRglwidget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">open3d</span><span class="p">()</span><span class="w">
+</span><span class="n">plot3d</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">data_combined</span><span class="o">$</span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">ex_points</span><span class="o">$</span><span class="n">srtm_33_07</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">zlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w">
+       </span><span class="n">lit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+       </span><span class="n">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p><strong>Click to open the interactive 3D image and use the mouse to zoom and turn the plot:</strong></p>
+
+<p><a href="3dplot2.html"><img border="0" alt="3dplot2" src="3dplot2.png" width="500" height="500" /></a></p>
+
+<p>Here as well, I would have liked to have the elevation profile of the island behind it, but the code that worked well within RStudio (see below) did not plot the background points in my html output. I assume that it has to do with having too many points, so if somebody knows a way to reduce the resolution, please let me know!</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">plot3d</span><span class="p">(</span><span class="n">bg_matrix</span><span class="o">$</span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">bg_matrix</span><span class="o">$</span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">bg_matrix</span><span class="o">$</span><span class="n">ele</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">zlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w">
+       </span><span class="n">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">axes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">useNULL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">plot3d</span><span class="p">(</span><span class="n">data_combined</span><span class="o">$</span><span class="n">lon</span><span class="p">,</span><span class="w"> </span><span class="n">data_combined</span><span class="o">$</span><span class="n">lat</span><span class="p">,</span><span class="w"> </span><span class="n">ex_points</span><span class="o">$</span><span class="n">srtm_33_07</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">useNULL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> 
+</span></code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.3 (2017-03-06)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.3
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] scatterplot3d_0.3-38 htmlwidgets_0.8      rgl_0.98.1          
+##  [4] rasterVis_0.41       latticeExtra_0.6-28  RColorBrewer_1.1-2  
+##  [7] lattice_0.20-34      rgdal_1.2-5          raster_2.5-8        
+## [10] maptools_0.9-2       sp_1.2-4            
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.9       knitr_1.15.1      magrittr_1.5     
+##  [4] xtable_1.8-2      viridisLite_0.2.0 R6_2.2.0         
+##  [7] stringr_1.2.0     tools_3.3.3       parallel_3.3.3   
+## [10] grid_3.3.3        htmltools_0.3.5   yaml_2.1.14      
+## [13] rprojroot_1.2     digest_0.6.12     shiny_1.0.0      
+## [16] mime_0.5          evaluate_0.10     rmarkdown_1.3    
+## [19] stringi_1.1.2     backports_1.0.5   jsonlite_1.2     
+## [22] httpuv_1.3.3      foreign_0.8-67    hexbin_1.27.1    
+## [25] zoo_1.7-14
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#maps-ref">
+    		maps <span>3</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#maps-ref">maps <span>4</span></a></li>
+     
+    	<li><a href="/tags.html#gpx-ref">gpx <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+     
+    	<li><a href="/tags.html#ggmap-ref">ggmap <span>4</span></a></li>
+     
+    	<li><a href="/tags.html#plot3d-ref">plot3d <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#3D-ref">3D <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#gis-ref">gis <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/machine_learning/2017/04/02/unbalanced" title="Dealing with unbalanced data in machine learning">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/ggplot2/2017/04/16/hasen" title="Happy EasteR: Plotting hare populations in Germany">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

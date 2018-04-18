@@ -1,0 +1,630 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>How to do Optical Character Recognition (OCR) of non-English documents in R using Tesseract?</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>How to do Optical Character Recognition (OCR) of non-English documents in R using Tesseract? </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="How to do Optical Character Recognition (OCR) of non-English documents in R using Tesseract?" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>17 July 2017</span>
+    </div>
+    <div class="content">
+      <p>One of the many great packages of rOpenSci has implemented <a href="https://ropensci.org/blog/blog/2016/11/16/tesseract">the open source engine Tesseract</a>.</p>
+
+<p>Optical character recognition (OCR) is used to digitize written or typed documents, i.e. photos or scans of text documents are “translated” into a digital text on your computer.</p>
+
+<p>While this might seem like a trivial task at first glance, because it is so easy for our human brains. When reading text, we make use of our built-in word and sentence “autocomplete” that we learned from experience. But the same task is really quite difficult for a computer to recognize typed words correctly, especially if the document is of low quality.</p>
+
+<p>One of the best open-source engines today is <a href="https://github.com/tesseract-ocr">Tesseract</a>. You can run tesseract from the command-line or - with the help of rOpenSci’s <strong>tesseract</strong> package - run it conveniently from within R!</p>
+
+<p>Tesseract uses language specific training data to optimize OCR based on learned context. Therefore, it is much better at recognizing words in coherent sentences than at recognizing single words or abbreviations (we can see this e.g. with address lines in documents).</p>
+
+<p>The default language is English, and you can find numerous examples on how to run OCR with this default. But running tesseract with a different language turned out to need a few additional tweaks, which I want to present here.</p>
+
+<p><br /></p>
+
+<h2 id="installing-tesseract">Installing tesseract</h2>
+
+<p>Check out the <a href="https://ropensci.org/blog/blog/2016/11/16/tesseract">package vignette</a> for instructions on how to install the libtesseract C++ library and the <strong>tesseract</strong> R package on your computer.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tesseract</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Because I’m German and will therefore use a German scanned document as an example, I first needed to install the German training dataset. Even though I installed it together with tesseract (the command-line tool), I still had to install it again for use with R:</p>
+
+<p>If you happen to get an error, that it still didn’t find the correct language data where it expected (as I did), note the path that is given in the error message. This tells you where it looks for the training data and you can simply download the training data manually and copy it to the given path.</p>
+
+<p>Here again, you need to make sure that you download training data for the correct version of tesseract. The <a href="https://github.com/tesseract-ocr/tessdata">link that is given in the package documentation</a> turned out to point to a different version of tesseract than I was using. If this is the case, you will get a warning (<em>Params model::Incomplete line</em>) when running <code class="highlighter-rouge">ocr</code>().</p>
+
+<p>As you can see, I had Tesseract version 3 installed:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>system("tesseract --version")
+tesseract 3.05.01
+ leptonica-1.74.1
+  libjpeg 8d : libpng 1.6.29 : libtiff 4.0.8 : zlib 1.2.8
+</code></pre>
+</div>
+
+<p>So, I also needed to download the training data for version 3 (the default is for version 4), which you can <a href="https://github.com/tesseract-ocr/tessdata/tree/3.04.00">find here</a> and copy it to tesseracts language folder.</p>
+
+<p><br /></p>
+
+<h2 id="image-processing">Image processing</h2>
+
+<p>Image quality is essential for good OCR! Tesseract performs different image processing steps internally with the Leptonica library but it is still a good idea to <a href="https://github.com/tesseract-ocr/tesseract/wiki/ImproveQuality">improve the image manually before running tesseract</a>.</p>
+
+<p>Here, I am using two random images from the internet:</p>
+
+<ol>
+  <li>
+    <p>a <a href="http://www.manualsdir.eu/manuals/375646/brother-dcp-115c-dcp-120c-mfc-820cw-mfc-640cw-mfc-215c-dcp-315cn-mfc-425cn-dcp-340cw.html">manual for a printer</a> and</p>
+  </li>
+  <li>
+    <p>a <a href="http://spiele.j-crew.de/wiki/Scan:9q_r%C3%A4t.pdf/4">description of a game</a></p>
+  </li>
+</ol>
+
+<p>Image nr. 1 is machine-generated and should therefore yield much better results than image nr. 2, which looks like it was typewriter-written and moreover, is skewed.</p>
+
+<p>This, we can also do from within R, making use of another one of rOpenSci’s packages: <a href="https://cran.r-project.org/web/packages/magick/vignettes/intro.html"><strong>magick</strong></a>.</p>
+
+<p>However, it seems that <strong>magick</strong> doesn’t have a function that converts an image to black and white, so I am using <strong>EBImage</strong> first. Because <strong>magick</strong> wants an magick image object for input, I saved the black-and-white image first and then read it in again with <code class="highlighter-rouge">image_read()</code>. This isn’t exactly an elegant solution, so if someone knows of a better way to do this, please let me know!</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">EBImage</span><span class="p">)</span><span class="w"> </span><span class="c1"># install from Bioconductor!
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">color.image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readImage</span><span class="p">(</span><span class="s2">"/Users/shiringlander/Documents/Github/Blog_posts_prep/ocr/beispiel_scan.png"</span><span class="p">)</span><span class="w">
+</span><span class="n">bw.image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">channel</span><span class="p">(</span><span class="n">color.image</span><span class="p">,</span><span class="s2">"gray"</span><span class="p">)</span><span class="w">
+</span><span class="n">writeImage</span><span class="p">(</span><span class="n">bw.image</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="s2">"/Users/shiringlander/Documents/Github/Blog_posts_prep/ocr/beispiel_scan_bw.png"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">color.image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readImage</span><span class="p">(</span><span class="s2">"/Users/shiringlander/Documents/Github/Blog_posts_prep/ocr/beispiel_scan_2.jpg"</span><span class="p">)</span><span class="w">
+</span><span class="n">bw.image</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">channel</span><span class="p">(</span><span class="n">color.image</span><span class="p">,</span><span class="s2">"gray"</span><span class="p">)</span><span class="w">
+</span><span class="n">writeImage</span><span class="p">(</span><span class="n">bw.image</span><span class="p">,</span><span class="n">file</span><span class="o">=</span><span class="s2">"/Users/shiringlander/Documents/Github/Blog_posts_prep/ocr/beispiel_scan_2_bw.jpg"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">magick</span><span class="p">)</span><span class="w">
+</span><span class="n">image1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">image_read</span><span class="p">(</span><span class="s2">"/Users/shiringlander/Documents/Github/Blog_posts_prep/ocr/beispiel_scan_bw.png"</span><span class="p">)</span><span class="w">
+</span><span class="n">image2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">image_read</span><span class="p">(</span><span class="s2">"/Users/shiringlander/Documents/Github/Blog_posts_prep/ocr/beispiel_scan_2_bw.jpg"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Now, we can follow <a href="https://github.com/tesseract-ocr/tesseract/wiki/ImproveQuality">Tesseract’s guidelines on how to improve image quality</a>:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">image_bearb1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">image1</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">image_scale</span><span class="p">(</span><span class="s2">"x2000"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                        </span><span class="c1"># rescale
+</span><span class="w">    </span><span class="n">image_background</span><span class="p">(</span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">flatten</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">   </span><span class="c1"># set background to white
+</span><span class="w">    </span><span class="n">image_trim</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                                </span><span class="c1"># Trim edges that are the background color from the image.
+</span><span class="w">    </span><span class="n">image_noise</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                               </span><span class="c1"># Reduce noise in image using a noise peak elimination filter
+</span><span class="w">    </span><span class="n">image_enhance</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                             </span><span class="c1"># Enhance image (minimize noise)
+</span><span class="w">    </span><span class="n">image_normalize</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                           </span><span class="c1"># Normalize image (increase contrast by normalizing the pixel values to span the full range of color values).
+</span><span class="w">    </span><span class="n">image_contrast</span><span class="p">(</span><span class="n">sharpen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                 </span><span class="c1"># increase contrast
+</span><span class="w">    </span><span class="n">image_deskew</span><span class="p">(</span><span class="n">treshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="p">)</span><span class="w">                     </span><span class="c1"># deskew image -&gt; creates negative offset in some scans
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">image_bearb2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">image2</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">image_scale</span><span class="p">(</span><span class="s2">"x2000"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                        </span><span class="c1"># rescale
+</span><span class="w">    </span><span class="n">image_background</span><span class="p">(</span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">flatten</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">   </span><span class="c1"># set background to white
+</span><span class="w">    </span><span class="n">image_trim</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                                </span><span class="c1"># Trim edges that are the background color from the image.
+</span><span class="w">    </span><span class="n">image_noise</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                               </span><span class="c1"># Reduce noise in image using a noise peak elimination filter
+</span><span class="w">    </span><span class="n">image_enhance</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                             </span><span class="c1"># Enhance image (minimize noise)
+</span><span class="w">    </span><span class="n">image_normalize</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                           </span><span class="c1"># Normalize image (increase contrast by normalizing the pixel values to span the full range of color values).
+</span><span class="w">    </span><span class="n">image_contrast</span><span class="p">(</span><span class="n">sharpen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                 </span><span class="c1"># increase contrast
+</span><span class="w">    </span><span class="n">image_deskew</span><span class="p">(</span><span class="n">treshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="p">)</span><span class="w">                     </span><span class="c1"># deskew image -&gt; creates negative offset in some scans
+</span></code></pre>
+</div>
+
+<p>If we want to inspect our images from within R, we can use <strong>magick</strong>’s <code class="highlighter-rouge">image_browse()</code> function.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">image_browse</span><span class="p">(</span><span class="n">image_bearb2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="ocr">OCR</h2>
+
+<p>Tesseract’s central function is called <code class="highlighter-rouge">ocr()</code>.</p>
+
+<p>For some reason, I couldn’t solve the error message I got when directly pointing the processed images to the <code class="highlighter-rouge">ocr()</code> function: <code class="highlighter-rouge">Magick: TIFF: negative image positions unsupported</code>. This error results from <code class="highlighter-rouge">image_deskew()</code> but all potential solutions don’t seem to be implemented with the R package of ImageMagick, so I had to resort to a work-around: I saved the images first and then pointed <code class="highlighter-rouge">ocr()</code> to the images. This worked without a hitch!</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">image_write</span><span class="p">(</span><span class="n">image_bearb1</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/Users/shiringlander/Documents/Github/Blog_posts_prep/ocr/beispiel_scan_bearb.png"</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"png"</span><span class="p">)</span><span class="w">
+</span><span class="n">image_write</span><span class="p">(</span><span class="n">image_bearb2</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/Users/shiringlander/Documents/Github/Blog_posts_prep/ocr/beispiel_scan_2_bearb.jpg"</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"jpg"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>When we are not working with an English document, we can specify the language with the <code class="highlighter-rouge">engine = tesseract(language = "deu")</code> option. We can also set a whole <a href="http://www.sk-spell.sk.cx/tesseract-ocr-parameters-in-302-version">range of parameters</a> but for now, I will only show how to use a whitelist: by specifying characters in a whitelist, tesseract will only look for these in the document. You can e.g. use this if you only expect numbers in you document. Here I am not being very restrictive, though…</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">whitelist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"1234567890-.,;:qwertzuiopüasdfghjklöäyxcvbnmQWERTZUIOPÜASDFGHJKLÖÄYXCVBNM@ß€!$%&amp;/()=?+"</span><span class="w">
+
+</span><span class="n">text1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ocr</span><span class="p">(</span><span class="s2">"/Users/shiringlander/Documents/Github/Blog_posts_prep/ocr/beispiel_scan_bearb.png"</span><span class="p">,</span><span class="w">
+             </span><span class="n">engine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tesseract</span><span class="p">(</span><span class="n">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"deu"</span><span class="p">,</span><span class="w">
+                                </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">tessedit_char_whitelist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">whitelist</span><span class="p">)))</span><span class="w">
+
+</span><span class="n">text2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ocr</span><span class="p">(</span><span class="s2">"/Users/shiringlander/Documents/Github/Blog_posts_prep/ocr/beispiel_scan_2_bearb.jpg"</span><span class="p">,</span><span class="w">
+             </span><span class="n">engine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tesseract</span><span class="p">(</span><span class="n">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"deu"</span><span class="p">,</span><span class="w">
+                                </span><span class="n">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">tessedit_char_whitelist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">whitelist</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="performance-evaluation">Performance evaluation</h2>
+
+<p>Evaluating how good our model performed isn’t trivial either. While we as humans can very easily judge the accuracy of our digitzed text just by looking at it, we need a standardized and automated way to evaluate model performance.</p>
+
+<p>One way would be to manually transcribe your document and check it against the text that tesseract extracted. However, this is very labor-intensive and time-consuming, especially when you’re working with a large number of documents!</p>
+
+<p>Another, slightly less arduous way would be to create a list of relevant words that we want to have recognized. This could be adapted to include any list of given words that are important for you to be recognized (if you wanted to be able to search for them among your documents, for example).</p>
+
+<p>Or, as I am going to do here, we can go a much easier way and compare the words that tesseract recognized to a list of words from a dictionary to get an idea about how many of them are actual words. This is of course not without problems: Some words may not be in our dictionary or they are borrowed from another language, they might be names of people or places, addresses, abbreviations, etc. Also, because we don’t have a benchmark for our document, we will only get an estimation of how many words were correctly recognized. But we can really only compare different tesseract models against each other with this method.</p>
+
+<p>Because we use different grammatical forms of words, we also want to stem both our recognized words and the dictionary before comparing them!</p>
+
+<p>Here, I am using the <a href="https://www.openthesaurus.de/about/download">German Open Thesaurus</a>.</p>
+
+<p>To separate the text and the dictionary into distinct words, I am using the <strong>tidytext</strong> package together with <strong>SnowballC</strong> for word stemming. Finally, I am going to remove duplicate entries.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidytext</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">SnowballC</span><span class="p">)</span><span class="w">
+
+</span><span class="n">openthes</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read_lines</span><span class="p">(</span><span class="s2">"/Users/shiringlander/Documents/Projekte/OCR_Provinzial/German_dict/OpenThesaurus-Textversion/openthesaurus.txt"</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">18</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">words</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">unnest_tokens</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">words</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wordStem</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"deu"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">distinct</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>This leaves us with 77453 German reference words.</p>
+
+<p>Now, we can do the same with our tesseract output.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">text_1_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read.delim</span><span class="p">(</span><span class="n">textConnection</span><span class="p">(</span><span class="n">text1</span><span class="p">),</span><span class="w">    </span><span class="c1"># make text into dataframe
+</span><span class="w">                                          </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> 
+                                          </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">,</span><span class="w"> 
+                                          </span><span class="n">strip.white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">V</span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">unnest_tokens</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                                      </span><span class="c1"># separate words
+</span><span class="w">  </span><span class="n">mutate</span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wordStem</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"deu"</span><span class="p">))</span><span class="w">                    </span><span class="c1"># use word stem
+</span><span class="w">
+</span><span class="n">text_2_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">read.delim</span><span class="p">(</span><span class="n">textConnection</span><span class="p">(</span><span class="n">text2</span><span class="p">),</span><span class="w">    </span><span class="c1"># make text into dataframe
+</span><span class="w">                                          </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> 
+                                          </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">,</span><span class="w"> 
+                                          </span><span class="n">strip.white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">V</span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">unnest_tokens</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">                                      </span><span class="c1"># separate words
+</span><span class="w">  </span><span class="n">mutate</span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wordStem</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">language</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"deu"</span><span class="p">))</span><span class="w">                    </span><span class="c1"># use word stem
+</span></code></pre>
+</div>
+
+<p>To get an estimate about model performance, I am then counting how many of the words that were recognized in each document are also part of the German dictionary (and therefore likely to be real words) and plot the results.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">res1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">text_1_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">in_dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">openthes</span><span class="o">$</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">count</span><span class="p">(</span><span class="n">in_dict</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">text_1_df</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w">
+           </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"image 1"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">res2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">text_2_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">in_dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">openthes</span><span class="o">$</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">count</span><span class="p">(</span><span class="n">in_dict</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">mutate</span><span class="p">(</span><span class="n">percent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">text_2_df</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w">
+           </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"image 2"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="ocr_tesseract_files/figure-markdown_github/unnamed-chunk-16-1.png" alt="" /></p>
+
+<p>Between 80 and 90% of recognized words seem to be actual words!</p>
+
+<p>Of course, the less “standard” a document is, the more difficult it will be to extract text correctly but I’d say this isn’t bad for a first attempt!</p>
+
+<hr />
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS Sierra 10.12.5
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] de_DE.UTF-8/de_DE.UTF-8/de_DE.UTF-8/C/de_DE.UTF-8/de_DE.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] bindrcpp_0.2    SnowballC_0.5.1 tidytext_0.1.3  dplyr_0.7.1    
+##  [5] purrr_0.2.2.2   readr_1.1.1     tidyr_0.6.3     tibble_1.3.3   
+##  [9] ggplot2_2.2.1   tidyverse_1.1.1 magick_0.4      EBImage_4.18.0 
+## [13] tesseract_1.4  
+## 
+## loaded via a namespace (and not attached):
+##  [1] locfit_1.5-9.1      reshape2_1.4.2      haven_1.1.0        
+##  [4] lattice_0.20-35     colorspace_1.3-2    htmltools_0.3.6    
+##  [7] yaml_2.1.14         rlang_0.1.1         foreign_0.8-69     
+## [10] glue_1.1.1          RColorBrewer_1.1-2  BiocGenerics_0.22.0
+## [13] modelr_0.1.0        readxl_1.0.0        jpeg_0.1-8         
+## [16] bindr_0.1           plyr_1.8.4          stringr_1.2.0      
+## [19] cellranger_1.1.0    munsell_0.4.3       gtable_0.2.0       
+## [22] rvest_0.3.2         psych_1.7.5         evaluate_0.10.1    
+## [25] labeling_0.3        knitr_1.16          forcats_0.2.0      
+## [28] parallel_3.4.0      tokenizers_0.1.4    broom_0.4.2        
+## [31] Rcpp_0.12.11        backports_1.1.0     scales_0.4.1       
+## [34] jsonlite_1.5        abind_1.4-5         mnormt_1.5-5       
+## [37] hms_0.3             png_0.1-7           digest_0.6.12      
+## [40] stringi_1.1.5       tiff_0.1-5          grid_3.4.0         
+## [43] rprojroot_1.2       tools_3.4.0         magrittr_1.5       
+## [46] lazyeval_0.2.0      janeaustenr_0.1.5   pkgconfig_2.0.1    
+## [49] Matrix_1.2-10       xml2_1.1.1          lubridate_1.6.0    
+## [52] assertthat_0.2.0    rmarkdown_1.6       httr_1.2.1         
+## [55] R6_2.2.2            fftwtools_0.9-8     nlme_3.1-131       
+## [58] compiler_3.4.0
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#text_analysis-ref">
+    		text_analysis <span>6</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#text_analysis-ref">text_analysis <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#tesseract-ref">tesseract <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#ocr-ref">ocr <span>1</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/text_analysis/2017/06/28/twitter_post" title="Characterizing Twitter followers with tidytext">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/text_analysis/2017/07/28/codecentric_twitter" title="Social Network Analysis and Topic Modeling of codecentric’s Twitter friends and followers">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

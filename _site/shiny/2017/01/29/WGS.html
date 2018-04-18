@@ -1,0 +1,507 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Exploring World Gender Statistics with Shiny</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Exploring World Gender Statistics with Shiny </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Exploring World Gender Statistics with Shiny" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>29 January 2017</span>
+    </div>
+    <div class="content">
+      <p>This week I explored the World Gender Statistics dataset. You can look at 160 measurements over 56 years with <a href="https://shiring.shinyapps.io/wgs_app/">my Shiny app here</a>.</p>
+
+<p><img src="wgs_app.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>I prepared the data as follows:</p>
+
+<h3 id="datacsv">Data.csv</h3>
+
+<ul>
+  <li>Country.Name: the name of the country</li>
+  <li>Country.Code: the country’s code</li>
+  <li>Indicator.Name: the name of the variable that this row represents</li>
+  <li>Indicator.Code: a unique id for the variable</li>
+  <li>1960 - 2016: one column EACH for the value of the variable in each year it was available</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">dataset</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"Data.csv"</span><span class="p">)</span><span class="w">
+</span><span class="n">dataset_subs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dataset</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">".FE|.MA"</span><span class="p">,</span><span class="w"> </span><span class="n">dataset</span><span class="o">$</span><span class="n">Indicator.Code</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">head</span><span class="p">(</span><span class="n">dataset_subs</span><span class="p">)</span><span class="w">
+
+</span><span class="n">dataset_subs</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">dataset_subs</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">)</span><span class="w">
+
+</span><span class="n">dataset_fem</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dataset</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"female"</span><span class="p">,</span><span class="w"> </span><span class="n">dataset</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"female"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">)</span><span class="w">
+</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Indicator.Code</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">".FE"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Indicator.Code</span><span class="p">)</span><span class="w">
+</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">gender</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"female"</span><span class="w">
+
+</span><span class="n">dataset_male</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dataset</span><span class="p">[</span><span class="o">-</span><span class="n">grep</span><span class="p">(</span><span class="s2">"female"</span><span class="p">,</span><span class="w"> </span><span class="n">dataset</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"male"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">)</span><span class="w">
+</span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Indicator.Code</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">".FE"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Indicator.Code</span><span class="p">)</span><span class="w">
+</span><span class="n">dataset_male</span><span class="o">$</span><span class="n">gender</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"male"</span><span class="w">
+
+</span><span class="n">dataset_fem</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dataset_fem</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">dataset_male</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dataset_male</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+</span><span class="n">dataset_fem</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dataset_fem</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Country.Code</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Country.Code</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">dataset_male</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dataset_male</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Country.Code</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Country.Code</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">dataset_fem</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">arrange</span><span class="p">(</span><span class="n">dataset_fem</span><span class="p">,</span><span class="w"> </span><span class="n">Country.Code</span><span class="p">)</span><span class="w">
+</span><span class="n">dataset_male</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">arrange</span><span class="p">(</span><span class="n">dataset_male</span><span class="p">,</span><span class="w"> </span><span class="n">Country.Code</span><span class="p">)</span><span class="w">
+
+</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Country.Code</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Country.Code</span><span class="p">)</span><span class="w">
+</span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Country.Code</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Country.Code</span><span class="p">)</span><span class="w">
+
+</span><span class="n">save</span><span class="p">(</span><span class="n">dataset_fem</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dataset_fem.RData"</span><span class="p">)</span><span class="w">
+</span><span class="n">save</span><span class="p">(</span><span class="n">dataset_male</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dataset_male.RData"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">))</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">)))</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">code</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">)[</span><span class="n">n</span><span class="p">]</span><span class="w">
+  
+  </span><span class="n">print</span><span class="p">(</span><span class="n">code</span><span class="p">)</span><span class="w">
+                 
+  </span><span class="n">fem</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dataset_fem</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">dataset_fem</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">code</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+  </span><span class="n">male</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dataset_male</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">dataset_male</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">code</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">fem</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+      
+      </span><span class="n">diff</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">male</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="o">:</span><span class="m">61</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fem</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="o">:</span><span class="m">61</span><span class="p">]</span><span class="w">
+      </span><span class="n">diff_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">male</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">)],</span><span class="w"> </span><span class="n">diff</span><span class="p">)</span><span class="w">
+      
+    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+      
+      </span><span class="n">diff</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">male</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="o">:</span><span class="m">61</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fem</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="o">:</span><span class="m">61</span><span class="p">]</span><span class="w">
+      </span><span class="n">diff_table</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">diff_table</span><span class="p">,</span><span class="w"> 
+                          </span><span class="n">cbind</span><span class="p">(</span><span class="n">male</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">)],</span><span class="w"> </span><span class="n">diff</span><span class="p">))</span><span class="w">
+      
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">diff_table_bind</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">diff_table</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    
+    </span><span class="n">diff_table_bind</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">diff_table_bind</span><span class="p">,</span><span class="w"> </span><span class="n">diff_table</span><span class="p">)</span><span class="w">
+    
+  </span><span class="p">}</span><span class="w">
+  
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">diff_table_bind</span><span class="o">$</span><span class="n">Country.Code</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">diff_table_bind</span><span class="o">$</span><span class="n">Country.Code</span><span class="p">)</span><span class="w">
+</span><span class="n">diff_table_bind</span><span class="p">[</span><span class="n">diff_table_bind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"NaN"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+
+</span><span class="n">save</span><span class="p">(</span><span class="n">diff_table_bind</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"diff_table_bind.RData"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">measures</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unique</span><span class="p">(</span><span class="n">diff_table_bind</span><span class="o">$</span><span class="n">Indicator.Name</span><span class="p">)</span><span class="w">
+</span><span class="n">save</span><span class="p">(</span><span class="n">measures</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"measures.RData"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">years</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"X"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">diff_table_bind</span><span class="p">)[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">)])</span><span class="w">
+</span><span class="n">years</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">years</span><span class="p">[</span><span class="o">-</span><span class="nf">length</span><span class="p">(</span><span class="n">years</span><span class="p">)]</span><span class="w">
+</span><span class="n">save</span><span class="p">(</span><span class="n">years</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"years.RData"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<h2 id="map">Map</h2>
+
+<p>The map has been downloaded from http://www.naturalearthdata.com/downloads/110m-cultural-vectors/</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">rgdal</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">plyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span><span class="w">
+
+</span><span class="n">wmap_countries</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readOGR</span><span class="p">(</span><span class="n">dsn</span><span class="o">=</span><span class="s2">"shapefiles"</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="o">=</span><span class="s2">"ne_110m_admin_0_countries"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">wmap_countries_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">fortify</span><span class="p">(</span><span class="n">wmap_countries</span><span class="p">)</span><span class="w">
+</span><span class="n">wmap_countries</span><span class="o">@</span><span class="n">data</span><span class="o">$</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">wmap_countries</span><span class="o">@</span><span class="n">data</span><span class="p">)</span><span class="w">
+</span><span class="n">wmap_countries_df_final</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">join</span><span class="p">(</span><span class="n">wmap_countries_df</span><span class="p">,</span><span class="w"> </span><span class="n">wmap_countries</span><span class="o">@</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"id"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">wmap_countries_df_final</span><span class="o">$</span><span class="n">gu_a3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">wmap_countries_df_final</span><span class="o">$</span><span class="n">gu_a3</span><span class="p">)</span><span class="w">
+
+</span><span class="n">save</span><span class="p">(</span><span class="n">wmap_countries_df_final</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"wmap_countries_df_final.RData"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<hr />
+
+<p><br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.1
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## loaded via a namespace (and not attached):
+##  [1] backports_1.0.4 magrittr_1.5    rprojroot_1.1   tools_3.3.2    
+##  [5] htmltools_0.3.5 yaml_2.1.14     Rcpp_0.12.8     stringi_1.1.2  
+##  [9] rmarkdown_1.3   knitr_1.15.1    stringr_1.1.0   digest_0.6.11  
+## [13] evaluate_0.10
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#shiny-ref">
+    		shiny <span>3</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#shiny-ref">shiny <span>5</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/r_vs_python/2017/01/22/R_vs_Py_post" title="R vs Python - a One-on-One Comparison">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/shiny/2017/01/30/WGS_update" title="New features in World Gender Statistics app">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

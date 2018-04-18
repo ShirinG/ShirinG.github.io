@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+        <title>Shirin's playgRound</title>
+        <description>Shirin's playgRound - Shirin Glander</description>
+        <link>https://shiring.github.io</link>
+        <atom:link href="https://shiring.github.io/rss.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Sat, 23 Dec 2017 16:52:09 +0100</lastBuildDate>
+        <pubDate>Sat, 23 Dec 2017 16:52:09 +0100</pubDate>
+        <ttl>60</ttl>
+
+
+			<item>
+				<title>Explore Predictive Maintenance with flexdashboard</title>
+				        
+				
+					<description>&lt;p&gt;I have written the following post about &lt;a href=&quot;https://blog.codecentric.de/en/2017/11/explore-predictive-maintenance-flexdashboard/&quot;&gt;Predictive Maintenance and flexdashboard&lt;/a&gt; at my company &lt;a href=&quot;https://blog.codecentric.de/en/&quot;&gt;codecentric&lt;/a&gt;’s blog:&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Thu, 02 Nov 2017 00:00:00 +0100</pubDate>
+				<link>http://localhost:4000/flexdashboard/2017/11/02/predictive_maintenance_flexdashboard</link>
+				<guid isPermaLink="true">http://localhost:4000/flexdashboard/2017/11/02/predictive_maintenance_flexdashboard</guid>
+			</item>
+		
+			<item>
+				<title>Blockchain &amp; distributed ML - my report from the data2day conference</title>
+				        
+				
+					<description>&lt;p&gt;&lt;img src=&quot;https://www.data2day.de/common/images/konferenzen/data2day2017.svg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Thu, 28 Sep 2017 00:00:00 +0200</pubDate>
+				<link>http://localhost:4000/conferences/data2day/2017/09/28/data2day</link>
+				<guid isPermaLink="true">http://localhost:4000/conferences/data2day/2017/09/28/data2day</guid>
+			</item>
+		
+			<item>
+				<title>From Biology to Industry. A Blogger’s Journey to Data Science.</title>
+				        
+				
+					<description>&lt;p&gt;Today, I have given a webinar for the Applied Epidemiology Didactic of the University of Wisconsin - Madison titled “From Biology to Industry. A Blogger’s Journey to Data Science.”&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Wed, 20 Sep 2017 00:00:00 +0200</pubDate>
+				<link>http://localhost:4000/blogging/2017/09/20/webinar_biology_to_data_science</link>
+				<guid isPermaLink="true">http://localhost:4000/blogging/2017/09/20/webinar_biology_to_data_science</guid>
+			</item>
+		
+			<item>
+				<title>Why I use R for Data Science - An Ode to R</title>
+				        
+				
+					<description>&lt;p&gt;I have written a &lt;a href=&quot;https://shirinsplayground.netlify.com/2017/09/ode_to_r/&quot;&gt;blog post about why I love R&lt;/a&gt; and prefer it to other languages. The post is on &lt;a href=&quot;https://www.shirin-glander.de/&quot;&gt;my new site&lt;/a&gt;, but since it isn’t on R-bloggers yet I am also posting the &lt;a href=&quot;https://shirinsplayground.netlify.com/2017/09/ode_to_r/&quot;&gt;link here&lt;/a&gt;:&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Tue, 19 Sep 2017 00:00:00 +0200</pubDate>
+				<link>http://localhost:4000/blogging/2017/09/19/ode_to_r</link>
+				<guid isPermaLink="true">http://localhost:4000/blogging/2017/09/19/ode_to_r</guid>
+			</item>
+		
+			<item>
+				<title>Moving my blog to blogdown</title>
+				        
+				
+					<description>&lt;p&gt;It’s been a long time coming but I finally moved my blog from Jekyll/Bootstrap on Github pages to blogdown, Hugo and &lt;a href=&quot;https://www.netlify.com/&quot;&gt;Netlify&lt;/a&gt;! Moreover, I also now have my own domain name &lt;a href=&quot;https://www.shirin-glander.de&quot;&gt;www.shirin-glander.de&lt;/a&gt;. :-)&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Thu, 14 Sep 2017 00:00:00 +0200</pubDate>
+				<link>http://localhost:4000/blogdown/2017/09/14/moving-my-blog-to-blogdown</link>
+				<guid isPermaLink="true">http://localhost:4000/blogdown/2017/09/14/moving-my-blog-to-blogdown</guid>
+			</item>
+		
+			<item>
+				<title>Data Science for Fraud Detection</title>
+				        
+				
+					<description>&lt;p&gt;I have written the following post about &lt;a href=&quot;https://blog.codecentric.de/en/2017/09/data-science-fraud-detection/&quot;&gt;Data Science for Fraud Detection&lt;/a&gt; at my company &lt;a href=&quot;https://blog.codecentric.de/en/&quot;&gt;codecentric&lt;/a&gt;’s blog:&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Wed, 06 Sep 2017 00:00:00 +0200</pubDate>
+				<link>http://localhost:4000/machine_learning/2017/09/06/fraud_codecentric</link>
+				<guid isPermaLink="true">http://localhost:4000/machine_learning/2017/09/06/fraud_codecentric</guid>
+			</item>
+		
+			<item>
+				<title>Migrating from GitHub to GitLab with RStudio (Tutorial)</title>
+				        
+				
+					<description>&lt;h2 id=&quot;github-vs-gitlab&quot;&gt;GitHub vs. GitLab&lt;/h2&gt;
+
+</description>
+				
+				<pubDate>Mon, 04 Sep 2017 00:00:00 +0200</pubDate>
+				<link>http://localhost:4000/tutorials/2017/09/04/migrating_github_gitlab</link>
+				<guid isPermaLink="true">http://localhost:4000/tutorials/2017/09/04/migrating_github_gitlab</guid>
+			</item>
+		
+			<item>
+				<title>Social Network Analysis and Topic Modeling of codecentric’s Twitter friends and followers</title>
+				        
+				
+					<description>&lt;p&gt;I have written the following post about &lt;a href=&quot;https://blog.codecentric.de/en/2017/07/combining-social-network-analysis-topic-modeling-characterize-codecentrics-twitter-friends-followers/&quot;&gt;Social Network Analysis and Topic Modeling of codecentric’s Twitter friends and followers&lt;/a&gt; for &lt;a href=&quot;https://blog.codecentric.de/en/&quot;&gt;codecentric&lt;/a&gt;’s blog:&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Fri, 28 Jul 2017 00:00:00 +0200</pubDate>
+				<link>http://localhost:4000/text_analysis/2017/07/28/codecentric_twitter</link>
+				<guid isPermaLink="true">http://localhost:4000/text_analysis/2017/07/28/codecentric_twitter</guid>
+			</item>
+		
+			<item>
+				<title>How to do Optical Character Recognition (OCR) of non-English documents in R using Tesseract?</title>
+				        
+				
+					<description>&lt;p&gt;One of the many great packages of rOpenSci has implemented &lt;a href=&quot;https://ropensci.org/blog/blog/2016/11/16/tesseract&quot;&gt;the open source engine Tesseract&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Mon, 17 Jul 2017 00:00:00 +0200</pubDate>
+				<link>http://localhost:4000/text_analysis/2017/07/17/ocr_tesseract</link>
+				<guid isPermaLink="true">http://localhost:4000/text_analysis/2017/07/17/ocr_tesseract</guid>
+			</item>
+		
+			<item>
+				<title>Characterizing Twitter followers with tidytext</title>
+				        
+				
+					<description>&lt;p&gt;Lately, I have been more and more taken with tidy principles of data analysis. They are elegant and make analyses clearer and easier to comprehend. Following the &lt;strong&gt;tidyverse&lt;/strong&gt; and &lt;strong&gt;ggraph&lt;/strong&gt;, I have been quite intrigued by applying tidy principles to text analysis with &lt;a href=&quot;https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html&quot;&gt;Julia Silge and David Robinson’s &lt;strong&gt;tidytext&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+				
+				<pubDate>Wed, 28 Jun 2017 00:00:00 +0200</pubDate>
+				<link>http://localhost:4000/text_analysis/2017/06/28/twitter_post</link>
+				<guid isPermaLink="true">http://localhost:4000/text_analysis/2017/06/28/twitter_post</guid>
+			</item>
+		
+
+</channel>
+</rss>

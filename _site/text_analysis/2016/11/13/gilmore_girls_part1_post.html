@@ -1,0 +1,947 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Creating a Gilmore Girls character network with R</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Creating a Gilmore Girls character network with R </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Creating a Gilmore Girls character network with R" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>13 November 2016</span>
+    </div>
+    <div class="content">
+      <p>With the impending (and by many - including me - much awaited) <a href="http://www.imdb.com/title/tt5435008/">Gilmore Girls Revival</a>, I wanted to take a somewhat different look at our beloved characters from Stars Hollow.</p>
+
+<p>I had recently read a few cool examples of how to create <a href="http://www.rdatamining.com/examples/social-network-analysis">co-occurrence networks</a> and wanted to combine this with an analysis similar to what <a href="http://varianceexplained.org/">David Robinson</a> did for <a href="http://varianceexplained.org/r/love-actually-network/">Love Actually</a>.</p>
+
+<p>Fortunately, there are people out there, who have invested their time (and a lot of it, I imagine) to write up transcripts for every Gilmore Girls episode. I chose <a href="http://www.crazy-internet-people.com/site/gilmoregirls">www.crazy-internet-people.com</a>’s list of transcripts.</p>
+
+<p>Based on these transcripts I calculated the main character’s number of lines per episode and from there the co-occurrence matrix with other characters. This told me with which other major characters they appeared together in episodes and how often. This network nicely illustrates that Lorelai has the most lines of all characters (node size reflects total number of lines in all episodes a character had), followed by Rory. No surprise there but interestingly, the third place goes to Luke and fourth to Emily. Most interaction happened between Lorelai and Rory of course (edge width reflects number of co-occurences in episodes), but Lorelai and Luke, Rory and Luke, Emily and Rory and Lorelai and Sookie follow suit. What the network also shows is that Lorelai has major connections with most other characters - more so than Rory.</p>
+
+<p><img src="gilmore_girls_part1_post_files/figure-markdown_github/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /></p>
+
+<p>A cluster dendrogram shows us the character co-occurrence in a slightly different way: The further down in the dendrogram tree two nodes split, the more episodes these characters had in common. Again, no surprise here that Lorelai and Rory have the most closely connected nodes, closely followed by Luke. We can also see quite nicely that the couples Sookie and Jackson, Lane and Zack and Emily and Richard share a lot of episodes.</p>
+
+<p><img src="gilmore_girls_part1_post_files/figure-markdown_github/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<p>Of course, these numbers also reflect the total number of episodes that characters were in, so that there is an inherent bias for characters with short occurrences in many episodes being more strongly connected to e.g. Lorelai than characters with fewer but more important plots. It would have been interesting to calculate the co-occurrence per scene instead of episode but unfortunately, this information was not given in the transcripts (if someone knows transcripts that denote scene number, please contact me).</p>
+
+<p>I also wanted to see in which episodes these 20 characters appeared. Of course, Lorelai and Rory appeared in every episode but for other characters, there are clear gaps.</p>
+
+<p><br /></p>
+
+<p><img src="gilmore_girls_part1_post_files/figure-markdown_github/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<p>And finally, I wanted to know how many lines per episode each of them spoke: This boxplot shows the median number of lines per episode for each character (middle line of the boxes), as well as the lower and upper quartiles (outer edges of the boxes) and the outlier episodes (dots).</p>
+
+<p><br /></p>
+
+<p><img src="gilmore_girls_part1_post_files/figure-markdown_github/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /></p>
+
+<p><br /></p>
+
+<p>There will be a <a href="https://shiring.github.io/text_analysis/2016/11/20/gilmore_girls_part2_post">part 2 next week</a>, where I will explore the Gilmore Girls a bit more. No spoilers, but among other things, I’ll be looking at their coffee consumption through the data lens…</p>
+
+<p><br /></p>
+
+<p>For a detailed description, plus R code for the plots see further below or find the <a href="https://github.com/ShirinG/blog_posts_prep/blob/master/character_network/gilmore_girls.Rmd">R Markdown on Github</a>.</p>
+
+<p>If you don’t care about the show and have not (unlike me) watched every episode at least twice, maybe you’ll be interested in using my R code to recreate a similar character network for other TV shows, movies or books (and if you do, please share them with me)!</p>
+
+<p><br /></p>
+
+<hr />
+
+<h2 id="obtaining-all-episode-transcripts">Obtaining all episode transcripts</h2>
+
+<p>The transcript URLs from <a href="http://www.crazy-internet-people.com/site/gilmoregirls">www.crazy-internet-people.com</a> have the following scheme: “<a href="http://www.crazy-internet-people.com/site/gilmoregirls/pages/">http://www.crazy-internet-people.com/site/gilmoregirls/pages/</a>, s#/, s#s/, §.html” (#: number of season, of which there are seven; §: running number of episode, from 1 to 153). Following this scheme, I looped over all seasons and episodes to read the lines for each HTML directly into R via their respective URLs.</p>
+
+<p>Because the raw HTML looked a bit messy, I had to do some tidying of the text:</p>
+
+<ul>
+  <li>First, I grabbed only lines with a character name at the beginning, which indicates the character who is speaking (these were all in caps).</li>
+  <li>Then, I had to remove the remaining HTML tags/ descriptors.</li>
+  <li>After this, I had the transcript text remaining, which I could transform into a data frame</li>
+  <li>and add season, episode number and running episode number to each line of text.</li>
+  <li>And finally, I combined all transcripts into one object.</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">7</span><span class="p">){</span><span class="w">                                            </span><span class="c1"># there are 7 seasons
+</span><span class="w">
+  </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">){</span><span class="w">                                             </span><span class="c1"># all seasons except the first have 22 episodes (the first has 21)
+</span><span class="w">
+    </span><span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">21</span><span class="p">){</span><span class="w">
+
+      </span><span class="n">cat</span><span class="p">(</span><span class="s2">"\nSeason"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s2">", Episode"</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">)</span><span class="w">            </span><span class="c1"># to see the progress I am printing the season and episode number
+</span><span class="w">
+      </span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readLines</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"http://www.crazy-internet-people.com/site/gilmoregirls/pages/s"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s2">"/s"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s2">"s/"</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s2">".html"</span><span class="p">))</span><span class="w">
+
+      </span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">thepage</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"^[[:upper:]]+:"</span><span class="p">,</span><span class="w"> </span><span class="n">thepage</span><span class="p">)]</span><span class="w">  </span><span class="c1"># grabbing character lines only
+</span><span class="w">      </span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"\t"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">thepage</span><span class="p">)</span><span class="w">                  </span><span class="c1"># removing HTML tags
+</span><span class="w">      </span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"&lt;.*&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">thepage</span><span class="p">)</span><span class="w">                </span><span class="c1"># removing some more HTML tags
+</span><span class="w">
+      </span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">thepage</span><span class="p">)</span><span class="w">
+      </span><span class="n">thepage</span><span class="o">$</span><span class="n">season</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">i</span><span class="w">                                 </span><span class="c1"># add season number
+</span><span class="w">      </span><span class="n">thepage</span><span class="o">$</span><span class="n">episode</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"_"</span><span class="p">)</span><span class="w">           </span><span class="c1"># add episode number
+</span><span class="w">      </span><span class="n">thepage</span><span class="o">$</span><span class="n">episode_running_nr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">j</span><span class="w">                     </span><span class="c1"># add running epsiode number
+</span><span class="w">
+      </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">){</span><span class="w">                                </span><span class="c1"># combine all transcripts into one object
+</span><span class="w">        </span><span class="n">transcripts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">thepage</span><span class="w">
+      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="n">transcripts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">transcripts</span><span class="p">,</span><span class="w"> </span><span class="n">thepage</span><span class="p">)</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+
+    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">                                              </span><span class="c1"># repeat for seasons 2 to 7
+</span><span class="w">
+      </span><span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">22</span><span class="p">){</span><span class="w">
+
+        </span><span class="n">cat</span><span class="p">(</span><span class="s2">"\nSeason"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s2">", Episode"</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s2">"\n"</span><span class="p">)</span><span class="w">
+
+        </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="p">){</span><span class="w">                                       </span><span class="c1"># to get the running episode number, 
+</span><span class="w">                                                          </span><span class="c1"># I have to add the number of episodes from previous seasons
+</span><span class="w">          </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">j</span><span class="m">+21</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+
+        </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">3</span><span class="p">){</span><span class="w">
+          </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">j</span><span class="m">+21+22</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+
+        </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">4</span><span class="p">){</span><span class="w">
+          </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">j</span><span class="m">+21+22+22</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+
+        </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">5</span><span class="p">){</span><span class="w">
+          </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">j</span><span class="m">+21+22+22+22</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+
+        </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">6</span><span class="p">){</span><span class="w">
+          </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">j</span><span class="m">+21+22+22+22+22</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+
+        </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">7</span><span class="p">){</span><span class="w">
+          </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">j</span><span class="m">+21+22+22+22+22+22</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+
+        </span><span class="c1"># rinse and repeat
+</span><span class="w">        
+        </span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">readLines</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"http://www.crazy-internet-people.com/site/gilmoregirls/pages/s"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s2">"/s"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s2">"s/"</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="s2">".html"</span><span class="p">))</span><span class="w">
+
+        </span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">thepage</span><span class="p">[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"^[[:upper:]]{2,}:"</span><span class="p">,</span><span class="w"> </span><span class="n">thepage</span><span class="p">)]</span><span class="w">
+        </span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"\t"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">thepage</span><span class="p">)</span><span class="w">
+        </span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"&lt;.*&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">thepage</span><span class="p">)</span><span class="w">
+
+        </span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">thepage</span><span class="p">)</span><span class="w">
+        </span><span class="n">thepage</span><span class="o">$</span><span class="n">season</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">i</span><span class="w">
+        </span><span class="n">thepage</span><span class="o">$</span><span class="n">episode</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"_"</span><span class="p">)</span><span class="w">
+        </span><span class="n">thepage</span><span class="o">$</span><span class="n">episode_running_nr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">n</span><span class="w">
+
+        </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">){</span><span class="w">
+          </span><span class="n">transcripts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">thepage</span><span class="w">
+        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="n">transcripts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">transcripts</span><span class="p">,</span><span class="w"> </span><span class="n">thepage</span><span class="p">)</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>Some of the lines were empty, so I removed those.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">transcripts</span><span class="o">$</span><span class="n">thepage</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.character</span><span class="p">(</span><span class="n">transcripts</span><span class="o">$</span><span class="n">thepage</span><span class="p">)</span><span class="w">  </span><span class="c1"># convert to character vector
+</span><span class="n">transcripts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">transcripts</span><span class="p">[</span><span class="o">!</span><span class="n">transcripts</span><span class="o">$</span><span class="n">thepage</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">  </span><span class="c1"># remove empty lines
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>This is how the data frame looked like at this point:</p>
+
+<ul>
+  <li>each row contains one line of dialogue with the character name in caps coming before their lines.</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">head</span><span class="p">(</span><span class="n">transcripts</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##                                          thepage season episode
+## 1 LORELAI: Please, Luke. Please, please, please.      1     1_1
+## 2 LUKE: How many cups have you had this morning?      1     1_1
+## 3                                 LORELAI: None.      1     1_1
+## 4                                  LUKE: Plus...      1     1_1
+## 5            LORELAI: Five, but yours is better.      1     1_1
+## 6                      LUKE: You have a problem.      1     1_1
+##   episode_running_nr
+## 1                  1
+## 2                  1
+## 3                  1
+## 4                  1
+## 5                  1
+## 6                  1
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<p>To be able to count the characters, I separated the character names from their lines. This was done by splitting the first column after the first colon, using the <strong>tidyr</strong> package.</p>
+
+<p>I also removed all leading and trailing whitespace from the character names, changed all letters in the character column to all caps and changed “ands” and apostrophes to the proper encoding. And I also had to manually correct quite a few misspelled character names.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># separate first column after first colon
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyr</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">separate</span><span class="p">(</span><span class="n">transcripts</span><span class="p">,</span><span class="w"> </span><span class="s2">"thepage"</span><span class="p">,</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"character"</span><span class="p">,</span><span class="w"> </span><span class="s2">"dialogue"</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">":"</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"merge"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># remove leading and trailing whitespace
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"^\\s+|\\s+$"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># convert all character names to all upper case
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">toupper</span><span class="p">(</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># fix misspelled character names
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"ZACK"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ZACH"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LORLEAI"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LOREALI"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LORELI"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LORLAI"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LORELA$"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LORLELAI"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"^ORELAI"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LOREAI"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"^ORY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"RORY"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LUK$"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LUKE"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"BABETE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BABETTE"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"BABETTER"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BABETTE"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"BARBETTE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BABETTE"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"BABETTE/MISS PATTY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BABETTE AND MISS PATTY"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"JACKSON/SOOKIE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"JACKSON AND SOOKIE"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LORELAI/SOOKIE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI AND SOOKIE"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LORELAI/RORY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI AND RORY"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"TAYOR"</span><span class="p">,</span><span class="w"> </span><span class="s2">"TAYLOR"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"TRISTIN"</span><span class="p">,</span><span class="w"> </span><span class="s2">"TRISTAN"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"MICHE$"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MICHEL"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"MICHELL"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MICHEL"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"SOOKI$"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOOKIE"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"SOOKEI"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOOKIE"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"SOOKIES"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOOKIE"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"Mrs.KIM"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MRS KIM"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"MRS.KIM"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MRS KIM"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"MRS KIM"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MRS KIM"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"RICHRAD"</span><span class="p">,</span><span class="w"> </span><span class="s2">"RICHARD"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"RMILY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"EMILY"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"CHRISTOHPER"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CHRISTOPHER"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"CHRISTOPER"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CHRISTOPHER"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"CHRSTOPHER"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CHRISTOPHER"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"CHRIS$"</span><span class="p">,</span><span class="w"> </span><span class="s2">"CHRISTOPHER"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"CHERRY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SHERRY"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"LINDAY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LINDSAY"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># substitute &amp;#146; with apostrophe
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"&amp;#146;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"'"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># some ANDs are written as &amp;AMP; so they will be changed as well
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"&amp;AMP;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AND"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># and finally I want ANDs to be written as semicolons
+</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">" AND "</span><span class="p">,</span><span class="w"> </span><span class="s2">";"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">)</span><span class="w">
+
+</span><span class="c1">#  and remove disclaimer lines
+</span><span class="n">transcripts_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">transcripts_2</span><span class="p">[</span><span class="o">-</span><span class="n">which</span><span class="p">(</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"DISCLAIMER"</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w"> 
+</span><span class="n">head</span><span class="p">(</span><span class="n">transcripts_2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   character                                  dialogue season episode
+## 1   LORELAI     Please, Luke. Please, please, please.      1     1_1
+## 2      LUKE  How many cups have you had this morning?      1     1_1
+## 3   LORELAI                                     None.      1     1_1
+## 4      LUKE                                   Plus...      1     1_1
+## 5   LORELAI                Five, but yours is better.      1     1_1
+## 6      LUKE                       You have a problem.      1     1_1
+##   episode_running_nr
+## 1                  1
+## 2                  1
+## 3                  1
+## 4                  1
+## 5                  1
+## 6                  1
+</code></pre>
+</div>
+
+<p>This is how the data frame looked like after tidying.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">nrow</span><span class="p">(</span><span class="n">transcripts_2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 116954
+</code></pre>
+</div>
+
+<p>In total there are now 116,983 lines.</p>
+
+<p><br /></p>
+
+<h2 id="how-many-characters-are-there-and-how-many-lines-do-they-have">How many characters are there and how many lines do they have?</h2>
+
+<p>To find out how many characters there were in Gilmore Girls during 153 episodes, I couldn’t simply count them because there are combined characters (e.g. Lorelai and Rory speaking together) and voice overs among them.</p>
+
+<p>First, I want to duplicate all lines with two speakers, to make them count for each character. I also want to only count lines where there is only one character, so I removed all character fields with multiple, generic or unspecific characters. And I don’t want to have voice overs either.</p>
+
+<p>Most of the characters, however, were still not recurring characters, so I filtered out all those characters that only occurred in one episode.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># separating all rows where multiple characters spoke into one line per character with duplicate line text
+</span><span class="n">library</span><span class="p">(</span><span class="n">splitstackshape</span><span class="p">)</span><span class="w">
+</span><span class="n">transcripts_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cSplit</span><span class="p">(</span><span class="n">transcripts_2</span><span class="p">,</span><span class="w"> </span><span class="n">splitCols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"character"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">";"</span><span class="p">,</span><span class="w"> </span><span class="n">direction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"long"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># manually removing characters I don't want to keep
+</span><span class="n">characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">table</span><span class="p">(</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">episode</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">" VOICE"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"^ALL"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"AS A GROUP"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"CROWD"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"RADIO"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"BIKERS"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"ANNOUNCER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"BOTH"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"WOMAN"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"VOICE"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"BARTENDER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"OFFICER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"GIRL"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"GIRLS"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"BOYS"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"EVERYONE"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"SUPERVISOR"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"PHOTOGRAPHER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"RECEPTIONIST"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"TV"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"VET"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"KID"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"MOM"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"DOCTOR"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"BOUNCER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"LYRICS"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"SPEAKER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"BOY"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"TEACHER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"EMPLOYEE"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"MAID"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"CASHIER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"MAN"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"NURSE"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"PLAYER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"WAITER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"WAITRESS"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"DRIVER"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"GRANDMA"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"LADIES"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"OPERATOR"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"TOURIST"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"CHEF"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"GUEST"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"HOSTESS"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"JUDGE"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"LADY"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"SECRETARY"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"PRIEST"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"STUDENT"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"PROFESSOR"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">subset</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"ANSWERING MACHINE"</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># find out which characters had the most lines and which to remove
+</span><span class="n">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span><span class="w">
+</span><span class="n">characters_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">dcast</span><span class="p">(</span><span class="n">characters</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Var2</span><span class="p">)</span><span class="w">
+</span><span class="n">rownames</span><span class="p">(</span><span class="n">characters_2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">characters_2</span><span class="p">[,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">
+</span><span class="n">characters_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">characters_2</span><span class="p">[,</span><span class="w"> </span><span class="m">-1</span><span class="p">]</span><span class="w">
+
+</span><span class="n">characters_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rowSums</span><span class="p">(</span><span class="n">characters_2</span><span class="p">)</span><span class="w">
+</span><span class="n">major_characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">characters_3</span><span class="p">[</span><span class="n">order</span><span class="p">(</span><span class="n">characters_3</span><span class="p">,</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)]</span><span class="w">
+
+</span><span class="n">characters_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">characters_2</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">
+
+</span><span class="n">characters_to_remove</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rownames</span><span class="p">(</span><span class="n">characters_2</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">rowSums</span><span class="p">(</span><span class="n">characters_2</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="p">])</span><span class="w">
+
+</span><span class="n">characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">characters</span><span class="p">[</span><span class="o">-</span><span class="n">which</span><span class="p">(</span><span class="n">characters</span><span class="o">$</span><span class="n">Var1</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">characters_to_remove</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="nf">length</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">characters</span><span class="o">$</span><span class="n">Var1</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 153
+</code></pre>
+</div>
+
+<p>This leaves us with these 153 characters:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">unique</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">characters</span><span class="o">$</span><span class="n">Var1</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   [1] "AK"               "ALEX"             "ANDREW"          
+##   [4] "ANNA"             "APRIL"            "ASHER"           
+##   [7] "AUDREY"           "AUNT JUN"         "BABETTE"         
+##  [10] "BARBARA"          "BILL"             "BILLY"           
+##  [13] "BOBBI"            "BOBBY"            "BOOTSY"          
+##  [16] "BRAD"             "BRIAN"            "BRUCE"           
+##  [19] "CAESAR"           "CAESER"           "CARL"            
+##  [22] "CAROL"            "CARRIE"           "CHARLESTON"      
+##  [25] "CHARLIE"          "CHRISTOPHER"      "CLARA"           
+##  [28] "CLAUDE"           "COLIN"            "DAVE"            
+##  [31] "DEAN"             "DENNIS"           "DEREK"           
+##  [34] "DOUG"             "DOYLE"            "DR SCHULTZ"      
+##  [37] "DRELLA"           "ED"               "EMCEE"           
+##  [40] "EMILY"            "FINN"             "FLOYD"           
+##  [43] "FRAN"             "FRANCIE"          "FRANCINE"        
+##  [46] "FRED"             "GIGI"             "GIL"             
+##  [49] "GLENN"            "GUY"              "GYPSY"           
+##  [52] "HARRY"            "HEADMASTER"       "HENRY"           
+##  [55] "HONOR"            "JACK"             "JACKSON"         
+##  [58] "JACOB"            "JAMIE"            "JANET"           
+##  [61] "JASON"            "JESS"             "JIMMY"           
+##  [64] "JOE"              "JOEL"             "JOHN"            
+##  [67] "JONI"             "JORDAN"           "JULIET"          
+##  [70] "KAREN"            "KIRK"             "KYLE"            
+##  [73] "KYON"             "LANCE"            "LANE"            
+##  [76] "LAURA"            "LINDSAY"          "LIZ"             
+##  [79] "LIZA"             "LOGAN"            "LORELAI"         
+##  [82] "LOU"              "LOUISE"           "LUCY"            
+##  [85] "LUKE"             "LULU"             "MADELINE"        
+##  [88] "MAGGIE"           "MARCIA"           "MARILYN"         
+##  [91] "MARSHALL"         "MARTY"            "MAUREEN"         
+##  [94] "MAX"              "MEGAN"            "MIA"             
+##  [97] "MICHEL"           "MISS PATTY"       "MITCHUM"         
+## [100] "MOREY"            "MR. HUNTER"       "MRS KIM"         
+## [103] "MRS. CASSINI"     "MRS. KIM"         "MRS. LISTER"     
+## [106] "MRS. O'MALLEY"    "MUSIC"            "NANCY"           
+## [109] "NATALIE"          "NICK"             "NICOLE"          
+## [112] "NORA"             "OLIVIA"           "PARIS"           
+## [115] "PATTY"            "PAUL ANKA"        "PHILLIP"         
+## [118] "PRINCIPAL"        "RABBI"            "RACHEL"          
+## [121] "RAJ"              "REVEREND"         "REVEREND SKINNER"
+## [124] "RICHARD"          "ROB"              "ROBERT"          
+## [127] "RORY"             "ROSEMARY"         "RUNE"            
+## [130] "SANDRA"           "SARAH"            "SHANE"           
+## [133] "SHEILA"           "SHERRY"           "SHIRA"           
+## [136] "SIMON"            "SOOKIE"           "SOPHIE"          
+## [139] "STRAUB"           "SUE"              "SUSAN"           
+## [142] "T.J.'S BROTHER"   "TANNA"            "TAYLOR"          
+## [145] "TJ"               "TOBIN"            "TOM"             
+## [148] "TRISTAN"          "TRIX"             "TROUBADOUR"      
+## [151] "VIVIAN"           "YOUNG CHUI"       "ZACH"
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="character-co-occurrence-network">Character co-occurrence network</h2>
+
+<p>The major part was to calculate the co-occurence matrix for characters per episode (i.e. which characters co-occurred together in episodes and how often). Because the network would get too big had I used too many characters, I restricted the network to the 20 main characters with the most lines over all episodes.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># extracting only those characters with the most lines
+</span><span class="n">transcripts_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">transcripts_2</span><span class="p">[</span><span class="n">which</span><span class="p">(</span><span class="n">transcripts_2</span><span class="o">$</span><span class="n">character</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">major_characters</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">])),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">transcripts_3</span><span class="o">$</span><span class="n">season_name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="s2">"Season"</span><span class="p">,</span><span class="w"> </span><span class="n">transcripts_3</span><span class="o">$</span><span class="n">season</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># create lines per episode matrix for each of these characters
+</span><span class="n">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span><span class="w">
+</span><span class="n">speaker_scene_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">transcripts_3</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">acast</span><span class="p">(</span><span class="n">character</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">episode</span><span class="p">,</span><span class="w"> </span><span class="n">fun.aggregate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The network was calculated from the co-occurrence matrix as a weighted network. Node colors reflect the character’s gender.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># calculate co-occurrence matrix
+</span><span class="n">data_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.matrix</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">speaker_scene_matrix</span><span class="p">))</span><span class="w">
+</span><span class="n">total_occurrences</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colSums</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">speaker_scene_matrix</span><span class="p">))</span><span class="w">
+
+</span><span class="n">co_occurrence</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">data_matrix</span><span class="p">)</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">data_matrix</span><span class="w">
+
+</span><span class="c1"># plot the network graph
+</span><span class="n">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span><span class="w">
+</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">graph.adjacency</span><span class="p">(</span><span class="n">co_occurrence</span><span class="p">,</span><span class="w">
+                         </span><span class="n">weighted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+                         </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                         </span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"upper"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">g</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">simplify</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">remove.multiple</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">F</span><span class="p">,</span><span class="w"> </span><span class="n">remove.loops</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">T</span><span class="p">,</span><span class="w"> </span><span class="n">edge.attr.comb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">weight</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sum"</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ignore"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">females</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"EMILY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LANE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LORELAI"</span><span class="p">,</span><span class="w"> </span><span class="s2">"MISS PATTY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"PARIS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"RORY"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SOOKIE"</span><span class="p">)</span><span class="w"> 
+        
+</span><span class="n">V</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">$</span><span class="n">gender</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">females</span><span class="p">,</span><span class="w"> </span><span class="s2">"female"</span><span class="p">,</span><span class="w"> </span><span class="s2">"male"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label.family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Helvetica"</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label.font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sphere"</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.size</span><span class="o">=</span><span class="n">total_occurrences</span><span class="o">/</span><span class="m">800</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.label.cex</span><span class="o">=</span><span class="m">0.8</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.color</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="w"> </span><span class="s2">"pink"</span><span class="p">,</span><span class="w"> </span><span class="s2">"skyblue"</span><span class="p">)[</span><span class="m">1</span><span class="o">+</span><span class="p">(</span><span class="n">V</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">$</span><span class="n">gender</span><span class="o">==</span><span class="s2">"male"</span><span class="p">)],</span><span class="w">
+     </span><span class="n">vertex.label.color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span><span class="w">
+     </span><span class="n">vertex.frame.color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="p">(</span><span class="n">g</span><span class="p">)</span><span class="o">$</span><span class="n">weight</span><span class="o">/</span><span class="m">100000</span><span class="p">,</span><span class="w">
+     </span><span class="n">edge.curved</span><span class="o">=</span><span class="m">.1</span><span class="p">,</span><span class="w">
+     </span><span class="n">layout</span><span class="o">=</span><span class="n">layout_in_circle</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>The cluster dendrogram shows us the character co-occurrence in a slightly different way:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">norm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">speaker_scene_matrix</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">rowSums</span><span class="p">(</span><span class="n">speaker_scene_matrix</span><span class="p">)</span><span class="w">
+
+</span><span class="n">h</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">hclust</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">norm</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"manhattan"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>And finally, I wanted to plot in which episodes these 20 characters appeared:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span><span class="w">
+
+</span><span class="n">my_theme</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">base_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sans"</span><span class="p">){</span><span class="w">
+  </span><span class="n">theme_grey</span><span class="p">(</span><span class="n">base_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base_size</span><span class="p">,</span><span class="w"> </span><span class="n">base_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base_family</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme</span><span class="p">(</span><span class="w">
+    </span><span class="n">axis.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">),</span><span class="w">
+    </span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+    </span><span class="n">axis.title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_line</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.grid.minor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+    </span><span class="n">panel.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"aliceblue"</span><span class="p">),</span><span class="w">
+    </span><span class="n">strip.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lightgrey"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+    </span><span class="n">strip.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">face</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"bold"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"black"</span><span class="p">),</span><span class="w">
+    </span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"none"</span><span class="p">,</span><span class="w">
+    </span><span class="n">legend.background</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_blank</span><span class="p">(),</span><span class="w">
+    </span><span class="n">panel.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="m">.5</span><span class="p">,</span><span class="w"> </span><span class="s2">"lines"</span><span class="p">),</span><span class="w">
+    </span><span class="n">panel.border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_rect</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w">
+  </span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">cbPalette</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"#999999"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#E69F00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#56B4E9"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#009E73"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#F0E442"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#0072B2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#D55E00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"#CC79A7"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">transcripts_3</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">episode_running_nr</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">character</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">season_name</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_path</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">episode_running_nr</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">my_theme</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">season_name</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free_x"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_hue</span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Episode running number"</span><span class="p">,</span><span class="w">
+       </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Gilmore Girls major character's occurence in episodes"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>And I wanted to know how many lines per episode each of them spoke:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># setting factor levels
+</span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">characters</span><span class="p">[</span><span class="n">order</span><span class="p">(</span><span class="n">characters</span><span class="o">$</span><span class="n">Freq</span><span class="p">,</span><span class="w"> </span><span class="n">decreasing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">),</span><span class="w"> </span><span class="s2">"Var1"</span><span class="p">]</span><span class="w">
+</span><span class="n">characters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">within</span><span class="p">(</span><span class="n">characters</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">Var1</span><span class="p">,</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="p">))</span><span class="w">
+
+</span><span class="n">ggplot</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">subset</span><span class="p">(</span><span class="n">characters</span><span class="p">,</span><span class="w"> </span><span class="n">Var1</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">names</span><span class="p">(</span><span class="n">major_characters</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">])),</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Var1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Freq</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"navy"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Number of Lines"</span><span class="p">,</span><span class="w">
+       </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"How many lines do the main characters have per epsisode?"</span><span class="p">,</span><span class="w"> 
+       </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Characters"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">my_theme</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<hr />
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.2 (2016-10-31)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12
+## 
+## locale:
+## [1] de_DE.UTF-8/de_DE.UTF-8/de_DE.UTF-8/C/de_DE.UTF-8/de_DE.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] ggplot2_2.1.0         igraph_1.0.1          reshape2_1.4.2       
+## [4] splitstackshape_1.4.2 data.table_1.9.6      tidyr_0.6.0          
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.7      knitr_1.14       magrittr_1.5     munsell_0.4.3   
+##  [5] colorspace_1.2-7 stringr_1.1.0    plyr_1.8.4       tools_3.3.2     
+##  [9] grid_3.3.2       gtable_0.2.0     htmltools_0.3.5  yaml_2.1.13     
+## [13] assertthat_0.1   digest_0.6.10    tibble_1.2       formatR_1.4     
+## [17] evaluate_0.10    rmarkdown_1.1    labeling_0.3     stringi_1.1.2   
+## [21] scales_0.4.0     chron_2.3-47
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#text_analysis-ref">
+    		text_analysis <span>6</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#Gilmore_Girls-ref">Gilmore_Girls <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#network-ref">network <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#cooccurrence-ref">cooccurrence <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#text_mining-ref">text_mining <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#igraph-ref">igraph <span>5</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/text_analysis/2016/11/06/sysk_earwax" title="Is 'Yeah' Josh and Chuck's favorite word?">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/text_analysis/2016/11/20/gilmore_girls_part2_post" title="Analysing the Gilmore Girls' coffee addiction with R">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

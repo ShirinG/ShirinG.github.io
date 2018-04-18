@@ -1,0 +1,991 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Characterizing Twitter followers with tidytext</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Characterizing Twitter followers with tidytext </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Characterizing Twitter followers with tidytext" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>28 June 2017</span>
+    </div>
+    <div class="content">
+      <p>Lately, I have been more and more taken with tidy principles of data analysis. They are elegant and make analyses clearer and easier to comprehend. Following the <strong>tidyverse</strong> and <strong>ggraph</strong>, I have been quite intrigued by applying tidy principles to text analysis with <a href="https://cran.r-project.org/web/packages/tidytext/vignettes/tidytext.html">Julia Silge and David Robinson’s <strong>tidytext</strong></a>.</p>
+
+<p>In this post, I will explore <strong>tidytext</strong> with an analysis of my Twitter followers’ descriptions to try and learn more about the people who are interested in my tweets, which are mainly about Data Science and Machine Learning.</p>
+
+<p>Resources I found useful for this analysis were <a href="http://www.rdatamining.com/docs/twitter-analysis-with-r">http://www.rdatamining.com/docs/twitter-analysis-with-r</a> and <a href="http://tidytextmining.com/tidytext.html">http://tidytextmining.com/tidytext.html</a></p>
+
+<p><br /></p>
+
+<h2 id="retrieving-twitter-data">Retrieving Twitter data</h2>
+
+<p>I am using <strong>twitteR</strong> to retrieve data from Twitter (I have also tried <strong>rtweet</strong> but for some reason, my API key, secret and token (that worked with <strong>twitteR</strong>) resulted in a “failed to authorize” error with <strong>rtweet</strong>’s functions).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">twitteR</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Once we have <a href="https://dev.twitter.com/rest/public">set up our Twitter REST API</a>, we get the necessary information to authenticate our access.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">consumerKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"INSERT KEY HERE"</span><span class="w">
+</span><span class="n">consumerSecret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"INSERT SECRET KEY HERE"</span><span class="w">
+</span><span class="n">accessToken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"INSERT TOKEN HERE"</span><span class="w">
+</span><span class="n">accessSecret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"INSERT SECRET TOKEN HERE"</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">options</span><span class="p">(</span><span class="n">httr_oauth_cache</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">setup_twitter_oauth</span><span class="p">(</span><span class="n">consumer_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumerKey</span><span class="p">,</span><span class="w"> 
+                    </span><span class="n">consumer_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumerSecret</span><span class="p">,</span><span class="w"> 
+                    </span><span class="n">access_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accessToken</span><span class="p">,</span><span class="w"> 
+                    </span><span class="n">access_secret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accessSecret</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>Now, we can access information from Twitter, like timeline tweets, user timelines, mentions, tweets &amp; retweets, followers, etc.</p>
+
+<p>All the following datasets were retrieved on June 7th 2017, converted to a data frame for tidy analysis and saved for later use:</p>
+
+<ul>
+  <li>the last 3200 tweets on my timeline</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">my_name</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">userTimeline</span><span class="p">(</span><span class="s2">"ShirinGlander"</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3200</span><span class="p">,</span><span class="w"> </span><span class="n">includeRts</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">my_name_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">twListToDF</span><span class="p">(</span><span class="n">my_name</span><span class="p">)</span><span class="w">
+</span><span class="n">save</span><span class="p">(</span><span class="n">my_name_df</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my_name.RData"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<ul>
+  <li>my last 3200 mentions and retweets</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">my_mentions</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">mentions</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3200</span><span class="p">)</span><span class="w">
+</span><span class="n">my_mentions_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">twListToDF</span><span class="p">(</span><span class="n">my_mentions</span><span class="p">)</span><span class="w">
+</span><span class="n">save</span><span class="p">(</span><span class="n">my_mentions_df</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my_mentions.RData"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">my_retweets</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">retweetsOfMe</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3200</span><span class="p">)</span><span class="w">
+</span><span class="n">my_retweets_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">twListToDF</span><span class="p">(</span><span class="n">my_retweets</span><span class="p">)</span><span class="w">
+</span><span class="n">save</span><span class="p">(</span><span class="n">my_retweets_df</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my_retweets.RData"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<ul>
+  <li>the last 3200 tweets to me</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">tweetstome</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">searchTwitter</span><span class="p">(</span><span class="s2">"@ShirinGlander"</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3200</span><span class="p">)</span><span class="w">
+</span><span class="n">tweetstome_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">twListToDF</span><span class="p">(</span><span class="n">tweetstome</span><span class="p">)</span><span class="w">
+</span><span class="n">save</span><span class="p">(</span><span class="n">tweetstome_df</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"tweetstome.RData"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<ul>
+  <li>my friends and followers</li>
+</ul>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">user</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">getUser</span><span class="p">(</span><span class="s2">"ShirinGlander"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">friends</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">user</span><span class="o">$</span><span class="n">getFriends</span><span class="p">()</span><span class="w"> </span><span class="c1"># who I follow
+</span><span class="n">friends_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">twListToDF</span><span class="p">(</span><span class="n">friends</span><span class="p">)</span><span class="w">
+</span><span class="n">save</span><span class="p">(</span><span class="n">friends_df</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my_friends.RData"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">followers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">user</span><span class="o">$</span><span class="n">getFollowers</span><span class="p">()</span><span class="w"> </span><span class="c1"># my followers
+</span><span class="n">followers_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">twListToDF</span><span class="p">(</span><span class="n">followers</span><span class="p">)</span><span class="w">
+</span><span class="n">save</span><span class="p">(</span><span class="n">followers_df</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my_followers.RData"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="analyzing-friends-and-followers">Analyzing friends and followers</h2>
+
+<p>In this post, I will have a look at my friends and followers.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">load</span><span class="p">(</span><span class="s2">"my_friends.RData"</span><span class="p">)</span><span class="w">
+</span><span class="n">load</span><span class="p">(</span><span class="s2">"my_followers.RData"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>I am going to use packages from the <strong>tidyverse</strong> (<strong>tidyquant</strong> for plotting).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyquant</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>Number of friends (who I follow on Twitter): 225</p>
+  </li>
+  <li>
+    <p>Number of followers (who follows me on Twitter): 324</p>
+  </li>
+  <li>
+    <p>Number of friends who are also followers: 97</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="what-languages-do-my-followers-speak">What languages do my followers speak?</h3>
+
+<p>One of the columns describing my followers is which language they have set for their Twitter account. Not surprisingly, English is by far the most predominant language of my followers, followed by German, Spanish and French.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">followers_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">count</span><span class="p">(</span><span class="n">lang</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">droplevels</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">lang</span><span class="p">,</span><span class="w"> </span><span class="n">desc</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"language ISO 639-1 code"</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"number of followers"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-14-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="who-are-my-most-influential-followers-ie-followers-with-the-biggest-network">Who are my most “influential” followers (i.e. followers with the biggest network)?</h3>
+
+<p>I also have information about the number of followers that each of my followers have (2nd degree followers). Most of my followers are followed by up to ~ 1000 people, while only a few have a very large network.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">followers_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log2</span><span class="p">(</span><span class="n">followersCount</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_density</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"log2 of number of followers"</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"density"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-16-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="how-active-are-my-followers-ie-how-often-do-they-tweet">How active are my followers (i.e. how often do they tweet)</h3>
+
+<p>The followers data frame also tells me how many statuses <a href="https://dev.twitter.com/rest/reference/get/statuses/user_timeline">(i.e. tweets)</a> each of followers have. To make the numbers comparable, I am normalizing them by the number of days that they have had their accounts to calculate the average number of tweets per day.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">followers_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">created</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d"</span><span class="p">),</span><span class="w">
+         </span><span class="n">today</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="s2">"2017-06-07"</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d"</span><span class="p">),</span><span class="w">
+         </span><span class="n">days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">today</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">date</span><span class="p">),</span><span class="w">
+         </span><span class="n">statusesCount_pDay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statusesCount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">days</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log2</span><span class="p">(</span><span class="n">statusesCount_pDay</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_density</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-17-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h4 id="who-are-my-followers-with-the-biggest-network-and-who-tweet-the-most">Who are my followers with the biggest network and who tweet the most?</h4>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">followers_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">created</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d"</span><span class="p">),</span><span class="w">
+         </span><span class="n">today</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="s2">"2017-06-07"</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d"</span><span class="p">),</span><span class="w">
+         </span><span class="n">days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">today</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">date</span><span class="p">),</span><span class="w">
+         </span><span class="n">statusesCount_pDay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statusesCount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">days</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="n">screenName</span><span class="p">,</span><span class="w"> </span><span class="n">followersCount</span><span class="p">,</span><span class="w"> </span><span class="n">statusesCount_pDay</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="n">followersCount</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">top_n</span><span class="p">(</span><span class="m">10</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##         screenName followersCount statusesCount_pDay
+## 1        dr_morton         150937           71.35193
+## 2    Scientists4EU          66117           17.64389
+## 3       dr_morton_          63467           46.57763
+## 4   NewScienceWrld          60092           54.65874
+## 5     RubenRabines          42286           25.99592
+## 6  machinelearnbot          27427          204.67061
+## 7  BecomingDataSci          16807           25.24069
+## 8       joelgombin           6566           21.24094
+## 9    renato_umeton           1998           19.58387
+## 10 FranPatogenLoco            311           28.92593
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">followers_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">created</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d"</span><span class="p">),</span><span class="w">
+         </span><span class="n">today</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="s2">"2017-06-07"</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d"</span><span class="p">),</span><span class="w">
+         </span><span class="n">days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">today</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">date</span><span class="p">),</span><span class="w">
+         </span><span class="n">statusesCount_pDay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statusesCount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">days</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="n">screenName</span><span class="p">,</span><span class="w"> </span><span class="n">followersCount</span><span class="p">,</span><span class="w"> </span><span class="n">statusesCount_pDay</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="n">statusesCount_pDay</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">top_n</span><span class="p">(</span><span class="m">10</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##         screenName followersCount statusesCount_pDay
+## 1  machinelearnbot          27427          204.67061
+## 2        dr_morton         150937           71.35193
+## 3   NewScienceWrld          60092           54.65874
+## 4       dr_morton_          63467           46.57763
+## 5  FranPatogenLoco            311           28.92593
+## 6     RubenRabines          42286           25.99592
+## 7  BecomingDataSci          16807           25.24069
+## 8       joelgombin           6566           21.24094
+## 9    renato_umeton           1998           19.58387
+## 10   Scientists4EU          66117           17.64389
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="is-there-a-correlation-between-number-of-followers-and-number-of-tweets">Is there a correlation between number of followers and number of tweets?</h4>
+
+<p>Indeed, there seems to be a correlation that users with many followers also tend to tweet more often.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">followers_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="n">created</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d"</span><span class="p">),</span><span class="w">
+         </span><span class="n">today</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.Date</span><span class="p">(</span><span class="s2">"2017-06-07"</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"%Y-%m-%d"</span><span class="p">),</span><span class="w">
+         </span><span class="n">days</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">today</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">date</span><span class="p">),</span><span class="w">
+         </span><span class="n">statusesCount_pDay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statusesCount</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">days</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">followersCount</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">statusesCount_pDay</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">days</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lm"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_continuous</span><span class="p">(</span><span class="n">low</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">high</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">2</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-20-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="tidy-text-analysis">Tidy text analysis</h3>
+
+<p>Next, I want to know more about my followers by analyzing their Twitter descriptions with the <strong>tidytext</strong> package.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidytext</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">SnowballC</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>To prepare the data, I am going to unnest the words (or tokens) in the user descriptions, convert them to the word stem, remove stop words and urls.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data</span><span class="p">(</span><span class="n">stop_words</span><span class="p">)</span><span class="w">
+
+</span><span class="n">tidy_descr</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">followers_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">unnest_tokens</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">word_stem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">wordStem</span><span class="p">(</span><span class="n">word</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">anti_join</span><span class="p">(</span><span class="n">stop_words</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"word"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"\\.|http"</span><span class="p">,</span><span class="w"> </span><span class="n">word</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h4 id="what-are-the-most-commonly-used-words-in-my-followers-descriptions">What are the most commonly used words in my followers’ descriptions?</h4>
+
+<p>The first question I want to ask is what words are most common in my followers’ descriptions.</p>
+
+<p>Not surprisingly, the most common word is “data”. I do tweet mostly about data related topics, so it makes sense that my followers are mostly likeminded. The rest is also related to data science, machine learning and R.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">tidy_descr</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">count</span><span class="p">(</span><span class="n">word_stem</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">word_stem</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_col</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"count of word stem in all followers' descriptions"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-27-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>This, we can also show with a word cloud.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">tm</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">tidy_descr</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">count</span><span class="p">(</span><span class="n">word_stem</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">word_stem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">removeNumbers</span><span class="p">(</span><span class="n">word_stem</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">with</span><span class="p">(</span><span class="n">wordcloud</span><span class="p">(</span><span class="n">word_stem</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">max.words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-29-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>Instead of looking for the most common words, we can also look for the most common ngrams: here, for the most common word pairs (bigrams) in my followers’ descriptions.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">tidy_descr_ngrams</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">followers_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">unnest_tokens</span><span class="p">(</span><span class="n">bigram</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ngrams"</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"\\.|http"</span><span class="p">,</span><span class="w"> </span><span class="n">bigram</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">separate</span><span class="p">(</span><span class="n">bigram</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"word1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"word2"</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">word1</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">stop_words</span><span class="o">$</span><span class="n">word</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">word2</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">stop_words</span><span class="o">$</span><span class="n">word</span><span class="p">)</span><span class="w">
+
+</span><span class="n">bigram_counts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy_descr_ngrams</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">count</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span><span class="w"> </span><span class="n">word2</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">bigram_counts</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">word1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">word2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_tile</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_gradientn</span><span class="p">(</span><span class="n">colours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">palette_light</span><span class="p">()[[</span><span class="m">1</span><span class="p">]],</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[[</span><span class="m">2</span><span class="p">]]))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"right"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"first word in pair"</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"second word in pair"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-32-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>These, we can also show as a graph:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">ggraph</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">bigram_graph</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bigram_counts</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">graph_from_data_frame</span><span class="p">()</span><span class="w">
+
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">
+
+</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">grid</span><span class="o">::</span><span class="n">arrow</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"closed"</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="m">.15</span><span class="p">,</span><span class="w"> </span><span class="s2">"inches"</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ggraph</span><span class="p">(</span><span class="n">bigram_graph</span><span class="p">,</span><span class="w"> </span><span class="n">layout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"fr"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_edge_link</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">edge_alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                 </span><span class="n">arrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">end_cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circle</span><span class="p">(</span><span class="m">.07</span><span class="p">,</span><span class="w"> </span><span class="s1">'inches'</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_node_point</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_node_text</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">),</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">theme_void</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-35-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>We can also use bigram analysis to identify negated meanings (this will become relevant for sentiment analysis later). So, let’s look at which words are preceded by “not” or “no”.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">bigrams_separated</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">followers_df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">unnest_tokens</span><span class="p">(</span><span class="n">bigram</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="p">,</span><span class="w"> </span><span class="n">token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"ngrams"</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"\\.|http"</span><span class="p">,</span><span class="w"> </span><span class="n">bigram</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">separate</span><span class="p">(</span><span class="n">bigram</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"word1"</span><span class="p">,</span><span class="w"> </span><span class="s2">"word2"</span><span class="p">),</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">word1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"not"</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">word1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"no"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="o">!</span><span class="n">word2</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">stop_words</span><span class="o">$</span><span class="n">word</span><span class="p">)</span><span class="w">
+
+</span><span class="n">not_words</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bigrams_separated</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">word1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"not"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">inner_join</span><span class="p">(</span><span class="n">get_sentiments</span><span class="p">(</span><span class="s2">"afinn"</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">word2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"word"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">count</span><span class="p">(</span><span class="n">word2</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ungroup</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">not_words</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">contribution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">score</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">contribution</span><span class="p">)))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">head</span><span class="p">(</span><span class="m">20</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">word2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">word2</span><span class="p">,</span><span class="w"> </span><span class="n">contribution</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">word2</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">score</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_col</span><span class="p">(</span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Sentiment score * number of occurrences"</span><span class="p">,</span><span class="w">
+         </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Words preceded by \"not\""</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-37-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h4 id="whats-the-predominant-sentiment-in-my-followers-descriptions">What’s the predominant sentiment in my followers’ descriptions?</h4>
+
+<p>For sentiment analysis, I will exclude the words with a negated meaning from nrc and switch their positive and negative meanings from bing (although in this case, there was only one negated word, “endorsement”, so it won’t make a real difference).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">tidy_descr_sentiment</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy_descr</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">left_join</span><span class="p">(</span><span class="n">select</span><span class="p">(</span><span class="n">bigrams_separated</span><span class="p">,</span><span class="w"> </span><span class="n">word1</span><span class="p">,</span><span class="w"> </span><span class="n">word2</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"word"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"word2"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">inner_join</span><span class="p">(</span><span class="n">get_sentiments</span><span class="p">(</span><span class="s2">"nrc"</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"word"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">inner_join</span><span class="p">(</span><span class="n">get_sentiments</span><span class="p">(</span><span class="s2">"bing"</span><span class="p">),</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"word"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename</span><span class="p">(</span><span class="n">nrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sentiment.x</span><span class="p">,</span><span class="w"> </span><span class="n">bing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sentiment.y</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">nrc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">word1</span><span class="p">),</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">nrc</span><span class="p">),</span><span class="w">
+         </span><span class="n">bing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">word1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bing</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"positive"</span><span class="p">,</span><span class="w"> </span><span class="s2">"negative"</span><span class="p">,</span><span class="w"> 
+                       </span><span class="n">ifelse</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">word1</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">bing</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"negative"</span><span class="p">,</span><span class="w"> </span><span class="s2">"positive"</span><span class="p">,</span><span class="w"> </span><span class="n">bing</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">tidy_descr_sentiment</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">nrc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">"positive"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">nrc</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">"negative"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">nrc</span><span class="p">,</span><span class="w"> </span><span class="n">bing</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">count</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_col</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"count of sentiment in followers' descriptions"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-39-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h4 id="are-followers-descriptions-mostly-positive-or-negative">Are followers’ descriptions mostly positive or negative?</h4>
+
+<p>The majority of my followers have predominantly positive descriptions.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">tidy_descr_sentiment</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">count</span><span class="p">(</span><span class="n">screenName</span><span class="p">,</span><span class="w"> </span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">bing</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">screenName</span><span class="p">,</span><span class="w"> </span><span class="n">bing</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">spread</span><span class="p">(</span><span class="n">bing</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">sentiment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">positive</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">negative</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sentiment</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_density</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-40-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h4 id="what-are-the-most-common-positive-and-negative-words-in-followers-descriptions">What are the most common positive and negative words in followers’ descriptions?</h4>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">reshape2</span><span class="p">)</span><span class="w">
+</span><span class="n">tidy_descr_sentiment</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">count</span><span class="p">(</span><span class="n">word</span><span class="p">,</span><span class="w"> </span><span class="n">bing</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">acast</span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">bing</span><span class="p">,</span><span class="w"> </span><span class="n">value.var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"n"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">comparison.cloud</span><span class="p">(</span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">],</span><span class="w">
+                   </span><span class="n">max.words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-41-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h4 id="topic-modeling-are-there-groups-of-followers-with-specific-interests">Topic modeling: are there groups of followers with specific interests?</h4>
+
+<p>Topic modeling can be used to categorize words into groups. Here, we can use it to see whether (some) of my followers can be grouped into subgroups according to their descriptions.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">topicmodels</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">dtm_words_count</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy_descr</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">word_stem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">removeNumbers</span><span class="p">(</span><span class="n">word_stem</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">count</span><span class="p">(</span><span class="n">screenName</span><span class="p">,</span><span class="w"> </span><span class="n">word_stem</span><span class="p">,</span><span class="w"> </span><span class="n">sort</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ungroup</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">word_stem</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">""</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">cast_dtm</span><span class="p">(</span><span class="n">screenName</span><span class="p">,</span><span class="w"> </span><span class="n">word_stem</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># set a seed so that the output of the model is predictable
+</span><span class="n">dtm_lda</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">LDA</span><span class="p">(</span><span class="n">dtm_words_count</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1234</span><span class="p">))</span><span class="w">
+
+</span><span class="n">topics_beta</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy</span><span class="p">(</span><span class="n">dtm_lda</span><span class="p">,</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"beta"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">p</span><span class="m">1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">topics_beta</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">grepl</span><span class="p">(</span><span class="s2">"[a-z]+"</span><span class="p">,</span><span class="w"> </span><span class="n">term</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="c1"># some words are Chinese, etc. I don't want these because ggplot doesn't plot them correctly
+</span><span class="w">  </span><span class="n">group_by</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">top_n</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ungroup</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">beta</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">term</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">term</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">term</span><span class="p">,</span><span class="w"> </span><span class="n">beta</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">topic</span><span class="p">),</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">topic</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_col</span><span class="p">(</span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"beta (~ occurrence in topics 1-5)"</span><span class="p">,</span><span class="w">
+         </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"The top 10 most characteristic words describe topic categories."</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">user_topic</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tidy</span><span class="p">(</span><span class="n">dtm_lda</span><span class="p">,</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gamma"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">arrange</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="n">gamma</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">document</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">top_n</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">gamma</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">p</span><span class="m">2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">user_topic</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">top_n</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">gamma</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reorder</span><span class="p">(</span><span class="n">document</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">gamma</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gamma</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">topic</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">show.legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">coord_flip</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"gamma\n(~ affiliation with topics 1-5)"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span><span class="w">
+</span><span class="n">grid.arrange</span><span class="p">(</span><span class="n">p</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">heights</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="m">0.3</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="twitter_post_files/figure-markdown_github/unnamed-chunk-52-1.png" alt="" /></p>
+
+<p>The upper of the two plots above show the words that were most strongly grouped to five topics. The lower plots show my followers with the strongest affiliation with these five topics.</p>
+
+<p>Because in my tweets I only cover a relatively narrow range of topics (i.e. related to data), my followers are not very diverse in terms of their descriptions and the five topics are not very distinct.</p>
+
+<p>If you find yourself in any of the topics, let me know if you agree with the topic that was modeled for you!</p>
+
+<p><br /></p>
+
+<p>For more text analysis, see my <a href="https://shiring.github.io/text_analysis/2016/11/06/sysk_earwax">post about text mining and sentiment analysis of a Stuff You Should Know Podcast</a>.</p>
+
+<hr />
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS Sierra 10.12.5
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] grid      stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+##  [1] gridExtra_2.2.1               topicmodels_0.2-6            
+##  [3] reshape2_1.4.2                ggraph_1.0.0                 
+##  [5] igraph_1.0.1                  tm_0.7-1                     
+##  [7] NLP_0.1-10                    wordcloud_2.5                
+##  [9] RColorBrewer_1.1-2            SnowballC_0.5.1              
+## [11] tidytext_0.1.3                bindrcpp_0.2                 
+## [13] tidyquant_0.5.1               quantmod_0.4-10              
+## [15] TTR_0.23-1                    PerformanceAnalytics_1.4.3541
+## [17] xts_0.9-7                     zoo_1.8-0                    
+## [19] lubridate_1.6.0               dplyr_0.7.0                  
+## [21] purrr_0.2.2.2                 readr_1.1.1                  
+## [23] tidyr_0.6.3                   tibble_1.3.3                 
+## [25] ggplot2_2.2.1                 tidyverse_1.1.1              
+## [27] twitteR_1.1.9                
+## 
+## loaded via a namespace (and not attached):
+##  [1] viridis_0.4.0     httr_1.2.1        viridisLite_0.2.0
+##  [4] bit64_0.9-7       jsonlite_1.5      modelr_0.1.0     
+##  [7] assertthat_0.2.0  stats4_3.4.0      cellranger_1.1.0 
+## [10] ggrepel_0.6.5     yaml_2.1.14       slam_0.1-40      
+## [13] backports_1.1.0   lattice_0.20-35   glue_1.1.0       
+## [16] digest_0.6.12     rvest_0.3.2       colorspace_1.3-2 
+## [19] htmltools_0.3.6   Matrix_1.2-10     plyr_1.8.4       
+## [22] psych_1.7.5       pkgconfig_2.0.1   broom_0.4.2      
+## [25] haven_1.0.0       scales_0.4.1      tweenr_0.1.5     
+## [28] ggforce_0.1.1     lazyeval_0.2.0    mnormt_1.5-5     
+## [31] magrittr_1.5      readxl_1.0.0      evaluate_0.10    
+## [34] tokenizers_0.1.4  janeaustenr_0.1.5 nlme_3.1-131     
+## [37] MASS_7.3-47       forcats_0.2.0     xml2_1.1.1       
+## [40] foreign_0.8-68    tools_3.4.0       hms_0.3          
+## [43] stringr_1.2.0     munsell_0.4.3     compiler_3.4.0   
+## [46] rlang_0.1.1       units_0.4-5       rjson_0.2.15     
+## [49] labeling_0.3      rmarkdown_1.6     gtable_0.2.0     
+## [52] DBI_0.7           R6_2.2.2          knitr_1.16       
+## [55] udunits2_0.13     bit_1.1-12        bindr_0.1        
+## [58] rprojroot_1.2     Quandl_2.8.0      modeltools_0.2-21
+## [61] stringi_1.1.5     parallel_3.4.0    Rcpp_0.12.11
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#text_analysis-ref">
+    		text_analysis <span>6</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#text_analysis-ref">text_analysis <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#tidytext-ref">tidytext <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot-ref">ggplot <span>6</span></a></li>
+     
+    	<li><a href="/tags.html#tidyverse-ref">tidyverse <span>6</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/forecasting/2017/06/13/retail_forcasting_part3" title="Data Science for Business - Time Series Forecasting Part 3: Forecasting with Facebook's Prophet">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/text_analysis/2017/07/17/ocr_tesseract" title="How to do Optical Character Recognition (OCR) of non-English documents in R using Tesseract?">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

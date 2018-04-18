@@ -1,0 +1,1131 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Autoencoders and anomaly detection with machine learning in fraud analytics</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Autoencoders and anomaly detection with machine learning in fraud analytics </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Autoencoders and anomaly detection with machine learning in fraud analytics" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>01 May 2017</span>
+    </div>
+    <div class="content">
+      <p>All my previous posts on machine learning have dealt with supervised learning. But we can also use machine learning for unsupervised learning. The latter are e.g. used for clustering and (non-linear) dimensionality reduction.</p>
+
+<p>For this task, I am using <a href="https://www.kaggle.com/dalpozz/creditcardfraud">Kaggle’s credit card fraud dataset</a> from the following study:</p>
+
+<blockquote>
+  <p>Andrea Dal Pozzolo, Olivier Caelen, Reid A. Johnson and Gianluca Bontempi. Calibrating Probability with Undersampling for Unbalanced Classification. In Symposium on Computational Intelligence and Data Mining (CIDM), IEEE, 2015</p>
+</blockquote>
+
+<p>The dataset gives &gt; 280,000 instances of credit card use and for each transaction, we know whether it was fraudulent or not.</p>
+
+<p>Datasets like this needs special treatment when performing machine learning because they are severely unbalanced: in this case, only 0.17% of all transactions are fraudulent.</p>
+
+<p>While we could try to work with classifiers, like random forests or support vector machines, by applying <a href="https://shiring.github.io/machine_learning/2017/04/02/unbalanced">over- or under-sampling techniques</a>, we can alternatively try to find anomalies in the data (assuming we expect our fraud cases to be anomalies within the whole dataset).</p>
+
+<p>When dealing with such a severe unbalance of response labels, we also need to be careful when measuring model performance. Because there are only a handful of fraudulent instances, a model that predicts everything as non-fraud will already achieve a &gt; 99% accuracy. But despite its high accuracy, such a model won’t necessarily help us find fraudulent cases - the proverbial “needle-in-a-haystack” - that we actually want to find!</p>
+
+<p>Below, I will show how you can use autoencoders and anomaly detection, how you can use autoencoders to pre-train a classification model and how you can measure model performance on unbalanced data.</p>
+
+<p><br /></p>
+
+<h2 id="exploring-the-data">Exploring the data</h2>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># download from https://www.kaggle.com/dalpozz/creditcardfraud
+</span><span class="n">creditcard</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.csv</span><span class="p">(</span><span class="s2">"creditcard.csv"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The dataset contains numerical input variables V1 to V28, which are the result of a PCA transformation of the original features (which could not be provided due to confidentiality issues).</p>
+
+<p>The response variable <em>Class</em> tell us whether a transaction was fraudulent (value = 1) or not (value = 0).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">creditcard</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lightgrey"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="fraud_files/figure-markdown_github/unnamed-chunk-5-1.png" alt="" /></p>
+
+<p>There are two additional features, <em>Time</em> (time in seconds between each transaction and the first transaction) and <em>Amount</em> (how much money was transferred in this transaction).</p>
+
+<p>Because <em>Time</em> only tells us the order in which transactions have been done, it doesn’t actually tell us anything about the actual times (i.e. time of day) of the transaction. Therefore, I am normalizing them by day and bin them into four groups according to time of day.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">summary</span><span class="p">(</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Time</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       0   54202   84692   94814  139320  172792
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># how many seconds are 24 hours
+# 1 hr = 60 mins = 60 x 60 s = 3600 s
+</span><span class="m">3600</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">24</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## [1] 86400
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># separate transactions by day
+</span><span class="n">creditcard</span><span class="o">$</span><span class="n">day</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">3600</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="s2">"day2"</span><span class="p">,</span><span class="w"> </span><span class="s2">"day1"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># make transaction relative to day
+</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Time_day</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">creditcard</span><span class="o">$</span><span class="n">day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"day2"</span><span class="p">,</span><span class="w"> </span><span class="n">creditcard</span><span class="o">$</span><span class="n">Time</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">86400</span><span class="p">,</span><span class="w"> </span><span class="n">creditcard</span><span class="o">$</span><span class="n">Time</span><span class="p">)</span><span class="w">
+
+</span><span class="n">summary</span><span class="p">(</span><span class="n">creditcard</span><span class="p">[</span><span class="n">creditcard</span><span class="o">$</span><span class="n">day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"day1"</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="o">$</span><span class="n">Time_day</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       0   38432   54689   52948   70977   86400
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">summary</span><span class="p">(</span><span class="n">creditcard</span><span class="p">[</span><span class="n">creditcard</span><span class="o">$</span><span class="n">day</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"day2"</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="o">$</span><span class="n">Time_day</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       1   37843   53425   51705   68182   86392
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># bin transactions according to time of day
+</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Time</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">ifelse</span><span class="p">(</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Time_day</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">38138</span><span class="p">,</span><span class="w"> </span><span class="s2">"gr1"</span><span class="p">,</span><span class="w"> </span><span class="c1"># mean 1st Qu.
+</span><span class="w">                          </span><span class="n">ifelse</span><span class="p">(</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Time_day</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">52327</span><span class="p">,</span><span class="w"> </span><span class="s2">"gr2"</span><span class="p">,</span><span class="w"> </span><span class="c1"># mean mean
+</span><span class="w">                                 </span><span class="n">ifelse</span><span class="p">(</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Time_day</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">69580</span><span class="p">,</span><span class="w"> </span><span class="s2">"gr3"</span><span class="p">,</span><span class="w"> </span><span class="c1"># mean 3rd Qu
+</span><span class="w">                                        </span><span class="s2">"gr4"</span><span class="p">))))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">creditcard</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">day</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lightgrey"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="fraud_files/figure-markdown_github/unnamed-chunk-7-1.png" alt="" /></p>
+
+<p>We can see now that the transactions in this dataset have all been recorded on two consecutive days and there are roughly the same number of transactions on these two days.</p>
+
+<p>Now, I remove the columns I used to create the <em>Time</em> bins.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">creditcard</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">creditcard</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">Time_day</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">day</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># convert class variable to factor
+</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Class</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">factor</span><span class="p">(</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Class</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">creditcard</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Time</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lightgrey"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Class</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="fraud_files/figure-markdown_github/unnamed-chunk-9-1.png" alt="" /></p>
+
+<p>The distribution of transactions over the four <em>Time</em> bins shows, that the majority of fraud cases have happened in group 1 (although, I can’t say when exactly because the original <em>Time</em> feature did not tell us when the first transaction occurred).</p>
+
+<p>I also want to look at the distribution of the amounts of money that were transferred:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">summary</span><span class="p">(</span><span class="n">creditcard</span><span class="p">[</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Class</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="o">$</span><span class="n">Amount</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+##     0.00     5.65    22.00    88.29    77.05 25691.16
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">summary</span><span class="p">(</span><span class="n">creditcard</span><span class="p">[</span><span class="n">creditcard</span><span class="o">$</span><span class="n">Class</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="o">$</span><span class="n">Amount</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    0.00    1.00    9.25  122.21  105.89 2125.87
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">creditcard</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Amount</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"grey"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"lightgrey"</span><span class="p">,</span><span class="w"> </span><span class="n">bins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Class</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="fraud_files/figure-markdown_github/unnamed-chunk-10-1.png" alt="" /></p>
+
+<p>Interestingly, fraudulent credit card transactions had a higher mean amount of money that was transferred, but the maximum amount was much lower compared to regular transactions.</p>
+
+<p><br /></p>
+
+<h2 id="modeling">Modeling</h2>
+
+<p>For modeling, I am using R’s H2O implementation with the <em>h2o</em> package. For more details and other examples, see my posts on <a href="https://shiring.github.io/machine_learning/2017/03/31/webinar_code">my machine learning webinar</a>, on <a href="https://shiring.github.io/machine_learning/2017/02/27/h2o">building neural nets with h2o</a> and on <a href="https://shiring.github.io/machine_learning/2017/03/07/grid_search">performing grid search for hyperparameter tuning</a>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o</span><span class="p">)</span><span class="w">
+</span><span class="n">h</span><span class="m">2</span><span class="n">o.init</span><span class="p">(</span><span class="n">nthreads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">-1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##  Connection successful!
+## 
+## R is connected to the H2O cluster: 
+##     H2O cluster uptime:         7 minutes 6 seconds 
+##     H2O cluster version:        3.10.4.4 
+##     H2O cluster version age:    16 days  
+##     H2O cluster name:           H2O_started_from_R_Shirin_nly512 
+##     H2O cluster total nodes:    1 
+##     H2O cluster total memory:   1.60 GB 
+##     H2O cluster total cores:    2 
+##     H2O cluster allowed cores:  2 
+##     H2O cluster healthy:        TRUE 
+##     H2O Connection ip:          localhost 
+##     H2O Connection port:        54321 
+##     H2O Connection proxy:       NA 
+##     H2O Internal Security:      FALSE 
+##     R Version:                  R version 3.4.0 (2017-04-21)
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># convert data to H2OFrame
+</span><span class="n">creditcard_hf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.h2o</span><span class="p">(</span><span class="n">creditcard</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>Then, I am splitting the dataset into training and test sets. Because I want to check how a pre-trained model with perform, I am splitting my data into two separate training sets and one independent test set for final model comparison.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">splits</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.splitFrame</span><span class="p">(</span><span class="n">creditcard_hf</span><span class="p">,</span><span class="w"> 
+                         </span><span class="n">ratios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="m">0.4</span><span class="p">),</span><span class="w"> 
+                         </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">42</span><span class="p">)</span><span class="w">
+
+</span><span class="n">train_unsupervised</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">splits</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">train_supervised</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">splits</span><span class="p">[[</span><span class="m">2</span><span class="p">]]</span><span class="w">
+</span><span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">splits</span><span class="p">[[</span><span class="m">3</span><span class="p">]]</span><span class="w">
+
+</span><span class="n">response</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"Class"</span><span class="w">
+</span><span class="n">features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">setdiff</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">train_unsupervised</span><span class="p">),</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="autoencoders">Autoencoders</h3>
+
+<p>First, I am training the unsupervised neural network model using deep learning autoencoders. With <em>h2o</em>, we can simply set <code class="highlighter-rouge">autoencoder = TRUE</code>.</p>
+
+<p>Here, I am applying a technique called “bottleneck” training, where the hidden layer in the middle is very small. This means that my model will have to reduce the dimensionality of the input data (in this case, down to 2 nodes/dimensions).</p>
+
+<p>The autoencoder model will then learn the patterns of the input data irrespective of given class labels. Here, it will learn, which credit card transactions are similar and which transactions are outliers or anomalies. We need to keep in mind though, that autoencoder models will be sensitive to outliers in our data, which might throw off otherwise typical patterns.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">model_nn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.deeplearning</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">features</span><span class="p">,</span><span class="w">
+                             </span><span class="n">training_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_unsupervised</span><span class="p">,</span><span class="w">
+                             </span><span class="n">model_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"model_nn"</span><span class="p">,</span><span class="w">
+                             </span><span class="n">autoencoder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+                             </span><span class="n">reproducible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="c1">#slow - turn off for real problems
+</span><span class="w">                             </span><span class="n">ignore_const_cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                             </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">42</span><span class="p">,</span><span class="w">
+                             </span><span class="n">hidden</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> 
+                             </span><span class="n">epochs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w">
+                             </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Tanh"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Because training can take a while, I am saving the model:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.saveModel</span><span class="p">(</span><span class="n">model_nn</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="o">=</span><span class="s2">"model_nn"</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">model_nn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.loadModel</span><span class="p">(</span><span class="s2">"model_nn"</span><span class="p">)</span><span class="w">
+</span><span class="n">model_nn</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Model Details:
+## ==============
+## 
+## H2OAutoEncoderModel: deeplearning
+## Model ID:  model_nn 
+## Status of Neuron Layers: auto-encoder, gaussian distribution, Quadratic loss, 776 weights/biases, 16.0 KB, 2,622,851 training samples, mini-batch size 1
+##   layer units  type dropout       l1       l2 mean_rate rate_rms momentum
+## 1     1    34 Input  0.00 %                                              
+## 2     2    10  Tanh  0.00 % 0.000000 0.000000  0.709865 0.320108 0.000000
+## 3     3     2  Tanh  0.00 % 0.000000 0.000000  0.048458 0.109033 0.000000
+## 4     4    10  Tanh  0.00 % 0.000000 0.000000  0.164717 0.192053 0.000000
+## 5     5    34  Tanh         0.000000 0.000000  0.369681 0.425672 0.000000
+##   mean_weight weight_rms mean_bias bias_rms
+## 1                                          
+## 2   -0.039307   0.691302  0.008052 0.965178
+## 3   -0.097383   0.314106  0.226376 0.067917
+## 4    0.227664   1.089589  0.112032 0.672444
+## 5    0.011072   0.605586  0.091124 0.722602
+## 
+## 
+## H2OAutoEncoderMetrics: deeplearning
+## ** Reported on training data. **
+## 
+## Training Set Metrics: 
+## =====================
+## 
+## MSE: (Extract with `h2o.mse`) 0.001472071
+## RMSE: (Extract with `h2o.rmse`) 0.03836757
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1">#Convert to autoencoded representation
+</span><span class="n">test_autoenc</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.predict</span><span class="p">(</span><span class="n">model_nn</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="dimensionality-reduction-with-hidden-layers">Dimensionality reduction with hidden layers</h3>
+
+<p>Because I had used a bottleneck model with two nodes in the hidden layer in the middle, we can use this dimensionality reduction to explore our feature space (similar to what to we could do with a principal component analysis). We can extract this hidden feature with the <code class="highlighter-rouge">h2o.deepfeatures()</code> function and plot it to show the reduced representation of the input data.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">train_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.deepfeatures</span><span class="p">(</span><span class="n">model_nn</span><span class="p">,</span><span class="w"> </span><span class="n">train_unsupervised</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">Class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">train_unsupervised</span><span class="p">[,</span><span class="w"> </span><span class="m">31</span><span class="p">]))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">train_features</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DF.L2.C1</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DF.L2.C2</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="fraud_files/figure-markdown_github/unnamed-chunk-17-1.png" alt="" /></p>
+
+<p>Here, we do not see a cluster of fraudulent transactions that is distinct from non-fraud instances, so dimensionality reduction with our autoencoder model alone is not sufficient to identify fraud in this dataset.</p>
+
+<p>But we could use the reduced dimensionality representation of one of the hidden layers as features for model training. An example would be to use the 10 features from the first or third hidden layer:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># let's take the third hidden layer
+</span><span class="n">train_features</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.deepfeatures</span><span class="p">(</span><span class="n">model_nn</span><span class="p">,</span><span class="w"> </span><span class="n">train_unsupervised</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">Class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">as.vector</span><span class="p">(</span><span class="n">train_unsupervised</span><span class="p">[,</span><span class="w"> </span><span class="m">31</span><span class="p">])))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">as.h2o</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">features_dim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">setdiff</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">train_features</span><span class="p">),</span><span class="w"> </span><span class="n">response</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">model_nn_dim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.deeplearning</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w">
+                               </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">features_dim</span><span class="p">,</span><span class="w">
+                               </span><span class="n">training_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_features</span><span class="p">,</span><span class="w">
+                               </span><span class="n">reproducible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="c1">#slow - turn off for real problems
+</span><span class="w">                               </span><span class="n">balance_classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+                               </span><span class="n">ignore_const_cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                               </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">42</span><span class="p">,</span><span class="w">
+                               </span><span class="n">hidden</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> 
+                               </span><span class="n">epochs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w">
+                               </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Tanh"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.saveModel</span><span class="p">(</span><span class="n">model_nn_dim</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="o">=</span><span class="s2">"model_nn_dim"</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">model_nn_dim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.loadModel</span><span class="p">(</span><span class="s2">"model_nn_dim/DeepLearning_model_R_1493574057843_49"</span><span class="p">)</span><span class="w">
+</span><span class="n">model_nn_dim</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Model Details:
+## ==============
+## 
+## H2OBinomialModel: deeplearning
+## Model ID:  DeepLearning_model_R_1493574057843_49 
+## Status of Neuron Layers: predicting Class, 2-class classification, bernoulli distribution, CrossEntropy loss, 184 weights/biases, 7.1 KB, 4,098,024 training samples, mini-batch size 1
+##   layer units    type dropout       l1       l2 mean_rate rate_rms
+## 1     1    10   Input  0.00 %                                     
+## 2     2    10    Tanh  0.00 % 0.000000 0.000000  0.299549 0.363303
+## 3     3     2    Tanh  0.00 % 0.000000 0.000000  0.009907 0.012193
+## 4     4    10    Tanh  0.00 % 0.000000 0.000000  0.248854 0.126722
+## 5     5     2 Softmax         0.000000 0.000000  0.160990 0.078139
+##   momentum mean_weight weight_rms mean_bias bias_rms
+## 1                                                   
+## 2 0.000000   -0.539949   4.601841 -0.060170 2.765655
+## 3 0.000000   -0.384247   1.763649 -1.429832 0.570700
+## 4 0.000000   -0.004865   0.774441 -0.320202 0.668747
+## 5 0.000000    0.563951   1.365125  0.000000 0.397460
+## 
+## 
+## H2OBinomialMetrics: deeplearning
+## ** Reported on training data. **
+## ** Metrics reported on temporary training frame with 9974 samples **
+## 
+## MSE:  0.4905394
+## RMSE:  0.7003852
+## LogLoss:  2.763673
+## Mean Per-Class Error:  0.3856454
+## AUC:  0.6656933
+## Gini:  0.3313867
+## 
+## Confusion Matrix (vertical: actual; across: predicted) for F1-optimal threshold:
+##           0    1    Error        Rate
+## 0      1438 3594 0.714229  =3594/5032
+## 1       282 4660 0.057062   =282/4942
+## Totals 1720 8254 0.388610  =3876/9974
+## 
+## Maximum Metrics: Maximum metrics at their respective thresholds
+##                         metric threshold    value idx
+## 1                       max f1  0.002173 0.706275 300
+## 2                       max f2  0.001540 0.842820 335
+## 3                 max f0point5  0.002531 0.619024 280
+## 4                 max accuracy  0.002531 0.619711 280
+## 5                max precision  0.030005 1.000000   0
+## 6                   max recall  0.000496 1.000000 388
+## 7              max specificity  0.030005 1.000000   0
+## 8             max absolute_mcc  0.002173 0.302697 300
+## 9   max min_per_class_accuracy  0.002590 0.554634 277
+## 10 max mean_per_class_accuracy  0.002531 0.622276 280
+## 
+## Gains/Lift Table: Extract with `h2o.gainsLift(&lt;model&gt;, &lt;data&gt;)` or `h2o.gainsLift(&lt;model&gt;, valid=&lt;T/F&gt;, xval=&lt;T/F&gt;)`
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<p>For measuring model performance on test data, we need to convert the test data to the same reduced dimensions as the trainings data:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">test_dim</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.deepfeatures</span><span class="p">(</span><span class="n">model_nn</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.predict</span><span class="p">(</span><span class="n">model_nn_dim</span><span class="p">,</span><span class="w"> </span><span class="n">test_dim</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">test</span><span class="p">[,</span><span class="w"> </span><span class="m">31</span><span class="p">]))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">predict</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Source: local data frame [4 x 4]
+## Groups: actual [2]
+## 
+##   actual predict     n       freq
+##    &lt;chr&gt;  &lt;fctr&gt; &lt;int&gt;      &lt;dbl&gt;
+## 1      0       0 16710 0.29506286
+## 2      0       1 39922 0.70493714
+## 3      1       0     7 0.07608696
+## 4      1       1    85 0.92391304
+</code></pre>
+</div>
+
+<p>Now, this actually looks quite good in terms of identifying fraud cases: 92% of fraud cases were identified! However, many non-fraud cases were also classified as fraud. For real-life application, this wouldn’t be a good model. Let’s try some other techniques…</p>
+
+<p><br /></p>
+
+<h3 id="anomaly-detection">Anomaly detection</h3>
+
+<p>We can also ask which instances were considered outliers or anomalies within our test data, using the <code class="highlighter-rouge">h2o.anomaly()</code> function. Based on the autoencoder model that was trained before, the input data will be reconstructed and for each instance, the mean squared error (MSE) between actual value and reconstruction is calculated.</p>
+
+<p>I am also calculating the mean MSE for both class labels.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">anomaly</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.anomaly</span><span class="p">(</span><span class="n">model_nn</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">as.data.frame</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">tibble</span><span class="o">::</span><span class="n">rownames_to_column</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">Class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">test</span><span class="p">[,</span><span class="w"> </span><span class="m">31</span><span class="p">]))</span><span class="w">
+
+</span><span class="n">mean_mse</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">anomaly</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">Class</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">(</span><span class="n">Reconstruction.MSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>This, we can now plot:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">ggplot</span><span class="p">(</span><span class="n">anomaly</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">rowname</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Reconstruction.MSE</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">Class</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean_mse</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mean</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">scale_color_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+  </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"instance number"</span><span class="p">,</span><span class="w">
+       </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Class"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="fraud_files/figure-markdown_github/unnamed-chunk-24-1.png" alt="" /></p>
+
+<p>As we can see in the plot, there is no perfect classification into fraud and non-fraud cases but the mean MSE is definitely higher for fraudulent transactions than for regular ones.</p>
+
+<p>We can now identify outlier instances by applying an MSE threshold for what we consider outliers. We could e.g. say that we consider every instance with an MSE &gt; 0.02 (chosen according to the plot above) to be an anomaly/outlier.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">anomaly</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">anomaly</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">outlier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">Reconstruction.MSE</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.02</span><span class="p">,</span><span class="w"> </span><span class="s2">"outlier"</span><span class="p">,</span><span class="w"> </span><span class="s2">"no_outlier"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">anomaly</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">Class</span><span class="p">,</span><span class="w"> </span><span class="n">outlier</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> 
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Source: local data frame [4 x 4]
+## Groups: Class [2]
+## 
+##   Class    outlier     n         freq
+##   &lt;chr&gt;      &lt;chr&gt; &lt;int&gt;        &lt;dbl&gt;
+## 1     0 no_outlier 56602 0.9994702642
+## 2     0    outlier    30 0.0005297358
+## 3     1 no_outlier    60 0.6521739130
+## 4     1    outlier    32 0.3478260870
+</code></pre>
+</div>
+
+<p>As we can see, outlier detection is not sufficient to correctly classify fraudulent credit card transactions either (at least not with this dataset).</p>
+
+<p><br /></p>
+
+<h3 id="pre-trained-supervised-model">Pre-trained supervised model</h3>
+
+<p>We can now try using the autoencoder model as a pre-training input for a supervised model. Here, I am again using a neural network. This model will now use the weights from the autoencoder for model fitting.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">model_nn_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.deeplearning</span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w">
+                               </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">features</span><span class="p">,</span><span class="w">
+                               </span><span class="n">training_frame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_supervised</span><span class="p">,</span><span class="w">
+                               </span><span class="n">pretrained_autoencoder</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s2">"model_nn"</span><span class="p">,</span><span class="w">
+                               </span><span class="n">reproducible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="c1">#slow - turn off for real problems
+</span><span class="w">                               </span><span class="n">balance_classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w">
+                               </span><span class="n">ignore_const_cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w">
+                               </span><span class="n">seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">42</span><span class="p">,</span><span class="w">
+                               </span><span class="n">hidden</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> 
+                               </span><span class="n">epochs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w">
+                               </span><span class="n">activation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Tanh"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">h</span><span class="m">2</span><span class="n">o.saveModel</span><span class="p">(</span><span class="n">model_nn_2</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="o">=</span><span class="s2">"model_nn_2"</span><span class="p">,</span><span class="w"> </span><span class="n">force</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">model_nn_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">h</span><span class="m">2</span><span class="n">o.loadModel</span><span class="p">(</span><span class="s2">"model_nn_2/DeepLearning_model_R_1493574057843_9"</span><span class="p">)</span><span class="w">
+</span><span class="n">model_nn_2</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Model Details:
+## ==============
+## 
+## H2OBinomialModel: deeplearning
+## Model ID:  DeepLearning_model_R_1493574057843_9 
+## Status of Neuron Layers: predicting Class, 2-class classification, bernoulli distribution, CrossEntropy loss, 424 weights/biases, 11.7 KB, 3,643,248 training samples, mini-batch size 1
+##   layer units    type dropout       l1       l2 mean_rate rate_rms
+## 1     1    34   Input  0.00 %                                     
+## 2     2    10    Tanh  0.00 % 0.000000 0.000000  0.274110 0.291925
+## 3     3     2    Tanh  0.00 % 0.000000 0.000000  0.004480 0.002651
+## 4     4    10    Tanh  0.00 % 0.000000 0.000000  0.210337 0.326239
+## 5     5     2 Softmax         0.000000 0.000000  0.137694 0.123830
+##   momentum mean_weight weight_rms mean_bias bias_rms
+## 1                                                   
+## 2 0.000000   -0.006945   1.058583 -0.501068 1.576798
+## 3 0.000000    0.021012   0.309286  0.360286 0.105522
+## 4 0.000000    0.934361   1.759343  0.304729 0.532527
+## 5 0.000000   -0.133149   2.641065  2.392999 3.137845
+## 
+## 
+## H2OBinomialMetrics: deeplearning
+## ** Reported on training data. **
+## ** Metrics reported on temporary training frame with 9973 samples **
+## 
+## MSE:  0.01500211
+## RMSE:  0.1224831
+## LogLoss:  0.04408663
+## Mean Per-Class Error:  0.00169424
+## AUC:  0.9995075
+## Gini:  0.9990149
+## 
+## Confusion Matrix (vertical: actual; across: predicted) for F1-optimal threshold:
+##           0    1    Error      Rate
+## 0      5000   17 0.003388  =17/5017
+## 1         0 4956 0.000000   =0/4956
+## Totals 5000 4973 0.001705  =17/9973
+## 
+## Maximum Metrics: Maximum metrics at their respective thresholds
+##                         metric threshold    value idx
+## 1                       max f1  0.134320 0.998288  96
+## 2                       max f2  0.134320 0.999314  96
+## 3                 max f0point5  0.134320 0.997263  96
+## 4                 max accuracy  0.134320 0.998295  96
+## 5                max precision  1.000000 1.000000   0
+## 6                   max recall  0.134320 1.000000  96
+## 7              max specificity  1.000000 1.000000   0
+## 8             max absolute_mcc  0.134320 0.996597  96
+## 9   max min_per_class_accuracy  0.134320 0.996612  96
+## 10 max mean_per_class_accuracy  0.134320 0.998306  96
+## 
+## Gains/Lift Table: Extract with `h2o.gainsLift(&lt;model&gt;, &lt;data&gt;)` or `h2o.gainsLift(&lt;model&gt;, valid=&lt;T/F&gt;, xval=&lt;T/F&gt;)`
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as.data.frame</span><span class="p">(</span><span class="n">h</span><span class="m">2</span><span class="n">o.predict</span><span class="p">(</span><span class="n">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model_nn_2</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.vector</span><span class="p">(</span><span class="n">test</span><span class="p">[,</span><span class="w"> </span><span class="m">31</span><span class="p">]))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">predict</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> 
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Source: local data frame [4 x 4]
+## Groups: actual [2]
+## 
+##   actual predict     n        freq
+##    &lt;chr&gt;  &lt;fctr&gt; &lt;int&gt;       &lt;dbl&gt;
+## 1      0       0 56512 0.997881057
+## 2      0       1   120 0.002118943
+## 3      1       0    16 0.173913043
+## 4      1       1    76 0.826086957
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">predict</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="fraud_files/figure-markdown_github/unnamed-chunk-31-1.png" alt="" /></p>
+
+<p>Now, this looks much better! We did miss 17% of the fraud cases but we also did not mis-classify too many of the non-fraud cases.</p>
+
+<p>In real-life, we would now spend some more time trying to improve the model by e.g. <a href="https://shiring.github.io/machine_learning/2017/03/07/grid_search">performing grid search for hyperparameter tuning</a>, going back to the original features (which we did not have here) and trying different engineered features and/or trying different algorithms. But here, I will leave it at that.</p>
+
+<p><br /></p>
+
+<h3 id="measuring-model-performance-on-highly-unbalanced-data">Measuring model performance on highly unbalanced data</h3>
+
+<p>Because of the severe bias towards non-fraud cases, we can not use performance measures like accuracy or area under the curve (AUC), as they would give overly optimistic results based on the high percentage of correct classifications of the majority class.</p>
+
+<p>An alternative to AUC is to use the precision-recall curve or the sensitivity (recall)-specificity curve. To calculate and plot these metrics, we can use the <strong>ROCR</strong> package. There are different ways to calculate the area under a curve (see the <strong>PRROC</strong> package for details) but I am going to use a simple function that calculates the area between every consecutive points-pair of x (i.e. x1 - x0, x2 - x1, etc.) under the corresponding values of y.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ROCR</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># http://stackoverflow.com/questions/24563061/computing-integral-of-a-line-plot-in-r
+</span><span class="n">line_integral</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">dx</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">
+  </span><span class="n">end</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w">
+  </span><span class="n">my</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">)]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="m">2</span><span class="o">:</span><span class="n">end</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w">
+  </span><span class="nf">sum</span><span class="p">(</span><span class="n">dx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">my</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w"> 
+
+</span><span class="n">prediction_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">prediction</span><span class="p">(</span><span class="n">pred</span><span class="o">$</span><span class="n">p</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="o">$</span><span class="n">actual</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span><span class="w">
+</span><span class="n">par</span><span class="p">(</span><span class="n">mar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">5.1</span><span class="p">,</span><span class="m">4.1</span><span class="p">,</span><span class="m">4.1</span><span class="p">,</span><span class="m">2.1</span><span class="p">))</span><span class="w">
+
+</span><span class="c1"># precision-recall curve
+</span><span class="n">perf1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">performance</span><span class="p">(</span><span class="n">prediction_obj</span><span class="p">,</span><span class="w"> </span><span class="n">measure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prec"</span><span class="p">,</span><span class="w"> </span><span class="n">x.measure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rec"</span><span class="p">)</span><span class="w"> 
+
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">perf1</span><span class="o">@</span><span class="n">x.values</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">perf1</span><span class="o">@</span><span class="n">y.values</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">y</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">perf1</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="s2">"Area Under the\nPrecision-Recall Curve:\n"</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">line_integral</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)))</span><span class="w">
+
+</span><span class="c1"># sensitivity-specificity curve
+</span><span class="n">perf2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">performance</span><span class="p">(</span><span class="n">prediction_obj</span><span class="p">,</span><span class="w"> </span><span class="n">measure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sens"</span><span class="p">,</span><span class="w"> </span><span class="n">x.measure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"spec"</span><span class="p">)</span><span class="w"> 
+
+</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">perf2</span><span class="o">@</span><span class="n">x.values</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">perf2</span><span class="o">@</span><span class="n">y.values</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span><span class="w">
+</span><span class="n">y</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span><span class="w">
+
+</span><span class="n">plot</span><span class="p">(</span><span class="n">perf2</span><span class="p">,</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="s2">"Area Under the\nSensitivity-Specificity Curve:\n"</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="nf">abs</span><span class="p">(</span><span class="n">line_integral</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)),</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="fraud_files/figure-markdown_github/unnamed-chunk-34-1.png" alt="" /></p>
+
+<p>Precision is the proportion of test cases predicted to be fraud that were indeed fraudulent (i.e. the true positive predictions), while recall or sensitivity is the proportion of fraud cases that were identified as fraud. And specificity is the proportion of non-fraud cases that are identified as non-fraud.</p>
+
+<p>The precision-recall curve tells us the relationship between correct fraud predictions and the proportion of fraud cases that were detected (e.g. if all or most fraud cases were identified, we also have many non-fraud cases predicted as fraud and vice versa). The sensitivity-specificity curve thus tell us the relationship between correctly identified classes of both labels (e.g. if we have 100% correctly classified fraud cases, we will have no correctly classified non-fraud cases and vice versa).</p>
+
+<p>We can also look at this a little bit differently, by manually going through different prediction thresholds and calculating how many cases were correctly classified in the two classes:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">thresholds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">)</span><span class="w">
+</span><span class="n">pred_thresholds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred</span><span class="o">$</span><span class="n">actual</span><span class="p">)</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">threshold</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">thresholds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  
+  </span><span class="n">prediction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">pred</span><span class="o">$</span><span class="n">p</span><span class="m">1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">threshold</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w">
+  </span><span class="n">prediction_true</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">pred_thresholds</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred_thresholds</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cbind</span><span class="p">(</span><span class="n">pred_thresholds</span><span class="p">,</span><span class="w"> </span><span class="n">prediction_true</span><span class="p">)</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">pred_thresholds</span><span class="p">)[</span><span class="m">-1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">thresholds</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_thresholds</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="n">ncol</span><span class="p">(</span><span class="n">pred_thresholds</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_line</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_bw</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="n">actual</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">labs</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prediction threshold"</span><span class="p">,</span><span class="w">
+         </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"number of instances"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="fraud_files/figure-markdown_github/unnamed-chunk-37-1.png" alt="" /></p>
+
+<p>This plot tells us that we can increase the number of correctly classified non-fraud cases without loosing correctly classified fraud cases when we increase the prediction threshold from the default 0.5 to 0.6:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">predict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">pred</span><span class="o">$</span><span class="n">p</span><span class="m">1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">predict</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">summarise</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">freq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> 
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## Source: local data frame [4 x 4]
+## Groups: actual [2]
+## 
+##   actual predict     n        freq
+##    &lt;chr&gt;   &lt;dbl&gt; &lt;int&gt;       &lt;dbl&gt;
+## 1      0       0 56558 0.998693318
+## 2      0       1    74 0.001306682
+## 3      1       0    16 0.173913043
+## 4      1       1    76 0.826086957
+</code></pre>
+</div>
+
+<p>Our final model now correctly identified 83% of fraud cases and almost 100% of non-fraud cases.</p>
+
+<hr />
+
+<p>If you are interested in more machine learning posts, check out <a href="https://shiring.github.io/categories.html#machine_learning-ref">the category listing for <strong>machine_learning</strong> on my blog</a>.</p>
+
+<hr />
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-apple-darwin15.6.0 (64-bit)
+## Running under: macOS Sierra 10.12.3
+## 
+## Matrix products: default
+## BLAS: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] ROCR_1.0-7      gplots_3.0.1    h2o_3.10.4.4    dplyr_0.5.0    
+##  [5] purrr_0.2.2     readr_1.1.0     tidyr_0.6.1     tibble_1.3.0   
+##  [9] ggplot2_2.2.1   tidyverse_1.1.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] gtools_3.5.0       reshape2_1.4.2     haven_1.0.0       
+##  [4] lattice_0.20-35    colorspace_1.3-2   htmltools_0.3.6   
+##  [7] yaml_2.1.14        foreign_0.8-68     DBI_0.6-1         
+## [10] RColorBrewer_1.1-2 modelr_0.1.0       readxl_1.0.0      
+## [13] plyr_1.8.4         stringr_1.2.0      munsell_0.4.3     
+## [16] gtable_0.2.0       cellranger_1.1.0   rvest_0.3.2       
+## [19] caTools_1.17.1     psych_1.7.3.21     evaluate_0.10     
+## [22] labeling_0.3       knitr_1.15.1       forcats_0.2.0     
+## [25] parallel_3.4.0     broom_0.4.2        Rcpp_0.12.10      
+## [28] KernSmooth_2.23-15 scales_0.4.1       backports_1.0.5   
+## [31] gdata_2.17.0       jsonlite_1.4       mnormt_1.5-5      
+## [34] hms_0.3            digest_0.6.12      stringi_1.1.5     
+## [37] grid_3.4.0         rprojroot_1.2      tools_3.4.0       
+## [40] bitops_1.0-6       magrittr_1.5       lazyeval_0.2.0    
+## [43] RCurl_1.95-4.8     xml2_1.1.1         lubridate_1.6.0   
+## [46] assertthat_0.2.0   rmarkdown_1.5      httr_1.2.1        
+## [49] R6_2.2.0           nlme_3.1-131       compiler_3.4.0
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#machine_learning-ref">
+    		machine_learning <span>14</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#machine_learning-ref">machine_learning <span>13</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+     
+    	<li><a href="/tags.html#autoencoder-ref">autoencoder <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#anomaly-ref">anomaly <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#fraud-ref">fraud <span>3</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/machine_learning/2017/04/23/one_r" title="Does money buy happiness after all? Machine Learning with One Rule">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/machine_learning/2017/05/02/fraud_2" title="Update to autoencoders and anomaly detection with machine learning in fraud analytics">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

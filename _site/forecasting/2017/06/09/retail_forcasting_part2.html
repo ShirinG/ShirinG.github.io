@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Data Science for Business - Time Series Forecasting Part 2: Forecasting with timekit</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Data Science for Business - Time Series Forecasting Part 2: Forecasting with timekit </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Data Science for Business - Time Series Forecasting Part 2: Forecasting with timekit" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>09 June 2017</span>
+    </div>
+    <div class="content">
+      <p>In <a href="https://shiring.github.io/forecasting/2017/05/28/retail_forcasting_part1">my last post</a>, I prepared and visually explored time series data.</p>
+
+<p>Now, I will use this data to test the <a href="https://cran.r-project.org/web/packages/timekit/index.html"><strong>timekit</strong> package</a> for time series forecasting with machine learning.</p>
+
+<p><br /></p>
+
+<h2 id="forecasting">Forecasting</h2>
+
+<p>In time series forecasting, we use models to predict future time points based on past observations.</p>
+
+<p>As mentioned in <strong>timekit</strong>’s vignette, “as with most machine learning applications, the prediction is only as good as the patterns in the data. Forecasting using this approach may not be suitable when patterns are not present or when the future is highly uncertain (i.e. past is not a suitable predictor of future performance).”</p>
+
+<p>And while this is certainly true, we don’t always have data with a strong regular pattern. And, I would argue, data that has very obvious patterns doesn’t need a complicated model to generate forecasts - we can already guess the future curve just by looking at it. So, if we think of use-cases for businesses, who want to predict e.g. product sales, forecasting models are especially relevant in cases where we can’t make predictions manually or based on experience.</p>
+
+<p>The packages I am using are <strong>timekit</strong> for forecasting, <strong>tidyverse</strong> for data wrangling and visualization, <strong>caret</strong> for additional modeling functions, <strong>tidyquant</strong> for its ggplot theme, <strong>broom</strong> and <strong>modelr</strong> for (tidy) modeling.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">tidyquant</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">broom</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">timekit</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">modelr</span><span class="p">)</span><span class="w">
+</span><span class="n">options</span><span class="p">(</span><span class="n">na.action</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">na.warn</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="training-and-test-data">Training and test data</h3>
+
+<p>My input data is the tibble <code class="highlighter-rouge">retail_p_day</code>, that was created in <a href="https://shiring.github.io/forecasting/2017/05/28/retail_forcasting_part1">my last post</a>.</p>
+
+<p>I am splitting this dataset into training (all data points before/on Nov. 1st 2011) and test samples (all data points after Nov. 1st 2011).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">retail_p_day</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">retail_p_day</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">day</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="s2">"2011-11-01"</span><span class="p">,</span><span class="w"> </span><span class="s2">"train"</span><span class="p">,</span><span class="w"> </span><span class="s2">"test"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">colnames</span><span class="p">(</span><span class="n">retail_p_day</span><span class="p">)[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"^[0-9]+"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">retail_p_day</span><span class="p">))]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"P_"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">retail_p_day</span><span class="p">)[</span><span class="n">grep</span><span class="p">(</span><span class="s2">"^[0-9]+"</span><span class="p">,</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">retail_p_day</span><span class="p">))])</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Here, I am testing out <strong>timekit</strong>’s functions with the net income per day as response variable. Because the time series in our data set is relatively short and doesn’t cover multiple years, this forecast will only be able to capture recurring variation in days and weeks. Variations like increased sales before holidays, etc. would need additional data from several years to be accurately forecast.</p>
+
+<p>As we can see in the plot below, the net income shows variation between days.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">retail_p_day</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_income</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="retail_forcasting_part2_files/figure-markdown_github/unnamed-chunk-4-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="augmenting-the-time-series-signature">Augmenting the time series signature</h3>
+
+<p>With <strong>timekit</strong>, we can do forecasting with only a time series signature (a series of dates and times) and a corresponding response variable. If we had additional features that could be forecast independently, we could also introduce these into the model, but here, I will only work with the minimal data set.</p>
+
+<p>A central function of <strong>timekit</strong> is <code class="highlighter-rouge">tk_augment_timeseries_signature()</code>, which adds a number of features based on the properties of our time series signature:</p>
+
+<ul>
+  <li>index: The index value that was decomposed</li>
+  <li>index.num: The numeric value of the index in seconds. The base is “1970-01-01 00:00:00”.</li>
+  <li>diff: The difference in seconds from the previous numeric index value.</li>
+  <li>year: The year component of the index.</li>
+  <li>half: The half component of the index.</li>
+  <li>quarter: The quarter component of the index.</li>
+  <li>month: The month component of the index with base 1.</li>
+  <li>month.xts: The month component of the index with base 0, which is what xts implements.</li>
+  <li>month.lbl: The month label as an ordered factor beginning with January and ending with December.</li>
+  <li>day: The day component of the index.</li>
+  <li>hour: The hour component of the index.</li>
+  <li>minute: The minute component of the index.</li>
+  <li>second: The second component of the index.</li>
+  <li>hour12: The hour component on a 12 hour scale.</li>
+  <li>am.pm: Morning (AM) = 1, Afternoon (PM) = 2.</li>
+  <li>wday: The day of the week with base 1. Sunday = 1 and Saturday = 7.</li>
+  <li>wday.xts: The day of the week with base 0, which is what xts implements. Sunday = 0 and Saturday = 6.</li>
+  <li>wday.lbl: The day of the week label as an ordered factor begining with Sunday and ending with Saturday.</li>
+  <li>mday: The day of the month.</li>
+  <li>qday: The day of the quarter.</li>
+  <li>yday: The day of the year.</li>
+  <li>mweek: The week of the month.</li>
+  <li>week: The week number of the year (Sunday start).</li>
+  <li>week.iso: The ISO week number of the year (Monday start).</li>
+  <li>week2: The modulus for bi-weekly frequency.</li>
+  <li>week3: The modulus for tri-weekly frequency.</li>
+  <li>week4: The modulus for quad-weekly frequency.</li>
+  <li>mday7: The integer division of day of the month by seven, which returns the first, second, third, … instance the day has appeared in the month. Values begin at 1. For example, the first Saturday in the month has mday7 = 1. The second has mday7 = 2.</li>
+</ul>
+
+<p>Because we have missing data for the first column of diff, I am removing this row. We need to keep in mind too, that we have an irregular time series, because we never have data on Saturdays. This will affect the modeling and results and we need to account for this later on! Alternatively, it might make sense to compare the results when setting all NAs/Saturdays to 0, assuming that no information means that there was no income on a given day. Or we could impute missing values. Which strategy most accurately represents your data needs to be decided based on a good understanding of the business and how the data was collected.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">retail_p_day_aug</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">retail_p_day</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">sum_income</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">tk_augment_timeseries_signature</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">contains</span><span class="p">(</span><span class="s2">"month"</span><span class="p">))</span><span class="w">
+  
+</span><span class="n">retail_p_day_aug</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">retail_p_day_aug</span><span class="p">[</span><span class="n">complete.cases</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">),</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="preprocessing">Preprocessing</h3>
+
+<p>Not all of these augmented features will be informative for our model. For example, we don’t have information about time of day, so features like hour, minute, second, etc. will be irrelevant here.</p>
+
+<p>Let’s look at column variation for all numeric feature and remove those with a variance of 0.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">matrixStats</span><span class="p">)</span><span class="w">
+
+</span><span class="p">(</span><span class="n">var</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">colnames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">[,</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">,</span><span class="w"> </span><span class="n">is.numeric</span><span class="p">)]),</span><span class="w">
+           </span><span class="n">colvars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colVars</span><span class="p">(</span><span class="n">as.matrix</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">[,</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">,</span><span class="w"> </span><span class="n">is.numeric</span><span class="p">)])))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">colvars</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>##   colnames colvars
+## 1     hour       0
+## 2   minute       0
+## 3   second       0
+## 4   hour12       0
+## 5    am.pm       0
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">retail_p_day_aug</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">one_of</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">var</span><span class="o">$</span><span class="n">colnames</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Next, we want to remove highly correlated features. By plotting them, we can get an idea about which cutoff to set.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">ggcorrplot</span><span class="p">)</span><span class="w">
+
+</span><span class="n">cor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cor</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">[,</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">,</span><span class="w"> </span><span class="n">is.numeric</span><span class="p">)])</span><span class="w">
+</span><span class="n">p.cor</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">cor_pmat</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">[,</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">,</span><span class="w"> </span><span class="n">is.numeric</span><span class="p">)])</span><span class="w">
+
+</span><span class="n">ggcorrplot</span><span class="p">(</span><span class="n">cor</span><span class="p">,</span><span class="w">  </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"upper"</span><span class="p">,</span><span class="w"> </span><span class="n">outline.col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">hc.order</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">p.mat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p.cor</span><span class="p">,</span><span class="w">
+           </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">palette_light</span><span class="p">()[</span><span class="m">1</span><span class="p">],</span><span class="w"> </span><span class="s2">"white"</span><span class="p">,</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[</span><span class="m">2</span><span class="p">]))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="retail_forcasting_part2_files/figure-markdown_github/unnamed-chunk-7-1.png" alt="" /></p>
+
+<p>I am going to choose a cutoff of 0.9 for removing features:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">cor_cut</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">findCorrelation</span><span class="p">(</span><span class="n">cor</span><span class="p">,</span><span class="w"> </span><span class="n">cutoff</span><span class="o">=</span><span class="m">0.9</span><span class="p">)</span><span class="w"> 
+</span><span class="n">retail_p_day_aug</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">one_of</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">cor</span><span class="p">)[</span><span class="n">cor_cut</span><span class="p">]))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>Now, I can split the data into training and test sets:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"train"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="o">-</span><span class="n">model</span><span class="p">)</span><span class="w">
+</span><span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">filter</span><span class="p">(</span><span class="n">retail_p_day_aug</span><span class="p">,</span><span class="w"> </span><span class="n">model</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"test"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="modeling">Modeling</h3>
+
+<p>To model the time series of the response variable <code class="highlighter-rouge">sum_income</code>, I am using a <a href="https://en.wikipedia.org/wiki/Generalized_linear_model">generalized linear model</a>. We could try all kinds of different models and modeling parameters, but for this test I am keeping it simple.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">fit_lm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">glm</span><span class="p">(</span><span class="n">sum_income</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>We can examine our model e.g. by visualizing:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">tidy</span><span class="p">(</span><span class="n">fit_lm</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">estimate</span><span class="o">:</span><span class="n">p.value</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">term</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="retail_forcasting_part2_files/figure-markdown_github/unnamed-chunk-11-1.png" alt="" /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">augment</span><span class="p">(</span><span class="n">fit_lm</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">.resid</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[[</span><span class="m">1</span><span class="p">]])</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_smooth</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="retail_forcasting_part2_files/figure-markdown_github/unnamed-chunk-12-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<p>With this model, we can now add predictions and residuals for the test data…</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">add_predictions</span><span class="p">(</span><span class="n">fit_lm</span><span class="p">,</span><span class="w"> </span><span class="s2">"pred_lm"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">add_residuals</span><span class="p">(</span><span class="n">fit_lm</span><span class="p">,</span><span class="w"> </span><span class="s2">"resid_lm"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>… and visualize the residuals.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_test</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resid_lm</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_hline</span><span class="p">(</span><span class="n">yintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[[</span><span class="m">1</span><span class="p">]])</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_smooth</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="retail_forcasting_part2_files/figure-markdown_github/unnamed-chunk-14-1.png" alt="" /></p>
+
+<p>We can also compare the predicted with the actual sum income in the test set.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_test</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">sum_income</span><span class="p">,</span><span class="w"> </span><span class="n">pred_lm</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="retail_forcasting_part2_files/figure-markdown_github/unnamed-chunk-15-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="forecasting-1">Forecasting</h3>
+
+<p>Once we are satisfied with our model’s performance on the test set, we can use it to forecast future events. To create future time points for modeling, we need to extract the time index (the date column <code class="highlighter-rouge">day</code> in our data frame).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># Extract index
+</span><span class="n">idx</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">retail_p_day</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">tk_index</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>From this index we can generate the future time series.</p>
+
+<p>Here, we need to beware of a couple of things. Most importantly, we need to account for the irregularity of our data: We never have data for Saturdays and we have a few random missing values in between, as can be seen in the <code class="highlighter-rouge">diff</code> column of <code class="highlighter-rouge">retail_p_day_aug</code> (1 day difference == 86400 seconds).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">retail_p_day_aug</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diff</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">diff</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="retail_forcasting_part2_files/figure-markdown_github/unnamed-chunk-19-1.png" alt="" /></p>
+
+<p>What dates are these? Let’s filter for dates with more than 1 day between the last recorded day that are not Sundays (as Saturdays are always off-days).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">retail_p_day_aug</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">wday.lbl</span><span class="p">,</span><span class="w"> </span><span class="n">diff</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">wday.lbl</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s2">"Sunday"</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">diff</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">86400</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">days_missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diff</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">86400</span><span class="w"> </span><span class="m">-1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## # A tibble: 5 x 4
+##         date wday.lbl    diff days_missing
+##       &lt;date&gt;    &lt;ord&gt;   &lt;int&gt;        &lt;dbl&gt;
+## 1 2011-01-04  Tuesday 1036800           11
+## 2 2011-04-26  Tuesday  432000            4
+## 3 2011-05-03  Tuesday  172800            1
+## 4 2011-05-31  Tuesday  172800            1
+## 5 2011-08-30  Tuesday  172800            1
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">retail_p_day_aug</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">wday.lbl</span><span class="p">,</span><span class="w"> </span><span class="n">diff</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">filter</span><span class="p">(</span><span class="n">wday.lbl</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"Sunday"</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">diff</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">172800</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">days_missing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diff</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">86400</span><span class="w"> </span><span class="m">-1</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## # A tibble: 1 x 4
+##         date wday.lbl   diff days_missing
+##       &lt;date&gt;    &lt;ord&gt;  &lt;int&gt;        &lt;dbl&gt;
+## 1 2011-05-01   Sunday 259200            2
+</code></pre>
+</div>
+
+<p>Let’s create a list of all missing days:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">off_days</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"2010-12-24"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2010-12-25"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2010-12-26"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2010-12-27"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2010-12-28"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2010-12-29"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2010-12-30"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2010-01-01"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2010-01-02"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2010-01-03"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"2011-04-22"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2011-04-23"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2011-04-24"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2011-04-25"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2011-05-02"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2011-05-30"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2011-08-29"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2011-04-29"</span><span class="p">,</span><span class="w"> </span><span class="s2">"2011-04-30"</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> 
+  </span><span class="n">ymd</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Official UK holidays during that time were:</p>
+
+<ul>
+  <li>2011:</li>
+  <li>Boxing Day December 26</li>
+  <li>
+    <p>Christmas Day Holiday December 27</p>
+  </li>
+  <li>2012:</li>
+  <li>New Year’s Day Holiday January 2</li>
+  <li>Good Friday April 6</li>
+  <li>Easter Monday April 9</li>
+  <li>Early May Bank Holiday May 7</li>
+  <li>Spring Bank Holiday June 4</li>
+  <li>Diamond Jubilee Holiday June 5</li>
+  <li>Summer Bank Holiday August 27</li>
+</ul>
+
+<p><br /></p>
+
+<p>We can account for the missing Saturdays with <code class="highlighter-rouge">inspect_weekdays = TRUE</code>.</p>
+
+<p>Ideally, we would now use <code class="highlighter-rouge">skip_values</code> and <code class="highlighter-rouge">insert_values</code> to specifically account for days with irregular missing data in our future time series, e.g. by accounting for holidays. Generally, it is very difficult to account for holidays, because they don’t occur with an easy to model rule (e.g. Easter is on the first Sunday after the first full moon in Spring). Unfortunately, in our dataset we have seen that holidays and randomly missing days did not have a big overlap in the past.</p>
+
+<p>Because not all holidays are missing days and we have more missing days than official holidays, I am using the list of missing days for skipping values - even though this is only a best-guess approach and likely not going to match all days that will be missing in reality during the future time series.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">idx_future</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">tk_make_future_timeseries</span><span class="p">(</span><span class="n">n_future</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300</span><span class="p">,</span><span class="w"> </span><span class="n">inspect_weekdays</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">inspect_months</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">skip_values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">off_days</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">idx_future</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">tk_get_timeseries_signature</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diff</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">aes</span><span class="p">(</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">as.factor</span><span class="p">(</span><span class="n">diff</span><span class="p">)))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">())</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="retail_forcasting_part2_files/figure-markdown_github/unnamed-chunk-24-1.png" alt="" /></p>
+
+<p>Then, we can build the data frame for forecasting by using <code class="highlighter-rouge">tk_get_timeseries_signature()</code> and renaming the <code class="highlighter-rouge">index</code> column to <code class="highlighter-rouge">date</code>, so that it matches the features in the model. With this data frame, we can now predict future values and add this to the data frame.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data_future</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">idx_future</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">tk_get_timeseries_signature</span><span class="p">()</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">rename</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">index</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pred_future</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">predict</span><span class="p">(</span><span class="n">fit_lm</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data_future</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pred_future</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data_future</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">select</span><span class="p">(</span><span class="n">date</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">add_column</span><span class="p">(</span><span class="n">sum_income</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_future</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">retail_p_day</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">sum_income</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rbind</span><span class="p">(</span><span class="n">pred_future</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_income</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_x_date</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">retail_p_day</span><span class="o">$</span><span class="n">day</span><span class="p">)),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"red"</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>When we evaluate the forecast, we want to account for uncertainty of accuracy, e.g. by accounting for the standard deviation of the test residuals.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">test_residuals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pred_test</span><span class="o">$</span><span class="n">resid_lm</span><span class="w">
+</span><span class="n">test_resid_sd</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sd</span><span class="p">(</span><span class="n">test_residuals</span><span class="p">,</span><span class="w"> </span><span class="n">na.rm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+
+</span><span class="n">pred_future</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pred_future</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">mutate</span><span class="p">(</span><span class="w">
+        </span><span class="n">lo.95</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_income</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.96</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">test_resid_sd</span><span class="p">,</span><span class="w">
+        </span><span class="n">lo.80</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_income</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1.28</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">test_resid_sd</span><span class="p">,</span><span class="w">
+        </span><span class="n">hi.80</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_income</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.28</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">test_resid_sd</span><span class="p">,</span><span class="w">
+        </span><span class="n">hi.95</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_income</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1.96</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">test_resid_sd</span><span class="w">
+        </span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>This, we can then plot to show the forecast with confidence intervals:</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">retail_p_day</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">select</span><span class="p">(</span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="n">sum_income</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">rename</span><span class="p">(</span><span class="n">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_income</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_line</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_ribbon</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lo.95</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hi.95</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_future</span><span class="p">,</span><span class="w"> 
+                </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#D5DBFF"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_ribbon</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">ymin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lo.80</span><span class="p">,</span><span class="w"> </span><span class="n">ymax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hi.80</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_future</span><span class="p">,</span><span class="w">
+                </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"#596DD5"</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NA</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_point</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_income</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_future</span><span class="p">,</span><span class="w">
+               </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette_light</span><span class="p">()[[</span><span class="m">2</span><span class="p">]])</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_smooth</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum_income</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_future</span><span class="p">,</span><span class="w">
+                </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'loess'</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"white"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme_tq</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="retail_forcasting_part2_files/figure-markdown_github/unnamed-chunk-28-1.png" alt="" /></p>
+
+<p>Our model predicts that income will follow a curve that is very similar to last year’s with a drop after Christmas and an increase towards the later months of the year. In and off itself, this sounds reasonable. However, because we only have data from one year, we do not know whether the decline in January/February and the increase towards Christmas is an annually recurring trend or whether the increase we see at the end of 2011 will be independent of seasonality and continue to rise in the future.</p>
+
+<p>Next time, I’ll compare how Facebook’s <strong>prophet</strong> will predict the future income.</p>
+
+<hr />
+
+<p><br /></p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.4.0 (2017-04-21)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 7 x64 (build 7601) Service Pack 1
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] ggcorrplot_0.1.1              matrixStats_0.52.2           
+##  [3] modelr_0.1.0                  timekit_0.3.0                
+##  [5] broom_0.4.2                   tidyquant_0.5.1              
+##  [7] quantmod_0.4-8                TTR_0.23-1                   
+##  [9] PerformanceAnalytics_1.4.3541 xts_0.9-7                    
+## [11] zoo_1.8-0                     lubridate_1.6.0              
+## [13] caret_6.0-76                  lattice_0.20-35              
+## [15] dplyr_0.5.0                   purrr_0.2.2.2                
+## [17] readr_1.1.1                   tidyr_0.6.3                  
+## [19] tibble_1.3.1                  ggplot2_2.2.1                
+## [21] tidyverse_1.1.1              
+## 
+## loaded via a namespace (and not attached):
+##  [1] httr_1.2.1         jsonlite_1.5       splines_3.4.0     
+##  [4] foreach_1.4.3      assertthat_0.2.0   stats4_3.4.0      
+##  [7] cellranger_1.1.0   yaml_2.1.14        backports_1.0.5   
+## [10] quantreg_5.33      digest_0.6.12      rvest_0.3.2       
+## [13] minqa_1.2.4        colorspace_1.3-2   htmltools_0.3.6   
+## [16] Matrix_1.2-10      plyr_1.8.4         psych_1.7.5       
+## [19] SparseM_1.77       haven_1.0.0        padr_0.3.0        
+## [22] scales_0.4.1       lme4_1.1-13        MatrixModels_0.4-1
+## [25] mgcv_1.8-17        car_2.1-4          nnet_7.3-12       
+## [28] lazyeval_0.2.0     pbkrtest_0.4-7     mnormt_1.5-5      
+## [31] magrittr_1.5       readxl_1.0.0       evaluate_0.10     
+## [34] nlme_3.1-131       MASS_7.3-47        forcats_0.2.0     
+## [37] xml2_1.1.1         foreign_0.8-68     tools_3.4.0       
+## [40] hms_0.3            stringr_1.2.0      munsell_0.4.3     
+## [43] compiler_3.4.0     rlang_0.1.1        grid_3.4.0        
+## [46] nloptr_1.0.4       iterators_1.0.8    labeling_0.3      
+## [49] rmarkdown_1.5      gtable_0.2.0       ModelMetrics_1.1.0
+## [52] codetools_0.2-15   DBI_0.6-1          reshape2_1.4.2    
+## [55] R6_2.2.1           knitr_1.16         rprojroot_1.2     
+## [58] Quandl_2.8.0       stringi_1.1.5      parallel_3.4.0    
+## [61] Rcpp_0.12.11
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#forecasting-ref">
+    		forecasting <span>3</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#timeseries-ref">timeseries <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#forecasting-ref">forecasting <span>3</span></a></li>
+     
+    	<li><a href="/tags.html#timekit-ref">timekit <span>2</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot-ref">ggplot <span>6</span></a></li>
+     
+    	<li><a href="/tags.html#tidyverse-ref">tidyverse <span>6</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/forecasting/2017/05/28/retail_forcasting_part1" title="Data Science for Business - Time Series Forecasting Part 1: EDA & Data Preparation">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/forecasting/2017/06/13/retail_forcasting_part3" title="Data Science for Business - Time Series Forecasting Part 3: Forecasting with Facebook's Prophet">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+

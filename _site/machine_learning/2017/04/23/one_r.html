@@ -1,0 +1,1208 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Does money buy happiness after all? Machine Learning with One Rule</title>
+    
+    <meta name="author" content="Shirin Glander">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap styles -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Sticky Footer -->
+    <link href="/assets/themes/bootstrap-3/bootstrap/css/bs-sticky-footer.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="/assets/themes/bootstrap-3/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	  
+    <!-- Fav and touch icons -->
+    <!-- Update these with your own images      -->
+      <link rel="shortcut icon" type="image/x-icon" href="http://localhost:4000/assets/images/iconified/favicon.ico">
+      <!-- <link rel="shortcut icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png"> -->
+      <link rel="apple-touch-icon" type="image/png" href="http://localhost:4000/assets/images/iconified/apple-touch-icon.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="http://localhost:4000/images/iconified/apple-touch-icon-76x76.png">
+      <link rel="apple-touch-icon" type="image/png" sizes="114x114" href="http://localhost:4000/images/iconified/apple-touch-icon-114x114.png">
+
+    <!-- atom & rss feed -->
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+  </head>
+  
+ <div class="header">
+      <div id="wrap">
+      <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#jb-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- <a class="navbar-brand" href="/">Shirin's playgRound</a> -->
+		  <a class="navbar-brand" href="/"><img src="https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png" alt="logo" />Shirin's playgRound</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="jb-navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+            
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/about">About me</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/archive">Archive</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/categories">Categories</a></li>
+      	
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/feeds">Feeds</a></li>
+      	
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+      	
+      	<li><a href="/tags">Tags</a></li>
+      	
+      
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+          </ul>
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div><!-- /.navbar-collapse -->
+      </nav>
+
+    </div>
+</div>
+
+  <body>
+    <div id="wrap">
+      <div class="container">
+        
+
+<div class="page-header">
+  <h1>Does money buy happiness after all? Machine Learning with One Rule </h1>
+</div>
+
+<!-- Paste the 3 next lines where you want the sharing button(s) to appear -->
+    <div class="post-sharing">
+     
+
+  
+  		<div id="fb-root"></div>
+
+<ul class="post-share ulno mob">
+
+<!-- Twitter -->
+<li class="tw"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Does money buy happiness after all? Machine Learning with One Rule" data-via="" data-related="" data-count="" data-size="">Tweet</a>
+
+<!-- Google+ -->
+<li class="gp"><div class="g-plusone" data-size="medium" data-annotation="bubble" data-width=""></div>
+
+<!-- Facebook -->
+<li class="fb"><div class="fb-like" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font=""></div>
+
+<!-- Reddit -->
+<li><script type="text/javascript" src="http://www.reddit.com/buttonlite.js?i=4"></script>
+</ul>
+
+<script>
+  
+(function(doc, script) {
+ 	
+    // Async Social Buttons
+    var js, 
+        fjs = doc.getElementsByTagName(script)[0],
+        add = function(url, id) {
+            if (doc.getElementById(id)) {return;}
+            js = doc.createElement(script);
+            js.src = url;
+            id && (js.id = id);
+            fjs.parentNode.insertBefore(js, fjs);
+        };
+
+    // Twitter SDK
+    add('//platform.twitter.com/widgets.js', 'twitter-wjs');
+    
+    // Google+ button
+    add('https://apis.google.com/js/plusone.js');
+    
+    // Facebook SDK
+    add('https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1424112504267565', 'facebook-jssdk');
+    
+}(document, 'script'));
+
+</script>
+  
+
+
+
+    </div>
+
+<div class="row post-full">
+  <div class="col-xs-12">
+    <div class="date">
+      <span>23 April 2017</span>
+    </div>
+    <div class="content">
+      <p>This week, I am exploring <a href="https://cran.r-project.org/web/packages/OneR/vignettes/OneR.html">Holger K. von Jouanne-Diedrich’s OneR package</a> for machine learning. I am running an example analysis on world happiness data and compare the results with other machine learning models (decision trees, random forest, gradient boosting trees and neural nets).</p>
+
+<p><br /></p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>All in all, based on this example, I would confirm that OneR models do indeed produce sufficiently accurate models for setting a good baseline. OneR was definitely faster than random forest, gradient boosting and neural nets. However, the latter were more complex models and included cross-validation.</p>
+
+<p>If you prefer an easy to understand model that is very simple, OneR is a very good way to go. You could also use it as a starting point for developing more complex models with improved accuracy.</p>
+
+<p>When looking at feature importance across models, the feature OneR chose - Economy/GDP per capita - was confirmed by random forest, gradient boosting trees and neural networks as being the most important feature. This is in itself an interesting conclusion! Of course, this correlation does not tell us that there is a direct causal relationship between money and happiness, but we can say that a country’s economy is the best individual predictor for how happy people tend to be.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="oner">OneR</h2>
+
+<p>OneR has been developed for the purpose of creating machine learning models that are easy to interpret and understand, while still being as accurate as possible. It is based on the one rule classification algorithm from Holte (1993), which is basically a decision tree cut at the first level.</p>
+
+<blockquote>
+  <p><a href="http://www.mlpack.org/papers/ds.pdf">R.C. Holte (1993). Very simple classification rules perform well on most commonly used datasets. Machine Learning. 11:63-91.</a></p>
+</blockquote>
+
+<p>While the original algorithm has difficulties in handling missing values and numeric data, the package provides enhanced functionality to handle those cases better, e.g. introducing a separate class for NA values and the <em>optbin()</em> function to find optimal splitting points for each feature. The main function of the package is OneR, which finds an optimal split for each feature and only use the most important feature with highest training accuracy for classification.</p>
+
+<p><br /></p>
+
+<p>I installed the latest stable version of the <strong>OneR</strong> package from <a href="https://cran.r-project.org/package=OneR">CRAN</a>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">OneR</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="the-dataset">The dataset</h2>
+
+<p>I am using the <a href="https://www.kaggle.com/unsdsn/world-happiness"><strong>World Happiness Report 2016</strong> from Kaggle</a>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span><span class="w">
+
+</span><span class="n">data_16</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"world-happiness/2016.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">","</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span><span class="n">data_15</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">read.table</span><span class="p">(</span><span class="s2">"world-happiness/2015.csv"</span><span class="p">,</span><span class="w"> </span><span class="n">sep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">","</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>In the 2016 data there are upper and lower CI for the happiness score given, while in the 2015 data we have standard errors. Because I want to combine data from the two years, I am using only columns that are in both datasets.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">common_feats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">data_16</span><span class="p">)[</span><span class="n">which</span><span class="p">(</span><span class="n">colnames</span><span class="p">(</span><span class="n">data_16</span><span class="p">)</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">data_15</span><span class="p">))]</span><span class="w">
+
+</span><span class="c1"># features and response variable for modeling
+</span><span class="n">feats</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">setdiff</span><span class="p">(</span><span class="n">common_feats</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"Country"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Happiness.Rank"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Happiness.Score"</span><span class="p">))</span><span class="w">
+</span><span class="n">response</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="s2">"Happiness.Score"</span><span class="w">
+
+</span><span class="c1"># combine data from 2015 and 2016
+</span><span class="n">data_15_16</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">select</span><span class="p">(</span><span class="n">data_15</span><span class="p">,</span><span class="w"> </span><span class="n">one_of</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">feats</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">))),</span><span class="w">
+              </span><span class="n">select</span><span class="p">(</span><span class="n">data_16</span><span class="p">,</span><span class="w"> </span><span class="n">one_of</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">feats</span><span class="p">,</span><span class="w"> </span><span class="n">response</span><span class="p">))))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The response variable <strong>happiness score</strong> is on a numeric scale. OneR could also perform regression but here, I want to compare classification tasks. For classifying happiness, I create three bins for low, medium and high values of the happiness score. In order to not having to deal with unbalanced data, I am using the <em>bin()</em> function from OneR with <code class="highlighter-rouge">method = "content"</code>. For plotting the cut-points, I am extracting the numbers from the default level names.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data_15_16</span><span class="o">$</span><span class="n">Happiness.Score.l</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bin</span><span class="p">(</span><span class="n">data_15_16</span><span class="o">$</span><span class="n">Happiness.Score</span><span class="p">,</span><span class="w"> </span><span class="n">nbins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"content"</span><span class="p">)</span><span class="w">
+
+</span><span class="n">intervals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">paste</span><span class="p">(</span><span class="n">levels</span><span class="p">(</span><span class="n">data_15_16</span><span class="o">$</span><span class="n">Happiness.Score.l</span><span class="p">),</span><span class="w"> </span><span class="n">collapse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">" "</span><span class="p">)</span><span class="w">
+</span><span class="n">intervals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">"\\(|]"</span><span class="p">,</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> </span><span class="n">intervals</span><span class="p">)</span><span class="w">
+</span><span class="n">intervals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">gsub</span><span class="p">(</span><span class="s2">","</span><span class="p">,</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w"> </span><span class="n">intervals</span><span class="p">)</span><span class="w">
+</span><span class="n">intervals</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">as.numeric</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">strsplit</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span><span class="w"> </span><span class="s2">" "</span><span class="p">)[[</span><span class="m">1</span><span class="p">]]))</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data_15_16</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_density</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Happiness.Score</span><span class="p">),</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"blue"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">intervals</span><span class="p">[</span><span class="m">2</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_vline</span><span class="p">(</span><span class="n">xintercept</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">intervals</span><span class="p">[</span><span class="m">3</span><span class="p">])</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-5-1.png" alt="" /></p>
+
+<p>Now I am removing the original happiness score column from the data for modeling and rename the factor levels of the response variable.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data_15_16</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">data_15_16</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">Happiness.Score</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">Happiness.Score.l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">plyr</span><span class="o">::</span><span class="n">revalue</span><span class="p">(</span><span class="n">Happiness.Score.l</span><span class="p">,</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s2">"(2.83,4.79]"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"low"</span><span class="p">,</span><span class="w"> </span><span class="s2">"(4.79,5.89]"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"medium"</span><span class="p">,</span><span class="w"> </span><span class="s2">"(5.89,7.59]"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"high"</span><span class="p">)))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Because there are only 9 features in this small dataset, I want to explore them all individually before modeling. First, I am plotting the only categorical variable: Region.</p>
+
+<p>This plots shows that there are a few regions with very strong biases in happiness: People in Western Europe, Australia, New Zealand, North America, Latin American and the Caribbean tend to me in the high happiness group, while people in sub-saharan Africa and Southern Asia tend to be the least happiest.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data_15_16</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Region</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Happiness.Score.l</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">,</span><span class="w"> </span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">theme</span><span class="p">(</span><span class="n">axis.text.x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">element_text</span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="n">vjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">hjust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">
+          </span><span class="n">plot.margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span><span class="w"> </span><span class="s2">"cm"</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-7-1.png" alt="" /></p>
+
+<p>The remaining quantitative variables show happiness biases to varying degrees: e.g. low health and life expectancy is strongly biased towards low happiness, economic factors, family and freedom show a bias in the same direction, albeit not as strong.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data_15_16</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">gather</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">Economy..GDP.per.Capita.</span><span class="o">:</span><span class="n">Dystopia.Residual</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Happiness.Score.l</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_histogram</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_wrap</span><span class="p">(</span><span class="o">~</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">scales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"free"</span><span class="p">,</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-8-1.png" alt="" /></p>
+
+<p>While OneR could also handle categorical data, in this example, I only want to consider the quantitative features to show the differences between OneR and other machine learning algorithms.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">data_15_16</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">select</span><span class="p">(</span><span class="n">data_15_16</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">Region</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="modeling">Modeling</h2>
+
+<p>The algorithms I will compare to OneR will be run via the <strong>caret</strong> package.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># configure multicore
+</span><span class="n">library</span><span class="p">(</span><span class="n">doParallel</span><span class="p">)</span><span class="w">
+</span><span class="n">cl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">makeCluster</span><span class="p">(</span><span class="n">detectCores</span><span class="p">())</span><span class="w">
+</span><span class="n">registerDoParallel</span><span class="p">(</span><span class="n">cl</span><span class="p">)</span><span class="w">
+
+</span><span class="n">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>I will also use caret’s <em>createDataPartition()</em> function to partition the data into training (70%) and test sets (30%).</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">index</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">createDataPartition</span><span class="p">(</span><span class="n">data_15_16</span><span class="o">$</span><span class="n">Happiness.Score.l</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span><span class="w">
+</span><span class="n">train_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data_15_16</span><span class="p">[</span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="n">test_data</span><span class="w">  </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data_15_16</span><span class="p">[</span><span class="o">-</span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="oner-1">OneR</h3>
+
+<p>OneR only accepts categorical features. Because we have numerical features, we need to convert them to factors by splitting them into appropriate bins. While the original OneR algorithm splits the values into ever smaller factors, this has been changed in this R-implementation with the argument of preventing overfitting. We can either split the data into pre-defined numbers of buckets (by length, content or cluster) or we can use the <em>optbin()</em> function to obtain the optimal number of factors from pairwise logistic regression or information gain.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="c1"># default method length
+</span><span class="n">data_1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bin</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span><span class="w"> </span><span class="n">nbins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"length"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># method content
+</span><span class="n">data_2</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bin</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span><span class="w"> </span><span class="n">nbins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"content"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># method cluster
+</span><span class="n">data_3</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">bin</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span><span class="w"> </span><span class="n">nbins</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"cluster"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># optimal bin number logistic regression
+</span><span class="n">data_4</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">optbin</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Happiness.Score.l</span><span class="w"> </span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"logreg"</span><span class="p">)</span><span class="w">
+
+</span><span class="c1"># optimal bin number information gain
+</span><span class="n">data_5</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">optbin</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Happiness.Score.l</span><span class="w"> </span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"infogain"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<p>This is how the data looks like following discretization:</p>
+
+<ul>
+  <li>Default method</li>
+</ul>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-14-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>5 bins with <code class="highlighter-rouge">method = "content</code></li>
+</ul>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-15-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>3 bins with <code class="highlighter-rouge">method = "cluster</code></li>
+</ul>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-16-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>optimal bin number according to logistic regression</li>
+</ul>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-17-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<ul>
+  <li>optimal bin number according to information gain</li>
+</ul>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-18-1.png" alt="" /></p>
+
+<p><br /></p>
+
+<h3 id="model-building">Model building</h3>
+
+<p>Now I am running the OneR models. During model building, the chosen attribute/feature with highest accuracy along with the top 7 features decision rules and accuracies are printed. Unfortunately, this information is not saved in the model object; this would have been nice in order to compare the importance of features across models later on.</p>
+
+<p>Here, all five models achieved highest prediction accuracy with the feature Economy GDP per capita.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"data_"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">))</span><span class="w">
+  </span><span class="n">print</span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">OneR</span><span class="p">(</span><span class="n">formula</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Happiness.Score.l</span><span class="w"> </span><span class="o">~</span><span class="n">.</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span><span class="w">
+  </span><span class="n">assign</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"model_"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+##     Attribute                     Accuracy
+## 1 * Economy..GDP.per.Capita.      63.96%  
+## 2   Health..Life.Expectancy.      59.91%  
+## 3   Family                        57.21%  
+## 4   Dystopia.Residual             51.8%   
+## 5   Freedom                       49.55%  
+## 6   Trust..Government.Corruption. 45.5%   
+## 7   Generosity                    41.89%  
+## ---
+## Chosen attribute due to accuracy
+## and ties method (if applicable): '*'
+## 
+## 
+## Call:
+## OneR(data = data, formula = Happiness.Score.l ~ ., verbose = TRUE)
+## 
+## Rules:
+## If Economy..GDP.per.Capita. = (-0.00182,0.365] then Happiness.Score.l = low
+## If Economy..GDP.per.Capita. = (0.365,0.73]     then Happiness.Score.l = low
+## If Economy..GDP.per.Capita. = (0.73,1.09]      then Happiness.Score.l = medium
+## If Economy..GDP.per.Capita. = (1.09,1.46]      then Happiness.Score.l = high
+## If Economy..GDP.per.Capita. = (1.46,1.83]      then Happiness.Score.l = high
+## 
+## Accuracy:
+## 142 of 222 instances classified correctly (63.96%)
+## 
+## 
+##     Attribute                     Accuracy
+## 1 * Economy..GDP.per.Capita.      64.41%  
+## 2   Health..Life.Expectancy.      60.81%  
+## 3   Family                        59.91%  
+## 4   Trust..Government.Corruption. 55.41%  
+## 5   Freedom                       53.15%  
+## 5   Dystopia.Residual             53.15%  
+## 7   Generosity                    41.44%  
+## ---
+## Chosen attribute due to accuracy
+## and ties method (if applicable): '*'
+## 
+## 
+## Call:
+## OneR(data = data, formula = Happiness.Score.l ~ ., verbose = TRUE)
+## 
+## Rules:
+## If Economy..GDP.per.Capita. = (-0.00182,0.548] then Happiness.Score.l = low
+## If Economy..GDP.per.Capita. = (0.548,0.877]    then Happiness.Score.l = low
+## If Economy..GDP.per.Capita. = (0.877,1.06]     then Happiness.Score.l = medium
+## If Economy..GDP.per.Capita. = (1.06,1.28]      then Happiness.Score.l = medium
+## If Economy..GDP.per.Capita. = (1.28,1.83]      then Happiness.Score.l = high
+## 
+## Accuracy:
+## 143 of 222 instances classified correctly (64.41%)
+## 
+## 
+##     Attribute                     Accuracy
+## 1 * Economy..GDP.per.Capita.      63.51%  
+## 2   Health..Life.Expectancy.      62.16%  
+## 3   Family                        54.5%   
+## 4   Freedom                       50.45%  
+## 4   Dystopia.Residual             50.45%  
+## 6   Trust..Government.Corruption. 43.24%  
+## 7   Generosity                    36.49%  
+## ---
+## Chosen attribute due to accuracy
+## and ties method (if applicable): '*'
+## 
+## 
+## Call:
+## OneR(data = data, formula = Happiness.Score.l ~ ., verbose = TRUE)
+## 
+## Rules:
+## If Economy..GDP.per.Capita. = (-0.00182,0.602] then Happiness.Score.l = low
+## If Economy..GDP.per.Capita. = (0.602,1.1]      then Happiness.Score.l = medium
+## If Economy..GDP.per.Capita. = (1.1,1.83]       then Happiness.Score.l = high
+## 
+## Accuracy:
+## 141 of 222 instances classified correctly (63.51%)
+## 
+## 
+##     Attribute                     Accuracy
+## 1 * Economy..GDP.per.Capita.      63.96%  
+## 2   Health..Life.Expectancy.      62.16%  
+## 3   Family                        58.56%  
+## 4   Freedom                       51.35%  
+## 5   Dystopia.Residual             50.9%   
+## 6   Trust..Government.Corruption. 46.4%   
+## 7   Generosity                    40.09%  
+## ---
+## Chosen attribute due to accuracy
+## and ties method (if applicable): '*'
+## 
+## 
+## Call:
+## OneR(data = data, formula = Happiness.Score.l ~ ., verbose = TRUE)
+## 
+## Rules:
+## If Economy..GDP.per.Capita. = (-0.00182,0.754] then Happiness.Score.l = low
+## If Economy..GDP.per.Capita. = (0.754,1.12]     then Happiness.Score.l = medium
+## If Economy..GDP.per.Capita. = (1.12,1.83]      then Happiness.Score.l = high
+## 
+## Accuracy:
+## 142 of 222 instances classified correctly (63.96%)
+## 
+## 
+##     Attribute                     Accuracy
+## 1 * Economy..GDP.per.Capita.      67.12%  
+## 2   Health..Life.Expectancy.      65.77%  
+## 3   Family                        61.71%  
+## 4   Trust..Government.Corruption. 56.31%  
+## 5   Dystopia.Residual             55.41%  
+## 6   Freedom                       50.9%   
+## 7   Generosity                    43.69%  
+## ---
+## Chosen attribute due to accuracy
+## and ties method (if applicable): '*'
+## 
+## 
+## Call:
+## OneR(data = data, formula = Happiness.Score.l ~ ., verbose = TRUE)
+## 
+## Rules:
+## If Economy..GDP.per.Capita. = (-0.00182,0.68] then Happiness.Score.l = low
+## If Economy..GDP.per.Capita. = (0.68,1.24]     then Happiness.Score.l = medium
+## If Economy..GDP.per.Capita. = (1.24,1.83]     then Happiness.Score.l = high
+## 
+## Accuracy:
+## 149 of 222 instances classified correctly (67.12%)
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="model-evaluation">Model evaluation</h3>
+
+<p>The function <em>eval_model()</em> prints confusion matrices for absolute and relative predictions, as well as accuracy, error and error rate reduction. For comparison with other models, it would have been convenient to be able to extract these performance metrics directly from the eval_model object, instead of only the confusion matrix and values of correct/all instances and having to re-calculate performance metrics again manually.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"model_"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">))</span><span class="w">
+  </span><span class="n">eval_model</span><span class="p">(</span><span class="n">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">),</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">Happiness.Score.l</span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## 
+## Confusion matrix (absolute):
+##           Actual
+## Prediction high low medium Sum
+##     high     23   0     11  34
+##     low       1  26     10  37
+##     medium    7   5     10  22
+##     Sum      31  31     31  93
+## 
+## Confusion matrix (relative):
+##           Actual
+## Prediction high  low medium  Sum
+##     high   0.25 0.00   0.12 0.37
+##     low    0.01 0.28   0.11 0.40
+##     medium 0.08 0.05   0.11 0.24
+##     Sum    0.33 0.33   0.33 1.00
+## 
+## Accuracy:
+## 0.6344 (59/93)
+## 
+## Error rate:
+## 0.3656 (34/93)
+## 
+## Error rate reduction (vs. base rate):
+## 0.4516 (p-value = 2.855e-09)
+## 
+## 
+## Confusion matrix (absolute):
+##           Actual
+## Prediction high low medium Sum
+##     high     19   0      1  20
+##     low       3  28     14  45
+##     medium    9   3     16  28
+##     Sum      31  31     31  93
+## 
+## Confusion matrix (relative):
+##           Actual
+## Prediction high  low medium  Sum
+##     high   0.20 0.00   0.01 0.22
+##     low    0.03 0.30   0.15 0.48
+##     medium 0.10 0.03   0.17 0.30
+##     Sum    0.33 0.33   0.33 1.00
+## 
+## Accuracy:
+## 0.6774 (63/93)
+## 
+## Error rate:
+## 0.3226 (30/93)
+## 
+## Error rate reduction (vs. base rate):
+## 0.5161 (p-value = 1.303e-11)
+## 
+## 
+## Confusion matrix (absolute):
+##           Actual
+## Prediction high low medium Sum
+##     high     23   0     11  34
+##     low       0  25      7  32
+##     medium    8   6     13  27
+##     Sum      31  31     31  93
+## 
+## Confusion matrix (relative):
+##           Actual
+## Prediction high  low medium  Sum
+##     high   0.25 0.00   0.12 0.37
+##     low    0.00 0.27   0.08 0.34
+##     medium 0.09 0.06   0.14 0.29
+##     Sum    0.33 0.33   0.33 1.00
+## 
+## Accuracy:
+## 0.6559 (61/93)
+## 
+## Error rate:
+## 0.3441 (32/93)
+## 
+## Error rate reduction (vs. base rate):
+## 0.4839 (p-value = 2.116e-10)
+## 
+## 
+## Confusion matrix (absolute):
+##           Actual
+## Prediction high low medium Sum
+##     high     23   0     11  34
+##     low       2  26     11  39
+##     medium    6   5      9  20
+##     Sum      31  31     31  93
+## 
+## Confusion matrix (relative):
+##           Actual
+## Prediction high  low medium  Sum
+##     high   0.25 0.00   0.12 0.37
+##     low    0.02 0.28   0.12 0.42
+##     medium 0.06 0.05   0.10 0.22
+##     Sum    0.33 0.33   0.33 1.00
+## 
+## Accuracy:
+## 0.6237 (58/93)
+## 
+## Error rate:
+## 0.3763 (35/93)
+## 
+## Error rate reduction (vs. base rate):
+## 0.4355 (p-value = 9.799e-09)
+## 
+## 
+## Confusion matrix (absolute):
+##           Actual
+## Prediction high low medium Sum
+##     high     21   0      3  24
+##     low       0  26      8  34
+##     medium   10   5     20  35
+##     Sum      31  31     31  93
+## 
+## Confusion matrix (relative):
+##           Actual
+## Prediction high  low medium  Sum
+##     high   0.23 0.00   0.03 0.26
+##     low    0.00 0.28   0.09 0.37
+##     medium 0.11 0.05   0.22 0.38
+##     Sum    0.33 0.33   0.33 1.00
+## 
+## Accuracy:
+## 0.7204 (67/93)
+## 
+## Error rate:
+## 0.2796 (26/93)
+## 
+## Error rate reduction (vs. base rate):
+## 0.5806 (p-value = 2.761e-14)
+</code></pre>
+</div>
+
+<p>Because I want to calculate performance measures for the different classes separately and like to have a more detailed look at the prediction probabilities I get from the models, I prefer to obtain predictions with <code class="highlighter-rouge">type = "prob</code>. While I am not looking at it here, this would also allow me to test different prediction thresholds.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">model</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">get</span><span class="p">(</span><span class="n">paste0</span><span class="p">(</span><span class="s2">"model_"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">))</span><span class="w">
+  </span><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paste0</span><span class="p">(</span><span class="s2">"model_"</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">),</span><span class="w">
+                     </span><span class="n">sample_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">test_data</span><span class="p">),</span><span class="w">
+                     </span><span class="n">predict</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+                     </span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">Happiness.Score.l</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">pred</span><span class="p">)[</span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">][</span><span class="n">apply</span><span class="p">(</span><span class="n">pred</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">which.max</span><span class="p">)]</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">pred</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">pred</span><span class="o">$</span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">pred_prob</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+  
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s2">"pred_prob"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  
+  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">pred_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">pred</span><span class="w">
+  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">pred_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">pred_df</span><span class="p">,</span><span class="w"> </span><span class="n">pred</span><span class="p">)</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="comparing-other-algorithms">Comparing other algorithms</h3>
+
+<h4 id="decision-trees">Decision trees</h4>
+
+<p>First, I am building a decision tree with the <strong>rpart</strong> package and <em>rpart()</em> function. This, we can plot with <em>rpart.plot()</em>.</p>
+
+<p>Economy GDP per capita is the second highest node here, the best predictor here would be health and life expectancy.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">library</span><span class="p">(</span><span class="n">rpart</span><span class="p">)</span><span class="w">
+</span><span class="n">library</span><span class="p">(</span><span class="n">rpart.plot</span><span class="p">)</span><span class="w">
+
+</span><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">fit</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rpart</span><span class="p">(</span><span class="n">Happiness.Score.l</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+            </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+            </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"class"</span><span class="p">,</span><span class="w">
+            </span><span class="n">control</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rpart.control</span><span class="p">(</span><span class="n">xval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> 
+            </span><span class="n">parms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="n">split</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"information"</span><span class="p">))</span><span class="w">
+
+</span><span class="n">rpart.plot</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-23-1.png" alt="" /></p>
+
+<p>In order to compare the models, I am producing the same output table for predictions from this model and combine it with the table from the OneR models.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rpart"</span><span class="p">,</span><span class="w">
+                   </span><span class="n">sample_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">test_data</span><span class="p">),</span><span class="w">
+                   </span><span class="n">predict</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+                   </span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">Happiness.Score.l</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">pred</span><span class="p">)[</span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">][</span><span class="n">apply</span><span class="p">(</span><span class="n">pred</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">which.max</span><span class="p">)]</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">pred</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">pred</span><span class="o">$</span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">pred_prob</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+  
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s2">"pred_prob"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_df_final</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">pred_df</span><span class="p">,</span><span class="w">
+                       </span><span class="n">pred</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="random-forest">Random Forest</h3>
+
+<p>Next, I am training a Random Forest model. For more details on Random Forest, check out my <a href="https://shiring.github.io/machine_learning/2016/11/27/flu_outcome_ML_post">post “Can we predict flu deaths with Machine Learning and R?”</a>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">model_rf</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">caret</span><span class="o">::</span><span class="n">train</span><span class="p">(</span><span class="n">Happiness.Score.l</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                         </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+                         </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rf"</span><span class="p">,</span><span class="w">
+                         </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>The <em>varImp()</em> function from caret shows us which feature was of highest importance for the model and its predictions.</p>
+
+<p>Here, we again find Economy GDP per captia on top.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">varImp</span><span class="p">(</span><span class="n">model_rf</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## rf variable importance
+## 
+##                               Overall
+## Economy..GDP.per.Capita.       100.00
+## Dystopia.Residual               97.89
+## Health..Life.Expectancy.        77.10
+## Family                          47.17
+## Trust..Government.Corruption.   29.89
+## Freedom                         19.29
+## Generosity                       0.00
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"rf"</span><span class="p">,</span><span class="w">
+                   </span><span class="n">sample_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">test_data</span><span class="p">),</span><span class="w">
+                   </span><span class="n">predict</span><span class="p">(</span><span class="n">model_rf</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+                   </span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">Happiness.Score.l</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">pred</span><span class="p">)[</span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">][</span><span class="n">apply</span><span class="p">(</span><span class="n">pred</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">which.max</span><span class="p">)]</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">pred</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">pred</span><span class="o">$</span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">pred_prob</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+  
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s2">"pred_prob"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_df_final</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">pred_df_final</span><span class="p">,</span><span class="w">
+                       </span><span class="n">pred</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="extreme-gradient-boosting-trees">Extreme gradient boosting trees</h3>
+
+<p>Gradient boosting is another decision tree-based algorithm, explained in more detail in <a href="https://shiring.github.io/machine_learning/2016/12/02/flu_outcome_ML_2_post">my post “Extreme Gradient Boosting and Preprocessing in Machine Learning”</a>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">model_xgb</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">caret</span><span class="o">::</span><span class="n">train</span><span class="p">(</span><span class="n">Happiness.Score.l</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                         </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+                         </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"xgbTree"</span><span class="p">,</span><span class="w">
+                         </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>As before, we again find Economy GDP per capita as most important feature.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">varImp</span><span class="p">(</span><span class="n">model_xgb</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## xgbTree variable importance
+## 
+##                          Overall
+## Economy..GDP.per.Capita.  100.00
+## Health..Life.Expectancy.   67.43
+## Family                     46.59
+## Freedom                     0.00
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"xgb"</span><span class="p">,</span><span class="w">
+                   </span><span class="n">sample_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">test_data</span><span class="p">),</span><span class="w">
+                   </span><span class="n">predict</span><span class="p">(</span><span class="n">model_xgb</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+                   </span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">Happiness.Score.l</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">pred</span><span class="p">)[</span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">][</span><span class="n">apply</span><span class="p">(</span><span class="n">pred</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">which.max</span><span class="p">)]</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">pred</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">pred</span><span class="o">$</span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">pred_prob</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+  
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s2">"pred_prob"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_df_final</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">pred_df_final</span><span class="p">,</span><span class="w">
+                       </span><span class="n">pred</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h3 id="neural-network">Neural network</h3>
+
+<p>Finally, I am comparing a neural network model. Here as well, I have a post where I talk about what they are in more detail: <a href="https://shiring.github.io/machine_learning/2017/02/27/h2o">“Building deep neural nets with h2o and rsparkling that predict arrhythmia of the heart”</a>.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span><span class="w">
+</span><span class="n">model_nn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">caret</span><span class="o">::</span><span class="n">train</span><span class="p">(</span><span class="n">Happiness.Score.l</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">.</span><span class="p">,</span><span class="w">
+                         </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">train_data</span><span class="p">,</span><span class="w">
+                         </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"mlp"</span><span class="p">,</span><span class="w">
+                         </span><span class="n">trControl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trainControl</span><span class="p">(</span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"repeatedcv"</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">repeats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> 
+                                                  </span><span class="n">verboseIter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">))</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>And Economy GDP per capita is again the most important feature!</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">varImp</span><span class="p">(</span><span class="n">model_nn</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## ROC curve variable importance
+## 
+##   variables are sorted by maximum importance across the classes
+##                                  low medium    high
+## Economy..GDP.per.Capita.      100.00 66.548 100.000
+## Health..Life.Expectancy.       95.22 63.632  95.222
+## Family                         84.48 45.211  84.483
+## Dystopia.Residual              71.23 43.450  71.232
+## Freedom                        64.58 41.964  64.581
+## Trust..Government.Corruption.  26.13 40.573  40.573
+## Generosity                      0.00  3.462   3.462
+</code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">data.frame</span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"nn"</span><span class="p">,</span><span class="w">
+                   </span><span class="n">sample_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">test_data</span><span class="p">),</span><span class="w">
+                   </span><span class="n">predict</span><span class="p">(</span><span class="n">model_nn</span><span class="p">,</span><span class="w"> </span><span class="n">test_data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"prob"</span><span class="p">),</span><span class="w">
+                   </span><span class="n">actual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test_data</span><span class="o">$</span><span class="n">Happiness.Score.l</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">prediction</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">colnames</span><span class="p">(</span><span class="n">pred</span><span class="p">)[</span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">][</span><span class="n">apply</span><span class="p">(</span><span class="n">pred</span><span class="p">[,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">],</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">which.max</span><span class="p">)]</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">correct</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">ifelse</span><span class="p">(</span><span class="n">pred</span><span class="o">$</span><span class="n">actual</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">pred</span><span class="o">$</span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">,</span><span class="w"> </span><span class="s2">"wrong"</span><span class="p">)</span><span class="w">
+  </span><span class="n">pred</span><span class="o">$</span><span class="n">pred_prob</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">NA</span><span class="w">
+  
+  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nrow</span><span class="p">(</span><span class="n">pred</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s2">"pred_prob"</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">max</span><span class="p">(</span><span class="n">pred</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">])</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_df_final</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">rbind</span><span class="p">(</span><span class="n">pred_df_final</span><span class="p">,</span><span class="w">
+                       </span><span class="n">pred</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><br /></p>
+
+<h2 id="model-comparisons">Model comparisons</h2>
+
+<p>Now to the final verdict: How do the different models compare?</p>
+
+<p>The first plot below shows the prediction probabilites for the three happiness levels low, medium and high for each test data instance. For each instance, only the prediction probability of the predicted class (i.e. with the highest value) is shown. The upper row shows correct predictions, the lower row shows wrong predictions.</p>
+
+<p>Sometimes, it is obvious from such a plot if a more stringent prediction threshold could improve things (when wrong predictions tend to be close to the threshold). With three classes to predict, this is obviously not as trivial as if we only had two but the same principle holds true: the smaller the prediction probability, the more uncertain it tends to be.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_df_final</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actual</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pred_prob</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">,</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_boxplot</span><span class="p">(</span><span class="n">alpha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.7</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">facet_grid</span><span class="p">(</span><span class="n">correct</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_color_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-44-1.png" alt="" /></p>
+
+<p>Probably the most straight-forwards performance measure is accuracy: i.e. the proportion of correct predictions vs the total number of instances to predict. The closer to 1, the better the accuracy.</p>
+
+<p>Not surprisingly, the more complex models tend to be more accurate - albeit only slightly.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_df_final</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">model</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">summarise</span><span class="p">(</span><span class="n">correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">correct</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">accuracy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">correct</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">nrow</span><span class="p">(</span><span class="n">test_data</span><span class="p">))</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accuracy</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-45-1.png" alt="" /></p>
+
+<p>When we look at the three classes individually, it looks a bit more complicated but most models achieved highest accuracy for class “high”.</p>
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">pred_df_final</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">group_by</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">prediction</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">dplyr</span><span class="o">::</span><span class="n">summarise</span><span class="p">(</span><span class="n">correct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">correct</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"correct"</span><span class="p">),</span><span class="w">
+            </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">())</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">mutate</span><span class="p">(</span><span class="n">accuracy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">correct</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+  </span><span class="n">ggplot</span><span class="p">(</span><span class="n">aes</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accuracy</span><span class="p">,</span><span class="w"> </span><span class="n">fill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prediction</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">geom_bar</span><span class="p">(</span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"identity"</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"dodge"</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w">
+    </span><span class="n">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Set1"</span><span class="p">)</span><span class="w">
+</span></code></pre>
+</div>
+
+<p><img src="one_r_files/figure-markdown_github/unnamed-chunk-47-1.png" alt="" /></p>
+
+<hr />
+
+<p>If you are interested in more machine learning posts, check out <a href="https://shiring.github.io/categories.html#machine_learning-ref">the category listing for <strong>machine_learning</strong> on my blog</a>.</p>
+
+<hr />
+
+<div class="language-r highlighter-rouge"><pre class="highlight"><code><span class="n">sessionInfo</span><span class="p">()</span><span class="w">
+</span></code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>## R version 3.3.3 (2017-03-06)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.3
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] parallel  stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+##  [1] RSNNS_0.4-9         Rcpp_0.12.10        plyr_1.8.4         
+##  [4] xgboost_0.6-4       randomForest_4.6-12 rpart.plot_2.1.1   
+##  [7] rpart_4.1-10        caret_6.0-73        lattice_0.20-35    
+## [10] doParallel_1.0.10   iterators_1.0.8     foreach_1.4.3      
+## [13] dplyr_0.5.0         purrr_0.2.2         readr_1.1.0        
+## [16] tidyr_0.6.1         tibble_1.3.0        ggplot2_2.2.1      
+## [19] tidyverse_1.1.1     OneR_2.1           
+## 
+## loaded via a namespace (and not attached):
+##  [1] lubridate_1.6.0    assertthat_0.2.0   rprojroot_1.2     
+##  [4] digest_0.6.12      psych_1.7.3.21     R6_2.2.0          
+##  [7] backports_1.0.5    MatrixModels_0.4-1 stats4_3.3.3      
+## [10] evaluate_0.10      httr_1.2.1         lazyeval_0.2.0    
+## [13] readxl_0.1.1       data.table_1.10.4  minqa_1.2.4       
+## [16] SparseM_1.76       car_2.1-4          nloptr_1.0.4      
+## [19] Matrix_1.2-8       rmarkdown_1.4      labeling_0.3      
+## [22] splines_3.3.3      lme4_1.1-12        stringr_1.2.0     
+## [25] foreign_0.8-67     munsell_0.4.3      broom_0.4.2       
+## [28] modelr_0.1.0       mnormt_1.5-5       mgcv_1.8-17       
+## [31] htmltools_0.3.5    nnet_7.3-12        codetools_0.2-15  
+## [34] MASS_7.3-45        ModelMetrics_1.1.0 grid_3.3.3        
+## [37] nlme_3.1-131       jsonlite_1.4       gtable_0.2.0      
+## [40] DBI_0.6-1          magrittr_1.5       scales_0.4.1      
+## [43] stringi_1.1.5      reshape2_1.4.2     xml2_1.1.1        
+## [46] RColorBrewer_1.1-2 tools_3.3.3        forcats_0.2.0     
+## [49] hms_0.3            pbkrtest_0.4-7     yaml_2.1.14       
+## [52] colorspace_1.3-2   rvest_0.3.2        knitr_1.15.1      
+## [55] haven_1.0.0        quantreg_5.29
+</code></pre>
+</div>
+
+    </div>
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-open"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/categories.html#machine_learning-ref">
+    		machine_learning <span>14</span>
+    	</a></li>
+    
+  
+
+
+    </ul>
+    
+
+  
+    <ul class="tag_box inline">
+      <li><i class="glyphicon glyphicon-tags"></i></li>
+      
+      
+
+
+  
+     
+    	<li><a href="/tags.html#machine_learning-ref">machine_learning <span>13</span></a></li>
+     
+    	<li><a href="/tags.html#ggplot2-ref">ggplot2 <span>32</span></a></li>
+     
+    	<li><a href="/tags.html#random_forest-ref">random_forest <span>6</span></a></li>
+     
+    	<li><a href="/tags.html#oneR-ref">oneR <span>1</span></a></li>
+     
+    	<li><a href="/tags.html#neural_network-ref">neural_network <span>2</span></a></li>
+    
+  
+
+
+
+    </ul>
+    
+  
+    <hr>
+    <ul class="pagination">
+    
+      <li class="prev"><a href="/machine_learning/2017/04/23/lime" title="Explaining complex machine learning models with LIME">&laquo; Previous</a></li>
+    
+      <li><a href="/archive.html">Archive</a></li>
+    
+      <li class="next"><a href="/machine_learning/2017/05/01/fraud" title="Autoencoders and anomaly detection with machine learning in fraud analytics">Next &raquo;</a></li>
+    
+    </ul>
+    <hr>
+    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+    var disqus_developer = 1;
+    var disqus_shortname = 'shirinsplayground'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'https://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+  </div>
+</div>
+
+
+      </div>
+
+    </div>
+	  
+	   
+
+
+
+	  
+  </body>
+
+<div class="footer">
+    <div id="footer">
+      <div class="container">
+        <p>&copy; 2017 Shirin Glander
+		<a href="mailto:shirin.glander@gmail.com"><img src="http://localhost:4000/assets/images/200px-Email_Shiny_Icon.png" /></a>
+		<a href="http://stackoverflow.com/users/6623620/shirin-glander"><img src="http://localhost:4000/assets/images/so-logo.png" /></a>
+		<a href="https://github.com/ShirinG"><img src="http://localhost:4000/assets/images/GitHub_Logo.png" /></a>
+		<a href="http://www.xing.com/profile/Shirin_Glander"><img src="http://localhost:4000/assets/images/xing.png" /></a>
+		<a href="http://de.linkedin.com/in/shirin-glander-01120881"><img src="http://localhost:4000/assets/images/Logo-2C-101px-R.png" /></a>
+          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+          and <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>
+        </p>
+      </div>
+    </div>
+	
+    <!-- Latest compiled and minified JavaScript, requires jQuery 1.x (2.x not supported in IE8) -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/themes/bootstrap-3/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</html>
+
