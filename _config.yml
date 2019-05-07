@@ -14,10 +14,10 @@ syntax_highlighter_opts:
 title : Shirin's playgRound
 tagline: exploring and playing with data in R
 author :
-  name : Shirin Glander
+  name : Shirin Elsinghorst
   email : shirin.glander@gmail.com
   github : ShirinG
-  stackoverflow : Shirin Glander
+  stackoverflow : Shirin Elsinghorst
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://raw.githubusercontent.com/ShirinG/ShirinG.github.io/master/assets/images/logo.png
